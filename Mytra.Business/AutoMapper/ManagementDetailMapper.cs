@@ -1,0 +1,10 @@
+﻿namespace Mytra.Business
+{
+    public class ManagementDetailMapper : AutoMapper.Profile
+    {
+        public ManagementDetailMapper()
+        {
+            
+        }
+    }
+}
