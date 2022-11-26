@@ -696,41 +696,41 @@
             //        .HasConstraintName("FK_SURVEY_USER");
             //});
 
-            //modelBuilder.Entity<User>(entity =>
-            //{
-            //    entity.ToTable("USER");
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.ToTable("USER");
 
-            //    entity.Property(e => e.Id)
-            //        .ValueGeneratedNever()
-            //        .HasColumnName("ID");
+                entity.Property(e => e.Id)
+                    .ValueGeneratedNever()
+                    .HasColumnName("ID");
 
-            //    entity.Property(e => e.Email)
-            //        .HasMaxLength(100)
-            //        .IsUnicode(false)
-            //        .HasColumnName("EMAIL");
+                entity.Property(e => e.Email)
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("EMAIL");
 
-            //    entity.Property(e => e.IsActive).HasColumnName("IS ACTIVE");
+                entity.Property(e => e.IsActive).HasColumnName("IS ACTIVE");
 
-            //    entity.Property(e => e.Password)
-            //        .HasMaxLength(100)
-            //        .HasColumnName("PASSWORD");
+                entity.Property(e => e.Password)
+                    .HasMaxLength(100)
+                    .HasColumnName("PASSWORD");
 
-            //    entity.Property(e => e.RefreshToken)
-            //        .HasMaxLength(50)
-            //        .HasColumnName("REFRESH TOKEN");
+                entity.Property(e => e.RefreshToken)
+                    .HasMaxLength(50)
+                    .HasColumnName("REFRESH TOKEN");
 
-            //    entity.Property(e => e.RefreshValidDate)
-            //        .HasColumnType("datetime")
-            //        .HasColumnName("REFRESH VALID DATE");
+                entity.Property(e => e.RefreshValidDate)
+                    .HasColumnType("datetime")
+                    .HasColumnName("REFRESH VALID DATE");
 
-            //    entity.Property(e => e.RegisterDate)
-            //        .HasColumnType("datetime")
-            //        .HasColumnName("REGISTER DATE");
+                entity.Property(e => e.RegisterDate)
+                    .HasColumnType("datetime")
+                    .HasColumnName("REGISTER DATE");
 
-            //    entity.Property(e => e.UpdateDate)
-            //        .HasColumnType("datetime")
-            //        .HasColumnName("UPDATE DATE");
-            //});
+                entity.Property(e => e.UpdateDate)
+                    .HasColumnType("datetime")
+                    .HasColumnName("UPDATE DATE");
+            });
 
             //modelBuilder.Entity<UserAbility>(entity =>
             //{

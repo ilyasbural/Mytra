@@ -2,13 +2,18 @@
 {
     using Core;
     using AutoMapper;
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
 
     public class UserDetailManager : IUserDetailService, IDisposable
     {
         protected IMapper Mapper;
-        public UserDetailManager(IMapper mapper)
+        protected IUnitOfWork UnitOfWork;
+
+        public UserDetailManager(IMapper mapper, IUnitOfWork unitOfWork)
         {
             Mapper = mapper;
+            UnitOfWork = unitOfWork;
         }
 
         public void Dispose()

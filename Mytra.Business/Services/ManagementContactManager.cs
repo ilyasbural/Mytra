@@ -2,13 +2,18 @@
 {
     using Core;
     using AutoMapper;
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
 
     public class ManagementContactManager : IManagementContactService, IDisposable
     {
         protected IMapper Mapper;
-        public ManagementContactManager(IMapper mapper)
+        protected IUnitOfWork UnitOfWork;
+
+        public ManagementContactManager(IMapper mapper, IUnitOfWork unitOfWork)
         {
             Mapper = mapper;
+            UnitOfWork = unitOfWork;
         }
 
         public void Dispose()

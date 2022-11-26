@@ -2,6 +2,10 @@
 {
     public interface IAnnounceService
     {
-
+        //Task<AnnounceResponse> AddAsync(AnnounceDataTransfer Model);
+        //Task<AnnounceResponse> UpdateAsync(AnnounceDataTransfer Model);
+        //Task<AnnounceResponse> DeleteAsync(AnnounceDataTransfer Model);
+        //Task<AnnounceResponse> SelectAsync(AnnounceDataTransfer Model);
+        //Task<AnnounceResponse> AnyAsync(AnnounceDataTransfer Model);
     }
 }
