@@ -8,10 +8,13 @@
     {
         public void Configure(EntityTypeBuilder<PermissionDetail> builder)
         {
-            builder.HasKey(x => x.Id);
-            builder.Property(x => x.RegisterDate);
-            builder.Property(x => x.UpdateDate);
-            builder.Property(x => x.IsActive);
+            builder.Property(e => e.Permission).HasColumnName("PERMISSION");
+            builder.Property(e => e.Id).HasColumnName("ID").ValueGeneratedNever();
+            builder.Property(x => x.RegisterDate).HasColumnName("REGISTER DATE").HasColumnType("DATETIME");
+            builder.Property(x => x.UpdateDate).HasColumnName("UPDATE DATE").HasColumnType("DATETIME");
+            builder.Property(e => e.IsActive).HasColumnName("IS ACTIVE");
+            builder.HasOne(d => d.PermissionNavigation).WithMany(p => p.PermissionDetails).HasForeignKey(d => d.Permission).HasConstraintName("FK_PERMISSION DETAIL_PERMISSION");
+            builder.ToTable("PERMISSION DETAIL");
         }
     }
 }

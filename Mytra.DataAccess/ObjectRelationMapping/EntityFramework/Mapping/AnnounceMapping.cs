@@ -8,10 +8,12 @@
     {
         public void Configure(EntityTypeBuilder<Announce> builder)
         {
-            builder.HasKey(x => x.Id);
-            builder.Property(x => x.RegisterDate);
-            builder.Property(x => x.UpdateDate);
-            builder.Property(x => x.IsActive);
+            builder.Property(e => e.Id).HasColumnName("ID").ValueGeneratedNever();
+            builder.Property(e => e.Title).HasColumnName("TITLE").HasMaxLength(250);
+            builder.Property(x => x.RegisterDate).HasColumnName("REGISTER DATE").HasColumnType("DATETIME");
+            builder.Property(x => x.UpdateDate).HasColumnName("UPDATE DATE").HasColumnType("DATETIME");
+            builder.Property(x => x.IsActive).HasColumnName("IS ACTIVE");
+            builder.ToTable("ANNOUNCE");
         }
     }
 }

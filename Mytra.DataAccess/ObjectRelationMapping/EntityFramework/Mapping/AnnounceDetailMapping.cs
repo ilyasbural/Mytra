@@ -8,10 +8,14 @@
     {
         public void Configure(EntityTypeBuilder<AnnounceDetail> builder)
         {
-            builder.HasKey(x => x.Id);
-            builder.Property(x => x.RegisterDate);
-            builder.Property(x => x.UpdateDate);
-            builder.Property(x => x.IsActive);
+            builder.Property(e => e.Announce).HasColumnName("ANNOUNCE");
+            builder.Property(e => e.Id).HasColumnName("ID").ValueGeneratedNever();
+            builder.Property(e => e.Detail).HasColumnName("DETAIL").HasMaxLength(750);
+            builder.Property(x => x.RegisterDate).HasColumnName("REGISTER DATE").HasColumnType("DATETIME");
+            builder.Property(x => x.UpdateDate).HasColumnName("UPDATE DATE").HasColumnType("DATETIME");
+            builder.Property(e => e.IsActive).HasColumnName("IS ACTIVE");
+            builder.HasOne(d => d.AnnounceNavigation).WithMany(p => p.AnnounceDetails).HasForeignKey(d => d.Announce).HasConstraintName("FK_ANNOUNCE DETAIL_ANNOUNCE");
+            builder.ToTable("ANNOUNCE DETAIL");
         }
     }
 }
