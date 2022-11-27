@@ -35,7 +35,7 @@
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(@"Server=DESKTOP-3MT9N8N\SQLSERVER; Database=JOBHUMAN; User Id = sa; password = 1");
+                optionsBuilder.UseSqlServer(@"Server=DESKTOP-LUSNRB7; Database=MYTRA; TrustServerCertificate=True; Trusted_Connection=True; User Id = sa; password = 1");
             }
         }
 
@@ -393,6 +393,32 @@
                 entity.Property(e => e.UpdateDate)
                     .HasColumnType("datetime")
                     .HasColumnName("UPDATE DATE");
+            });
+
+            modelBuilder.Entity<SurveyDetail>(entity =>
+            {
+                entity.ToTable("SURVEY DETAIL");
+
+                entity.Property(e => e.Id)
+                    .ValueGeneratedNever()
+                    .HasColumnName("ID");
+                entity.Property(e => e.IsActive).HasColumnName("IS ACTIVE");
+                entity.Property(e => e.RegisterDate)
+                    .HasColumnType("datetime")
+                    .HasColumnName("REGISTER DATE");
+                entity.Property(e => e.Survey).HasColumnName("SURVEY");
+                entity.Property(e => e.UpdateDate)
+                    .HasColumnType("datetime")
+                    .HasColumnName("UPDATE DATE");
+                entity.Property(e => e.User).HasColumnName("USER");
+
+                entity.HasOne(d => d.SurveyNavigation).WithMany(p => p.SurveyDetails)
+                    .HasForeignKey(d => d.Survey)
+                    .HasConstraintName("FK_SURVEY DETAIL_SURVEY");
+
+                entity.HasOne(d => d.UserNavigation).WithMany(p => p.SurveyDetails)
+                    .HasForeignKey(d => d.User)
+                    .HasConstraintName("FK_SURVEY DETAIL_USER");
             });
 
             modelBuilder.Entity<User>(entity =>

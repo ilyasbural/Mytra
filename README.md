@@ -34,6 +34,9 @@ Dependency Injection
 Inversion Of Control 
 
 Unit Of Work 
+
 Bootstrap 
+
 JavaScript & JQuery 
+
 Css 

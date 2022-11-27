@@ -28,6 +28,7 @@
             Service.AddScoped<IPermission, PermissionRepositoryEF>();
             Service.AddScoped<IPermissionDetail, PermissionDetailRepositoryEF>();
             Service.AddScoped<ISurvey, SurveyRepositoryEF>();
+            Service.AddScoped<ISurveyDetail, SurveyDetailRepositoryEF>();
             Service.AddScoped<IUser, UserRepositoryEF>();
             Service.AddScoped<IUserDetail, UserDetailRepositoryEF>();
             Service.AddScoped<IUserContact, UserContactRepositoryEF>();
@@ -48,9 +49,14 @@
             Service.AddScoped<IManagementDetailService, ManagementDetailManager>();
             Service.AddScoped<IManagementContactService, ManagementContactManager>();
             Service.AddScoped<IManagementSettingsService, ManagementSettingsManager>();
+            Service.AddScoped<IPermissionService, PermissionManager>();
+            Service.AddScoped<IPermissionDetailService, PermissionDetailManager>();
             Service.AddScoped<ISurveyService, SurveyManager>();
+            Service.AddScoped<ISurveyDetailService, SurveyDetailManager>();
             Service.AddScoped<IUserService, UserManager>();
             Service.AddScoped<IUserDetailService, UserDetailManager>();
+            Service.AddScoped<IUserContactService, UserContactManager>();
+            Service.AddScoped<IUserEmailService, UserEmailManager>();
             Service.AddScoped<IUserSettingsService, UserSettingsManager>();
 
             return Service;
