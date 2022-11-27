@@ -2,6 +2,6 @@
 {
     public class UserDetail : Base<UserDetail>, IEntity
     {
-
+        public virtual User IdNavigation { get; set; } = null!;
     }
 }
