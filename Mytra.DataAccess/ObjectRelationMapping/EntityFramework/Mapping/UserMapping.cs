@@ -8,7 +8,7 @@
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.Property(e => e.Id).HasColumnName("ID").ValueGeneratedNever();
+            builder.Property(e => e.Id).ValueGeneratedNever().HasColumnName("ID");
             builder.Property(e => e.Username).HasColumnName("USERNAME").HasMaxLength(50);
             builder.Property(e => e.Email).HasMaxLength(50).IsUnicode(false).HasColumnName("EMAIL");
             builder.Property(e => e.Password).HasMaxLength(50).HasColumnName("PASSWORD");            
