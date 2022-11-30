@@ -1,6 +1,6 @@
 ﻿namespace Mytra.Core
 {
-    public class ContentSettings : Base<ContentSettings>
+    public class ContentSettings : Base<ContentSettings>, IEntity
     {
 
     }

@@ -1,6 +1,6 @@
 ﻿namespace Mytra.Core
 {
-    public interface IContentDetailRepository
+    public interface IContentDetailRepository : IRepository<ContentDetail>
     {
 
     }

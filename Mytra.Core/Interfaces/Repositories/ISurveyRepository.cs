@@ -1,6 +1,6 @@
 ﻿namespace Mytra.Core
 {
-    public interface ISurveyRepository
+    public interface ISurveyRepository : IRepository<Survey>
     {
 
     }

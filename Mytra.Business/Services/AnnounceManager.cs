@@ -4,8 +4,9 @@
     using AutoMapper;
     using System.Threading.Tasks;
     using System.Collections.Generic;
+    using Microsoft.IdentityModel.Tokens;
 
-    public class AnnounceManager : IAnnounceService, IDisposable
+    public class AnnounceManager : IAnnounceService
     {
         readonly IMapper Mapper;
         readonly IUnitOfWork UnitOfWork;
@@ -16,14 +17,28 @@
             UnitOfWork = unitOfWork;
         }
 
-        public Task<AnnounceResponse> AddAsync(AnnounceInsertDataTransfer Model)
+        public async Task<AnnounceResponse> AddAsync(AnnounceInsertDataTransfer model)
         {
-            throw new NotImplementedException();
-        }
+            Announce announceModel = Mapper.Map<Announce>(model);
+            announceModel.Id = Guid.NewGuid();
+            announceModel.RegisterDate = DateTime.Now;
+            announceModel.UpdateDate = DateTime.Now;
+            announceModel.IsActive = true;
 
-        public void Dispose()
-        {
-            GC.SuppressFinalize(this);
+            await UnitOfWork.Announce.AddAsync(announceModel);
+            await UnitOfWork.SaveChangesAsync();   
+
+            return new AnnounceResponse
+            {
+                //Data = Entity,
+                //Response = Mapper.Map<AbilityDataTransferInsert>(Entity)
+
+
+
+
+
+
+            };
         }
     }
 }

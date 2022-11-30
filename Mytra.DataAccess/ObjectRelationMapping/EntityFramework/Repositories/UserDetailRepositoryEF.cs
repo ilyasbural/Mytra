@@ -1,7 +1,10 @@
 ﻿namespace Mytra.DataAccess
 {
-    public class UserDetailRepositoryEF
+    public class UserDetailRepositoryEF : BaseRepository<Core.UserDetail>, Core.IUserDetailRepository
     {
+        public UserDetailRepositoryEF(Microsoft.EntityFrameworkCore.DbContext dbContext) : base(dbContext)
+        {
 
+        }
     }
 }

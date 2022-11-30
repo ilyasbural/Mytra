@@ -14,23 +14,17 @@
 
         [HttpPost]
         [Route("api/contentcomment")]
-        public Task<ContentCommentWebResponse> Create([FromBody] ContentCommentInsertDataTransfer Model)
+        public async Task<ContentCommentWebResponse> Create([FromBody] ContentCommentInsertDataTransfer Model)
         {
-            Task<ContentCommentResponse> Data = Service.AddAsync(Model);
-            //AnnounceResult Result = Service.AddAsync(Model);
-            //return new AnnounceResponse
-            //{
-            //    Id = Result.Id,
-            //    Company = Result.Company,
-            //    Occupation = Result.Occupation,
-            //    Title = Result.Title,
-            //    AnnounceDate = Result.AnnounceDate,
-            //    CreatedByUser = Result.CreatedByUser,
-            //    UpdatedByUser = Result.UpdatedByUser,
-            //    RegisterDate = Result.RegisterDate,
-            //    UpdateDate = Result.UpdateDate
-            //};
-            return Create(Model);
+            ContentCommentResponse contentCommentResponse = await Service.AddAsync(Model);
+            return new ContentCommentWebResponse
+            {
+                
+
+
+
+
+            };
         }
     }
 }

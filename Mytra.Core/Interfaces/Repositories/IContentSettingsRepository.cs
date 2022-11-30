@@ -1,6 +1,6 @@
 ﻿namespace Mytra.Core
 {
-    public interface IContentSettingsRepository
+    public interface IContentSettingsRepository : IRepository<ContentSettings>
     {
 
     }

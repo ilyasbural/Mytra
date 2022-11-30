@@ -1,6 +1,6 @@
 ﻿namespace Mytra.Core
 {
-    public class UserDetail : Base<UserDetail>
+    public class UserDetail : Base<UserDetail>, IEntity
     {
         public virtual User IdNavigation { get; set; } = null!;
     }

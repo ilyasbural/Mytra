@@ -14,23 +14,19 @@
 
         [HttpPost]
         [Route("api/announcedetail")]
-        public Task<AnnounceDetailWebResponse> Create([FromBody] AnnounceDetailInsertDataTransfer Model)
+        public async Task<AnnounceDetailWebResponse> Create([FromBody] AnnounceDetailInsertDataTransfer Model)
         {
-            Task<AnnounceDetailResponse> Data = Service.AddAsync(Model);
-            //AnnounceResult Result = Service.AddAsync(Model);
-            //return new AnnounceResponse
-            //{
-            //    Id = Result.Id,
-            //    Company = Result.Company,
-            //    Occupation = Result.Occupation,
-            //    Title = Result.Title,
-            //    AnnounceDate = Result.AnnounceDate,
-            //    CreatedByUser = Result.CreatedByUser,
-            //    UpdatedByUser = Result.UpdatedByUser,
-            //    RegisterDate = Result.RegisterDate,
-            //    UpdateDate = Result.UpdateDate
-            //};
-            return Create(Model);
+            AnnounceDetailResponse announceDetailResponse = await Service.AddAsync(Model);
+            return new AnnounceDetailWebResponse
+            {
+                
+
+
+
+
+
+
+            };
         }
     }
 }

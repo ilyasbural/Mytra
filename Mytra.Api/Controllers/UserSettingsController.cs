@@ -14,23 +14,20 @@
 
         [HttpPost]
         [Route("api/usersettings")]
-        public Task<UserSettingsWebResponse> Create([FromBody] UserSettingsInsertDataTransfer Model)
+        public async Task<UserSettingsWebResponse> Create([FromBody] UserSettingsInsertDataTransfer Model)
         {
-            Task<UserSettingsResponse> Data = Service.AddAsync(Model);
-            //AnnounceResult Result = Service.AddAsync(Model);
-            //return new AnnounceResponse
-            //{
-            //    Id = Result.Id,
-            //    Company = Result.Company,
-            //    Occupation = Result.Occupation,
-            //    Title = Result.Title,
-            //    AnnounceDate = Result.AnnounceDate,
-            //    CreatedByUser = Result.CreatedByUser,
-            //    UpdatedByUser = Result.UpdatedByUser,
-            //    RegisterDate = Result.RegisterDate,
-            //    UpdateDate = Result.UpdateDate
-            //};
-            return Create(Model);
+            UserSettingsResponse userSettingsResponse = await Service.AddAsync(Model);
+            return new UserSettingsWebResponse
+            {
+                
+
+
+
+
+
+
+
+            };
         }
     }
 }

@@ -2,37 +2,39 @@
 {
     using Core;
     using DataAccess;
+    using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
 
     public static class ServiceCollectionExtensions
     {
         public static IServiceCollection LoadMyServices(this IServiceCollection Service)
         {
+            Service.AddDbContext<DbContext>();
             Service.AddDbContext<MytraContext>();
 
-            //Service.AddScoped<IAnnounceRepository, AnnounceRepositoryEF>();
+            Service.AddScoped<IAnnounceRepository, AnnounceRepositoryEF>();
             Service.AddScoped<IAnnounceDetailRepository, AnnounceDetailRepositoryEF>();
-            //Service.AddScoped<ICategoryRepository, CategoryRepositoryEF>();
-            //Service.AddScoped<IContentRepository, ContentRepositoryEF>();
-            //Service.AddScoped<IContentCommentRepository, ContentCommentRepositoryEF>();
-            //Service.AddScoped<IContentDetailRepository, ContentDetailRepositoryEF>();
-            //Service.AddScoped<IContentLikeRepository, ContentLikeRepositoryEF>();
-            //Service.AddScoped<IContentPictureRepository, ContentPictureRepositoryEF>();
-            //Service.AddScoped<IContentSettingsRepository, ContentSettingsRepositoryEF>();
-            //Service.AddScoped<IContentTypeRepository, ContentTypeRepositoryEF>();
-            //Service.AddScoped<IManagementRepository, ManagementRepositoryEF>();
-            //Service.AddScoped<IManagementDetailRepository, ManagementDetailRepositoryEF>();
-            //Service.AddScoped<IManagementContactRepository, ManagementContactRepositoryEF>();
-            //Service.AddScoped<IManagementSettingsRepository, ManagementSettingsRepositoryEF>();
-            //Service.AddScoped<IPermissionRepository, PermissionRepositoryEF>();
-            //Service.AddScoped<IPermissionDetailRepository, PermissionDetailRepositoryEF>();
-            //Service.AddScoped<ISurveyRepository, SurveyRepositoryEF>();
-            //Service.AddScoped<ISurveyDetailRepository, SurveyDetailRepositoryEF>();
-            //Service.AddScoped<IUserRepository, UserRepositoryEF>();
-            //Service.AddScoped<IUserDetailRepository, UserDetailRepositoryEF>();
-            //Service.AddScoped<IUserContactRepository, UserContactRepositoryEF>();
-            //Service.AddScoped<IUserEmailRepository, UserEmailRepositoryEF>();
-            //Service.AddScoped<IUserSettingsRepository, UserSettingsRepositoryEF>();
+            Service.AddScoped<ICategoryRepository, CategoryRepositoryEF>();
+            Service.AddScoped<IContentRepository, ContentRepositoryEF>();
+            Service.AddScoped<IContentCommentRepository, ContentCommentRepositoryEF>();
+            Service.AddScoped<IContentDetailRepository, ContentDetailRepositoryEF>();
+            Service.AddScoped<IContentLikeRepository, ContentLikeRepositoryEF>();
+            Service.AddScoped<IContentPictureRepository, ContentPictureRepositoryEF>();
+            Service.AddScoped<IContentSettingsRepository, ContentSettingsRepositoryEF>();
+            Service.AddScoped<IContentTypeRepository, ContentTypeRepositoryEF>();
+            Service.AddScoped<IManagementRepository, ManagementRepositoryEF>();
+            Service.AddScoped<IManagementDetailRepository, ManagementDetailRepositoryEF>();
+            Service.AddScoped<IManagementContactRepository, ManagementContactRepositoryEF>();
+            Service.AddScoped<IManagementSettingsRepository, ManagementSettingsRepositoryEF>();
+            Service.AddScoped<IPermissionRepository, PermissionRepositoryEF>();
+            Service.AddScoped<IPermissionDetailRepository, PermissionDetailRepositoryEF>();
+            Service.AddScoped<ISurveyRepository, SurveyRepositoryEF>();
+            Service.AddScoped<ISurveyDetailRepository, SurveyDetailRepositoryEF>();
+            Service.AddScoped<IUserRepository, UserRepositoryEF>();
+            Service.AddScoped<IUserDetailRepository, UserDetailRepositoryEF>();
+            Service.AddScoped<IUserContactRepository, UserContactRepositoryEF>();
+            Service.AddScoped<IUserEmailRepository, UserEmailRepositoryEF>();
+            Service.AddScoped<IUserSettingsRepository, UserSettingsRepositoryEF>();
             Service.AddScoped<IUnitOfWork, UnitOfWork>();
 
             Service.AddScoped<IAnnounceService, AnnounceManager>();

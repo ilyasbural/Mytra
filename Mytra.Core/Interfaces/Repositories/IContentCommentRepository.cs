@@ -1,6 +1,6 @@
 ﻿namespace Mytra.Core
 {
-    public interface IContentCommentRepository
+    public interface IContentCommentRepository : IRepository<ContentComment>
     {
 
     }

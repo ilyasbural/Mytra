@@ -1,6 +1,6 @@
 ﻿namespace Mytra.Core
 {
-    public interface IPermissionRepository
+    public interface IPermissionRepository : IRepository<Permission>
     {
 
     }

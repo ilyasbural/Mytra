@@ -1,6 +1,6 @@
 ﻿namespace Mytra.Core
 {
-    public class Content : Base<Content>
+    public class Content : Base<Content>, IEntity
     {
         public Guid? ContentType { get; set; }
         public Guid? Category { get; set; }

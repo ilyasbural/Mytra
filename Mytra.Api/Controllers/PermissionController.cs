@@ -14,23 +14,16 @@
 
         [HttpPost]
         [Route("api/permission")]
-        public Task<PermissionWebResponse> Create([FromBody] PermissionInsertDataTransfer Model)
+        public async Task<PermissionWebResponse> Create([FromBody] PermissionInsertDataTransfer Model)
         {
-            Task<PermissionResponse> Data = Service.AddAsync(Model);
-            //AnnounceResult Result = Service.AddAsync(Model);
-            //return new AnnounceResponse
-            //{
-            //    Id = Result.Id,
-            //    Company = Result.Company,
-            //    Occupation = Result.Occupation,
-            //    Title = Result.Title,
-            //    AnnounceDate = Result.AnnounceDate,
-            //    CreatedByUser = Result.CreatedByUser,
-            //    UpdatedByUser = Result.UpdatedByUser,
-            //    RegisterDate = Result.RegisterDate,
-            //    UpdateDate = Result.UpdateDate
-            //};
-            return Create(Model);
+            PermissionResponse permissionResponse = await Service.AddAsync(Model);
+            return new PermissionWebResponse
+            {
+                
+
+
+
+            };
         }
     }
 }

@@ -14,23 +14,17 @@
 
         [HttpPost]
         [Route("api/survey")]
-        public Task<SurveyWebResponse> Create([FromBody] SurveyInsertDataTransfer Model)
+        public async Task<SurveyWebResponse> Create([FromBody] SurveyInsertDataTransfer Model)
         {
-            Task<SurveyResponse> Data = Service.AddAsync(Model);
-            //AnnounceResult Result = Service.AddAsync(Model);
-            //return new AnnounceResponse
-            //{
-            //    Id = Result.Id,
-            //    Company = Result.Company,
-            //    Occupation = Result.Occupation,
-            //    Title = Result.Title,
-            //    AnnounceDate = Result.AnnounceDate,
-            //    CreatedByUser = Result.CreatedByUser,
-            //    UpdatedByUser = Result.UpdatedByUser,
-            //    RegisterDate = Result.RegisterDate,
-            //    UpdateDate = Result.UpdateDate
-            //};
-            return Create(Model);
+            SurveyResponse surveyResponse = await Service.AddAsync(Model);
+            return new SurveyWebResponse
+            {
+                
+
+
+
+
+            };
         }
     }
 }

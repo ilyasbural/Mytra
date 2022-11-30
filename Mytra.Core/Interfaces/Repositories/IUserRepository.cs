@@ -1,6 +1,6 @@
 ﻿namespace Mytra.Core
 {
-    public interface IUserRepository
+    public interface IUserRepository : IRepository<User>
     {
 
     }

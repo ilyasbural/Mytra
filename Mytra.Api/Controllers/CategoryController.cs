@@ -14,23 +14,19 @@
 
         [HttpPost]
         [Route("api/category")]
-        public Task<CategoryWebResponse> Create([FromBody] CategoryInsertDataTransfer Model)
+        public async Task<CategoryWebResponse> Create([FromBody] CategoryInsertDataTransfer Model)
         {
-            Task<CategoryResponse> Data = Service.AddAsync(Model);
-            //AnnounceResult Result = Service.AddAsync(Model);
-            //return new AnnounceResponse
-            //{
-            //    Id = Result.Id,
-            //    Company = Result.Company,
-            //    Occupation = Result.Occupation,
-            //    Title = Result.Title,
-            //    AnnounceDate = Result.AnnounceDate,
-            //    CreatedByUser = Result.CreatedByUser,
-            //    UpdatedByUser = Result.UpdatedByUser,
-            //    RegisterDate = Result.RegisterDate,
-            //    UpdateDate = Result.UpdateDate
-            //};
-            return Create(Model);
+            CategoryResponse categoryResponse = await Service.AddAsync(Model);
+            return new CategoryWebResponse
+            {
+                
+
+
+
+
+
+
+            };
         }
     }
 }

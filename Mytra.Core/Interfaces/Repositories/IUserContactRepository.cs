@@ -1,6 +1,6 @@
 ﻿namespace Mytra.Core
 {
-    public interface IUserContactRepository
+    public interface IUserContactRepository : IRepository<UserContact>
     {
 
     }

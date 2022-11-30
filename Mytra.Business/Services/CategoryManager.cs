@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using System.Collections.Generic;
 
-    public class CategoryManager : ICategoryService, IDisposable
+    public class CategoryManager : ICategoryService
     {
         readonly IMapper Mapper;
         readonly IUnitOfWork UnitOfWork;
@@ -16,14 +16,21 @@
             UnitOfWork = unitOfWork;
         }
 
-        public Task<CategoryResponse> AddAsync(CategoryInsertDataTransfer Model)
+        public async Task<CategoryResponse> AddAsync(CategoryInsertDataTransfer Model)
         {
-            throw new NotImplementedException();
-        }
+            Category Entity = Mapper.Map<Category>(Model);
+            //Entity.Id = Guid.NewGuid();
+            //Entity.RegisterDate = DateTime.Now;
+            //Entity.UpdateDate = DateTime.Now;
+            //Entity.IsActive = true;
+            //await UnitOfWork.Category.AddAsync(Entity);
+            //int a = await UnitOfWork.SaveChangesAsync();
 
-        public void Dispose()
-        {
-            GC.SuppressFinalize(this);
+            return new CategoryResponse
+            {
+                //Data = Entity,
+                //Response = Mapper.Map<AbilityDataTransferInsert>(Entity)
+            };
         }
     }
 }

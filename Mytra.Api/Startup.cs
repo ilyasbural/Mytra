@@ -18,7 +18,7 @@
             Service.AddControllers().AddJsonOptions(opts => opts.JsonSerializerOptions.PropertyNamingPolicy = null);
             Service.AddControllersWithViews();
             Service.LoadMyServices();
-            Service.AddAutoMapper(typeof(Startup));
+            Service.AddAutoMapper(typeof(AnnounceMapper));
             Service.Configure<TokenOptions>(Configuration.GetSection("TokenOptions"));
             //Service.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(jwtbeareroptions =>
             //{

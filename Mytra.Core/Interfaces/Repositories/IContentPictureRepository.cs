@@ -1,6 +1,6 @@
 ﻿namespace Mytra.Core
 {
-    public interface IContentPictureRepository
+    public interface IContentPictureRepository : IRepository<ContentPicture>
     {
 
     }

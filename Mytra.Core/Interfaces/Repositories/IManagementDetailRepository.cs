@@ -1,6 +1,6 @@
 ﻿namespace Mytra.Core
 {
-    public interface IManagementDetailRepository
+    public interface IManagementDetailRepository : IRepository<ManagementDetail>
     {
 
     }
