@@ -1,6 +1,6 @@
 ﻿namespace Mytra.Core
 {
-    public class ContentDetail : Base<ContentDetail>, IEntity
+    public class ContentDetail : Base<ContentDetail>
     {
 
     }

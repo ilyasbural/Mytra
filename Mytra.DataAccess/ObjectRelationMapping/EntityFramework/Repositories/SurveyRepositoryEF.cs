@@ -1,10 +1,7 @@
 ﻿namespace Mytra.DataAccess
 {
-    public class SurveyRepositoryEF : Core.BaseRepository<Core.Survey>, Core.ISurvey
+    public class SurveyRepositoryEF
     {
-        public SurveyRepositoryEF(Microsoft.EntityFrameworkCore.DbContext dbContext) : base(dbContext)
-        {
 
-        }
     }
 }

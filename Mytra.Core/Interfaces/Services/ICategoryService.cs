@@ -2,6 +2,6 @@
 {
     public interface ICategoryService
     {
-        
+        Task<CategoryResponse> AddAsync(CategoryInsertDataTransfer Model);
     }
 }

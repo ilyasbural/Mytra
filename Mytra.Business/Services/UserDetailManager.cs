@@ -7,13 +7,18 @@
 
     public class UserDetailManager : IUserDetailService, IDisposable
     {
-        protected IMapper Mapper;
-        protected IUnitOfWork UnitOfWork;
+        readonly IMapper Mapper;
+        readonly IUnitOfWork UnitOfWork;
 
         public UserDetailManager(IMapper mapper, IUnitOfWork unitOfWork)
         {
             Mapper = mapper;
             UnitOfWork = unitOfWork;
+        }
+
+        public Task<UserDetailResponse> AddAsync(UserDetailInsertDataTransfer Model)
+        {
+            throw new NotImplementedException();
         }
 
         public void Dispose()

@@ -1,10 +1,7 @@
 ﻿namespace Mytra.DataAccess
 {
-    public class UserSettingsRepositoryEF : Core.BaseRepository<Core.UserSettings>, Core.IUserSettings
+    public class UserSettingsRepositoryEF
     {
-        public UserSettingsRepositoryEF(Microsoft.EntityFrameworkCore.DbContext dbContext) : base(dbContext)
-        {
 
-        }
     }
 }

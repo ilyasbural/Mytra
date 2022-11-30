@@ -2,6 +2,6 @@
 {
     public interface IUserEmailService
     {
-
+        Task<UserEmailResponse> AddAsync(UserEmailInsertDataTransfer Model);
     }
 }

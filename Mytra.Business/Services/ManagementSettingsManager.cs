@@ -7,13 +7,18 @@
 
     public class ManagementSettingsManager : IManagementSettingsService, IDisposable
     {
-        protected IMapper Mapper;
-        protected IUnitOfWork UnitOfWork;
+        readonly IMapper Mapper;
+        readonly IUnitOfWork UnitOfWork;
 
         public ManagementSettingsManager(IMapper mapper, IUnitOfWork unitOfWork)
         {
             Mapper = mapper;
             UnitOfWork = unitOfWork;
+        }
+
+        public Task<ManagementSettingsResponse> AddAsync(ManagementSettingsInsertDataTransfer Model)
+        {
+            throw new NotImplementedException();
         }
 
         public void Dispose()

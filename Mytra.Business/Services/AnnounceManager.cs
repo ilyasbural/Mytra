@@ -7,13 +7,18 @@
 
     public class AnnounceManager : IAnnounceService, IDisposable
     {
-        protected IMapper Mapper;
-        protected IUnitOfWork UnitOfWork;
+        readonly IMapper Mapper;
+        readonly IUnitOfWork UnitOfWork;
 
         public AnnounceManager(IMapper mapper, IUnitOfWork unitOfWork)
         {
             Mapper = mapper;
             UnitOfWork = unitOfWork;
+        }
+
+        public Task<AnnounceResponse> AddAsync(AnnounceInsertDataTransfer Model)
+        {
+            throw new NotImplementedException();
         }
 
         public void Dispose()

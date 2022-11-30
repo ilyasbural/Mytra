@@ -1,10 +1,7 @@
 ﻿namespace Mytra.DataAccess
 {
-    public class UserEmailRepositoryEF : Core.BaseRepository<Core.UserEmail>, Core.IUserEmail
+    public class UserEmailRepositoryEF
     {
-        public UserEmailRepositoryEF(Microsoft.EntityFrameworkCore.DbContext dbContext) : base(dbContext)
-        {
 
-        }
     }
 }

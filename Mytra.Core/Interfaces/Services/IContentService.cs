@@ -2,6 +2,6 @@
 {
     public interface IContentService
     {
-
+        Task<ContentResponse> AddAsync(ContentInsertDataTransfer Model);
     }
 }

@@ -7,13 +7,18 @@
 
     public class ContentManager : IContentService, IDisposable
     {
-        protected IMapper Mapper;
-        protected IUnitOfWork UnitOfWork;
+        readonly IMapper Mapper;
+        readonly IUnitOfWork UnitOfWork;
 
         public ContentManager(IMapper mapper, IUnitOfWork unitOfWork)
         {
             Mapper = mapper;
             UnitOfWork = unitOfWork;
+        }
+
+        public Task<ContentResponse> AddAsync(ContentInsertDataTransfer Model)
+        {
+            throw new NotImplementedException();
         }
 
         public void Dispose()

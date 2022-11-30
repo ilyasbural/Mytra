@@ -1,6 +1,6 @@
 ﻿namespace Mytra.Core
 {
-    public class User : Base<User>, IEntity
+    public class User : Base<User>
     {
         public string? Username { get; set; }
         public string? Email { get; set; }

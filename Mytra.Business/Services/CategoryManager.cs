@@ -7,13 +7,18 @@
 
     public class CategoryManager : ICategoryService, IDisposable
     {
-        protected IMapper Mapper;
-        protected IUnitOfWork UnitOfWork;
+        readonly IMapper Mapper;
+        readonly IUnitOfWork UnitOfWork;
 
         public CategoryManager(IMapper mapper, IUnitOfWork unitOfWork)
         {
             Mapper = mapper;
             UnitOfWork = unitOfWork;
+        }
+
+        public Task<CategoryResponse> AddAsync(CategoryInsertDataTransfer Model)
+        {
+            throw new NotImplementedException();
         }
 
         public void Dispose()

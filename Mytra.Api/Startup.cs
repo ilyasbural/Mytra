@@ -2,7 +2,6 @@
 {
     using Core;
     using Business;
-    using Microsoft.AspNetCore.Authentication.JwtBearer;
 
     public class Startup
     {
@@ -15,25 +14,25 @@
         public void ConfigureServices(IServiceCollection Service)
         {
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
-
-            Service.LoadMyServices();
+            
             Service.AddControllers().AddJsonOptions(opts => opts.JsonSerializerOptions.PropertyNamingPolicy = null);
             Service.AddControllersWithViews();
-            Service.AddAutoMapper(typeof(AnnounceMapper));
+            Service.LoadMyServices();
+            Service.AddAutoMapper(typeof(Startup));
             Service.Configure<TokenOptions>(Configuration.GetSection("TokenOptions"));
-            Service.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(jwtbeareroptions =>
-            {
-                jwtbeareroptions.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
-                {
-                    ValidateAudience = true,
-                    ValidateIssuer = true,
-                    ValidateLifetime = true,
-                    ValidateIssuerSigningKey = true,
-                    ValidIssuer = tokenOptions.Issuer,
-                    ValidAudience = tokenOptions.Audience,
-                    IssuerSigningKey = SignHandler.GetSecurityKey(tokenOptions.SecurityKey)
-                };
-            });
+            //Service.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(jwtbeareroptions =>
+            //{
+            //    jwtbeareroptions.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
+            //    {
+            //        ValidateAudience = true,
+            //        ValidateIssuer = true,
+            //        ValidateLifetime = true,
+            //        ValidateIssuerSigningKey = true,
+            //        ValidIssuer = tokenOptions.Issuer,
+            //        ValidAudience = tokenOptions.Audience,
+            //        IssuerSigningKey = SignHandler.GetSecurityKey(tokenOptions.SecurityKey)
+            //    };
+            //});
             Service.AddCors(c => {
                 c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
             });

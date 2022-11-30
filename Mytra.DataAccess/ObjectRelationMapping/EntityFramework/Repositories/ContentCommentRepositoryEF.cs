@@ -1,10 +1,7 @@
 ﻿namespace Mytra.DataAccess
 {
-    public class ContentCommentRepositoryEF : Core.BaseRepository<Core.ContentComment>, Core.IContentComment
+    public class ContentCommentRepositoryEF
     {
-        public ContentCommentRepositoryEF(Microsoft.EntityFrameworkCore.DbContext dbContext) : base(dbContext)
-        {
 
-        }
     }
 }

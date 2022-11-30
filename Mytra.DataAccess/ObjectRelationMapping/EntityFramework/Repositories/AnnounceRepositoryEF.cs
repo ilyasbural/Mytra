@@ -1,10 +1,7 @@
 ﻿namespace Mytra.DataAccess
 {
-    public class AnnounceRepositoryEF : Core.BaseRepository<Core.Announce>, Core.IAnnounce
+    public class AnnounceRepositoryEF
     {
-        public AnnounceRepositoryEF(Microsoft.EntityFrameworkCore.DbContext dbContext) : base(dbContext)
-        {
-
-        }
+        
     }
 }

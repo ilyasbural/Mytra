@@ -1,6 +1,6 @@
 ﻿namespace Mytra.Core
 {
-    public class ContentComment : Base<ContentComment>, IEntity
+    public class ContentComment : Base<ContentComment>
     {
         public Guid? Content { get; set; }
         public Guid? User { get; set; }

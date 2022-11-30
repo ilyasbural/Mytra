@@ -1,10 +1,7 @@
 ﻿namespace Mytra.DataAccess
 {
-    public class ContentPictureRepositoryEF : Core.BaseRepository<Core.ContentPicture>, Core.IContentPicture
+    public class ContentPictureRepositoryEF
     {
-        public ContentPictureRepositoryEF(Microsoft.EntityFrameworkCore.DbContext dbContext) : base(dbContext)
-        {
 
-        }
     }
 }

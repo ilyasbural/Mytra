@@ -1,6 +1,6 @@
 ﻿namespace Mytra.Core
 {
-    public class Survey : Base<Survey>, IEntity
+    public class Survey : Base<Survey>
     {
         public Guid? Sub { get; set; }
         public string? Question { get; set; }

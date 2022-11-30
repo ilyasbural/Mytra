@@ -2,6 +2,6 @@
 {
     public interface IManagementSettingsService
     {
-
+        Task<ManagementSettingsResponse> AddAsync(ManagementSettingsInsertDataTransfer Model);
     }
 }

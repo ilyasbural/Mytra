@@ -1,49 +1,71 @@
 ﻿namespace Mytra.DataAccess
 {
     using Core;
-    using System.Threading.Tasks;
 
     public class UnitOfWork : IUnitOfWork
     {
         private MytraContext DbContext { get; set; }
-
-        public IAnnounce Announce => throw new NotImplementedException();
+        public IAnnounceDetailRepository AnnounceDetail => AnnounceDetailRepository ?? new AnnounceDetailRepositoryEF(DbContext);
+        //public IAnnounce Announce => AnnounceRepository ?? new AnnounceRepositoryEF(DbContext);
+        //public IAnnounceDetail AnnounceDetail => AnnounceDetailRepository ?? new AnnounceDetailRepositoryEF(DbContext);
+        //public IAppeal Appeal => AppealRepository ?? new AppealRepositoryEF(DbContext);
+        //public IAppealDetail AppealDetail => AppealDetailRepository ?? new AppealDetailRepositoryEF(DbContext);
+        //public ICertificate Certificate => CertificateRepository ?? new CertificateRepositoryEF(DbContext);
+        //public ICollege College => CollegeRepository ?? new CollegeRepositoryEF(DbContext);
+        //public ICompany Company => CompanyRepository ?? new CompanyRepositoryEF(DbContext);
+        //public ICompanyAbout CompanyAbout => CompanyAboutRepository ?? new CompanyAboutRepositoryEF(DbContext);
+        //public ICompanyDetail CompanyDetail => CompanyDetailRepository ?? new CompanyDetailRepositoryEF(DbContext);
+        //public ICompanyFollower CompanyFollower => CompanyFollowerRepository ?? new CompanyFollowerRepositoryEF(DbContext);
+        //public ICompanySettings CompanySettings => CompanySettingsRepository ?? new CompanySettingsRepositoryEF(DbContext);
+        //public ICompanyVideo CompanyVideo => CompanyVideoRepository ?? new CompanyVideoRepositoryEF(DbContext);
+        //public IManagement Management => ManagementRepository ?? new ManagementRepositoryEF(DbContext);
+        //public IManagementDetail ManagementDetail => ManagementDetailRepository ?? new ManagementDetailRepositoryEF(DbContext);
+        //public INetwork Network => NetworkRepository ?? new NetworkRepositoryEF(DbContext);
+        //public IMessageBox MessageBox => MessageBoxRepository ?? new MessageBoxRepositoryEF(DbContext);
+        //public IOccupation Occupation => OccupationRepository ?? new OccupationRepositoryEF(DbContext);
+        //public IPosition Position => PositionRepository ?? new PositionRepositoryEF(DbContext);
+        //public IRegion Region => RegionRepository ?? new RegionRepositoryEF(DbContext);
+        //public ISurvey Survey => SurveyRepository ?? new SurveyRepositoryEF(DbContext);
+        //public IUser User => UserRepository ?? new UserRepositoryEF(DbContext);
+        //public IUserAbility UserAbility => UserAbilityRepository ?? new UserAbilityRepositoryEF(DbContext);
+        //public IUserAbout UserAbout => UserAboutRepository ?? new UserAboutRepositoryEF(DbContext);
+        //public IUserCertificate UserCertificate => UserCertificateRepository ?? new UserCertificateRepositoryEF(DbContext);
+        //public IUserDetail UserDetail => UserDetailRepository ?? new UserDetailRepositoryEF(DbContext);
+        //public IUserEducation UserEducation => UserEducationRepository ?? new UserEducationRepositoryEF(DbContext);
+        //public IUserExperience UserExperience => UserExperienceRepository ?? new UserExperienceRepositoryEF(DbContext);
+        //public IUserFollower UserFollower => UserFollowerRepository ?? new UserFollowerRepositoryEF(DbContext);
+        //public IUserLanguage UserLanguage => UserLanguageRepository ?? new UserLanguageRepositoryEF(DbContext);
+        //public IUserReferance UserReferance => UserReferanceRepository ?? new UserReferanceRepositoryEF(DbContext);
+        //public IUserSettings UserSettings => UserSettingsRepository ?? new UserSettingsRepositoryEF(DbContext);
+        //public IUserVideo UserVideo => UserVideoRepository ?? new UserVideoRepositoryEF(DbContext);
 
         public UnitOfWork(MytraContext dbContext)
         {
-             DbContext= dbContext;
+            DbContext = dbContext;
         }
 
-        //public UnitOfWork(MytraContext context) => DbContext = context;
-
-        //public IAnnounce Announce => AnnounceRepository ?? new AnnounceRepositoryEF(DbContext);
-        //public IAnnounceDetail AnnounceDetail => throw new NotImplementedException();
-        //public ICategory Category => throw new NotImplementedException();
-        //public IContent Content => throw new NotImplementedException();
-        //public IContentComment ContentComment => throw new NotImplementedException();
-        //public IContentDetail ContentDetail => throw new NotImplementedException();
-        //public IContentLike ContentLike => throw new NotImplementedException();
-        //public IContentPicture ContentPicture => throw new NotImplementedException();
-        //public IContentSettings ContentSettings => throw new NotImplementedException();
-        //public IContentType ContentType => throw new NotImplementedException();
-        //public IManagement Management => throw new NotImplementedException();
-        //public IManagementContact ManagementContact => throw new NotImplementedException();
-        //public IManagementDetail ManagementDetail => throw new NotImplementedException();
-        //public IManagementSettings ManagementSettings => throw new NotImplementedException();
-        //public IPermission Permission => throw new NotImplementedException();
-        //public IPermissionDetail PermissionDetail => throw new NotImplementedException();
-        //public ISurvey Survey => throw new NotImplementedException();
-        //public IUser User => throw new NotImplementedException();
-        //public IUserContact UserContact => throw new NotImplementedException();
-        //public IUserDetail UserDetail => throw new NotImplementedException();
-        //public IUserEmail UserEmail => throw new NotImplementedException();
-        //public IUserSettings UserSettings => throw new NotImplementedException();
-
-     
-
-        public void Dispose()
-        {
-            throw new NotImplementedException();
-        }
+        protected AnnounceDetailRepositoryEF AnnounceDetailRepository { get; set; } = null!;
+        protected AnnounceRepositoryEF AnnounceRepository { get; set; } = null!;
+        protected CategoryRepositoryEF CategoryRepository { get; set; } = null!;
+        protected ContentCommentRepositoryEF ContentCommentRepository { get; set; } = null!;
+        protected ContentDetailRepositoryEF ContentDetailRepository { get; set; } = null!;
+        protected ContentLikeRepositoryEF ContentLikeRepository { get; set; } = null!;
+        protected ContentPictureRepositoryEF CompanyAboutRepository { get; set; } = null!;
+        protected ContentRepositoryEF CompanyRepository { get; set; } = null!;
+        protected ContentSettingsRepositoryEF CompanyDetailRepository { get; set; } = null!;
+        protected ContentTypeRepositoryEF CompanyFollowerRepository { get; set; } = null!;
+        protected ManagementContactRepositoryEF CompanySettingsRepository { get; set; } = null!;
+        protected ManagementDetailRepositoryEF CompanyVideoRepository { get; set; } = null!;
+        protected ManagementRepositoryEF ManagementRepository { get; set; } = null!;
+        protected ManagementSettingsRepositoryEF ManagementDetailRepository { get; set; } = null!;
+        protected PermissionDetailRepositoryEF MessageBoxRepository { get; set; } = null!;
+        protected PermissionRepositoryEF NetworkRepository { get; set; } = null!;
+        protected SurveyDetailRepositoryEF OccupationRepository { get; set; } = null!;
+        protected SurveyRepositoryEF PositionRepository { get; set; } = null!;
+        protected UserContactRepositoryEF RegionRepository { get; set; } = null!;
+        protected UserDetailRepositoryEF SurveyRepository { get; set; } = null!;
+        protected UserEmailRepositoryEF UserRepository { get; set; } = null!;
+        protected UserRepositoryEF UserAbilityRepository { get; set; } = null!;
+        protected UserSettingsRepositoryEF UserSettingsRepository { get; set; } = null!;
     }
 }

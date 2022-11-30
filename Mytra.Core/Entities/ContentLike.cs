@@ -1,6 +1,6 @@
 ﻿namespace Mytra.Core
 {
-    public class ContentLike : Base<ContentLike>, IEntity
+    public class ContentLike : Base<ContentLike>
     {
         public Guid? Content { get; set; }
         public Guid? User { get; set; }

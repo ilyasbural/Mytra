@@ -1,6 +1,6 @@
 ﻿namespace Mytra.Core
 {
-    internal class AnnounceUpdateDataTransfer
+    public class AnnounceUpdateDataTransfer : BaseDataTransfer<AnnounceUpdateDataTransfer>
     {
 
     }

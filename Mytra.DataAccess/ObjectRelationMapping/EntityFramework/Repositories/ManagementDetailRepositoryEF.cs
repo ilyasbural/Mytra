@@ -1,10 +1,7 @@
 ﻿namespace Mytra.DataAccess
 {
-    public class ManagementDetailRepositoryEF : Core.BaseRepository<Core.ManagementDetail>, Core.IManagementDetail
+    public class ManagementDetailRepositoryEF
     {
-        public ManagementDetailRepositoryEF(Microsoft.EntityFrameworkCore.DbContext dbContext) : base(dbContext)
-        {
 
-        }
     }
 }
