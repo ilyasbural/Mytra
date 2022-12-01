@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using System.Collections.Generic;
 
-    public class UserSettingsManager : IUserSettingsService, IDisposable
+    public class UserSettingsManager : BusinessObject<UserSettings>, IUserSettingsService
     {
         readonly IMapper Mapper;
         readonly IUnitOfWork UnitOfWork;
@@ -16,14 +16,24 @@
             UnitOfWork = unitOfWork;
         }
 
-        public Task<UserSettingsResponse> AddAsync(UserSettingsInsertDataTransfer Model)
+        public async Task<UserSettingsResponse> AddAsync(UserSettingsInsertDataTransfer Model)
         {
-            throw new NotImplementedException();
-        }
+            UserSettings userSettings = Mapper.Map<UserSettings>(Model);
+            userSettings.Id = Guid.NewGuid();
+            userSettings.RegisterDate = DateTime.Now;
+            userSettings.UpdateDate = DateTime.Now;
+            userSettings.IsActive = true;
 
-        public void Dispose()
-        {
-            GC.SuppressFinalize(this);
+            await UnitOfWork.UserSettings.AddAsync(userSettings);
+            await UnitOfWork.SaveChangesAsync();
+
+            return new UserSettingsResponse
+            {
+                //Data = Entity,
+                //Response = Mapper.Map<AbilityDataTransferInsert>(Entity)
+
+
+            };
         }
     }
 }

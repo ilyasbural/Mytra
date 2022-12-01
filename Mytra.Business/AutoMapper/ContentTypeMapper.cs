@@ -4,7 +4,7 @@
     {
         public ContentTypeMapper()
         {
-
+            CreateMap<Core.ContentTypeInsertDataTransfer, Core.ContentType>();
         }
     }
 }

@@ -4,7 +4,7 @@
     {
         public SurveyMapper()
         {
-            
+            CreateMap<Core.SurveyInsertDataTransfer, Core.Survey>();
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Mytra.Core
 {
-    public class AnnounceInsertDataTransfer : BaseDataTransfer<AnnounceInsertDataTransfer>
+    public class AnnounceInsertDataTransfer : DataTransfer<AnnounceInsertDataTransfer>
     {
         public string? Title { get; set; }
     }

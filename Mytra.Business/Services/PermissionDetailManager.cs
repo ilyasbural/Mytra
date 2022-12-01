@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using System.Collections.Generic;
 
-    public class PermissionDetailManager : IPermissionDetailService, IDisposable
+    public class PermissionDetailManager : IPermissionDetailService
     {
         readonly IMapper Mapper;
         readonly IUnitOfWork UnitOfWork;
@@ -16,14 +16,25 @@
             UnitOfWork = unitOfWork;
         }
 
-        public Task<PermissionDetailResponse> AddAsync(PermissionDetailInsertDataTransfer Model)
+        public async Task<PermissionDetailResponse> AddAsync(PermissionDetailInsertDataTransfer Model)
         {
-            throw new NotImplementedException();
-        }
+            PermissionDetail permissionDetail = Mapper.Map<PermissionDetail>(Model);
+            permissionDetail.Id = Guid.NewGuid();
+            permissionDetail.RegisterDate = DateTime.Now;
+            permissionDetail.UpdateDate = DateTime.Now;
+            permissionDetail.IsActive = true;
 
-        public void Dispose()
-        {
-            GC.SuppressFinalize(this);
+            await UnitOfWork.PermissionDetail.AddAsync(permissionDetail);
+            await UnitOfWork.SaveChangesAsync();
+
+            return new PermissionDetailResponse
+            {
+                //Data = Entity,
+                //Response = Mapper.Map<AbilityDataTransferInsert>(Entity)
+
+
+
+            };
         }
     }
 }

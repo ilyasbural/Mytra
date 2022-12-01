@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using System.Collections.Generic;
 
-    public class ContentCommentManager : IContentCommentService, IDisposable
+    public class ContentCommentManager : BusinessObject<ContentComment>, IContentCommentService
     {
         readonly IMapper Mapper;
         readonly IUnitOfWork UnitOfWork;
@@ -16,14 +16,26 @@
             UnitOfWork = unitOfWork;
         }
 
-        public Task<ContentCommentResponse> AddAsync(ContentCommentInsertDataTransfer Model)
+        public async Task<ContentCommentResponse> AddAsync(ContentCommentInsertDataTransfer Model)
         {
-            throw new NotImplementedException();
-        }
+            ContentComment contentComment = Mapper.Map<ContentComment>(Model);
+            contentComment.Id = Guid.NewGuid();
+            contentComment.RegisterDate = DateTime.Now;
+            contentComment.UpdateDate = DateTime.Now;
+            contentComment.IsActive = true;
 
-        public void Dispose()
-        {
-            GC.SuppressFinalize(this);
+            await UnitOfWork.ContentComment.AddAsync(contentComment);
+            await UnitOfWork.SaveChangesAsync();
+
+            return new ContentCommentResponse
+            {
+                //Data = Entity,
+                //Response = Mapper.Map<AbilityDataTransferInsert>(Entity)
+
+
+
+
+            };
         }
     }
 }

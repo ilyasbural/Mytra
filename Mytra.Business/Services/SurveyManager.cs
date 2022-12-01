@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using System.Collections.Generic;
 
-    public class SurveyManager : ISurveyService, IDisposable
+    public class SurveyManager : BusinessObject<Survey>, ISurveyService
     {
         readonly IMapper Mapper;
         readonly IUnitOfWork UnitOfWork;
@@ -16,14 +16,25 @@
             UnitOfWork = unitOfWork;
         }
 
-        public Task<SurveyResponse> AddAsync(SurveyInsertDataTransfer Model)
+        public async Task<SurveyResponse> AddAsync(SurveyInsertDataTransfer Model)
         {
-            throw new NotImplementedException();
-        }
+            Survey survey = Mapper.Map<Survey>(Model);
+            survey.Id = Guid.NewGuid();
+            survey.RegisterDate = DateTime.Now;
+            survey.UpdateDate = DateTime.Now;
+            survey.IsActive = true;
 
-        public void Dispose()
-        {
-            GC.SuppressFinalize(this);
+            await UnitOfWork.Survey.AddAsync(survey);
+            await UnitOfWork.SaveChangesAsync();
+
+            return new SurveyResponse
+            {
+                //Data = Entity,
+                //Response = Mapper.Map<AbilityDataTransferInsert>(Entity)
+
+
+
+            };
         }
     }
 }

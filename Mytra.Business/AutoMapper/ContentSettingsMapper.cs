@@ -4,7 +4,7 @@
     {
         public ContentSettingsMapper()
         {
-
+            CreateMap<Core.ContentSettingsInsertDataTransfer, Core.ContentSettings>();
         }
     }
 }

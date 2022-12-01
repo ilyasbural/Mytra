@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using System.Collections.Generic;
 
-    public class ContentLikeManager : IContentLikeService, IDisposable
+    public class ContentLikeManager : BusinessObject<ContentLike>, IContentLikeService
     {
         readonly IMapper Mapper;
         readonly IUnitOfWork UnitOfWork;
@@ -16,14 +16,25 @@
             UnitOfWork = unitOfWork;
         }
 
-        public Task<ContentLikeResponse> AddAsync(ContentLikeInsertDataTransfer Model)
+        public async Task<ContentLikeResponse> AddAsync(ContentLikeInsertDataTransfer Model)
         {
-            throw new NotImplementedException();
-        }
+            ContentLike contentLike = Mapper.Map<ContentLike>(Model);
+            contentLike.Id = Guid.NewGuid();
+            contentLike.RegisterDate = DateTime.Now;
+            contentLike.UpdateDate = DateTime.Now;
+            contentLike.IsActive = true;
 
-        public void Dispose()
-        {
-            GC.SuppressFinalize(this);
+            await UnitOfWork.ContentLike.AddAsync(contentLike);
+            await UnitOfWork.SaveChangesAsync();
+
+            return new ContentLikeResponse
+            {
+                //Data = Entity,
+                //Response = Mapper.Map<AbilityDataTransferInsert>(Entity)
+
+
+
+            };
         }
     }
 }

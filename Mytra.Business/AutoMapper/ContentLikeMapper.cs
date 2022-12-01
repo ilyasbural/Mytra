@@ -4,7 +4,7 @@
     {
         public ContentLikeMapper()
         {
-
+            CreateMap<Core.ContentLikeInsertDataTransfer, Core.ContentLike>();
         }
     }
 }

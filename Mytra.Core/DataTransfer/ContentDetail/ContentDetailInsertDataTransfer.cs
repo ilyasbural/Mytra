@@ -1,6 +1,6 @@
 ﻿namespace Mytra.Core
 {
-    public class ContentDetailInsertDataTransfer : BaseDataTransfer<ContentDetailInsertDataTransfer>
+    public class ContentDetailInsertDataTransfer : DataTransfer<ContentDetailInsertDataTransfer>
     {
 
     }

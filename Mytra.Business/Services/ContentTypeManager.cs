@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using System.Collections.Generic;
 
-    public class ContentTypeManager : IContentTypeService, IDisposable
+    public class ContentTypeManager : BusinessObject<ContentType>, IContentTypeService
     {
         readonly IMapper Mapper;
         readonly IUnitOfWork UnitOfWork;
@@ -16,14 +16,24 @@
             UnitOfWork = unitOfWork;
         }
 
-        public Task<ContentTypeResponse> AddAsync(ContentTypeInsertDataTransfer Model)
+        public async Task<ContentTypeResponse> AddAsync(ContentTypeInsertDataTransfer Model)
         {
-            throw new NotImplementedException();
-        }
+            ContentType contentType = Mapper.Map<ContentType>(Model);
+            contentType.Id = Guid.NewGuid();
+            contentType.RegisterDate = DateTime.Now;
+            contentType.UpdateDate = DateTime.Now;
+            contentType.IsActive = true;
 
-        public void Dispose()
-        {
-            GC.SuppressFinalize(this);
+            await UnitOfWork.ContentType.AddAsync(contentType);
+            await UnitOfWork.SaveChangesAsync();
+
+            return new ContentTypeResponse
+            {
+                //Data = Entity,
+                //Response = Mapper.Map<AbilityDataTransferInsert>(Entity)
+
+
+            };
         }
     }
 }

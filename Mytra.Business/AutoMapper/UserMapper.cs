@@ -4,7 +4,7 @@
     {
         public UserMapper()
         {
-            
+            CreateMap<Core.UserInsertDataTransfer, Core.User>();
         }
     }
 }

@@ -4,7 +4,7 @@
     {
         public ContentDetailMapper()
         {
-
+            CreateMap<Core.ContentDetailInsertDataTransfer, Core.ContentDetail>();
         }
     }
 }

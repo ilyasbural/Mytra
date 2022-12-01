@@ -1,6 +1,6 @@
 ﻿namespace Mytra.Core
 {
-    public class SurveyInsertDataTransfer : BaseDataTransfer<SurveyInsertDataTransfer>
+    public class SurveyInsertDataTransfer : DataTransfer<SurveyInsertDataTransfer>
     {
 
     }

@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using System.Collections.Generic;
 
-    public class AnnounceDetailManager : IAnnounceDetailService
+    public class AnnounceDetailManager : BusinessObject<AnnounceDetail>, IAnnounceDetailService
     {
         readonly IMapper Mapper;
         readonly IUnitOfWork UnitOfWork;
@@ -18,11 +18,8 @@
 
         public async Task<AnnounceDetailResponse> AddAsync(AnnounceDetailInsertDataTransfer Model)
         {
-            //AnnounceDetail announceDetail = Mapper.Map<AnnounceDetail>(Model);
-            AnnounceDetail announceDetail = new AnnounceDetail();
+            AnnounceDetail announceDetail = Mapper.Map<AnnounceDetail>(Model);
             announceDetail.Id = Guid.NewGuid();
-            announceDetail.Announce = new Guid("8261DB74-2C06-4C1B-92EF-7A9BE63B5A5E");
-            announceDetail.Detail = "dsfsdf";
             announceDetail.RegisterDate = DateTime.Now;
             announceDetail.UpdateDate = DateTime.Now;
             announceDetail.IsActive = true;
@@ -34,9 +31,6 @@
             {
                 //Data = Entity,
                 //Response = Mapper.Map<AbilityDataTransferInsert>(Entity)
-
-
-
 
 
 

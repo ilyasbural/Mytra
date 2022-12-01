@@ -4,7 +4,7 @@
     {
         public ContentCommentMapper()
         {
-
+            CreateMap<Core.ContentCommentInsertDataTransfer, Core.ContentComment>();
         }
     }
 }

@@ -4,7 +4,7 @@
     {
         public ContentPictureMapper()
         {
-
+            CreateMap<Core.ContentPictureInsertDataTransfer, Core.ContentPicture>();
         }
     }
 }

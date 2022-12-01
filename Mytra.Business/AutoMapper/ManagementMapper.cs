@@ -4,7 +4,7 @@
     {
         public ManagementMapper()
         {
-            
+            CreateMap<Core.ManagementInsertDataTransfer, Core.Management>();
         }
     }
 }

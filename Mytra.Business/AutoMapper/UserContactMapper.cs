@@ -4,7 +4,7 @@
     {
         public UserContactMapper()
         {
-
+            CreateMap<Core.UserContactInsertDataTransfer, Core.UserContact>();
         }
     }
 }

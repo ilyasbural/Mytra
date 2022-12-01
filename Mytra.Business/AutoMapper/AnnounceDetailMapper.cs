@@ -4,7 +4,7 @@
     {
         public AnnounceDetailMapper()
         {
-            
+            CreateMap<Core.AnnounceDetailInsertDataTransfer, Core.AnnounceDetail>();
         }
     }
 }

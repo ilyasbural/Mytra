@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using System.Collections.Generic;
 
-    public class ManagementContactManager : IManagementContactService, IDisposable
+    public class ManagementContactManager : BusinessObject<ManagementContact>, IManagementContactService
     {
         readonly IMapper Mapper;
         readonly IUnitOfWork UnitOfWork;
@@ -16,14 +16,24 @@
             UnitOfWork = unitOfWork;
         }
 
-        public Task<ManagementContactResponse> AddAsync(ManagementContactInsertDataTransfer Model)
+        public async Task<ManagementContactResponse> AddAsync(ManagementContactInsertDataTransfer Model)
         {
-            throw new NotImplementedException();
-        }
+            ManagementContact managementContact = Mapper.Map<ManagementContact>(Model);
+            managementContact.Id = Guid.NewGuid();
+            managementContact.RegisterDate = DateTime.Now;
+            managementContact.UpdateDate = DateTime.Now;
+            managementContact.IsActive = true;
 
-        public void Dispose()
-        {
-            GC.SuppressFinalize(this);
+            await UnitOfWork.ManagementContact.AddAsync(managementContact);
+            await UnitOfWork.SaveChangesAsync();
+
+            return new ManagementContactResponse
+            {
+                //Data = Entity,
+                //Response = Mapper.Map<AbilityDataTransferInsert>(Entity)
+
+
+            };
         }
     }
 }

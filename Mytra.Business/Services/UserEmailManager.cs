@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using System.Collections.Generic;
 
-    public class UserEmailManager : IUserEmailService, IDisposable
+    public class UserEmailManager : BusinessObject<UserEmail>, IUserEmailService
     {
         readonly IMapper Mapper;
         readonly IUnitOfWork UnitOfWork;
@@ -16,14 +16,25 @@
             UnitOfWork = unitOfWork;
         }
 
-        public Task<UserEmailResponse> AddAsync(UserEmailInsertDataTransfer Model)
+        public async Task<UserEmailResponse> AddAsync(UserEmailInsertDataTransfer Model)
         {
-            throw new NotImplementedException();
-        }
+            UserEmail userEmail = Mapper.Map<UserEmail>(Model);
+            userEmail.Id = Guid.NewGuid();
+            userEmail.RegisterDate = DateTime.Now;
+            userEmail.UpdateDate = DateTime.Now;
+            userEmail.IsActive = true;
 
-        public void Dispose()
-        {
-            GC.SuppressFinalize(this);
+            await UnitOfWork.UserEmail.AddAsync(userEmail);
+            await UnitOfWork.SaveChangesAsync();
+
+            return new UserEmailResponse
+            {
+                //Data = Entity,
+                //Response = Mapper.Map<AbilityDataTransferInsert>(Entity)
+
+
+
+            };
         }
     }
 }

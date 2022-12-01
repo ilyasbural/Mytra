@@ -4,9 +4,8 @@
     using AutoMapper;
     using System.Threading.Tasks;
     using System.Collections.Generic;
-    using Microsoft.IdentityModel.Tokens;
 
-    public class AnnounceManager : IAnnounceService
+    public class AnnounceManager : BusinessObject<Announce>, IAnnounceService
     {
         readonly IMapper Mapper;
         readonly IUnitOfWork UnitOfWork;
@@ -32,10 +31,6 @@
             {
                 //Data = Entity,
                 //Response = Mapper.Map<AbilityDataTransferInsert>(Entity)
-
-
-
-
 
 
             };

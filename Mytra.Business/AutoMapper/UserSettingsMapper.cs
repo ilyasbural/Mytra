@@ -4,7 +4,7 @@
     {
         public UserSettingsMapper()
         {
-            
+            CreateMap<Core.UserSettingsInsertDataTransfer, Core.UserSettings>();
         }
     }
 }

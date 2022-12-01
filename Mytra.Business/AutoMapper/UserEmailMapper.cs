@@ -4,7 +4,7 @@
     {
         public UserEmailMapper()
         {
-
+            CreateMap<Core.UserEmailInsertDataTransfer, Core.UserEmail>();
         }
     }
 }

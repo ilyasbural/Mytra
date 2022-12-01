@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using System.Collections.Generic;
 
-    public class UserDetailManager : IUserDetailService, IDisposable
+    public class UserDetailManager : BusinessObject<UserDetail>, IUserDetailService
     {
         readonly IMapper Mapper;
         readonly IUnitOfWork UnitOfWork;
@@ -16,14 +16,24 @@
             UnitOfWork = unitOfWork;
         }
 
-        public Task<UserDetailResponse> AddAsync(UserDetailInsertDataTransfer Model)
+        public async Task<UserDetailResponse> AddAsync(UserDetailInsertDataTransfer Model)
         {
-            throw new NotImplementedException();
-        }
+            UserDetail userDetail = Mapper.Map<UserDetail>(Model);
+            userDetail.Id = Guid.NewGuid();
+            userDetail.RegisterDate = DateTime.Now;
+            userDetail.UpdateDate = DateTime.Now;
+            userDetail.IsActive = true;
 
-        public void Dispose()
-        {
-            GC.SuppressFinalize(this);
+            await UnitOfWork.UserDetail.AddAsync(userDetail);
+            await UnitOfWork.SaveChangesAsync();
+
+            return new UserDetailResponse
+            {
+                //Data = Entity,
+                //Response = Mapper.Map<AbilityDataTransferInsert>(Entity)
+
+
+            };
         }
     }
 }

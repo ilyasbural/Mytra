@@ -4,7 +4,7 @@
     {
         public PermissionMapper()
         {
-
+            CreateMap<Core.PermissionInsertDataTransfer, Core.Permission>();
         }
     }
 }

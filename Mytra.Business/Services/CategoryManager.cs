@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using System.Collections.Generic;
 
-    public class CategoryManager : ICategoryService
+    public class CategoryManager : BusinessObject<Category>, ICategoryService
     {
         readonly IMapper Mapper;
         readonly IUnitOfWork UnitOfWork;
@@ -19,17 +19,20 @@
         public async Task<CategoryResponse> AddAsync(CategoryInsertDataTransfer Model)
         {
             Category Entity = Mapper.Map<Category>(Model);
-            //Entity.Id = Guid.NewGuid();
-            //Entity.RegisterDate = DateTime.Now;
-            //Entity.UpdateDate = DateTime.Now;
-            //Entity.IsActive = true;
-            //await UnitOfWork.Category.AddAsync(Entity);
-            //int a = await UnitOfWork.SaveChangesAsync();
+            Entity.Id = Guid.NewGuid();
+            Entity.RegisterDate = DateTime.Now;
+            Entity.UpdateDate = DateTime.Now;
+            Entity.IsActive = true;
+
+            await UnitOfWork.Category.AddAsync(Entity);
+            await UnitOfWork.SaveChangesAsync();
 
             return new CategoryResponse
             {
                 //Data = Entity,
                 //Response = Mapper.Map<AbilityDataTransferInsert>(Entity)
+
+
             };
         }
     }

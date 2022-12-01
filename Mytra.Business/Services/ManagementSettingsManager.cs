@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using System.Collections.Generic;
 
-    public class ManagementSettingsManager : IManagementSettingsService, IDisposable
+    public class ManagementSettingsManager : BusinessObject<ManagementSettings>, IManagementSettingsService
     {
         readonly IMapper Mapper;
         readonly IUnitOfWork UnitOfWork;
@@ -16,14 +16,25 @@
             UnitOfWork = unitOfWork;
         }
 
-        public Task<ManagementSettingsResponse> AddAsync(ManagementSettingsInsertDataTransfer Model)
+        public async Task<ManagementSettingsResponse> AddAsync(ManagementSettingsInsertDataTransfer Model)
         {
-            throw new NotImplementedException();
-        }
+            ManagementSettings managementSettings = Mapper.Map<ManagementSettings>(Model);
+            managementSettings.Id = Guid.NewGuid();
+            managementSettings.RegisterDate = DateTime.Now;
+            managementSettings.UpdateDate = DateTime.Now;
+            managementSettings.IsActive = true;
 
-        public void Dispose()
-        {
-            GC.SuppressFinalize(this);
+            await UnitOfWork.ManagementSettings.AddAsync(managementSettings);
+            await UnitOfWork.SaveChangesAsync();
+
+            return new ManagementSettingsResponse
+            {
+                //Data = Entity,
+                //Response = Mapper.Map<AbilityDataTransferInsert>(Entity)
+
+
+
+            };
         }
     }
 }

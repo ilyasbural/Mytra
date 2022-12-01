@@ -4,7 +4,7 @@
     {
         public ManagementContactMapper()
         {
-
+            CreateMap<Core.ManagementContactInsertDataTransfer, Core.ManagementContact>();
         }
     }
 }
