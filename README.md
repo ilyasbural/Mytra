@@ -11,11 +11,11 @@ Asp.Net Mvc Core
 
 Asp.Net Web Api Core 
 
-SQL Server 
+SQL Server
 
 AutoMapper 
 
-Fluentvalidation 
+FluentValidation 
 
 JsonWebToken 
 

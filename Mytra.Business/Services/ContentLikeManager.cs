@@ -43,5 +43,10 @@
         {
             throw new NotImplementedException();
         }
+
+        public async Task<ContentLikeResponse> SelectAsync(ContentLikeSelectDataTransfer Model)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

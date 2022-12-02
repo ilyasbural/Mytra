@@ -43,5 +43,10 @@
         {
             throw new NotImplementedException();
         }
+
+        public async Task<ContentSettingsResponse> SelectAsync(ContentSettingsSelectDataTransfer Model)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

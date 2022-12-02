@@ -43,5 +43,10 @@
         {
             throw new NotImplementedException();
         }
+
+        public async Task<ContentPictureResponse> SelectAsync(ContentPictureSelectDataTransfer Model)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

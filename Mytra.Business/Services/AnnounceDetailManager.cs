@@ -56,5 +56,10 @@
         {
             throw new NotImplementedException();
         }
+
+        public async Task<AnnounceDetailResponse> SelectAsync(AnnounceDetailSelectDataTransfer Model)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

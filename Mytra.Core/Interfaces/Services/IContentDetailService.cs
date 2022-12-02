@@ -5,5 +5,6 @@
         Task<ContentDetailResponse> AddAsync(ContentDetailInsertDataTransfer Model);
         Task<ContentDetailResponse> UpdateAsync(ContentDetailUpdateDataTransfer Model);
         Task<ContentDetailResponse> DeleteAsync(ContentDetailDeleteDataTransfer Model);
+        Task<ContentDetailResponse> SelectAsync(ContentDetailSelectDataTransfer Model);
     }
 }

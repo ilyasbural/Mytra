@@ -43,5 +43,10 @@
         {
             throw new NotImplementedException();
         }
+
+        public async Task<ContentCommentResponse> SelectAsync(ContentCommentSelectDataTransfer Model)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

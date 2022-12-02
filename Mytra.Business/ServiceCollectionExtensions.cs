@@ -7,7 +7,7 @@
 
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection LoadMyServices(this IServiceCollection Service)
+        public static IServiceCollection LoadServices(this IServiceCollection Service)
         {
             Service.AddDbContext<DbContext>();
             Service.AddDbContext<MytraContext>();

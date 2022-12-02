@@ -43,5 +43,10 @@
         {
             throw new NotImplementedException();
         }
+
+        public async Task<PermissionDetailResponse> SelectAsync(PermissionDetailSelectDataTransfer Model)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

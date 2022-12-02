@@ -43,5 +43,10 @@
         {
             throw new NotImplementedException();
         }
+
+        public async Task<CategoryResponse> SelectAsync(CategorySelectDataTransfer Model)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

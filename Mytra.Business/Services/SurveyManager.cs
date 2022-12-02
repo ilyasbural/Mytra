@@ -43,5 +43,10 @@
         {
             throw new NotImplementedException();
         }
+
+        public async Task<SurveyResponse> SelectAsync(SurveySelectDataTransfer Model)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

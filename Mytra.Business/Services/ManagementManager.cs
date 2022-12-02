@@ -43,5 +43,10 @@
         {
             throw new NotImplementedException();
         }
+
+        public async Task<ManagementResponse> SelectAsync(ManagementSelectDataTransfer Model)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
