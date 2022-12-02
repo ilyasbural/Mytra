@@ -26,5 +26,20 @@
 
             };
         }
+
+        [HttpPut]
+        [Route("api/management")]
+        public async Task<ManagementWebResponse> Update([FromBody] ManagementUpdateDataTransfer Model)
+        {
+            ManagementResponse managementResponse = await Service.UpdateAsync(Model);
+            return new ManagementWebResponse
+            {
+
+
+
+
+
+            };
+        }
     }
 }

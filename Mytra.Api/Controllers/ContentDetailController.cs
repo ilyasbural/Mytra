@@ -26,5 +26,20 @@
 
             };
         }
+
+        [HttpPut]
+        [Route("api/contentdetail")]
+        public async Task<ContentDetailWebResponse> Update([FromBody] ContentDetailUpdateDataTransfer Model)
+        {
+            ContentDetailResponse contentDetailResponse = await Service.UpdateAsync(Model);
+            return new ContentDetailWebResponse
+            {
+
+
+
+
+
+            };
+        }
     }
 }

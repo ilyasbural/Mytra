@@ -5,6 +5,7 @@
         public UserDetailMapper()
         {
             CreateMap<Core.UserDetailInsertDataTransfer, Core.UserDetail>();
+            CreateMap<Core.UserDetailUpdateDataTransfer, Core.UserDetail>();
         }
     }
 }

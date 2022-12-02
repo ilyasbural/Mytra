@@ -31,9 +31,12 @@
             {
                 //Data = Entity,
                 //Response = Mapper.Map<AbilityDataTransferInsert>(Entity)
-
-
             };
+        }
+
+        public async Task<ManagementContactResponse> UpdateAsync(ManagementContactUpdateDataTransfer Model)
+        {
+            throw new NotImplementedException();
         }
     }
 }

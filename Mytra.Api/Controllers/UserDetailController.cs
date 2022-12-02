@@ -27,5 +27,21 @@
 
             };
         }
+
+        [HttpPut]
+        [Route("api/userdetail")]
+        public async Task<UserDetailWebResponse> Update([FromBody] UserDetailUpdateDataTransfer Model)
+        {
+            UserDetailResponse userDetailResponse = await Service.UpdateAsync(Model);
+            return new UserDetailWebResponse
+            {
+
+
+
+
+
+
+            };
+        }
     }
 }

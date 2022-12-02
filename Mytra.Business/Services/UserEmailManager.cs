@@ -31,10 +31,12 @@
             {
                 //Data = Entity,
                 //Response = Mapper.Map<AbilityDataTransferInsert>(Entity)
-
-
-
             };
+        }
+
+        public async Task<UserEmailResponse> UpdateAsync(UserEmailUpdateDataTransfer Model)
+        {
+            throw new NotImplementedException();
         }
     }
 }

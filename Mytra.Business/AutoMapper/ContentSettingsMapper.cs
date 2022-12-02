@@ -5,6 +5,7 @@
         public ContentSettingsMapper()
         {
             CreateMap<Core.ContentSettingsInsertDataTransfer, Core.ContentSettings>();
+            CreateMap<Core.ContentSettingsUpdateDataTransfer, Core.ContentSettings>();
         }
     }
 }

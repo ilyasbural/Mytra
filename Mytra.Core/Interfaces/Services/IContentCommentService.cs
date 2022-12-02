@@ -3,5 +3,6 @@
     public interface IContentCommentService
     {
         Task<ContentCommentResponse> AddAsync(ContentCommentInsertDataTransfer Model);
+        Task<ContentCommentResponse> UpdateAsync(ContentCommentUpdateDataTransfer Model);
     }
 }

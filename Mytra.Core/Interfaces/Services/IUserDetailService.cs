@@ -3,5 +3,6 @@
     public interface IUserDetailService
     {
         Task<UserDetailResponse> AddAsync(UserDetailInsertDataTransfer Model);
+        Task<UserDetailResponse> UpdateAsync(UserDetailUpdateDataTransfer Model);
     }
 }

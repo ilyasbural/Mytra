@@ -5,6 +5,7 @@
         public UserSettingsMapper()
         {
             CreateMap<Core.UserSettingsInsertDataTransfer, Core.UserSettings>();
+            CreateMap<Core.UserSettingsUpdateDataTransfer, Core.UserSettings>();
         }
     }
 }

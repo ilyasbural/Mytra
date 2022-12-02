@@ -26,5 +26,20 @@
 
             };
         }
+
+        [HttpPut]
+        [Route("api/contentcomment")]
+        public async Task<ContentCommentWebResponse> Update([FromBody] ContentCommentUpdateDataTransfer Model)
+        {
+            ContentCommentResponse contentCommentResponse = await Service.UpdateAsync(Model);
+            return new ContentCommentWebResponse
+            {
+
+
+
+
+
+            };
+        }
     }
 }

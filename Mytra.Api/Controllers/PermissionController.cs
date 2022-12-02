@@ -21,6 +21,16 @@
             {
                 
 
+            };
+        }
+
+        [HttpPut]
+        [Route("api/permission")]
+        public async Task<PermissionWebResponse> Update([FromBody] PermissionUpdateDataTransfer Model)
+        {
+            PermissionResponse permissionResponse = await Service.UpdateAsync(Model);
+            return new PermissionWebResponse
+            {
 
 
             };

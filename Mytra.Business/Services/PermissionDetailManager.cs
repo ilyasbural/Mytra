@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using System.Collections.Generic;
 
-    public class PermissionDetailManager : IPermissionDetailService
+    public class PermissionDetailManager : BusinessObject<PermissionDetail>, IPermissionDetailService
     {
         readonly IMapper Mapper;
         readonly IUnitOfWork UnitOfWork;
@@ -31,10 +31,12 @@
             {
                 //Data = Entity,
                 //Response = Mapper.Map<AbilityDataTransferInsert>(Entity)
-
-
-
             };
+        }
+
+        public async Task<PermissionDetailResponse> UpdateAsync(PermissionDetailUpdateDataTransfer Model)
+        {
+            throw new NotImplementedException();
         }
     }
 }

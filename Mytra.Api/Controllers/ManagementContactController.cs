@@ -26,5 +26,20 @@
 
             };
         }
+
+        [HttpPut]
+        [Route("api/managementcontact")]
+        public async Task<ManagementContactWebResponse> Update([FromBody] ManagementContactUpdateDataTransfer Model)
+        {
+            ManagementContactResponse managementContactResponse = await Service.UpdateAsync(Model);
+            return new ManagementContactWebResponse
+            {
+
+
+
+
+
+            };
+        }
     }
 }

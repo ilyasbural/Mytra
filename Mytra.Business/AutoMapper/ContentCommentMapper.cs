@@ -5,6 +5,7 @@
         public ContentCommentMapper()
         {
             CreateMap<Core.ContentCommentInsertDataTransfer, Core.ContentComment>();
+            CreateMap<Core.ContentCommentUpdateDataTransfer, Core.ContentComment>();
         }
     }
 }

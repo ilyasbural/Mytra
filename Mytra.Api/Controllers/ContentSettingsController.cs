@@ -26,5 +26,20 @@
 
             };
         }
+
+        [HttpPut]
+        [Route("api/contentsettings")]
+        public async Task<ContentSettingsWebResponse> Update([FromBody] ContentSettingsUpdateDataTransfer Model)
+        {
+            ContentSettingsResponse contentSettingsResponse = await Service.UpdateAsync(Model);
+            return new ContentSettingsWebResponse
+            {
+
+
+
+
+
+            };
+        }
     }
 }

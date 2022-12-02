@@ -5,6 +5,7 @@
         public UserEmailMapper()
         {
             CreateMap<Core.UserEmailInsertDataTransfer, Core.UserEmail>();
+            CreateMap<Core.UserEmailUpdateDataTransfer, Core.UserEmail>();
         }
     }
 }

@@ -23,6 +23,16 @@
 
 
 
+            };
+        }
+
+        [HttpPut]
+        [Route("api/usersettings")]
+        public async Task<UserSettingsWebResponse> Update([FromBody] UserSettingsUpdateDataTransfer Model)
+        {
+            UserSettingsResponse userSettingsResponse = await Service.UpdateAsync(Model);
+            return new UserSettingsWebResponse
+            {
 
 
 

@@ -28,5 +28,22 @@
 
             };
         }
+
+        [HttpPut]
+        [Route("api/category")]
+        public async Task<CategoryWebResponse> Update([FromBody] CategoryUpdateDataTransfer Model)
+        {
+            CategoryResponse categoryResponse = await Service.UpdateAsync(Model);
+            return new CategoryWebResponse
+            {
+
+
+
+
+
+
+
+            };
+        }
     }
 }

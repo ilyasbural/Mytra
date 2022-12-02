@@ -27,5 +27,21 @@
 
             };
         }
+
+        [HttpPut]
+        [Route("api/contentlike")]
+        public async Task<ContentLikeWebResponse> Update([FromBody] ContentLikeUpdateDataTransfer Model)
+        {
+            ContentLikeResponse contentLikeResponse = await Service.UpdateAsync(Model);
+            return new ContentLikeWebResponse
+            {
+
+
+
+
+
+
+            };
+        }
     }
 }

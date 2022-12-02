@@ -27,5 +27,21 @@
 
             };
         }
+
+        [HttpPut]
+        [Route("api/contenttype")]
+        public async Task<ContentTypeWebResponse> Update([FromBody] ContentTypeUpdateDataTransfer Model)
+        {
+            ContentTypeResponse contentTypeResponse = await Service.UpdateAsync(Model);
+            return new ContentTypeWebResponse
+            {
+
+
+
+
+
+
+            };
+        }
     }
 }

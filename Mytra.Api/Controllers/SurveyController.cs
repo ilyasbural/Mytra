@@ -26,5 +26,20 @@
 
             };
         }
+
+        [HttpPut]
+        [Route("api/survey")]
+        public async Task<SurveyWebResponse> Update([FromBody] SurveyUpdateDataTransfer Model)
+        {
+            SurveyResponse surveyResponse = await Service.UpdateAsync(Model);
+            return new SurveyWebResponse
+            {
+
+
+
+
+
+            };
+        }
     }
 }

@@ -5,6 +5,7 @@
         public CategoryMapper()
         {
             CreateMap<Core.CategoryInsertDataTransfer, Core.Category>();
+            CreateMap<Core.CategoryUpdateDataTransfer, Core.Category>();
         }
     }
 }

@@ -5,6 +5,7 @@
         public ContentDetailMapper()
         {
             CreateMap<Core.ContentDetailInsertDataTransfer, Core.ContentDetail>();
+            CreateMap<Core.ContentDetailUpdateDataTransfer, Core.ContentDetail>();
         }
     }
 }

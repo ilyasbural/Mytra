@@ -5,6 +5,7 @@
         public UserContactMapper()
         {
             CreateMap<Core.UserContactInsertDataTransfer, Core.UserContact>();
+            CreateMap<Core.UserContactUpdateDataTransfer, Core.UserContact>();
         }
     }
 }

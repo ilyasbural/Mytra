@@ -5,6 +5,7 @@
         public PermissionDetailMapper()
         {
             CreateMap<Core.PermissionDetailInsertDataTransfer, Core.PermissionDetail>();
+            CreateMap<Core.PermissionDetailUpdateDataTransfer, Core.PermissionDetail>();
         }
     }
 }

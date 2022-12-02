@@ -22,7 +22,16 @@
                 
 
 
+            };
+        }
 
+        [HttpPut]
+        [Route("api/announcedetail")]
+        public async Task<AnnounceDetailWebResponse> Update([FromBody] AnnounceDetailUpdateDataTransfer Model)
+        {
+            AnnounceDetailResponse announceDetailResponse = await Service.UpdateAsync(Model);
+            return new AnnounceDetailWebResponse
+            {
 
 
 

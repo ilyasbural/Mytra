@@ -21,7 +21,16 @@
             {
                 
 
+            };
+        }
 
+        [HttpPut]
+        [Route("api/managementdetail")]
+        public async Task<ManagementDetailWebResponse> Update([FromBody] ManagementDetailUpdateDataTransfer Model)
+        {
+            ManagementDetailResponse managementDetailResponse = await Service.UpdateAsync(Model);
+            return new ManagementDetailWebResponse
+            {
 
 
             };

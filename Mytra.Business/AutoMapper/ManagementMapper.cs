@@ -5,6 +5,7 @@
         public ManagementMapper()
         {
             CreateMap<Core.ManagementInsertDataTransfer, Core.Management>();
+            CreateMap<Core.ManagementUpdateDataTransfer, Core.Management>();
         }
     }
 }

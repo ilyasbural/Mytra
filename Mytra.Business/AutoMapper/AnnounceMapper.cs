@@ -5,6 +5,7 @@
         public AnnounceMapper()
         {
             CreateMap<Core.AnnounceInsertDataTransfer, Core.Announce>();
+            CreateMap<Core.AnnounceUpdateDataTransfer, Core.Announce>();
         }
     }
 }

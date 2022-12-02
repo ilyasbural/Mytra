@@ -27,5 +27,21 @@
 
             };
         }
+
+        [HttpPut]
+        [Route("api/contentpicture")]
+        public async Task<ContentPictureWebResponse> Update([FromBody] ContentPictureUpdateDataTransfer Model)
+        {
+            ContentPictureResponse contentPictureResponse = await Service.UpdateAsync(Model);
+            return new ContentPictureWebResponse
+            {
+
+
+
+
+
+
+            };
+        }
     }
 }

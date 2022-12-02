@@ -22,6 +22,17 @@
                 
 
 
+            };
+        }
+
+        [HttpPut]
+        [Route("api/usercontact")]
+        public async Task<UserContactWebResponse> Update([FromBody] UserContactUpdateDataTransfer Model)
+        {
+            UserContactResponse userContactResponse = await Service.UpdateAsync(Model);
+            return new UserContactWebResponse
+            {
+
 
 
             };

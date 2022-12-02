@@ -5,6 +5,7 @@
         public SurveyMapper()
         {
             CreateMap<Core.SurveyInsertDataTransfer, Core.Survey>();
+            CreateMap<Core.SurveyUpdateDataTransfer, Core.Survey>();
         }
     }
 }

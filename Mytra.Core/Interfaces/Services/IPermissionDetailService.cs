@@ -3,5 +3,6 @@
     public interface IPermissionDetailService
     {
         Task<PermissionDetailResponse> AddAsync(PermissionDetailInsertDataTransfer Model);
+        Task<PermissionDetailResponse> UpdateAsync(PermissionDetailUpdateDataTransfer Model);
     }
 }

@@ -31,10 +31,12 @@
             {
                 //Data = Entity,
                 //Response = Mapper.Map<AbilityDataTransferInsert>(Entity)
-
-
-
             };
+        }
+
+        public async Task<PermissionResponse> UpdateAsync(PermissionUpdateDataTransfer Model)
+        {
+            throw new NotImplementedException();
         }
     }
 }

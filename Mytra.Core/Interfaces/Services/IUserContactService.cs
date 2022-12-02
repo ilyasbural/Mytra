@@ -3,5 +3,6 @@
     public interface IUserContactService
     {
         Task<UserContactResponse> AddAsync(UserContactInsertDataTransfer Model);
+        Task<UserContactResponse> UpdateAsync(UserContactUpdateDataTransfer Model);
     }
 }

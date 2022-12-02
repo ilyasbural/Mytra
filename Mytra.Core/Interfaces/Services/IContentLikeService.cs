@@ -3,5 +3,6 @@
     public interface IContentLikeService
     {
         Task<ContentLikeResponse> AddAsync(ContentLikeInsertDataTransfer Model);
+        Task<ContentLikeResponse> UpdateAsync(ContentLikeUpdateDataTransfer Model);
     }
 }

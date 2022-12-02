@@ -19,9 +19,18 @@
             SurveyDetailResponse surveyDetailResponse = await Service.AddAsync(Model);
             return new SurveyDetailWebResponse
             {
-                
+               
 
+            };
+        }
 
+        [HttpPut]
+        [Route("api/surveydetail")]
+        public async Task<UserContactWebResponse> Update([FromBody] SurveyDetailUpdateDataTransfer Model)
+        {
+            SurveyDetailResponse surveyDetailResponse = await Service.UpdateAsync(Model);
+            return new UserContactWebResponse
+            {
 
 
             };

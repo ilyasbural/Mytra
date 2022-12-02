@@ -21,9 +21,16 @@
             {
                 
 
+            };
+        }
 
-
-
+        [HttpPut]
+        [Route("api/useremail")]
+        public async Task<UserEmailWebResponse> Update([FromBody] UserEmailUpdateDataTransfer Model)
+        {
+            UserEmailResponse userEmailResponse = await Service.UpdateAsync(Model);
+            return new UserEmailWebResponse
+            {
 
 
             };
