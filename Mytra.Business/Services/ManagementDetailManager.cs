@@ -2,6 +2,7 @@
 {
     using Core;
     using AutoMapper;
+    using FluentValidation;
     using System.Threading.Tasks;
     using System.Collections.Generic;
 
@@ -9,11 +10,13 @@
     {
         readonly IMapper Mapper;
         readonly IUnitOfWork UnitOfWork;
+        readonly IValidator<ManagementDetail> Validator;
 
-        public ManagementDetailManager(IMapper mapper, IUnitOfWork unitOfWork)
+        public ManagementDetailManager(IMapper mapper, IUnitOfWork unitOfWork, IValidator<ManagementDetail> validator)
         {
             Mapper = mapper;
             UnitOfWork = unitOfWork;
+            Validator = validator;
         }
 
         public async Task<ManagementDetailResponse> AddAsync(ManagementDetailInsertDataTransfer Model)

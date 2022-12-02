@@ -2,6 +2,7 @@
 {
     using Core;
     using AutoMapper;
+    using FluentValidation;
     using System.Threading.Tasks;
     using System.Collections.Generic;
 
@@ -9,11 +10,13 @@
     {
         readonly IMapper Mapper;
         readonly IUnitOfWork UnitOfWork;
+        readonly IValidator<Content> Validator;
 
-        public ContentManager(IMapper mapper, IUnitOfWork unitOfWork)
+        public ContentManager(IMapper mapper, IUnitOfWork unitOfWork, IValidator<Content> validator)
         {
             Mapper = mapper;
             UnitOfWork = unitOfWork;
+            Validator = validator;
         }
 
         public async Task<ContentResponse> AddAsync(ContentInsertDataTransfer Model)

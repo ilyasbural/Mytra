@@ -2,6 +2,7 @@
 {
     using Core;
     using AutoMapper;
+    using FluentValidation;
     using System.Threading.Tasks;
     using System.Collections.Generic;
 
@@ -9,11 +10,13 @@
     {
         readonly IMapper Mapper;
         readonly IUnitOfWork UnitOfWork;
+        readonly IValidator<ContentLike> Validator;
 
-        public ContentLikeManager(IMapper mapper, IUnitOfWork unitOfWork)
+        public ContentLikeManager(IMapper mapper, IUnitOfWork unitOfWork, IValidator<ContentLike> validator)
         {
             Mapper = mapper;
             UnitOfWork = unitOfWork;
+            Validator = validator;
         }
 
         public async Task<ContentLikeResponse> AddAsync(ContentLikeInsertDataTransfer Model)
