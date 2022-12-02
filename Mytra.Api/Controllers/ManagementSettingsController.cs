@@ -47,5 +47,29 @@
 
             };
         }
+
+        [HttpGet]
+        [Route("api/managementsettings")]
+        public async Task<ManagementSettingsWebResponse> Get([FromBody] ManagementSettingsSelectDataTransfer Model)
+        {
+            ManagementSettingsResponse managementSettingsResponse = await Service.SelectAsync(Model);
+            return new ManagementSettingsWebResponse
+            {
+
+
+            };
+        }
+
+        [HttpGet]
+        [Route("api/managementsettings/{id}")]
+        public async Task<ManagementSettingsWebResponse> Get([FromBody] ManagementSettingsAnyDataTransfer Model)
+        {
+            ManagementSettingsResponse managementSettingsResponse = await Service.AnyAsync(Model);
+            return new ManagementSettingsWebResponse
+            {
+
+
+            };
+        }
     }
 }

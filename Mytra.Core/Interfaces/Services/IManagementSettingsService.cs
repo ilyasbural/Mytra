@@ -6,5 +6,6 @@
         Task<ManagementSettingsResponse> UpdateAsync(ManagementSettingsUpdateDataTransfer Model);
         Task<ManagementSettingsResponse> DeleteAsync(ManagementSettingsDeleteDataTransfer Model);
         Task<ManagementSettingsResponse> SelectAsync(ManagementSettingsSelectDataTransfer Model);
+        Task<ManagementSettingsResponse> AnyAsync(ManagementSettingsAnyDataTransfer Model);
     }
 }

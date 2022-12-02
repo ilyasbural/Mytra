@@ -59,5 +59,37 @@
 
             };
         }
+
+        [HttpGet]
+        [Route("api/contenttype")]
+        public async Task<ContentTypeWebResponse> Get([FromBody] ContentTypeSelectDataTransfer Model)
+        {
+            ContentTypeResponse contentTypeResponse = await Service.SelectAsync(Model);
+            return new ContentTypeWebResponse
+            {
+
+
+
+
+
+
+            };
+        }
+
+        [HttpGet]
+        [Route("api/contenttype/{id}")]
+        public async Task<ContentTypeWebResponse> Get([FromBody] ContentTypeAnyDataTransfer Model)
+        {
+            ContentTypeResponse contentTypeResponse = await Service.AnyAsync(Model);
+            return new ContentTypeWebResponse
+            {
+
+
+
+
+
+
+            };
+        }
     }
 }

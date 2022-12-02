@@ -56,5 +56,35 @@
 
             };
         }
+
+        [HttpGet]
+        [Route("api/contentcomment")]
+        public async Task<ContentCommentWebResponse> Get([FromBody] ContentCommentSelectDataTransfer Model)
+        {
+            ContentCommentResponse contentCommentResponse = await Service.SelectAsync(Model);
+            return new ContentCommentWebResponse
+            {
+
+
+
+
+
+            };
+        }
+
+        [HttpGet]
+        [Route("api/contentcomment/{id}")]
+        public async Task<ContentCommentWebResponse> Get([FromBody] ContentCommentAnyDataTransfer Model)
+        {
+            ContentCommentResponse contentCommentResponse = await Service.AnyAsync(Model);
+            return new ContentCommentWebResponse
+            {
+
+
+
+
+
+            };
+        }
     }
 }

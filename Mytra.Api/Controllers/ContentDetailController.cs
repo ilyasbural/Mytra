@@ -56,5 +56,35 @@
 
             };
         }
+
+        [HttpGet]
+        [Route("api/contentdetail")]
+        public async Task<ContentDetailWebResponse> Get([FromBody] ContentDetailSelectDataTransfer Model)
+        {
+            ContentDetailResponse contentDetailResponse = await Service.SelectAsync(Model);
+            return new ContentDetailWebResponse
+            {
+
+
+
+
+
+            };
+        }
+
+        [HttpGet]
+        [Route("api/contentdetail/{id}")]
+        public async Task<ContentDetailWebResponse> Get([FromBody] ContentDetailAnyDataTransfer Model)
+        {
+            ContentDetailResponse contentDetailResponse = await Service.AnyAsync(Model);
+            return new ContentDetailWebResponse
+            {
+
+
+
+
+
+            };
+        }
     }
 }

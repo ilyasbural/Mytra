@@ -48,5 +48,10 @@
         {
             throw new NotImplementedException();
         }
+
+        public async Task<ContentCommentResponse> AnyAsync(ContentCommentAnyDataTransfer Model)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

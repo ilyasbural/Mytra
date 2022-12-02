@@ -47,5 +47,29 @@
 
             };
         }
+
+        [HttpGet]
+        [Route("api/useremail")]
+        public async Task<UserEmailWebResponse> Get([FromBody] UserEmailSelectDataTransfer Model)
+        {
+            UserEmailResponse userEmailResponse = await Service.SelectAsync(Model);
+            return new UserEmailWebResponse
+            {
+
+
+            };
+        }
+
+        [HttpGet]
+        [Route("api/useremail/{id}")]
+        public async Task<UserEmailWebResponse> Get([FromBody] UserEmailAnyDataTransfer Model)
+        {
+            UserEmailResponse userEmailResponse = await Service.AnyAsync(Model);
+            return new UserEmailWebResponse
+            {
+
+
+            };
+        }
     }
 }

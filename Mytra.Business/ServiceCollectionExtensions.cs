@@ -2,6 +2,7 @@
 {
     using Core;
     using DataAccess;
+    using FluentValidation;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
 
@@ -36,6 +37,30 @@
             Service.AddScoped<IUserEmailRepository, UserEmailRepositoryEF>();
             Service.AddScoped<IUserSettingsRepository, UserSettingsRepositoryEF>();
             Service.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            Service.AddScoped<IValidator<Announce>, AnnounceValidator>();
+            Service.AddScoped<IValidator<AnnounceDetail>, AnnounceDetailValidator>();
+            Service.AddScoped<IValidator<Category>, CategoryValidator>();
+            Service.AddScoped<IValidator<ContentComment>, ContentCommentValidator>();
+            Service.AddScoped<IValidator<ContentDetail>, ContentDetailValidator>();
+            Service.AddScoped<IValidator<ContentLike>, ContentLikeValidator>();
+            Service.AddScoped<IValidator<ContentPicture>, ContentPictureValidator>();
+            Service.AddScoped<IValidator<ContentSettings>, ContentSettingsValidator>();
+            Service.AddScoped<IValidator<ContentType>, ContentTypeValidator>();
+            Service.AddScoped<IValidator<Content>, ContentValidator>();
+            Service.AddScoped<IValidator<ManagementContact>, ManagementContactValidator>();
+            Service.AddScoped<IValidator<ManagementDetail>, ManagementDetailValidator>();
+            Service.AddScoped<IValidator<ManagementSettings>, ManagementSettingsValidator>();
+            Service.AddScoped<IValidator<Management>, ManagementValidator>();
+            Service.AddScoped<IValidator<Permission>, PermissionValidator>();
+            Service.AddScoped<IValidator<PermissionDetail>, PermissionDetailValidator>();
+            Service.AddScoped<IValidator<Survey>, SurveyValidator>();
+            Service.AddScoped<IValidator<SurveyDetail>, SurveyDetailValidator>();
+            Service.AddScoped<IValidator<UserContact>, UserContactValidator>();
+            Service.AddScoped<IValidator<UserDetail>, UserDetailValidator>();
+            Service.AddScoped<IValidator<UserEmail>, UserEmailValidator>();
+            Service.AddScoped<IValidator<UserSettings>, UserSettingsValidator>();
+            Service.AddScoped<IValidator<User>, UserValidator>();
 
             Service.AddScoped<IAnnounceService, AnnounceManager>();
             Service.AddScoped<IAnnounceDetailService, AnnounceDetailManager>();

@@ -50,5 +50,31 @@
 
             };
         }
+
+        [HttpGet]
+        [Route("api/usercontact")]
+        public async Task<UserContactWebResponse> Get([FromBody] UserContactSelectDataTransfer Model)
+        {
+            UserContactResponse userContactResponse = await Service.SelectAsync(Model);
+            return new UserContactWebResponse
+            {
+
+
+
+            };
+        }
+
+        [HttpGet]
+        [Route("api/usercontact/{id}")]
+        public async Task<UserContactWebResponse> Get([FromBody] UserContactAnyDataTransfer Model)
+        {
+            UserContactResponse userContactResponse = await Service.AnyAsync(Model);
+            return new UserContactWebResponse
+            {
+
+
+
+            };
+        }
     }
 }

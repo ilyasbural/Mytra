@@ -47,5 +47,29 @@
 
             };
         }
+
+        [HttpGet]
+        [Route("api/permissiondetail")]
+        public async Task<PermissionDetailWebResponse> Get([FromBody] PermissionDetailSelectDataTransfer Model)
+        {
+            PermissionDetailResponse permissionDetailResponse = await Service.SelectAsync(Model);
+            return new PermissionDetailWebResponse
+            {
+
+
+            };
+        }
+
+        [HttpGet]
+        [Route("api/permissiondetail/{id}")]
+        public async Task<PermissionDetailWebResponse> Get([FromBody] PermissionDetailAnyDataTransfer Model)
+        {
+            PermissionDetailResponse permissionDetailResponse = await Service.AnyAsync(Model);
+            return new PermissionDetailWebResponse
+            {
+
+
+            };
+        }
     }
 }

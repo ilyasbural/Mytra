@@ -59,5 +59,37 @@
 
             };
         }
+
+        [HttpGet]
+        [Route("api/userdetail")]
+        public async Task<UserDetailWebResponse> Get([FromBody] UserDetailSelectDataTransfer Model)
+        {
+            UserDetailResponse userDetailResponse = await Service.SelectAsync(Model);
+            return new UserDetailWebResponse
+            {
+
+
+
+
+
+
+            };
+        }
+
+        [HttpGet]
+        [Route("api/userdetail/{id}")]
+        public async Task<UserDetailWebResponse> Get([FromBody] UserDetailAnyDataTransfer Model)
+        {
+            UserDetailResponse userDetailResponse = await Service.AnyAsync(Model);
+            return new UserDetailWebResponse
+            {
+
+
+
+
+
+
+            };
+        }
     }
 }

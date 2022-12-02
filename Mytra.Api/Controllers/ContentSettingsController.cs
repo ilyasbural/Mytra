@@ -56,5 +56,35 @@
 
             };
         }
+
+        [HttpGet]
+        [Route("api/contentsettings")]
+        public async Task<ContentSettingsWebResponse> Get([FromBody] ContentSettingsSelectDataTransfer Model)
+        {
+            ContentSettingsResponse contentSettingsResponse = await Service.SelectAsync(Model);
+            return new ContentSettingsWebResponse
+            {
+
+
+
+
+
+            };
+        }
+
+        [HttpGet]
+        [Route("api/contentsettings/{id]")]
+        public async Task<ContentSettingsWebResponse> Get([FromBody] ContentSettingsAnyDataTransfer Model)
+        {
+            ContentSettingsResponse contentSettingsResponse = await Service.AnyAsync(Model);
+            return new ContentSettingsWebResponse
+            {
+
+
+
+
+
+            };
+        }
     }
 }

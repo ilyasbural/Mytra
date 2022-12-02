@@ -47,5 +47,29 @@
 
             };
         }
+
+        [HttpGet]
+        [Route("api/surveydetail")]
+        public async Task<SurveyDetailWebResponse> Get([FromBody] SurveyDetailSelectDataTransfer Model)
+        {
+            SurveyDetailResponse surveyDetailResponse = await Service.SelectAsync(Model);
+            return new SurveyDetailWebResponse
+            {
+
+
+            };
+        }
+
+        [HttpGet]
+        [Route("api/surveydetail/{id}")]
+        public async Task<SurveyDetailWebResponse> Get([FromBody] SurveyDetailAnyDataTransfer Model)
+        {
+            SurveyDetailResponse surveyDetailResponse = await Service.AnyAsync(Model);
+            return new SurveyDetailWebResponse
+            {
+
+
+            };
+        }
     }
 }

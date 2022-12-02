@@ -50,5 +50,31 @@
 
             };
         }
+
+        [HttpGet]
+        [Route("api/user")]
+        public async Task<UserWebResponse> Get([FromBody] UserSelectDataTransfer Model)
+        {
+            UserResponse userResponse = await Service.SelectAsync(Model);
+            return new UserWebResponse
+            {
+
+
+
+            };
+        }
+
+        [HttpGet]
+        [Route("api/user/{id}")]
+        public async Task<UserWebResponse> Get([FromBody] UserAnyDataTransfer Model)
+        {
+            UserResponse userResponse = await Service.AnyAsync(Model);
+            return new UserWebResponse
+            {
+
+
+
+            };
+        }
     }
 }

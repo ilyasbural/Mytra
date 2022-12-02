@@ -27,11 +27,11 @@
             };
         }
 
-        [HttpPut]
+        [HttpGet]
         [Route("api/managementcontact")]
-        public async Task<ManagementContactWebResponse> Update([FromBody] ManagementContactUpdateDataTransfer Model)
+        public async Task<ManagementContactWebResponse> Get([FromBody] ManagementContactSelectDataTransfer Model)
         {
-            ManagementContactResponse managementContactResponse = await Service.UpdateAsync(Model);
+            ManagementContactResponse managementContactResponse = await Service.SelectAsync(Model);
             return new ManagementContactWebResponse
             {
 
@@ -42,11 +42,11 @@
             };
         }
 
-        [HttpDelete]
-        [Route("api/managementcontact")]
-        public async Task<ManagementContactWebResponse> Delete([FromBody] ManagementContactDeleteDataTransfer Model)
+        [HttpGet]
+        [Route("api/managementcontact/{id}")]
+        public async Task<ManagementContactWebResponse> Get([FromBody] ManagementContactAnyDataTransfer Model)
         {
-            ManagementContactResponse managementContactResponse = await Service.DeleteAsync(Model);
+            ManagementContactResponse managementContactResponse = await Service.AnyAsync(Model);
             return new ManagementContactWebResponse
             {
 

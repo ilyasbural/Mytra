@@ -6,5 +6,6 @@
         Task<ContentCommentResponse> UpdateAsync(ContentCommentUpdateDataTransfer Model);
         Task<ContentCommentResponse> DeleteAsync(ContentCommentDeleteDataTransfer Model);
         Task<ContentCommentResponse> SelectAsync(ContentCommentSelectDataTransfer Model);
+        Task<ContentCommentResponse> AnyAsync(ContentCommentAnyDataTransfer Model);
     }
 }

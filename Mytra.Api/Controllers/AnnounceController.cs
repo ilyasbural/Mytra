@@ -47,5 +47,29 @@
 
             };
         }
+
+        [HttpGet]
+        [Route("api/announce")]
+        public async Task<AnnounceWebResponse> Get([FromBody] AnnounceSelectDataTransfer Model)
+        {
+            AnnounceResponse announceResponse = await Service.SelectAsync(Model);
+            return new AnnounceWebResponse
+            {
+
+
+            };
+        }
+
+        [HttpGet]
+        [Route("api/announce/{id}")]
+        public async Task<AnnounceWebResponse> Get([FromBody] AnnounceAnyDataTransfer Model)
+        {
+            AnnounceResponse announceResponse = await Service.AnyAsync(Model);
+            return new AnnounceWebResponse
+            {
+
+
+            };
+        }
     }
 }

@@ -3,7 +3,7 @@
     using Core;
     using FluentValidation;
 
-    public class ManagementValidator
+    public class ManagementValidator : AbstractValidator<Management>
     {
         public ManagementValidator()
         {

@@ -6,5 +6,6 @@
         Task<CategoryResponse> UpdateAsync(CategoryUpdateDataTransfer Model);
         Task<CategoryResponse> DeleteAsync(CategoryDeleteDataTransfer Model);
         Task<CategoryResponse> SelectAsync(CategorySelectDataTransfer Model);
+        Task<CategoryResponse> AnyAsync(CategoryAnyDataTransfer Model);
     }
 }

@@ -43,5 +43,15 @@
         {
             throw new NotImplementedException();
         }
+
+        public async Task<UserResponse> SelectAsync(UserSelectDataTransfer Model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<UserResponse> AnyAsync(UserAnyDataTransfer Model)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

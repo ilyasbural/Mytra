@@ -6,5 +6,6 @@
         Task<ManagementContactResponse> UpdateAsync(ManagementContactUpdateDataTransfer Model);
         Task<ManagementContactResponse> DeleteAsync(ManagementContactDeleteDataTransfer Model);
         Task<ManagementContactResponse> SelectAsync(ManagementContactSelectDataTransfer Model);
+        Task<ManagementContactResponse> AnyAsync(ManagementContactAnyDataTransfer Model);
     }
 }

@@ -61,5 +61,10 @@
         {
             throw new NotImplementedException();
         }
+
+        public async Task<AnnounceDetailResponse> AnyAsync(AnnounceDetailAnyDataTransfer Model)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

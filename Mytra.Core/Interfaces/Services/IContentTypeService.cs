@@ -6,5 +6,6 @@
         Task<ContentTypeResponse> UpdateAsync(ContentTypeUpdateDataTransfer Model);
         Task<ContentTypeResponse> DeleteAsync(ContentTypeDeleteDataTransfer Model);
         Task<ContentTypeResponse> SelectAsync(ContentTypeSelectDataTransfer Model);
+        Task<ContentTypeResponse> AnyAsync(ContentTypeAnyDataTransfer Model);
     }
 }

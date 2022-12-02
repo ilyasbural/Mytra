@@ -6,5 +6,6 @@
         Task<AnnounceDetailResponse> UpdateAsync(AnnounceDetailUpdateDataTransfer Model);
         Task<AnnounceDetailResponse> DeleteAsync(AnnounceDetailDeleteDataTransfer Model);
         Task<AnnounceDetailResponse> SelectAsync(AnnounceDetailSelectDataTransfer Model);
+        Task<AnnounceDetailResponse> AnyAsync(AnnounceDetailAnyDataTransfer Model);
     }
 }

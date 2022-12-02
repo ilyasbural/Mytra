@@ -53,5 +53,33 @@
 
             };
         }
+
+        [HttpGet]
+        [Route("api/usersettings")]
+        public async Task<UserSettingsWebResponse> Get([FromBody] UserSettingsSelectDataTransfer Model)
+        {
+            UserSettingsResponse userSettingsResponse = await Service.SelectAsync(Model);
+            return new UserSettingsWebResponse
+            {
+
+
+
+
+            };
+        }
+
+        [HttpGet]
+        [Route("api/usersettings/{id}")]
+        public async Task<UserSettingsWebResponse> Get([FromBody] UserSettingsAnyDataTransfer Model)
+        {
+            UserSettingsResponse userSettingsResponse = await Service.AnyAsync(Model);
+            return new UserSettingsWebResponse
+            {
+
+
+
+
+            };
+        }
     }
 }

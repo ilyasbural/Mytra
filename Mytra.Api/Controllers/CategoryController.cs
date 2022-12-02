@@ -50,5 +50,31 @@
 
             };
         }
+
+        [HttpGet]
+        [Route("api/category")]
+        public async Task<CategoryWebResponse> Get([FromBody] CategorySelectDataTransfer Model)
+        {
+            CategoryResponse categoryResponse = await Service.SelectAsync(Model);
+            return new CategoryWebResponse
+            {
+
+
+
+            };
+        }
+
+        [HttpGet]
+        [Route("api/category/{id}")]
+        public async Task<CategoryWebResponse> Get([FromBody] CategoryAnyDataTransfer Model)
+        {
+            CategoryResponse categoryResponse = await Service.AnyAsync(Model);
+            return new CategoryWebResponse
+            {
+
+
+
+            };
+        }
     }
 }

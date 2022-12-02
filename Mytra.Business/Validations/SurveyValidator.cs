@@ -3,9 +3,9 @@
     using Core;
     using FluentValidation;
 
-    public class SurveyValidation : AbstractValidator<Survey>
+    public class SurveyValidator : AbstractValidator<Survey>
     {
-        public SurveyValidation()
+        public SurveyValidator()
         {
             //RuleFor(x => x.Email).NotEmpty().WithMessage("Email required").EmailAddress().WithMessage("Please enter correct email format");
             //RuleFor(x => x.Password).NotEmpty().WithMessage("Password required").Length(0, 20).WithMessage("Password should have 20 chars at most");

@@ -47,5 +47,29 @@
 
             };
         }
+
+        [HttpGet]
+        [Route("api/managementdetail")]
+        public async Task<ManagementDetailWebResponse> Get([FromBody] ManagementDetailSelectDataTransfer Model)
+        {
+            ManagementDetailResponse managementDetailResponse = await Service.SelectAsync(Model);
+            return new ManagementDetailWebResponse
+            {
+
+
+            };
+        }
+
+        [HttpGet]
+        [Route("api/managementdetail/{id}")]
+        public async Task<ManagementDetailWebResponse> Get([FromBody] ManagementDetailAnyDataTransfer Model)
+        {
+            ManagementDetailResponse managementDetailResponse = await Service.AnyAsync(Model);
+            return new ManagementDetailWebResponse
+            {
+
+
+            };
+        }
     }
 }

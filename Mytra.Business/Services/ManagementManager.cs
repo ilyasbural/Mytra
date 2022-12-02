@@ -48,5 +48,10 @@
         {
             throw new NotImplementedException();
         }
+
+        public async Task<ManagementResponse> AnyAsync(ManagementAnyDataTransfer Model)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

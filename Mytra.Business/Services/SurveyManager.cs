@@ -48,5 +48,10 @@
         {
             throw new NotImplementedException();
         }
+
+        public async Task<SurveyResponse> AnyAsync(SurveyAnyDataTransfer Model)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
