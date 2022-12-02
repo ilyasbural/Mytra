@@ -35,5 +35,17 @@
 
             };
         }
+
+        [HttpDelete]
+        [Route("api/managementsettings")]
+        public async Task<ManagementSettingsWebResponse> Delete([FromBody] ManagementSettingsDeleteDataTransfer Model)
+        {
+            ManagementSettingsResponse managementSettingsResponse = await Service.DeleteAsync(Model);
+            return new ManagementSettingsWebResponse
+            {
+
+
+            };
+        }
     }
 }

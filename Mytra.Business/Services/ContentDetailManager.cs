@@ -38,5 +38,10 @@
         {
             throw new NotImplementedException();
         }
+
+        public async Task<ContentDetailResponse> DeleteAsync(ContentDetailDeleteDataTransfer Model)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

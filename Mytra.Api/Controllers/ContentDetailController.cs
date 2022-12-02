@@ -41,5 +41,20 @@
 
             };
         }
+
+        [HttpDelete]
+        [Route("api/contentdetail")]
+        public async Task<ContentDetailWebResponse> Delete([FromBody] ContentDetailDeleteDataTransfer Model)
+        {
+            ContentDetailResponse contentDetailResponse = await Service.DeleteAsync(Model);
+            return new ContentDetailWebResponse
+            {
+
+
+
+
+
+            };
+        }
     }
 }

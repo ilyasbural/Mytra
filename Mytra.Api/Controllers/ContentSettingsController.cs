@@ -41,5 +41,20 @@
 
             };
         }
+
+        [HttpDelete]
+        [Route("api/contentsettings")]
+        public async Task<ContentSettingsWebResponse> Delete([FromBody] ContentSettingsDeleteDataTransfer Model)
+        {
+            ContentSettingsResponse contentSettingsResponse = await Service.DeleteAsync(Model);
+            return new ContentSettingsWebResponse
+            {
+
+
+
+
+
+            };
+        }
     }
 }

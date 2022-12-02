@@ -38,5 +38,10 @@
         {
             throw new NotImplementedException();
         }
+
+        public async Task<ManagementResponse> DeleteAsync(ManagementDeleteDataTransfer Model)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

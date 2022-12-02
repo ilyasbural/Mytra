@@ -4,5 +4,6 @@
     {
         Task<CategoryResponse> AddAsync(CategoryInsertDataTransfer Model);
         Task<CategoryResponse> UpdateAsync(CategoryUpdateDataTransfer Model);
+        Task<CategoryResponse> DeleteAsync(CategoryDeleteDataTransfer Model);
     }
 }

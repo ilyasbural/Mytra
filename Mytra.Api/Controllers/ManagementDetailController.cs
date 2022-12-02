@@ -35,5 +35,17 @@
 
             };
         }
+
+        [HttpDelete]
+        [Route("api/managementdetail")]
+        public async Task<ManagementDetailWebResponse> Delete([FromBody] ManagementDetailDeleteDataTransfer Model)
+        {
+            ManagementDetailResponse managementDetailResponse = await Service.DeleteAsync(Model);
+            return new ManagementDetailWebResponse
+            {
+
+
+            };
+        }
     }
 }

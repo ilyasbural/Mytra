@@ -26,10 +26,22 @@
 
         [HttpPut]
         [Route("api/surveydetail")]
-        public async Task<UserContactWebResponse> Update([FromBody] SurveyDetailUpdateDataTransfer Model)
+        public async Task<SurveyDetailWebResponse> Update([FromBody] SurveyDetailUpdateDataTransfer Model)
         {
             SurveyDetailResponse surveyDetailResponse = await Service.UpdateAsync(Model);
-            return new UserContactWebResponse
+            return new SurveyDetailWebResponse
+            {
+
+
+            };
+        }
+
+        [HttpDelete]
+        [Route("api/surveydetail")]
+        public async Task<SurveyDetailWebResponse> Delete([FromBody] SurveyDetailDeleteDataTransfer Model)
+        {
+            SurveyDetailResponse surveyDetailResponse = await Service.DeleteAsync(Model);
+            return new SurveyDetailWebResponse
             {
 
 

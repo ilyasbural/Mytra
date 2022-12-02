@@ -41,5 +41,20 @@
 
             };
         }
+
+        [HttpDelete]
+        [Route("api/contentcomment")]
+        public async Task<ContentCommentWebResponse> Delete([FromBody] ContentCommentDeleteDataTransfer Model)
+        {
+            ContentCommentResponse contentCommentResponse = await Service.DeleteAsync(Model);
+            return new ContentCommentWebResponse
+            {
+
+
+
+
+
+            };
+        }
     }
 }

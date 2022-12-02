@@ -41,5 +41,20 @@
 
             };
         }
+
+        [HttpDelete]
+        [Route("api/survey")]
+        public async Task<SurveyWebResponse> Delete([FromBody] SurveyDeleteDataTransfer Model)
+        {
+            SurveyResponse surveyResponse = await Service.DeleteAsync(Model);
+            return new SurveyWebResponse
+            {
+
+
+
+
+
+            };
+        }
     }
 }

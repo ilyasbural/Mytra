@@ -21,8 +21,6 @@
             {
                 
 
-
-
             };
         }
 
@@ -35,7 +33,16 @@
             {
 
 
+            };
+        }
 
+        [HttpDelete]
+        [Route("api/announce")]
+        public async Task<AnnounceWebResponse> Delete([FromBody] AnnounceDeleteDataTransfer Model)
+        {
+            AnnounceResponse announceResponse = await Service.DeleteAsync(Model);
+            return new AnnounceWebResponse
+            {
 
 
             };

@@ -39,5 +39,19 @@
 
             };
         }
+
+        [HttpPut]
+        [Route("api/usersettings")]
+        public async Task<UserSettingsWebResponse> Delete([FromBody] UserSettingsDeleteDataTransfer Model)
+        {
+            UserSettingsResponse userSettingsResponse = await Service.DeleteAsync(Model);
+            return new UserSettingsWebResponse
+            {
+
+
+
+
+            };
+        }
     }
 }

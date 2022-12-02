@@ -37,5 +37,18 @@
 
             };
         }
+
+        [HttpDelete]
+        [Route("api/announcedetail")]
+        public async Task<AnnounceDetailWebResponse> Delete([FromBody] AnnounceDetailDeleteDataTransfer Model)
+        {
+            AnnounceDetailResponse announceDetailResponse = await Service.DeleteAsync(Model);
+            return new AnnounceDetailWebResponse
+            {
+
+
+
+            };
+        }
     }
 }

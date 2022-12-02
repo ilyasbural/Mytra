@@ -37,5 +37,18 @@
 
             };
         }
+
+        [HttpPut]
+        [Route("api/usercontact")]
+        public async Task<UserContactWebResponse> Delete([FromBody] UserContactDeleteDataTransfer Model)
+        {
+            UserContactResponse userContactResponse = await Service.DeleteAsync(Model);
+            return new UserContactWebResponse
+            {
+
+
+
+            };
+        }
     }
 }

@@ -1,6 +1,8 @@
 ﻿namespace Mytra.DataAccess
 {
     using Core;
+    using Microsoft.EntityFrameworkCore;
+    using System.Linq.Expressions;
 
     public abstract class BaseRepository<T> : IRepository<T> where T : class, IEntity, new()
     {
@@ -13,6 +15,26 @@
         public async Task AddAsync(T Entity)
         {
             await DbContext.Set<T>().AddAsync(Entity);
+        }
+
+        public async Task UpdateAsync(T Entity)
+        {
+            await Task.Run(() => { DbContext.Set<T>().Update(Entity); });
+        }
+
+        public async Task DeleteAsync(T Entity)
+        {
+            await Task.Run(() => { DbContext.Set<T>().Remove(Entity); });
+        }
+
+        public async Task<List<T>> SelectAsync(Expression<Func<T, bool>> Predicate)
+        {
+            return await DbContext.Set<T>().Where(Predicate).ToListAsync<T>();
+        }
+
+        public async Task<bool> AnyAsync(Expression<Func<T, bool>> Predicate)
+        {
+            return await DbContext.Set<T>().AnyAsync(Predicate);
         }
     }
 }

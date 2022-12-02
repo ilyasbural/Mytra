@@ -43,5 +43,21 @@
 
             };
         }
+
+        [HttpDelete]
+        [Route("api/contentpicture")]
+        public async Task<ContentPictureWebResponse> Delete([FromBody] ContentPictureDeleteDataTransfer Model)
+        {
+            ContentPictureResponse contentPictureResponse = await Service.DeleteAsync(Model);
+            return new ContentPictureWebResponse
+            {
+
+
+
+
+
+
+            };
+        }
     }
 }

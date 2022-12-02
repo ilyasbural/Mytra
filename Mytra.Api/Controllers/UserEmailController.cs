@@ -35,5 +35,17 @@
 
             };
         }
+
+        [HttpPut]
+        [Route("api/useremail")]
+        public async Task<UserEmailWebResponse> Delete([FromBody] UserEmailDeleteDataTransfer Model)
+        {
+            UserEmailResponse userEmailResponse = await Service.DeleteAsync(Model);
+            return new UserEmailWebResponse
+            {
+
+
+            };
+        }
     }
 }

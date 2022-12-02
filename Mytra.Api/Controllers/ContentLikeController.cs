@@ -43,5 +43,21 @@
 
             };
         }
+
+        [HttpDelete]
+        [Route("api/contentlike")]
+        public async Task<ContentLikeWebResponse> Delete([FromBody] ContentLikeDeleteDataTransfer Model)
+        {
+            ContentLikeResponse contentLikeResponse = await Service.DeleteAsync(Model);
+            return new ContentLikeWebResponse
+            {
+
+
+
+
+
+
+            };
+        }
     }
 }

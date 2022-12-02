@@ -43,5 +43,21 @@
 
             };
         }
+
+        [HttpPut]
+        [Route("api/userdetail")]
+        public async Task<UserDetailWebResponse> Delete([FromBody] UserDetailDeleteDataTransfer Model)
+        {
+            UserDetailResponse userDetailResponse = await Service.DeleteAsync(Model);
+            return new UserDetailWebResponse
+            {
+
+
+
+
+
+
+            };
+        }
     }
 }

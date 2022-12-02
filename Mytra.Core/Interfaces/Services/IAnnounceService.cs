@@ -4,8 +4,8 @@
     {
         Task<AnnounceResponse> AddAsync(AnnounceInsertDataTransfer Model);
         Task<AnnounceResponse> UpdateAsync(AnnounceUpdateDataTransfer Model);
-        //Task<AnnounceResponse> DeleteAsync(AnnounceDataTransfer Model);
-        //Task<AnnounceResponse> SelectAsync(AnnounceDataTransfer Model);
-        //Task<AnnounceResponse> AnyAsync(AnnounceDataTransfer Model);
+        Task<AnnounceResponse> DeleteAsync(AnnounceDeleteDataTransfer Model);
+        Task<AnnounceResponse> SelectAsync(AnnounceSelectDataTransfer Model);
+        Task<AnnounceResponse> AnyAsync(AnnounceAnyDataTransfer Model);
     }
 }

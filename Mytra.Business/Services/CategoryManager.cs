@@ -38,5 +38,10 @@
         {
             throw new NotImplementedException();
         }
+
+        public async Task<CategoryResponse> DeleteAsync(CategoryDeleteDataTransfer Model)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

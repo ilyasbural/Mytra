@@ -33,8 +33,13 @@
                 //Response = Mapper.Map<AbilityDataTransferInsert>(Entity)
             };
         }
-
+        
         public async Task<ContentResponse> UpdateAsync(ContentUpdateDataTransfer Model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<ContentResponse> DeleteAsync(ContentDeleteDataTransfer Model)
         {
             throw new NotImplementedException();
         }

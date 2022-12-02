@@ -22,10 +22,6 @@
                 
 
 
-
-
-
-
             };
         }
 
@@ -39,7 +35,16 @@
 
 
 
+            };
+        }
 
+        [HttpDelete]
+        [Route("api/category")]
+        public async Task<CategoryWebResponse> Delete([FromBody] CategoryDeleteDataTransfer Model)
+        {
+            CategoryResponse categoryResponse = await Service.DeleteAsync(Model);
+            return new CategoryWebResponse
+            {
 
 
 

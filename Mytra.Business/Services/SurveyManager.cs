@@ -38,5 +38,10 @@
         {
             throw new NotImplementedException();
         }
+
+        public async Task<SurveyResponse> DeleteAsync(SurveyDeleteDataTransfer Model)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

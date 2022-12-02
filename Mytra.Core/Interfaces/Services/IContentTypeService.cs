@@ -4,5 +4,6 @@
     {
         Task<ContentTypeResponse> AddAsync(ContentTypeInsertDataTransfer Model);
         Task<ContentTypeResponse> UpdateAsync(ContentTypeUpdateDataTransfer Model);
+        Task<ContentTypeResponse> DeleteAsync(ContentTypeDeleteDataTransfer Model);
     }
 }

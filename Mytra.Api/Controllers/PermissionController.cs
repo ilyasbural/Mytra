@@ -35,5 +35,17 @@
 
             };
         }
+
+        [HttpDelete]
+        [Route("api/permission")]
+        public async Task<PermissionWebResponse> Delete([FromBody] PermissionDeleteDataTransfer Model)
+        {
+            PermissionResponse permissionResponse = await Service.DeleteAsync(Model);
+            return new PermissionWebResponse
+            {
+
+
+            };
+        }
     }
 }

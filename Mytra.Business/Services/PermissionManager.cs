@@ -38,5 +38,10 @@
         {
             throw new NotImplementedException();
         }
+
+        public async Task<PermissionResponse> DeleteAsync(PermissionDeleteDataTransfer Model)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

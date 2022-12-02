@@ -38,5 +38,10 @@
         {
             throw new NotImplementedException();
         }
+
+        public async Task<UserResponse> DeleteAsync(UserDeleteDataTransfer Model)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

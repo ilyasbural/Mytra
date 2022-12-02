@@ -4,5 +4,6 @@
     {
         Task<AnnounceDetailResponse> AddAsync(AnnounceDetailInsertDataTransfer Model);
         Task<AnnounceDetailResponse> UpdateAsync(AnnounceDetailUpdateDataTransfer Model);
+        Task<AnnounceDetailResponse> DeleteAsync(AnnounceDetailDeleteDataTransfer Model);
     }
 }

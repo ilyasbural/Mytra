@@ -4,5 +4,6 @@
     {
         Task<ManagementDetailResponse> AddAsync(ManagementDetailInsertDataTransfer Model);
         Task<ManagementDetailResponse> UpdateAsync(ManagementDetailUpdateDataTransfer Model);
+        Task<ManagementDetailResponse> DeleteAsync(ManagementDetailDeleteDataTransfer Model);
     }
 }

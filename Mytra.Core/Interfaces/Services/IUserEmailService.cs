@@ -4,5 +4,6 @@
     {
         Task<UserEmailResponse> AddAsync(UserEmailInsertDataTransfer Model);
         Task<UserEmailResponse> UpdateAsync(UserEmailUpdateDataTransfer Model);
+        Task<UserEmailResponse> DeleteAsync(UserEmailDeleteDataTransfer Model);
     }
 }
