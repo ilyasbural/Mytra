@@ -17,15 +17,7 @@
         public async Task<ContentLikeWebResponse> Create([FromBody] ContentLikeInsertDataTransfer Model)
         {
             ContentLikeResponse contentLikeResponse = await Service.AddAsync(Model);
-            return new ContentLikeWebResponse
-            {
-                
-
-
-
-
-
-            };
+            return new ContentLikeWebResponse { ContentLike = contentLikeResponse.ContentLike };
         }
 
         [HttpPut]

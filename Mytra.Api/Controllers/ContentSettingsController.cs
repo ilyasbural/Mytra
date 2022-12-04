@@ -17,14 +17,7 @@
         public async Task<ContentSettingsWebResponse> Create([FromBody] ContentSettingsInsertDataTransfer Model)
         {
             ContentSettingsResponse contentSettingsResponse = await Service.AddAsync(Model);
-            return new ContentSettingsWebResponse
-            {
-                
-
-
-
-
-            };
+            return new ContentSettingsWebResponse { ContentSettings = contentSettingsResponse.ContentSettings };
         }
 
         [HttpPut]
@@ -73,7 +66,7 @@
         }
 
         [HttpGet]
-        [Route("api/contentsettings/{id]")]
+        [Route("api/contentsettings/{id}")]
         public async Task<ContentSettingsWebResponse> Get([FromBody] ContentSettingsAnyDataTransfer Model)
         {
             ContentSettingsResponse contentSettingsResponse = await Service.AnyAsync(Model);

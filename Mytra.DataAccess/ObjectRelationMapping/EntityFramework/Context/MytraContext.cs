@@ -141,6 +141,9 @@
                 entity.Property(e => e.Category).HasColumnName("CATEGORY");
                 entity.Property(e => e.ContentType).HasColumnName("CONTENT TYPE");
                 entity.Property(e => e.IsActive).HasColumnName("IS ACTIVE");
+                entity.Property(e => e.Name)
+                    .HasMaxLength(50)
+                    .HasColumnName("NAME");
                 entity.Property(e => e.RegisterDate)
                     .HasColumnType("datetime")
                     .HasColumnName("REGISTER DATE");
@@ -173,6 +176,9 @@
                 entity.Property(e => e.RegisterDate)
                     .HasColumnType("datetime")
                     .HasColumnName("REGISTER DATE");
+                entity.Property(e => e.Text)
+                    .HasMaxLength(500)
+                    .HasColumnName("TEXT");
                 entity.Property(e => e.UpdateDate)
                     .HasColumnType("datetime")
                     .HasColumnName("UPDATE DATE");
@@ -194,6 +200,9 @@
                 entity.Property(e => e.Id)
                     .ValueGeneratedNever()
                     .HasColumnName("ID");
+                entity.Property(e => e.Description)
+                    .HasMaxLength(500)
+                    .HasColumnName("DESCRIPTION");
                 entity.Property(e => e.IsActive).HasColumnName("IS ACTIVE");
                 entity.Property(e => e.RegisterDate)
                     .HasColumnType("datetime")
@@ -244,6 +253,9 @@
                     .HasColumnName("ID");
                 entity.Property(e => e.Content).HasColumnName("CONTENT");
                 entity.Property(e => e.IsActive).HasColumnName("IS ACTIVE");
+                entity.Property(e => e.Picture)
+                    .HasColumnType("image")
+                    .HasColumnName("PICTURE");
                 entity.Property(e => e.RegisterDate)
                     .HasColumnType("datetime")
                     .HasColumnName("REGISTER DATE");
@@ -280,6 +292,9 @@
                     .ValueGeneratedNever()
                     .HasColumnName("ID");
                 entity.Property(e => e.IsActive).HasColumnName("IS ACTIVE");
+                entity.Property(e => e.Name)
+                    .HasMaxLength(50)
+                    .HasColumnName("NAME");
                 entity.Property(e => e.RegisterDate)
                     .HasColumnType("datetime")
                     .HasColumnName("REGISTER DATE");

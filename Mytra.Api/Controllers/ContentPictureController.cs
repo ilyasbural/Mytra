@@ -17,15 +17,7 @@
         public async Task<ContentPictureWebResponse> Create([FromBody] ContentPictureInsertDataTransfer Model)
         {
             ContentPictureResponse contentPictureResponse = await Service.AddAsync(Model);
-            return new ContentPictureWebResponse
-            {
-                
-
-
-
-
-
-            };
+            return new ContentPictureWebResponse { ContentPicture = contentPictureResponse.ContentPicture };
         }
 
         [HttpPut]

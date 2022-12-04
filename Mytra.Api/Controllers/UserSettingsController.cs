@@ -17,13 +17,7 @@
         public async Task<UserSettingsWebResponse> Create([FromBody] UserSettingsInsertDataTransfer Model)
         {
             UserSettingsResponse userSettingsResponse = await Service.AddAsync(Model);
-            return new UserSettingsWebResponse
-            {
-                
-
-
-
-            };
+            return new UserSettingsWebResponse { UserSettings = userSettingsResponse.UserSettings };
         }
 
         [HttpPut]

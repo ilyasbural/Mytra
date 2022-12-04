@@ -30,11 +30,7 @@
             await UnitOfWork.ContentPicture.AddAsync(contentPicture);
             await UnitOfWork.SaveChangesAsync();
 
-            return new ContentPictureResponse
-            {
-                //Data = Entity,
-                //Response = Mapper.Map<AbilityDataTransferInsert>(Entity)
-            };
+            return new ContentPictureResponse { ContentPicture = contentPicture };
         }
 
         public async Task<ContentPictureResponse> UpdateAsync(ContentPictureUpdateDataTransfer Model)

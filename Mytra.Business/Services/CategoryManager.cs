@@ -21,20 +21,16 @@
 
         public async Task<CategoryResponse> AddAsync(CategoryInsertDataTransfer Model)
         {
-            Category Entity = Mapper.Map<Category>(Model);
-            Entity.Id = Guid.NewGuid();
-            Entity.RegisterDate = DateTime.Now;
-            Entity.UpdateDate = DateTime.Now;
-            Entity.IsActive = true;
+            Category category = Mapper.Map<Category>(Model);
+            category.Id = Guid.NewGuid();
+            category.RegisterDate = DateTime.Now;
+            category.UpdateDate = DateTime.Now;
+            category.IsActive = true;
 
-            await UnitOfWork.Category.AddAsync(Entity);
+            await UnitOfWork.Category.AddAsync(category);
             await UnitOfWork.SaveChangesAsync();
 
-            return new CategoryResponse
-            {
-                //Data = Entity,
-                //Response = Mapper.Map<AbilityDataTransferInsert>(Entity)
-            };
+            return new CategoryResponse { Category = category };
         }
 
         public async Task<CategoryResponse> UpdateAsync(CategoryUpdateDataTransfer Model)

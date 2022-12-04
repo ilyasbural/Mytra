@@ -30,11 +30,7 @@
             await UnitOfWork.ManagementSettings.AddAsync(managementSettings);
             await UnitOfWork.SaveChangesAsync();
 
-            return new ManagementSettingsResponse
-            {
-                //Data = Entity,
-                //Response = Mapper.Map<AbilityDataTransferInsert>(Entity)
-            };
+            return new ManagementSettingsResponse { ManagementSettings= managementSettings };
         }
 
         public async Task<ManagementSettingsResponse> UpdateAsync(ManagementSettingsUpdateDataTransfer Model)

@@ -30,11 +30,7 @@
             await UnitOfWork.UserEmail.AddAsync(userEmail);
             await UnitOfWork.SaveChangesAsync();
 
-            return new UserEmailResponse
-            {
-                //Data = Entity,
-                //Response = Mapper.Map<AbilityDataTransferInsert>(Entity)
-            };
+            return new UserEmailResponse { UserEmail = userEmail };
         }
 
         public async Task<UserEmailResponse> UpdateAsync(UserEmailUpdateDataTransfer Model)

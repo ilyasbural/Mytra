@@ -17,15 +17,7 @@
         public async Task<ContentTypeWebResponse> Create([FromBody] ContentTypeInsertDataTransfer Model)
         {
             ContentTypeResponse contentTypeResponse = await Service.AddAsync(Model);
-            return new ContentTypeWebResponse
-            {
-                
-
-
-
-
-
-            };
+            return new ContentTypeWebResponse { ContentType = contentTypeResponse.ContentType };
         }
 
         [HttpPut]

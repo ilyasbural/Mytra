@@ -30,11 +30,7 @@
             await UnitOfWork.Content.AddAsync(content);
             await UnitOfWork.SaveChangesAsync();
 
-            return new ContentResponse
-            {
-                //Data = Entity,
-                //Response = Mapper.Map<AbilityDataTransferInsert>(Entity)
-            };
+            return new ContentResponse { Content = content };
         }
         
         public async Task<ContentResponse> UpdateAsync(ContentUpdateDataTransfer Model)

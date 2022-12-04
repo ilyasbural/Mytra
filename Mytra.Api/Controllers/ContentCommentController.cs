@@ -17,14 +17,7 @@
         public async Task<ContentCommentWebResponse> Create([FromBody] ContentCommentInsertDataTransfer Model)
         {
             ContentCommentResponse contentCommentResponse = await Service.AddAsync(Model);
-            return new ContentCommentWebResponse
-            {
-                
-
-
-
-
-            };
+            return new ContentCommentWebResponse { ContentComment = contentCommentResponse.ContentComment };
         }
 
         [HttpPut]

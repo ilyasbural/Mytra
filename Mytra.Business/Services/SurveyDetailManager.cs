@@ -30,11 +30,7 @@
             await UnitOfWork.SurveyDetail.AddAsync(surveyDetail);
             await UnitOfWork.SaveChangesAsync();
 
-            return new SurveyDetailResponse
-            {
-                //Data = Entity,
-                //Response = Mapper.Map<AbilityDataTransferInsert>(Entity)
-            };
+            return new SurveyDetailResponse { SurveyDetail = surveyDetail };
         }
 
         public async Task<SurveyDetailResponse> UpdateAsync(SurveyDetailUpdateDataTransfer Model)

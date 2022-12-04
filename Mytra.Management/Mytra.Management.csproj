@@ -6,4 +6,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Mytra.Business\Mytra.Business.csproj" />
+    <ProjectReference Include="..\Mytra.Common\Mytra.Common.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -17,14 +17,7 @@
         public async Task<ManagementContactWebResponse> Create([FromBody] ManagementContactInsertDataTransfer Model)
         {
             ManagementContactResponse managementContactResponse = await Service.AddAsync(Model);
-            return new ManagementContactWebResponse
-            {
-                
-
-
-
-
-            };
+            return new ManagementContactWebResponse { ManagementContact = managementContactResponse.ManagementContact };
         }
 
         [HttpGet]

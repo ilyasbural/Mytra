@@ -17,11 +17,7 @@
         public async Task<AnnounceWebResponse> Create([FromBody] AnnounceInsertDataTransfer Model)
         {
             AnnounceResponse announceResponse = await Service.AddAsync(Model);
-            return new AnnounceWebResponse
-            {
-                
-
-            };
+            return new AnnounceWebResponse { Announce = announceResponse.Announce };
         }
 
         [HttpPut]

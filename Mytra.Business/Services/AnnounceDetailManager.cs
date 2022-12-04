@@ -30,11 +30,7 @@
             await UnitOfWork.AnnounceDetail.AddAsync(announceDetail);
             await UnitOfWork.SaveChangesAsync();
 
-            return new AnnounceDetailResponse
-            {
-                //Data = Entity,
-                //Response = Mapper.Map<AbilityDataTransferInsert>(Entity)
-            };
+            return new AnnounceDetailResponse { AnnounceDetail = announceDetail };
         }
 
         public async Task<AnnounceDetailResponse> UpdateAsync(AnnounceDetailUpdateDataTransfer Model)

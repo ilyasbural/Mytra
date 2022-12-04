@@ -30,11 +30,7 @@
             await UnitOfWork.ContentLike.AddAsync(contentLike);
             await UnitOfWork.SaveChangesAsync();
 
-            return new ContentLikeResponse
-            {
-                //Data = Entity,
-                //Response = Mapper.Map<AbilityDataTransferInsert>(Entity)
-            };
+            return new ContentLikeResponse { ContentLike = contentLike };
         }
 
         public async Task<ContentLikeResponse> UpdateAsync(ContentLikeUpdateDataTransfer Model)

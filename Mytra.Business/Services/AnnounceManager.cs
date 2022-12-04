@@ -30,25 +30,24 @@
             await UnitOfWork.Announce.AddAsync(announceModel);
             await UnitOfWork.SaveChangesAsync();
 
-            return new AnnounceResponse
-            {
-                //Data = Entity,
-                //Response = Mapper.Map<AbilityDataTransferInsert>(Entity)
-            };
+            return new AnnounceResponse { Announce = announceModel };
         }
 
         public async Task<AnnounceResponse> UpdateAsync(AnnounceUpdateDataTransfer Model)
         {
             List<Announce> DataSource = await UnitOfWork.Announce.SelectAsync(x => x.Id == Model.Id);
             Announce Entity = Mapper.Map<Announce>(DataSource[0]);
+            Entity.Title = Model.Title;
             Entity.UpdateDate = DateTime.Now;
 
             await UnitOfWork.Announce.UpdateAsync(Entity);
             await UnitOfWork.SaveChangesAsync();
+
             AnnounceResponse Response = Mapper.Map<AnnounceResponse>(Entity);
 
             return new AnnounceResponse 
             {
+                Announce = Entity
                 //Data = Entity,
                 //Response = Mapper.Map<AbilityDataTransferInsert>(Entity)
             };
@@ -72,7 +71,10 @@
         {
             List<Announce> DataSource = await UnitOfWork.Announce.SelectAsync(x => x.IsActive == true);
             List<AnnounceResponse> Response = Mapper.Map<List<AnnounceResponse>>(DataSource);
-            return new AnnounceResponse { /*Data = DataSource*/ };
+            return new AnnounceResponse 
+            { 
+                /*Data = DataSource*/ 
+            };
         }
 
         public async Task<AnnounceResponse> AnyAsync(AnnounceAnyDataTransfer Model)
@@ -81,6 +83,8 @@
             //Response.Message = "Found";
             //Response.IsSuccess = true;
             //return Response;
+
+            await UnitOfWork.Announce.AnyAsync(x => x.Id == Model.Id);
 
             return new AnnounceResponse
             {

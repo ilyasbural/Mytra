@@ -2,6 +2,6 @@
 {
     public class UserResponse : BaseResponse<UserResponse>
     {
-
+        public User User { get; set; }
     }
 }

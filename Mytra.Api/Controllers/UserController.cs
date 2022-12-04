@@ -17,12 +17,7 @@
         public async Task<UserWebResponse> Create([FromBody] UserInsertDataTransfer Model)
         {
             UserResponse userResponse = await Service.AddAsync(Model);
-            return new UserWebResponse
-            {
-                
-
-
-            };
+            return new UserWebResponse { User = userResponse.User };
         }
 
         [HttpPut]

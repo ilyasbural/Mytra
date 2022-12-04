@@ -30,11 +30,7 @@
             await UnitOfWork.ManagementContact.AddAsync(managementContact);
             await UnitOfWork.SaveChangesAsync();
 
-            return new ManagementContactResponse
-            {
-                //Data = Entity,
-                //Response = Mapper.Map<AbilityDataTransferInsert>(Entity)
-            };
+            return new ManagementContactResponse { ManagementContact = managementContact };
         }
 
         public async Task<ManagementContactResponse> UpdateAsync(ManagementContactUpdateDataTransfer Model)

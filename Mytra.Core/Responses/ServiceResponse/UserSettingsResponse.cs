@@ -2,6 +2,6 @@
 {
     public class UserSettingsResponse : BaseResponse<UserSettingsResponse>
     {
-
+        public UserSettings UserSettings { get; set; }
     }
 }

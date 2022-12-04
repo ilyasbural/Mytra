@@ -30,11 +30,7 @@
             await UnitOfWork.UserDetail.AddAsync(userDetail);
             await UnitOfWork.SaveChangesAsync();
 
-            return new UserDetailResponse
-            {
-                //Data = Entity,
-                //Response = Mapper.Map<AbilityDataTransferInsert>(Entity)
-            };
+            return new UserDetailResponse { UserDetail = userDetail };
         }
 
         public async Task<UserDetailResponse> UpdateAsync(UserDetailUpdateDataTransfer Model)

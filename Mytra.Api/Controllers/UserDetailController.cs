@@ -17,15 +17,7 @@
         public async Task<UserDetailWebResponse> Create([FromBody] UserDetailInsertDataTransfer Model)
         {
             UserDetailResponse userDetailResponse = await Service.AddAsync(Model);
-            return new UserDetailWebResponse
-            {
-                
-
-
-
-
-
-            };
+            return new UserDetailWebResponse { UserDetail = userDetailResponse.UserDetail };
         }
 
         [HttpPut]

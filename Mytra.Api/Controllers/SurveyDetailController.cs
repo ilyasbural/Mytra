@@ -17,11 +17,7 @@
         public async Task<SurveyDetailWebResponse> Create([FromBody] SurveyDetailInsertDataTransfer Model)
         {
             SurveyDetailResponse surveyDetailResponse = await Service.AddAsync(Model);
-            return new SurveyDetailWebResponse
-            {
-               
-
-            };
+            return new SurveyDetailWebResponse { SurveyDetail = surveyDetailResponse.SurveyDetail };
         }
 
         [HttpPut]

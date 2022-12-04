@@ -17,11 +17,7 @@
         public async Task<PermissionWebResponse> Create([FromBody] PermissionInsertDataTransfer Model)
         {
             PermissionResponse permissionResponse = await Service.AddAsync(Model);
-            return new PermissionWebResponse
-            {
-                
-
-            };
+            return new PermissionWebResponse { Permission = permissionResponse.Permission };
         }
 
         [HttpPut]

@@ -30,11 +30,7 @@
             await UnitOfWork.Permission.AddAsync(permission);
             await UnitOfWork.SaveChangesAsync();
 
-            return new PermissionResponse
-            {
-                //Data = Entity,
-                //Response = Mapper.Map<AbilityDataTransferInsert>(Entity)
-            };
+            return new PermissionResponse { Permission= permission };
         }
 
         public async Task<PermissionResponse> UpdateAsync(PermissionUpdateDataTransfer Model)
