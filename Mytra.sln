@@ -17,10 +17,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mytra.DataAccess", "Mytra.D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mytra.Api", "Mytra.Api\Mytra.Api.csproj", "{241BEBC2-36A4-4541-9510-E0FF5530BA81}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mytra.Management", "Mytra.Management\Mytra.Management.csproj", "{7B5B8A1B-48B0-4B60-9F73-8268EF207860}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mytra.Platform", "Mytra.Platform\Mytra.Platform.csproj", "{B71CC330-19EB-4F41-B331-EAB0FAF77541}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,14 +51,6 @@ Global
 		{241BEBC2-36A4-4541-9510-E0FF5530BA81}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{241BEBC2-36A4-4541-9510-E0FF5530BA81}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{241BEBC2-36A4-4541-9510-E0FF5530BA81}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7B5B8A1B-48B0-4B60-9F73-8268EF207860}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7B5B8A1B-48B0-4B60-9F73-8268EF207860}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7B5B8A1B-48B0-4B60-9F73-8268EF207860}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7B5B8A1B-48B0-4B60-9F73-8268EF207860}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B71CC330-19EB-4F41-B331-EAB0FAF77541}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B71CC330-19EB-4F41-B331-EAB0FAF77541}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B71CC330-19EB-4F41-B331-EAB0FAF77541}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B71CC330-19EB-4F41-B331-EAB0FAF77541}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
