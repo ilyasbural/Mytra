@@ -33,7 +33,7 @@
             };
         }
 
-        [HttpPut]
+        [HttpDelete]
         [Route("api/usercontact")]
         public async Task<UserContactWebResponse> Delete([FromBody] UserContactDeleteDataTransfer Model)
         {

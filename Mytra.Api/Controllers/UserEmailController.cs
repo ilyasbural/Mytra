@@ -32,7 +32,7 @@
             };
         }
 
-        [HttpPut]
+        [HttpDelete]
         [Route("api/useremail")]
         public async Task<UserEmailWebResponse> Delete([FromBody] UserEmailDeleteDataTransfer Model)
         {

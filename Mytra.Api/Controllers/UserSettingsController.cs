@@ -34,7 +34,7 @@
             };
         }
 
-        [HttpPut]
+        [HttpDelete]
         [Route("api/usersettings")]
         public async Task<UserSettingsWebResponse> Delete([FromBody] UserSettingsDeleteDataTransfer Model)
         {

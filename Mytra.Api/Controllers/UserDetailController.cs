@@ -36,7 +36,7 @@
             };
         }
 
-        [HttpPut]
+        [HttpDelete]
         [Route("api/userdetail")]
         public async Task<UserDetailWebResponse> Delete([FromBody] UserDetailDeleteDataTransfer Model)
         {
