@@ -19,7 +19,7 @@
             Validator = validator;
         }
 
-        public async Task<ContentLikeResponse> AddAsync(ContentLikeInsertDataTransfer Model)
+        public async Task<ContentLikeResponse> InsertAsync(ContentLikeInsertDataTransfer Model)
         {
             ContentLike contentLike = Mapper.Map<ContentLike>(Model);
             contentLike.Id = Guid.NewGuid();
@@ -27,7 +27,7 @@
             contentLike.UpdateDate = DateTime.Now;
             contentLike.IsActive = true;
 
-            await UnitOfWork.ContentLike.AddAsync(contentLike);
+            await UnitOfWork.ContentLike.InsertAsync(contentLike);
             await UnitOfWork.SaveChangesAsync();
 
             return new ContentLikeResponse { ContentLike = contentLike };

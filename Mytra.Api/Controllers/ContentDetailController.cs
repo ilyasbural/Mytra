@@ -16,7 +16,7 @@
         [Route("api/contentdetail")]
         public async Task<ContentDetailWebResponse> Create([FromBody] ContentDetailInsertDataTransfer Model)
         {
-            ContentDetailResponse contentDetailResponse = await Service.AddAsync(Model);
+            ContentDetailResponse contentDetailResponse = await Service.InsertAsync(Model);
             return new ContentDetailWebResponse { ContentDetail = contentDetailResponse.ContentDetail };
         }
 

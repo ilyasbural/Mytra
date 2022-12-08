@@ -19,7 +19,7 @@
             Validator = validator;
         }
 
-        public async Task<UserEmailResponse> AddAsync(UserEmailInsertDataTransfer Model)
+        public async Task<UserEmailResponse> InsertAsync(UserEmailInsertDataTransfer Model)
         {
             UserEmail userEmail = Mapper.Map<UserEmail>(Model);
             userEmail.Id = Guid.NewGuid();
@@ -27,7 +27,7 @@
             userEmail.UpdateDate = DateTime.Now;
             userEmail.IsActive = true;
 
-            await UnitOfWork.UserEmail.AddAsync(userEmail);
+            await UnitOfWork.UserEmail.InsertAsync(userEmail);
             await UnitOfWork.SaveChangesAsync();
 
             return new UserEmailResponse { UserEmail = userEmail };

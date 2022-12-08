@@ -19,14 +19,14 @@
             Validator = validator;
         }
 
-        public async Task<UserSettingsResponse> AddAsync(UserSettingsInsertDataTransfer Model)
+        public async Task<UserSettingsResponse> InsertAsync(UserSettingsInsertDataTransfer Model)
         {
             UserSettings userSettings = Mapper.Map<UserSettings>(Model);
             userSettings.RegisterDate = DateTime.Now;
             userSettings.UpdateDate = DateTime.Now;
             userSettings.IsActive = true;
 
-            await UnitOfWork.UserSettings.AddAsync(userSettings);
+            await UnitOfWork.UserSettings.InsertAsync(userSettings);
             await UnitOfWork.SaveChangesAsync();
 
             return new UserSettingsResponse { UserSettings = userSettings };

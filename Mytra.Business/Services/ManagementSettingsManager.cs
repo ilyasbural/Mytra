@@ -19,14 +19,14 @@
             Validator = validator;
         }
 
-        public async Task<ManagementSettingsResponse> AddAsync(ManagementSettingsInsertDataTransfer Model)
+        public async Task<ManagementSettingsResponse> InsertAsync(ManagementSettingsInsertDataTransfer Model)
         {
             ManagementSettings managementSettings = Mapper.Map<ManagementSettings>(Model);
             managementSettings.RegisterDate = DateTime.Now;
             managementSettings.UpdateDate = DateTime.Now;
             managementSettings.IsActive = true;
 
-            await UnitOfWork.ManagementSettings.AddAsync(managementSettings);
+            await UnitOfWork.ManagementSettings.InsertAsync(managementSettings);
             await UnitOfWork.SaveChangesAsync();
 
             return new ManagementSettingsResponse { ManagementSettings= managementSettings };

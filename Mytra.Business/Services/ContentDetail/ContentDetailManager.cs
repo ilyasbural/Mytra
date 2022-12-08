@@ -19,7 +19,7 @@
             Validator = validator;
         }
 
-        public async Task<ContentDetailResponse> AddAsync(ContentDetailInsertDataTransfer Model)
+        public async Task<ContentDetailResponse> InsertAsync(ContentDetailInsertDataTransfer Model)
         {
             ContentDetail contentDetail = Mapper.Map<ContentDetail>(Model);
             contentDetail.Id = Guid.NewGuid();
@@ -27,7 +27,7 @@
             contentDetail.UpdateDate = DateTime.Now;
             contentDetail.IsActive = true;
 
-            await UnitOfWork.ContentDetail.AddAsync(contentDetail);
+            await UnitOfWork.ContentDetail.InsertAsync(contentDetail);
             await UnitOfWork.SaveChangesAsync();
 
             return new ContentDetailResponse { ContentDetail = contentDetail };

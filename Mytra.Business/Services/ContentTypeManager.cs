@@ -19,7 +19,7 @@
             Validator = validator;
         }
 
-        public async Task<ContentTypeResponse> AddAsync(ContentTypeInsertDataTransfer Model)
+        public async Task<ContentTypeResponse> InsertAsync(ContentTypeInsertDataTransfer Model)
         {
             ContentType contentType = Mapper.Map<ContentType>(Model);
             contentType.Id = Guid.NewGuid();
@@ -27,7 +27,7 @@
             contentType.UpdateDate = DateTime.Now;
             contentType.IsActive = true;
 
-            await UnitOfWork.ContentType.AddAsync(contentType);
+            await UnitOfWork.ContentType.InsertAsync(contentType);
             await UnitOfWork.SaveChangesAsync();
 
             return new ContentTypeResponse { ContentType = contentType };

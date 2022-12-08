@@ -4,7 +4,7 @@
 
     public partial class AnnounceManager
     {
-        public async Task<AnnounceResponse> AddAsync(AnnounceInsertDataTransfer model)
+        public async Task<AnnounceResponse> InsertAsync(AnnounceInsertDataTransfer model)
         {
             Announce announceModel = Mapper.Map<Announce>(model);
             announceModel.Id = Guid.NewGuid();
@@ -12,7 +12,7 @@
             announceModel.UpdateDate = DateTime.Now;
             announceModel.IsActive = true;
 
-            await UnitOfWork.Announce.AddAsync(announceModel);
+            await UnitOfWork.Announce.InsertAsync(announceModel);
             await UnitOfWork.SaveChangesAsync();
 
             return new AnnounceResponse { Announce = announceModel };

@@ -19,7 +19,7 @@
             Validator = validator;
         }
 
-        public async Task<ManagementResponse> AddAsync(ManagementInsertDataTransfer Model)
+        public async Task<ManagementResponse> InsertAsync(ManagementInsertDataTransfer Model)
         {
             Management management = Mapper.Map<Management>(Model);
             management.Id = Guid.NewGuid();
@@ -27,7 +27,7 @@
             management.UpdateDate = DateTime.Now;
             management.IsActive = true;
 
-            await UnitOfWork.Management.AddAsync(management);
+            await UnitOfWork.Management.InsertAsync(management);
             await UnitOfWork.SaveChangesAsync();
 
             return new ManagementResponse { Management = management };

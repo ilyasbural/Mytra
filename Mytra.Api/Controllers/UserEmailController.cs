@@ -16,7 +16,7 @@
         [Route("api/useremail")]
         public async Task<UserEmailWebResponse> Create([FromBody] UserEmailInsertDataTransfer Model)
         {
-            UserEmailResponse userEmailResponse = await Service.AddAsync(Model);
+            UserEmailResponse userEmailResponse = await Service.InsertAsync(Model);
             return new UserEmailWebResponse { UserEmail = userEmailResponse.UserEmail };
         }
 

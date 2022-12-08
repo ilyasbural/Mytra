@@ -16,7 +16,7 @@
         [Route("api/category")]
         public async Task<CategoryWebResponse> Create([FromBody] CategoryInsertDataTransfer Model)
         {
-            CategoryResponse categoryResponse = await Service.AddAsync(Model);
+            CategoryResponse categoryResponse = await Service.InsertAsync(Model);
             return new CategoryWebResponse { Category = categoryResponse.Category };
         }
 

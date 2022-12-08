@@ -19,7 +19,7 @@
             Validator = validator;
         }
 
-        public async Task<SurveyResponse> AddAsync(SurveyInsertDataTransfer Model)
+        public async Task<SurveyResponse> InsertAsync(SurveyInsertDataTransfer Model)
         {
             Survey survey = Mapper.Map<Survey>(Model);
             survey.Id = Guid.NewGuid();
@@ -27,7 +27,7 @@
             survey.UpdateDate = DateTime.Now;
             survey.IsActive = true;
 
-            await UnitOfWork.Survey.AddAsync(survey);
+            await UnitOfWork.Survey.InsertAsync(survey);
             await UnitOfWork.SaveChangesAsync();
 
             return new SurveyResponse { Survey = survey };

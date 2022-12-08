@@ -19,7 +19,7 @@
             Validator = validator;
         }
 
-        public async Task<ContentPictureResponse> AddAsync(ContentPictureInsertDataTransfer Model)
+        public async Task<ContentPictureResponse> InsertAsync(ContentPictureInsertDataTransfer Model)
         {
             ContentPicture contentPicture = Mapper.Map<ContentPicture>(Model);
             contentPicture.Id = Guid.NewGuid();
@@ -27,7 +27,7 @@
             contentPicture.UpdateDate = DateTime.Now;
             contentPicture.IsActive = true;
 
-            await UnitOfWork.ContentPicture.AddAsync(contentPicture);
+            await UnitOfWork.ContentPicture.InsertAsync(contentPicture);
             await UnitOfWork.SaveChangesAsync();
 
             return new ContentPictureResponse { ContentPicture = contentPicture };

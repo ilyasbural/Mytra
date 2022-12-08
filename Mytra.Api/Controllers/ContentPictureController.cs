@@ -16,7 +16,7 @@
         [Route("api/contentpicture")]
         public async Task<ContentPictureWebResponse> Create([FromBody] ContentPictureInsertDataTransfer Model)
         {
-            ContentPictureResponse contentPictureResponse = await Service.AddAsync(Model);
+            ContentPictureResponse contentPictureResponse = await Service.InsertAsync(Model);
             return new ContentPictureWebResponse { ContentPicture = contentPictureResponse.ContentPicture };
         }
 

@@ -16,7 +16,7 @@
         [Route("api/announce")]
         public async Task<AnnounceWebResponse> Create([FromBody] AnnounceInsertDataTransfer Model)
         {
-            AnnounceResponse announceResponse = await Service.AddAsync(Model);
+            AnnounceResponse announceResponse = await Service.InsertAsync(Model);
             return new AnnounceWebResponse { Announce = announceResponse.Announce };
         }
 

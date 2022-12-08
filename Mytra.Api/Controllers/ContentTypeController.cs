@@ -16,7 +16,7 @@
         [Route("api/contenttype")]
         public async Task<ContentTypeWebResponse> Create([FromBody] ContentTypeInsertDataTransfer Model)
         {
-            ContentTypeResponse contentTypeResponse = await Service.AddAsync(Model);
+            ContentTypeResponse contentTypeResponse = await Service.InsertAsync(Model);
             return new ContentTypeWebResponse { ContentType = contentTypeResponse.ContentType };
         }
 

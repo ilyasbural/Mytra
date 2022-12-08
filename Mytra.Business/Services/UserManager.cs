@@ -19,7 +19,7 @@
             Validator = validator;
         }
 
-        public async Task<UserResponse> AddAsync(UserInsertDataTransfer Model)
+        public async Task<UserResponse> InsertAsync(UserInsertDataTransfer Model)
         {
             User user = Mapper.Map<User>(Model);
             user.Id = Guid.NewGuid();
@@ -27,7 +27,7 @@
             user.UpdateDate = DateTime.Now;
             user.IsActive = true;
 
-            await UnitOfWork.User.AddAsync(user);
+            await UnitOfWork.User.InsertAsync(user);
             await UnitOfWork.SaveChangesAsync();
 
             return new UserResponse { User = user };

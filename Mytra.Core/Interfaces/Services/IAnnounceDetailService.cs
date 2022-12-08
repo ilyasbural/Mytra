@@ -2,7 +2,7 @@
 {
     public interface IAnnounceDetailService
     {
-        Task<AnnounceDetailResponse> AddAsync(AnnounceDetailInsertDataTransfer Model);
+        Task<AnnounceDetailResponse> InsertAsync(AnnounceDetailInsertDataTransfer Model);
         Task<AnnounceDetailResponse> UpdateAsync(AnnounceDetailUpdateDataTransfer Model);
         Task<AnnounceDetailResponse> DeleteAsync(AnnounceDetailDeleteDataTransfer Model);
         Task<AnnounceDetailResponse> SelectAsync(AnnounceDetailSelectDataTransfer Model);

@@ -16,7 +16,7 @@
         [Route("api/contentsettings")]
         public async Task<ContentSettingsWebResponse> Create([FromBody] ContentSettingsInsertDataTransfer Model)
         {
-            ContentSettingsResponse contentSettingsResponse = await Service.AddAsync(Model);
+            ContentSettingsResponse contentSettingsResponse = await Service.InsertAsync(Model);
             return new ContentSettingsWebResponse { ContentSettings = contentSettingsResponse.ContentSettings };
         }
 

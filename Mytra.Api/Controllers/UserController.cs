@@ -16,7 +16,7 @@
         [Route("api/user")]
         public async Task<UserWebResponse> Create([FromBody] UserInsertDataTransfer Model)
         {
-            UserResponse userResponse = await Service.AddAsync(Model);
+            UserResponse userResponse = await Service.InsertAsync(Model);
             return new UserWebResponse { User = userResponse.User };
         }
 

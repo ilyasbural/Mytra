@@ -19,14 +19,14 @@
             Validator = validator;
         }
 
-        public async Task<ManagementDetailResponse> AddAsync(ManagementDetailInsertDataTransfer Model)
+        public async Task<ManagementDetailResponse> InsertAsync(ManagementDetailInsertDataTransfer Model)
         {
             ManagementDetail managementDetail = Mapper.Map<ManagementDetail>(Model);
             managementDetail.RegisterDate = DateTime.Now;
             managementDetail.UpdateDate = DateTime.Now;
             managementDetail.IsActive = true;
 
-            await UnitOfWork.ManagementDetail.AddAsync(managementDetail);
+            await UnitOfWork.ManagementDetail.InsertAsync(managementDetail);
             await UnitOfWork.SaveChangesAsync();
 
             return new ManagementDetailResponse { ManagementDetail = managementDetail };

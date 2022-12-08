@@ -16,7 +16,7 @@
         [Route("api/contentcomment")]
         public async Task<ContentCommentWebResponse> Create([FromBody] ContentCommentInsertDataTransfer Model)
         {
-            ContentCommentResponse contentCommentResponse = await Service.AddAsync(Model);
+            ContentCommentResponse contentCommentResponse = await Service.InsertAsync(Model);
             return new ContentCommentWebResponse { ContentComment = contentCommentResponse.ContentComment };
         }
 

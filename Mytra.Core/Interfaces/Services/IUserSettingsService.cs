@@ -2,7 +2,7 @@
 {
     public interface IUserSettingsService
     {
-        Task<UserSettingsResponse> AddAsync(UserSettingsInsertDataTransfer Model);
+        Task<UserSettingsResponse> InsertAsync(UserSettingsInsertDataTransfer Model);
         Task<UserSettingsResponse> UpdateAsync(UserSettingsUpdateDataTransfer Model);
         Task<UserSettingsResponse> DeleteAsync(UserSettingsDeleteDataTransfer Model);
         Task<UserSettingsResponse> SelectAsync(UserSettingsSelectDataTransfer Model);

@@ -16,7 +16,7 @@
         [Route("api/usercontact")]
         public async Task<UserContactWebResponse> Create([FromBody] UserContactInsertDataTransfer Model)
         {
-            UserContactResponse userContactResponse = await Service.AddAsync(Model);
+            UserContactResponse userContactResponse = await Service.InsertAsync(Model);
             return new UserContactWebResponse { UserContact = userContactResponse.UserContact };
         }
 

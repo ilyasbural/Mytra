@@ -16,7 +16,7 @@
         [Route("api/surveydetail")]
         public async Task<SurveyDetailWebResponse> Create([FromBody] SurveyDetailInsertDataTransfer Model)
         {
-            SurveyDetailResponse surveyDetailResponse = await Service.AddAsync(Model);
+            SurveyDetailResponse surveyDetailResponse = await Service.InsertAsync(Model);
             return new SurveyDetailWebResponse { SurveyDetail = surveyDetailResponse.SurveyDetail };
         }
 

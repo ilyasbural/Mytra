@@ -16,7 +16,7 @@
         [Route("api/managementsettings")]
         public async Task<ManagementSettingsWebResponse> Create([FromBody] ManagementSettingsInsertDataTransfer Model)
         {
-            ManagementSettingsResponse managementSettingsResponse = await Service.AddAsync(Model);
+            ManagementSettingsResponse managementSettingsResponse = await Service.InsertAsync(Model);
             return new ManagementSettingsWebResponse { ManagementSettings = managementSettingsResponse.ManagementSettings };
         }
 

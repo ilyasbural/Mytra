@@ -16,7 +16,7 @@
         [Route("api/contentlike")]
         public async Task<ContentLikeWebResponse> Create([FromBody] ContentLikeInsertDataTransfer Model)
         {
-            ContentLikeResponse contentLikeResponse = await Service.AddAsync(Model);
+            ContentLikeResponse contentLikeResponse = await Service.InsertAsync(Model);
             return new ContentLikeWebResponse { ContentLike = contentLikeResponse.ContentLike };
         }
 

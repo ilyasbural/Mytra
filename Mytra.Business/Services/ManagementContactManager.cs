@@ -19,7 +19,7 @@
             Validator = validator;
         }
 
-        public async Task<ManagementContactResponse> AddAsync(ManagementContactInsertDataTransfer Model)
+        public async Task<ManagementContactResponse> InsertAsync(ManagementContactInsertDataTransfer Model)
         {
             ManagementContact managementContact = Mapper.Map<ManagementContact>(Model);
             managementContact.Id = Guid.NewGuid();
@@ -27,7 +27,7 @@
             managementContact.UpdateDate = DateTime.Now;
             managementContact.IsActive = true;
 
-            await UnitOfWork.ManagementContact.AddAsync(managementContact);
+            await UnitOfWork.ManagementContact.InsertAsync(managementContact);
             await UnitOfWork.SaveChangesAsync();
 
             return new ManagementContactResponse { ManagementContact = managementContact };

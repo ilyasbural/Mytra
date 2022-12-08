@@ -19,14 +19,14 @@
             Validator = validator;
         }
 
-        public async Task<UserDetailResponse> AddAsync(UserDetailInsertDataTransfer Model)
+        public async Task<UserDetailResponse> InsertAsync(UserDetailInsertDataTransfer Model)
         {
             UserDetail userDetail = Mapper.Map<UserDetail>(Model);
             userDetail.RegisterDate = DateTime.Now;
             userDetail.UpdateDate = DateTime.Now;
             userDetail.IsActive = true;
 
-            await UnitOfWork.UserDetail.AddAsync(userDetail);
+            await UnitOfWork.UserDetail.InsertAsync(userDetail);
             await UnitOfWork.SaveChangesAsync();
 
             return new UserDetailResponse { UserDetail = userDetail };

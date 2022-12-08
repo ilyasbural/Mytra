@@ -19,7 +19,7 @@
             Validator = validator;
         }
 
-        public async Task<ContentSettingsResponse> AddAsync(ContentSettingsInsertDataTransfer Model)
+        public async Task<ContentSettingsResponse> InsertAsync(ContentSettingsInsertDataTransfer Model)
         {
             ContentSettings contentSettings = Mapper.Map<ContentSettings>(Model);
             contentSettings.Id = Guid.NewGuid();
@@ -27,7 +27,7 @@
             contentSettings.UpdateDate = DateTime.Now;
             contentSettings.IsActive = true;
 
-            await UnitOfWork.ContentSettings.AddAsync(contentSettings);
+            await UnitOfWork.ContentSettings.InsertAsync(contentSettings);
             await UnitOfWork.SaveChangesAsync();
 
             return new ContentSettingsResponse { ContentSettings = contentSettings };

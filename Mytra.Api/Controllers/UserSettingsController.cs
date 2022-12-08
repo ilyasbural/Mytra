@@ -16,7 +16,7 @@
         [Route("api/usersettings")]
         public async Task<UserSettingsWebResponse> Create([FromBody] UserSettingsInsertDataTransfer Model)
         {
-            UserSettingsResponse userSettingsResponse = await Service.AddAsync(Model);
+            UserSettingsResponse userSettingsResponse = await Service.InsertAsync(Model);
             return new UserSettingsWebResponse { UserSettings = userSettingsResponse.UserSettings };
         }
 

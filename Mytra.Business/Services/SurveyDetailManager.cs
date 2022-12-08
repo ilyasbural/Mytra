@@ -19,7 +19,7 @@
             Validator = validator;
         }
 
-        public async Task<SurveyDetailResponse> AddAsync(SurveyDetailInsertDataTransfer Model)
+        public async Task<SurveyDetailResponse> InsertAsync(SurveyDetailInsertDataTransfer Model)
         {
             SurveyDetail surveyDetail = Mapper.Map<SurveyDetail>(Model);
             surveyDetail.Id = Guid.NewGuid();
@@ -27,7 +27,7 @@
             surveyDetail.UpdateDate = DateTime.Now;
             surveyDetail.IsActive = true;
 
-            await UnitOfWork.SurveyDetail.AddAsync(surveyDetail);
+            await UnitOfWork.SurveyDetail.InsertAsync(surveyDetail);
             await UnitOfWork.SaveChangesAsync();
 
             return new SurveyDetailResponse { SurveyDetail = surveyDetail };

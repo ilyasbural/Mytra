@@ -19,7 +19,7 @@
             Validator = validator;
         }
 
-        public async Task<PermissionResponse> AddAsync(PermissionInsertDataTransfer Model)
+        public async Task<PermissionResponse> InsertAsync(PermissionInsertDataTransfer Model)
         {
             Permission permission = Mapper.Map<Permission>(Model);
             permission.Id = Guid.NewGuid();
@@ -27,7 +27,7 @@
             permission.UpdateDate = DateTime.Now;
             permission.IsActive = true;
 
-            await UnitOfWork.Permission.AddAsync(permission);
+            await UnitOfWork.Permission.InsertAsync(permission);
             await UnitOfWork.SaveChangesAsync();
 
             return new PermissionResponse { Permission= permission };

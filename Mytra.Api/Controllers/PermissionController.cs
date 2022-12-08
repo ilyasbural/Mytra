@@ -16,7 +16,7 @@
         [Route("api/permission")]
         public async Task<PermissionWebResponse> Create([FromBody] PermissionInsertDataTransfer Model)
         {
-            PermissionResponse permissionResponse = await Service.AddAsync(Model);
+            PermissionResponse permissionResponse = await Service.InsertAsync(Model);
             return new PermissionWebResponse { Permission = permissionResponse.Permission };
         }
 

@@ -19,7 +19,7 @@
             Validator = validator;
         }
 
-        public async Task<ContentCommentResponse> AddAsync(ContentCommentInsertDataTransfer Model)
+        public async Task<ContentCommentResponse> InsertAsync(ContentCommentInsertDataTransfer Model)
         {
             ContentComment contentComment = Mapper.Map<ContentComment>(Model);
             contentComment.Id = Guid.NewGuid();
@@ -27,7 +27,7 @@
             contentComment.UpdateDate = DateTime.Now;
             contentComment.IsActive = true;
 
-            await UnitOfWork.ContentComment.AddAsync(contentComment);
+            await UnitOfWork.ContentComment.InsertAsync(contentComment);
             await UnitOfWork.SaveChangesAsync();
 
             return new ContentCommentResponse { ContentComment = contentComment };
