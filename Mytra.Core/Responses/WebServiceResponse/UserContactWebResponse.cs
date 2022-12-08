@@ -2,6 +2,6 @@
 {
     public class UserContactWebResponse : BaseWebResponse<UserContactWebResponse>
     {
-        public UserContact UserContact { get; set; }
+        public UserContact UserContact { get; set; } = null!;
     }
 }

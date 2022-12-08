@@ -2,6 +2,6 @@
 {
     public class ContentSettingsResponse : BaseResponse<ContentSettingsResponse>
     {
-        public ContentSettings ContentSettings { get; set; }
+        public ContentSettings ContentSettings { get; set; } = null!;
     }
 }

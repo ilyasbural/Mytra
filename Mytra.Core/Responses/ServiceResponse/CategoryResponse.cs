@@ -2,6 +2,6 @@
 {
     public class CategoryResponse : BaseResponse<CategoryResponse>
     {
-        public Category Category { get; set; }
+        public Category Category { get; set; } = null!; 
     }
 }

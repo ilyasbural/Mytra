@@ -2,6 +2,6 @@
 {
     public class ManagementSettingsResponse : BaseResponse<ManagementSettingsResponse>
     {
-        public ManagementSettings ManagementSettings { get; set; }
+        public ManagementSettings ManagementSettings { get; set; } = null!;
     }
 }

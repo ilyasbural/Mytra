@@ -1,13 +1,13 @@
 ﻿namespace Mytra.DataAccess
 {
     using Core;
-    using Microsoft.EntityFrameworkCore;
     using System.Linq.Expressions;
+    using Microsoft.EntityFrameworkCore;
 
     public abstract class BaseRepository<T> : IRepository<T> where T : class, IEntity, new()
     {
-        protected Microsoft.EntityFrameworkCore.DbContext DbContext { get; set; }
-        public BaseRepository(Microsoft.EntityFrameworkCore.DbContext dbContext)
+        protected DbContext DbContext { get; set; }
+        public BaseRepository(DbContext dbContext)
         {
             DbContext = dbContext;
         }

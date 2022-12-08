@@ -2,6 +2,6 @@
 {
     public class ContentLikeWebResponse : BaseWebResponse<ContentLikeWebResponse>
     {
-        public ContentLike ContentLike { get; set; }
+        public ContentLike ContentLike { get; set; } = null!;
     }
 }

@@ -22,7 +22,6 @@
         public async Task<UserSettingsResponse> AddAsync(UserSettingsInsertDataTransfer Model)
         {
             UserSettings userSettings = Mapper.Map<UserSettings>(Model);
-            userSettings.Id = Guid.NewGuid();
             userSettings.RegisterDate = DateTime.Now;
             userSettings.UpdateDate = DateTime.Now;
             userSettings.IsActive = true;

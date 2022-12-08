@@ -2,6 +2,6 @@
 {
     public class ContentPictureResponse : BaseResponse<ContentPictureResponse>
     {
-        public ContentPicture ContentPicture { get; set; }
+        public ContentPicture ContentPicture { get; set; } = null!;
     }
 }

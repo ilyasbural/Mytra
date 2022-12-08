@@ -22,7 +22,6 @@
         public async Task<UserDetailResponse> AddAsync(UserDetailInsertDataTransfer Model)
         {
             UserDetail userDetail = Mapper.Map<UserDetail>(Model);
-            userDetail.Id = Guid.NewGuid();
             userDetail.RegisterDate = DateTime.Now;
             userDetail.UpdateDate = DateTime.Now;
             userDetail.IsActive = true;

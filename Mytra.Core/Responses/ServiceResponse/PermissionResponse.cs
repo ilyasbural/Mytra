@@ -2,6 +2,6 @@
 {
     public class PermissionResponse : BaseResponse<PermissionResponse>
     {
-        public Permission Permission { get; set; }
+        public Permission Permission { get; set; } = null!;
     }
 }

@@ -2,6 +2,6 @@
 {
     public class ContentTypeResponse : BaseResponse<ContentTypeResponse>
     {
-        public ContentType ContentType { get; set; }
+        public ContentType ContentType { get; set; } = null!;
     }
 }

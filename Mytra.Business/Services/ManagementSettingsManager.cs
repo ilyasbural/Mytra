@@ -22,7 +22,6 @@
         public async Task<ManagementSettingsResponse> AddAsync(ManagementSettingsInsertDataTransfer Model)
         {
             ManagementSettings managementSettings = Mapper.Map<ManagementSettings>(Model);
-            managementSettings.Id = Guid.NewGuid();
             managementSettings.RegisterDate = DateTime.Now;
             managementSettings.UpdateDate = DateTime.Now;
             managementSettings.IsActive = true;

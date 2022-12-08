@@ -2,6 +2,6 @@
 {
     public class PermissionWebResponse : BaseWebResponse<PermissionWebResponse>
     {
-        public Permission Permission { get; set; }
+        public Permission Permission { get; set; } = null!;
     }
 }

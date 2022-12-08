@@ -2,6 +2,6 @@
 {
     public class ManagementDetailWebResponse : BaseWebResponse<ManagementDetailWebResponse>
     {
-        public ManagementDetail ManagementDetail { get; set; }
+        public ManagementDetail ManagementDetail { get; set; } = null!; 
     }
 }

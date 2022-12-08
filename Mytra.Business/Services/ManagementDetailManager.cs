@@ -22,7 +22,6 @@
         public async Task<ManagementDetailResponse> AddAsync(ManagementDetailInsertDataTransfer Model)
         {
             ManagementDetail managementDetail = Mapper.Map<ManagementDetail>(Model);
-            managementDetail.Id = Guid.NewGuid();
             managementDetail.RegisterDate = DateTime.Now;
             managementDetail.UpdateDate = DateTime.Now;
             managementDetail.IsActive = true;

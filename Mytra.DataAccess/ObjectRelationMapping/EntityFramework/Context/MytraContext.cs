@@ -119,6 +119,9 @@
                     .ValueGeneratedNever()
                     .HasColumnName("ID");
                 entity.Property(e => e.IsActive).HasColumnName("IS ACTIVE");
+                entity.Property(e => e.Name)
+                    .HasMaxLength(50)
+                    .HasColumnName("NAME");
                 entity.Property(e => e.RegisterDate)
                     .HasColumnType("datetime")
                     .HasColumnName("REGISTER DATE");
@@ -346,6 +349,9 @@
                     .HasColumnName("ID");
                 entity.Property(e => e.IsActive).HasColumnName("IS ACTIVE");
                 entity.Property(e => e.Management).HasColumnName("MANAGEMENT");
+                entity.Property(e => e.Phone)
+                    .HasMaxLength(50)
+                    .HasColumnName("PHONE");
                 entity.Property(e => e.RegisterDate)
                     .HasColumnType("datetime")
                     .HasColumnName("REGISTER DATE");
@@ -574,6 +580,10 @@
                 entity.Property(e => e.Id)
                     .ValueGeneratedNever()
                     .HasColumnName("ID");
+                entity.Property(e => e.Email)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("EMAIL");
                 entity.Property(e => e.IsActive).HasColumnName("IS ACTIVE");
                 entity.Property(e => e.RegisterDate)
                     .HasColumnType("datetime")

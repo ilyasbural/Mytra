@@ -2,6 +2,6 @@
 {
     public class ManagementContactWebResponse : BaseWebResponse<ManagementContactWebResponse>
     {
-        public ManagementContact ManagementContact { get; set; }
+        public ManagementContact ManagementContact { get; set; } = null!;
     }
 }

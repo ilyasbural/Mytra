@@ -2,6 +2,6 @@
 {
     public class UserEmailWebResponse : BaseWebResponse<UserEmailWebResponse>
     {
-        public UserEmail UserEmail { get; set; }
+        public UserEmail UserEmail { get; set; } = null!; 
     }
 }
