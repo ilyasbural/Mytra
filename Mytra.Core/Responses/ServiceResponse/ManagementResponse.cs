@@ -1,7 +1,7 @@
 ﻿namespace Mytra.Core
 {
-    public class ManagementResponse : BaseResponse<ManagementResponse>
+    public class ManagementResponse : ServiceResponseBase<Management>
     {
-        public Management Management { get; set; } = null!; 
+
     }
 }

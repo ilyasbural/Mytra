@@ -26,14 +26,29 @@
             category.IsActive = true;
 
             await UnitOfWork.Category.InsertAsync(category);
-            await UnitOfWork.SaveChangesAsync();
+            int result = await UnitOfWork.SaveChangesAsync();
 
-            return new CategoryResponse { Category = category };
+            return new CategoryResponse 
+            { 
+                Single = category, 
+                Success = result  
+            };
         }
 
         public async Task<CategoryResponse> UpdateAsync(CategoryUpdateDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<Category> DataSource = await UnitOfWork.Category.SelectAsync(x => x.Id == Model.Id);
+            Category category = Mapper.Map<Category>(DataSource[0]);
+            category.UpdateDate = DateTime.Now;
+
+            await UnitOfWork.Category.UpdateAsync(category);
+            int result = await UnitOfWork.SaveChangesAsync();
+
+            return new CategoryResponse 
+            {
+                Single = category,
+                Success = result
+            };
         }
 
         public async Task<CategoryResponse> DeleteAsync(CategoryDeleteDataTransfer Model)

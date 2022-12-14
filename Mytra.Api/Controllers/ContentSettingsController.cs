@@ -17,7 +17,7 @@
         public async Task<ContentSettingsWebResponse> Create([FromBody] ContentSettingsInsertDataTransfer Model)
         {
             ContentSettingsResponse contentSettingsResponse = await Service.InsertAsync(Model);
-            return new ContentSettingsWebResponse { ContentSettings = contentSettingsResponse.ContentSettings };
+            return new ContentSettingsWebResponse { Single = contentSettingsResponse.Single };
         }
 
         [HttpPut]
@@ -25,14 +25,7 @@
         public async Task<ContentSettingsWebResponse> Update([FromBody] ContentSettingsUpdateDataTransfer Model)
         {
             ContentSettingsResponse contentSettingsResponse = await Service.UpdateAsync(Model);
-            return new ContentSettingsWebResponse
-            {
-
-
-
-
-
-            };
+            return new ContentSettingsWebResponse { Single = contentSettingsResponse.Single };
         }
 
         [HttpDelete]

@@ -1,7 +1,7 @@
 ﻿namespace Mytra.Core
 {
-    public class SurveyWebResponse : BaseWebResponse<SurveyWebResponse>
+    public class SurveyWebResponse : WebResponseBase<Survey>
     {
-        public Survey Survey { get; set; } = null!; 
+        
     }
 }

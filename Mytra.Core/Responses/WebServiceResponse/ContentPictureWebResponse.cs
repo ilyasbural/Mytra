@@ -1,7 +1,7 @@
 ﻿namespace Mytra.Core
 {
-    public class ContentPictureWebResponse : BaseWebResponse<ContentPictureWebResponse>
+    public class ContentPictureWebResponse : WebResponseBase<ContentPicture>
     {
-        public ContentPicture ContentPicture { get; set; } = null!;
+        
     }
 }

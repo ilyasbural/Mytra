@@ -1,0 +1,7 @@
+﻿namespace Mytra.Core
+{
+    public class ManagementContactAnyDataTransfer : DataTransferBase<ManagementContactAnyDataTransfer>
+    {
+
+    }
+}

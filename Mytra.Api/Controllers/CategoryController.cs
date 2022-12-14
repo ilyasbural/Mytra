@@ -17,7 +17,7 @@
         public async Task<CategoryWebResponse> Create([FromBody] CategoryInsertDataTransfer Model)
         {
             CategoryResponse categoryResponse = await Service.InsertAsync(Model);
-            return new CategoryWebResponse { Category = categoryResponse.Category };
+            return new CategoryWebResponse { Single = categoryResponse.Single };
         }
 
         [HttpPut]
@@ -25,12 +25,7 @@
         public async Task<CategoryWebResponse> Update([FromBody] CategoryUpdateDataTransfer Model)
         {
             CategoryResponse categoryResponse = await Service.UpdateAsync(Model);
-            return new CategoryWebResponse
-            {
-
-
-
-            };
+            return new CategoryWebResponse { Single = categoryResponse.Single };
         }
 
         [HttpDelete]

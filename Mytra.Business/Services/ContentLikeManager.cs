@@ -28,14 +28,29 @@
             contentLike.IsActive = true;
 
             await UnitOfWork.ContentLike.InsertAsync(contentLike);
-            await UnitOfWork.SaveChangesAsync();
+            int result = await UnitOfWork.SaveChangesAsync();
 
-            return new ContentLikeResponse { ContentLike = contentLike };
+            return new ContentLikeResponse 
+            { 
+                Single = contentLike,
+                Success = result  
+            };
         }
 
         public async Task<ContentLikeResponse> UpdateAsync(ContentLikeUpdateDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<ContentLike> DataSource = await UnitOfWork.ContentLike.SelectAsync(x => x.Id == Model.Id);
+            ContentLike contentLike = Mapper.Map<ContentLike>(DataSource[0]);
+            contentLike.UpdateDate = DateTime.Now;
+
+            await UnitOfWork.ContentLike.UpdateAsync(contentLike);
+            int result = await UnitOfWork.SaveChangesAsync();
+
+            return new ContentLikeResponse 
+            { 
+                Single = contentLike, 
+                Success = result 
+            };
         }
 
         public async Task<ContentLikeResponse> DeleteAsync(ContentLikeDeleteDataTransfer Model)

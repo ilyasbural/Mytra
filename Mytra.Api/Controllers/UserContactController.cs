@@ -17,7 +17,7 @@
         public async Task<UserContactWebResponse> Create([FromBody] UserContactInsertDataTransfer Model)
         {
             UserContactResponse userContactResponse = await Service.InsertAsync(Model);
-            return new UserContactWebResponse { UserContact = userContactResponse.UserContact };
+            return new UserContactWebResponse { Single = userContactResponse.Single };
         }
 
         [HttpPut]
@@ -25,12 +25,7 @@
         public async Task<UserContactWebResponse> Update([FromBody] UserContactUpdateDataTransfer Model)
         {
             UserContactResponse userContactResponse = await Service.UpdateAsync(Model);
-            return new UserContactWebResponse
-            {
-
-
-
-            };
+            return new UserContactWebResponse { Single = userContactResponse.Single };
         }
 
         [HttpDelete]

@@ -1,7 +1,7 @@
 ﻿namespace Mytra.Core
 {
-    public class CategoryWebResponse : BaseWebResponse<CategoryWebResponse>
+    public class CategoryWebResponse : WebResponseBase<Category>
     {
-        public Category Category { get; set; } = null!;
+        
     }
 }

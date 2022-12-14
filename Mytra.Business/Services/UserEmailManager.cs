@@ -28,14 +28,29 @@
             userEmail.IsActive = true;
 
             await UnitOfWork.UserEmail.InsertAsync(userEmail);
-            await UnitOfWork.SaveChangesAsync();
+            int result = await UnitOfWork.SaveChangesAsync();
 
-            return new UserEmailResponse { UserEmail = userEmail };
+            return new UserEmailResponse 
+            { 
+                Single = userEmail, 
+                Success = result  
+            };
         }
 
         public async Task<UserEmailResponse> UpdateAsync(UserEmailUpdateDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<UserEmail> DataSource = await UnitOfWork.UserEmail.SelectAsync(x => x.Id == Model.Id);
+            UserEmail userEmail = Mapper.Map<UserEmail>(DataSource[0]);
+            userEmail.UpdateDate = DateTime.Now;
+
+            await UnitOfWork.UserEmail.UpdateAsync(userEmail);
+            int result = await UnitOfWork.SaveChangesAsync();
+
+            return new UserEmailResponse 
+            { 
+                Single = userEmail, 
+                Success = result 
+            };
         }
 
         public async Task<UserEmailResponse> DeleteAsync(UserEmailDeleteDataTransfer Model)

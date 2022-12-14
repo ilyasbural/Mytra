@@ -27,14 +27,29 @@
             managementDetail.IsActive = true;
 
             await UnitOfWork.ManagementDetail.InsertAsync(managementDetail);
-            await UnitOfWork.SaveChangesAsync();
+            int result = await UnitOfWork.SaveChangesAsync();
 
-            return new ManagementDetailResponse { ManagementDetail = managementDetail };
+            return new ManagementDetailResponse 
+            { 
+                Single = managementDetail, 
+                Success = result
+            };
         }
 
         public async Task<ManagementDetailResponse> UpdateAsync(ManagementDetailUpdateDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<ManagementDetail> DataSource = await UnitOfWork.ManagementDetail.SelectAsync(x => x.Id == Model.Id);
+            ManagementDetail managementDetail = Mapper.Map<ManagementDetail>(DataSource[0]);
+            managementDetail.UpdateDate = DateTime.Now;
+
+            await UnitOfWork.ManagementDetail.UpdateAsync(managementDetail);
+            int result = await UnitOfWork.SaveChangesAsync();
+
+            return new ManagementDetailResponse
+            {
+                Single = managementDetail,
+                Success = result
+            };
         }
 
         public async Task<ManagementDetailResponse> DeleteAsync(ManagementDetailDeleteDataTransfer Model)

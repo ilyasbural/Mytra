@@ -28,14 +28,29 @@
             management.IsActive = true;
 
             await UnitOfWork.Management.InsertAsync(management);
-            await UnitOfWork.SaveChangesAsync();
+            int result = await UnitOfWork.SaveChangesAsync();
 
-            return new ManagementResponse { Management = management };
+            return new ManagementResponse 
+            { 
+                Single = management, 
+                Success = result 
+            };
         }
 
         public async Task<ManagementResponse> UpdateAsync(ManagementUpdateDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<Management> DataSource = await UnitOfWork.Management.SelectAsync(x => x.Id == Model.Id);
+            Management management = Mapper.Map<Management>(DataSource[0]);
+            management.UpdateDate = DateTime.Now;
+
+            await UnitOfWork.Management.UpdateAsync(management);
+            int result = await UnitOfWork.SaveChangesAsync();
+
+            return new ManagementResponse
+            {
+                Single = management,
+                Success = result
+            };
         }
 
         public async Task<ManagementResponse> DeleteAsync(ManagementDeleteDataTransfer Model)

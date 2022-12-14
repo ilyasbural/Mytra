@@ -27,14 +27,29 @@
             userSettings.IsActive = true;
 
             await UnitOfWork.UserSettings.InsertAsync(userSettings);
-            await UnitOfWork.SaveChangesAsync();
+            int result = await UnitOfWork.SaveChangesAsync();
 
-            return new UserSettingsResponse { UserSettings = userSettings };
+            return new UserSettingsResponse 
+            { 
+                Single = userSettings, 
+                Success = result  
+            };
         }
 
         public async Task<UserSettingsResponse> UpdateAsync(UserSettingsUpdateDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<UserSettings> DataSource = await UnitOfWork.UserSettings.SelectAsync(x => x.Id == Model.Id);
+            UserSettings userSettings = Mapper.Map<UserSettings>(DataSource[0]);
+            userSettings.UpdateDate = DateTime.Now;
+
+            await UnitOfWork.UserSettings.UpdateAsync(userSettings);
+            int result = await UnitOfWork.SaveChangesAsync();
+
+            return new UserSettingsResponse 
+            {
+                Single = userSettings,
+                Success = result
+            };
         }
 
         public async Task<UserSettingsResponse> DeleteAsync(UserSettingsDeleteDataTransfer Model)

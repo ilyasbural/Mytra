@@ -17,7 +17,7 @@
         public async Task<ManagementDetailWebResponse> Create([FromBody] ManagementDetailInsertDataTransfer Model)
         {
             ManagementDetailResponse managementDetailResponse = await Service.InsertAsync(Model);
-            return new ManagementDetailWebResponse { ManagementDetail = managementDetailResponse.ManagementDetail };
+            return new ManagementDetailWebResponse { Single = managementDetailResponse.Single };
         }
 
         [HttpPut]
@@ -25,11 +25,7 @@
         public async Task<ManagementDetailWebResponse> Update([FromBody] ManagementDetailUpdateDataTransfer Model)
         {
             ManagementDetailResponse managementDetailResponse = await Service.UpdateAsync(Model);
-            return new ManagementDetailWebResponse
-            {
-
-
-            };
+            return new ManagementDetailWebResponse { Single = managementDetailResponse.Single };
         }
 
         [HttpDelete]

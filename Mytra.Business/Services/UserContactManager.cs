@@ -28,14 +28,29 @@
             userContact.IsActive = true;
 
             await UnitOfWork.UserContact.InsertAsync(userContact);
-            await UnitOfWork.SaveChangesAsync();
+            int result = await UnitOfWork.SaveChangesAsync();
 
-            return new UserContactResponse { UserContact= userContact };
+            return new UserContactResponse 
+            { 
+                Single = userContact, 
+                Success = result
+            };
         }
 
         public async Task<UserContactResponse> UpdateAsync(UserContactUpdateDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<UserContact> DataSource = await UnitOfWork.UserContact.SelectAsync(x => x.Id == Model.Id);
+            UserContact userContact = Mapper.Map<UserContact>(DataSource[0]);
+            userContact.UpdateDate = DateTime.Now;
+
+            await UnitOfWork.UserContact.UpdateAsync(userContact);
+            int result = await UnitOfWork.SaveChangesAsync();
+
+            return new UserContactResponse 
+            { 
+                Single = userContact, 
+                Success = result 
+            };
         }
 
         public async Task<UserContactResponse> DeleteAsync(UserContactDeleteDataTransfer Model)

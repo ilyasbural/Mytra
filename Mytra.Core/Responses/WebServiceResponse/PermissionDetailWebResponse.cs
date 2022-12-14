@@ -1,7 +1,7 @@
 ﻿namespace Mytra.Core
 {
-    public class PermissionDetailWebResponse : BaseWebResponse<PermissionDetailWebResponse>
+    public class PermissionDetailWebResponse : WebResponseBase<PermissionDetail>
     {
-        public PermissionDetail PermissionDetail { get; set; } = null!;
+
     }
 }

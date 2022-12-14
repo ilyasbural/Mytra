@@ -17,7 +17,7 @@
         public async Task<ContentWebResponse> Create([FromBody] ContentInsertDataTransfer Model)
         {
             ContentResponse contentResponse = await Service.InsertAsync(Model);
-            return new ContentWebResponse { Content = contentResponse.Content };
+            return new ContentWebResponse { Single = contentResponse.Single };
         }
 
         [HttpPut]
@@ -25,14 +25,7 @@
         public async Task<ContentWebResponse> Update([FromBody] ContentUpdateDataTransfer Model)
         {
             ContentResponse contentResponse = await Service.UpdateAsync(Model);
-            return new ContentWebResponse
-            {
-
-
-
-
-
-            };
+            return new ContentWebResponse { Single = contentResponse.Single };
         }
 
         [HttpDelete]

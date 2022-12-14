@@ -1,7 +1,7 @@
 ﻿namespace Mytra.Core
 {
-    public class UserEmailWebResponse : BaseWebResponse<UserEmailWebResponse>
+    public class UserEmailWebResponse : WebResponseBase<UserEmail>
     {
-        public UserEmail UserEmail { get; set; } = null!; 
+
     }
 }

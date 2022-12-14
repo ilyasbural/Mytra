@@ -17,7 +17,7 @@
         public async Task<UserEmailWebResponse> Create([FromBody] UserEmailInsertDataTransfer Model)
         {
             UserEmailResponse userEmailResponse = await Service.InsertAsync(Model);
-            return new UserEmailWebResponse { UserEmail = userEmailResponse.UserEmail };
+            return new UserEmailWebResponse { Single = userEmailResponse.Single };
         }
 
         [HttpPut]
@@ -25,11 +25,7 @@
         public async Task<UserEmailWebResponse> Update([FromBody] UserEmailUpdateDataTransfer Model)
         {
             UserEmailResponse userEmailResponse = await Service.UpdateAsync(Model);
-            return new UserEmailWebResponse
-            {
-
-
-            };
+            return new UserEmailWebResponse { Single = userEmailResponse.Single };
         }
 
         [HttpDelete]

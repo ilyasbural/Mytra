@@ -28,14 +28,25 @@
             contentComment.IsActive = true;
 
             await UnitOfWork.ContentComment.InsertAsync(contentComment);
-            await UnitOfWork.SaveChangesAsync();
+            int result = await UnitOfWork.SaveChangesAsync();
 
-            return new ContentCommentResponse { ContentComment = contentComment };
+            return new ContentCommentResponse 
+            { 
+                Single = contentComment,
+                Success = result  
+            };
         }
 
         public async Task<ContentCommentResponse> UpdateAsync(ContentCommentUpdateDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<ContentComment> DataSource = await UnitOfWork.ContentComment.SelectAsync(x => x.Id == Model.Id);
+            ContentComment contentComment = Mapper.Map<ContentComment>(DataSource[0]);
+            contentComment.UpdateDate = DateTime.Now;
+
+            await UnitOfWork.ContentComment.UpdateAsync(contentComment);
+            await UnitOfWork.SaveChangesAsync();
+
+            return new ContentCommentResponse {  };
         }
 
         public async Task<ContentCommentResponse> DeleteAsync(ContentCommentDeleteDataTransfer Model)

@@ -28,14 +28,29 @@
             surveyDetail.IsActive = true;
 
             await UnitOfWork.SurveyDetail.InsertAsync(surveyDetail);
-            await UnitOfWork.SaveChangesAsync();
+            int result = await UnitOfWork.SaveChangesAsync();
 
-            return new SurveyDetailResponse { SurveyDetail = surveyDetail };
+            return new SurveyDetailResponse 
+            { 
+                Single = surveyDetail, 
+                Success = result 
+            };
         }
 
         public async Task<SurveyDetailResponse> UpdateAsync(SurveyDetailUpdateDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<SurveyDetail> DataSource = await UnitOfWork.SurveyDetail.SelectAsync(x => x.Id == Model.Id);
+            SurveyDetail surveyDetail = Mapper.Map<SurveyDetail>(DataSource[0]);
+            surveyDetail.UpdateDate = DateTime.Now;
+
+            await UnitOfWork.SurveyDetail.UpdateAsync(surveyDetail);
+            int result = await UnitOfWork.SaveChangesAsync();
+
+            return new SurveyDetailResponse
+            {
+                Single = surveyDetail,
+                Success = result
+            };
         }
 
         public async Task<SurveyDetailResponse> DeleteAsync(SurveyDetailDeleteDataTransfer Model)

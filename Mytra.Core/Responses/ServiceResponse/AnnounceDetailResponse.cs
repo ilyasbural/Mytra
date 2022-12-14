@@ -1,7 +1,7 @@
 ﻿namespace Mytra.Core
 {
-    public class AnnounceDetailResponse : BaseResponse<AnnounceDetailResponse>
+    public class AnnounceDetailResponse : ServiceResponseBase<AnnounceDetail>
     {
-        public AnnounceDetail AnnounceDetail { get; set; } = null!;
+        
     }
 }

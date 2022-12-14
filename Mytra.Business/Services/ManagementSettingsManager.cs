@@ -27,14 +27,29 @@
             managementSettings.IsActive = true;
 
             await UnitOfWork.ManagementSettings.InsertAsync(managementSettings);
-            await UnitOfWork.SaveChangesAsync();
+            int result = await UnitOfWork.SaveChangesAsync();
 
-            return new ManagementSettingsResponse { ManagementSettings= managementSettings };
+            return new ManagementSettingsResponse 
+            { 
+                Single = managementSettings, 
+                Success = result  
+            };
         }
 
         public async Task<ManagementSettingsResponse> UpdateAsync(ManagementSettingsUpdateDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<ManagementSettings> DataSource = await UnitOfWork.ManagementSettings.SelectAsync(x => x.Id == Model.Id);
+            ManagementSettings managementSettings = Mapper.Map<ManagementSettings>(DataSource[0]);
+            managementSettings.UpdateDate = DateTime.Now;
+
+            await UnitOfWork.ManagementSettings.UpdateAsync(managementSettings);
+            int result = await UnitOfWork.SaveChangesAsync();
+
+            return new ManagementSettingsResponse
+            {
+                Single = managementSettings,
+                Success = result
+            };
         }
 
         public async Task<ManagementSettingsResponse> DeleteAsync(ManagementSettingsDeleteDataTransfer Model)

@@ -28,14 +28,29 @@
             contentSettings.IsActive = true;
 
             await UnitOfWork.ContentSettings.InsertAsync(contentSettings);
-            await UnitOfWork.SaveChangesAsync();
+            int result = await UnitOfWork.SaveChangesAsync();
 
-            return new ContentSettingsResponse { ContentSettings = contentSettings };
+            return new ContentSettingsResponse 
+            { 
+                Single = contentSettings, 
+                Success = result 
+            };
         }
 
         public async Task<ContentSettingsResponse> UpdateAsync(ContentSettingsUpdateDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<ContentSettings> DataSource = await UnitOfWork.ContentSettings.SelectAsync(x => x.Id == Model.Id);
+            ContentSettings contentSettings = Mapper.Map<ContentSettings>(DataSource[0]);
+            contentSettings.UpdateDate = DateTime.Now;
+
+            await UnitOfWork.ContentSettings.UpdateAsync(contentSettings);
+            int result = await UnitOfWork.SaveChangesAsync();
+
+            return new ContentSettingsResponse
+            {
+                Single = contentSettings,
+                Success = result
+            };
         }
 
         public async Task<ContentSettingsResponse> DeleteAsync(ContentSettingsDeleteDataTransfer Model)

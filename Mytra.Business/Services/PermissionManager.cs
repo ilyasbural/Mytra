@@ -28,14 +28,29 @@
             permission.IsActive = true;
 
             await UnitOfWork.Permission.InsertAsync(permission);
-            await UnitOfWork.SaveChangesAsync();
+            int result = await UnitOfWork.SaveChangesAsync();
 
-            return new PermissionResponse { Permission= permission };
+            return new PermissionResponse 
+            { 
+                Single = permission, 
+                Success = result 
+            };
         }
 
         public async Task<PermissionResponse> UpdateAsync(PermissionUpdateDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<Permission> DataSource = await UnitOfWork.Permission.SelectAsync(x => x.Id == Model.Id);
+            Permission permission = Mapper.Map<Permission>(DataSource[0]);
+            permission.UpdateDate = DateTime.Now;
+
+            await UnitOfWork.Permission.UpdateAsync(permission);
+            int result = await UnitOfWork.SaveChangesAsync();
+
+            return new PermissionResponse
+            {
+                Single = permission,
+                Success = result
+            };
         }
 
         public async Task<PermissionResponse> DeleteAsync(PermissionDeleteDataTransfer Model)

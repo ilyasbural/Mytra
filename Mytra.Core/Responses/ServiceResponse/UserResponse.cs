@@ -1,7 +1,7 @@
 ﻿namespace Mytra.Core
 {
-    public class UserResponse : BaseResponse<UserResponse>
+    public class UserResponse : ServiceResponseBase<User>
     {
-        public User User { get; set; } = null!;
+        
     }
 }

@@ -1,7 +1,7 @@
 ﻿namespace Mytra.Core
 {
-    public class ManagementDetailWebResponse : BaseWebResponse<ManagementDetailWebResponse>
+    public class ManagementDetailWebResponse : WebResponseBase<ManagementDetail>
     {
-        public ManagementDetail ManagementDetail { get; set; } = null!; 
+        
     }
 }

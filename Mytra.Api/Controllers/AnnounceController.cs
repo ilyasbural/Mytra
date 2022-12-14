@@ -17,7 +17,7 @@
         public async Task<AnnounceWebResponse> Create([FromBody] AnnounceInsertDataTransfer Model)
         {
             AnnounceResponse announceResponse = await Service.InsertAsync(Model);
-            return new AnnounceWebResponse { Announce = announceResponse.Announce };
+            return new AnnounceWebResponse { Single = announceResponse.Single };
         }
 
         [HttpPut]
@@ -25,11 +25,7 @@
         public async Task<AnnounceWebResponse> Update([FromBody] AnnounceUpdateDataTransfer Model)
         {
             AnnounceResponse announceResponse = await Service.UpdateAsync(Model);
-            return new AnnounceWebResponse
-            {
-
-
-            };
+            return new AnnounceWebResponse { Single = announceResponse.Single };
         }
 
         [HttpDelete]

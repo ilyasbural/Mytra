@@ -17,7 +17,7 @@
         public async Task<PermissionWebResponse> Create([FromBody] PermissionInsertDataTransfer Model)
         {
             PermissionResponse permissionResponse = await Service.InsertAsync(Model);
-            return new PermissionWebResponse { Permission = permissionResponse.Permission };
+            return new PermissionWebResponse { Single = permissionResponse.Single };
         }
 
         [HttpPut]
@@ -25,11 +25,7 @@
         public async Task<PermissionWebResponse> Update([FromBody] PermissionUpdateDataTransfer Model)
         {
             PermissionResponse permissionResponse = await Service.UpdateAsync(Model);
-            return new PermissionWebResponse
-            {
-
-
-            };
+            return new PermissionWebResponse { Single = permissionResponse.Single };
         }
 
         [HttpDelete]

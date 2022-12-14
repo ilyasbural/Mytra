@@ -27,14 +27,29 @@
             announceDetail.IsActive = true;
 
             await UnitOfWork.AnnounceDetail.InsertAsync(announceDetail);
-            await UnitOfWork.SaveChangesAsync();
+            int result = await UnitOfWork.SaveChangesAsync();
 
-            return new AnnounceDetailResponse { AnnounceDetail = announceDetail };
+            return new AnnounceDetailResponse 
+            { 
+                Single = announceDetail, 
+                Success = result 
+            };
         }
 
         public async Task<AnnounceDetailResponse> UpdateAsync(AnnounceDetailUpdateDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<AnnounceDetail> DataSource = await UnitOfWork.AnnounceDetail.SelectAsync(x => x.Id == Model.Id);
+            AnnounceDetail picture = Mapper.Map<AnnounceDetail>(DataSource[0]);
+            picture.UpdateDate = DateTime.Now;
+
+            await UnitOfWork.AnnounceDetail.UpdateAsync(picture);
+            int result = await UnitOfWork.SaveChangesAsync();
+
+            return new AnnounceDetailResponse 
+            { 
+                Single = picture, 
+                Success = result 
+            };
         }      
 
         public async Task<AnnounceDetailResponse> DeleteAsync(AnnounceDetailDeleteDataTransfer Model)

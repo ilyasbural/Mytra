@@ -17,7 +17,7 @@
         public async Task<SurveyWebResponse> Create([FromBody] SurveyInsertDataTransfer Model)
         {
             SurveyResponse surveyResponse = await Service.InsertAsync(Model);
-            return new SurveyWebResponse { Survey = surveyResponse.Survey };
+            return new SurveyWebResponse { Single = surveyResponse.Single };
         }
 
         [HttpPut]
@@ -25,14 +25,7 @@
         public async Task<SurveyWebResponse> Update([FromBody] SurveyUpdateDataTransfer Model)
         {
             SurveyResponse surveyResponse = await Service.UpdateAsync(Model);
-            return new SurveyWebResponse
-            {
-
-
-
-
-
-            };
+            return new SurveyWebResponse { Single = surveyResponse.Single };
         }
 
         [HttpDelete]

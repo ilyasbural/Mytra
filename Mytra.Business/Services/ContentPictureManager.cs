@@ -28,14 +28,29 @@
             contentPicture.IsActive = true;
 
             await UnitOfWork.ContentPicture.InsertAsync(contentPicture);
-            await UnitOfWork.SaveChangesAsync();
+            int result = await UnitOfWork.SaveChangesAsync();
 
-            return new ContentPictureResponse { ContentPicture = contentPicture };
+            return new ContentPictureResponse 
+            { 
+                Single = contentPicture, 
+                Success = result 
+            };
         }
 
         public async Task<ContentPictureResponse> UpdateAsync(ContentPictureUpdateDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<ContentPicture> DataSource = await UnitOfWork.ContentPicture.SelectAsync(x => x.Id == Model.Id);
+            ContentPicture contentPicture = Mapper.Map<ContentPicture>(DataSource[0]);
+            contentPicture.UpdateDate = DateTime.Now;
+
+            await UnitOfWork.ContentPicture.UpdateAsync(contentPicture);
+            int result = await UnitOfWork.SaveChangesAsync();
+
+            return new ContentPictureResponse
+            {
+                Single = contentPicture,
+                Success = result
+            };
         }
 
         public async Task<ContentPictureResponse> DeleteAsync(ContentPictureDeleteDataTransfer Model)

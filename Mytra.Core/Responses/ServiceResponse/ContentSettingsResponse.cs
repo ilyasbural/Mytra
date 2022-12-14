@@ -1,7 +1,7 @@
 ﻿namespace Mytra.Core
 {
-    public class ContentSettingsResponse : BaseResponse<ContentSettingsResponse>
+    public class ContentSettingsResponse : ServiceResponseBase<ContentSettings>
     {
-        public ContentSettings ContentSettings { get; set; } = null!;
+
     }
 }

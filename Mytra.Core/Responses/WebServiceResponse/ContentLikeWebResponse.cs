@@ -1,7 +1,7 @@
 ﻿namespace Mytra.Core
 {
-    public class ContentLikeWebResponse : BaseWebResponse<ContentLikeWebResponse>
+    public class ContentLikeWebResponse : WebResponseBase<ContentLike>
     {
-        public ContentLike ContentLike { get; set; } = null!;
+        
     }
 }
