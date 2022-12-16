@@ -6,7 +6,7 @@
     [ApiController]
     public class AnnounceController : ControllerBase
     {
-        private readonly IAnnounceService Service;
+        readonly IAnnounceService Service;
         public AnnounceController(IAnnounceService service)
         {
             Service = service;
@@ -17,7 +17,11 @@
         public async Task<AnnounceWebResponse> Create([FromBody] AnnounceInsertDataTransfer Model)
         {
             AnnounceResponse announceResponse = await Service.InsertAsync(Model);
-            return new AnnounceWebResponse { Single = announceResponse.Single };
+            return new AnnounceWebResponse 
+            { 
+                Single = announceResponse.Single, 
+                Success = announceResponse.Success 
+            };
         }
 
         [HttpPut]
@@ -25,7 +29,11 @@
         public async Task<AnnounceWebResponse> Update([FromBody] AnnounceUpdateDataTransfer Model)
         {
             AnnounceResponse announceResponse = await Service.UpdateAsync(Model);
-            return new AnnounceWebResponse { Single = announceResponse.Single };
+            return new AnnounceWebResponse
+            {
+                Single = announceResponse.Single,
+                Success = announceResponse.Success
+            };
         }
 
         [HttpDelete]
@@ -35,8 +43,7 @@
             AnnounceResponse announceResponse = await Service.DeleteAsync(Model);
             return new AnnounceWebResponse
             {
-
-
+                Success = announceResponse.Success
             };
         }
 
@@ -47,8 +54,9 @@
             AnnounceResponse announceResponse = await Service.SelectAsync(Model);
             return new AnnounceWebResponse
             {
-
-
+                List = announceResponse.List, 
+                Success = announceResponse.Success, 
+                Message = announceResponse.Message
             };
         }
 
@@ -59,8 +67,9 @@
             AnnounceResponse announceResponse = await Service.AnyAsync(Model);
             return new AnnounceWebResponse
             {
-
-
+                List = announceResponse.List,
+                Success = announceResponse.Success, 
+                Message = announceResponse.Message
             };
         }
     }

@@ -33,7 +33,8 @@
             return new ContentTypeResponse 
             { 
                 Single = contentType, 
-                Success = result 
+                Success = result,
+                Message = "Completed"
             };
         }
 
@@ -49,23 +50,47 @@
             return new ContentTypeResponse
             {
                 Single = contentType,
-                Success = result
+                Success = result,
+                Message = "Completed"
             };
         }
 
         public async Task<ContentTypeResponse> DeleteAsync(ContentTypeDeleteDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<ContentType> contentTypeDataSource = await UnitOfWork.ContentType.SelectAsync(x => x.Id == Model.Id);
+            ContentType contentType = Mapper.Map<ContentType>(contentTypeDataSource[0]);
+
+            await UnitOfWork.ContentType.DeleteAsync(contentType);
+            int result = await UnitOfWork.SaveChangesAsync();
+
+            return new ContentTypeResponse
+            {
+                Single = contentType,
+                Success = result,
+                Message = "Completed"
+            };
         }
 
         public async Task<ContentTypeResponse> SelectAsync(ContentTypeSelectDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<ContentType> contentTypeDataSource = await UnitOfWork.ContentType.SelectAsync(x => x.IsActive == true);
+            return new ContentTypeResponse
+            {
+                List = contentTypeDataSource,
+                Success = 1,
+                Message = "Completed"
+            };
         }
 
         public async Task<ContentTypeResponse> AnyAsync(ContentTypeAnyDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<ContentType> contentTypeDataSource = await UnitOfWork.ContentType.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+            return new ContentTypeResponse
+            {
+                List = contentTypeDataSource,
+                Success = 1,
+                Message = "Completed"
+            };
         }
     }
 }

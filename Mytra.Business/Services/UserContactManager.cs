@@ -33,7 +33,8 @@
             return new UserContactResponse 
             { 
                 Single = userContact, 
-                Success = result
+                Success = result,
+                Message = "Completed"
             };
         }
 
@@ -49,23 +50,47 @@
             return new UserContactResponse 
             { 
                 Single = userContact, 
-                Success = result 
+                Success = result,
+                Message = "Completed"
             };
         }
 
         public async Task<UserContactResponse> DeleteAsync(UserContactDeleteDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<UserContact> userContactDataSource = await UnitOfWork.UserContact.SelectAsync(x => x.Id == Model.Id);
+            UserContact userContact = Mapper.Map<UserContact>(userContactDataSource[0]);
+
+            await UnitOfWork.UserContact.DeleteAsync(userContact);
+            int result = await UnitOfWork.SaveChangesAsync();
+
+            return new UserContactResponse
+            {
+                Single = userContact,
+                Success = result,
+                Message = "Completed"
+            };
         }
 
         public async Task<UserContactResponse> SelectAsync(UserContactSelectDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<UserContact> userContactDataSource = await UnitOfWork.UserContact.SelectAsync(x => x.IsActive == true);
+            return new UserContactResponse
+            {
+                List = userContactDataSource,
+                Success = 1,
+                Message = "Completed"
+            };
         }
 
         public async Task<UserContactResponse> AnyAsync(UserContactAnyDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<UserContact> userContactDataSource = await UnitOfWork.UserContact.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+            return new UserContactResponse
+            {
+                List = userContactDataSource,
+                Success = 1,
+                Message = "Completed"
+            };
         }
     }
 }

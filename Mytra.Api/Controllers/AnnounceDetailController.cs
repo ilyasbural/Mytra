@@ -6,7 +6,7 @@
     [ApiController]
     public class AnnounceDetailController : ControllerBase
     {
-        private readonly IAnnounceDetailService Service;
+        readonly IAnnounceDetailService Service;
         public AnnounceDetailController(IAnnounceDetailService service)
         {
             Service = service;
@@ -17,7 +17,12 @@
         public async Task<AnnounceDetailWebResponse> Create([FromBody] AnnounceDetailInsertDataTransfer Model)
         {
             AnnounceDetailResponse announceDetailResponse = await Service.InsertAsync(Model);
-            return new AnnounceDetailWebResponse { Single = announceDetailResponse.Single };
+            return new AnnounceDetailWebResponse 
+            { 
+                Single = announceDetailResponse.Single, 
+                Success = announceDetailResponse.Success, 
+                Message = announceDetailResponse.Message
+            };
         }
 
         [HttpPut]
@@ -25,7 +30,12 @@
         public async Task<AnnounceDetailWebResponse> Update([FromBody] AnnounceDetailUpdateDataTransfer Model)
         {
             AnnounceDetailResponse announceDetailResponse = await Service.UpdateAsync(Model);
-            return new AnnounceDetailWebResponse { Single = announceDetailResponse.Single };
+            return new AnnounceDetailWebResponse
+            {
+                Single = announceDetailResponse.Single,
+                Success = announceDetailResponse.Success, 
+                Message = announceDetailResponse.Message
+            };
         }
 
         [HttpDelete]
@@ -35,9 +45,9 @@
             AnnounceDetailResponse announceDetailResponse = await Service.DeleteAsync(Model);
             return new AnnounceDetailWebResponse
             {
-
-
-
+                Single = announceDetailResponse.Single,
+                Success = announceDetailResponse.Success, 
+                Message = announceDetailResponse.Message
             };
         }
 
@@ -45,23 +55,25 @@
         [Route("api/announcedetail")]
         public async Task<AnnounceDetailWebResponse> Get([FromBody] AnnounceDetailSelectDataTransfer Model)
         {
-            AnnounceDetailResponse announceResponse = await Service.SelectAsync(Model);
+            AnnounceDetailResponse announceDetailResponse = await Service.SelectAsync(Model);
             return new AnnounceDetailWebResponse
             {
-
-
+                List = announceDetailResponse.List, 
+                Success = announceDetailResponse.Success, 
+                Message = announceDetailResponse.Message
             };
         }
 
         [HttpGet]
         [Route("api/announcedetail/{id}")]
-        public async Task<AnnounceWebResponse> Get([FromBody] AnnounceDetailAnyDataTransfer Model)
+        public async Task<AnnounceDetailWebResponse> Get([FromBody] AnnounceDetailAnyDataTransfer Model)
         {
-            AnnounceDetailResponse announceResponse = await Service.AnyAsync(Model);
-            return new AnnounceWebResponse
+            AnnounceDetailResponse announceDetailResponse = await Service.AnyAsync(Model);
+            return new AnnounceDetailWebResponse
             {
-
-
+                List = announceDetailResponse.List, 
+                Success = announceDetailResponse.Success, 
+                Message = announceDetailResponse.Message
             };
         }
     }

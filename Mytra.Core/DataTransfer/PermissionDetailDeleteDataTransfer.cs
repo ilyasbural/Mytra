@@ -2,6 +2,6 @@
 {
     public class PermissionDetailDeleteDataTransfer : DataTransferBase<PermissionDetailDeleteDataTransfer>
     {
-
+        public Guid Id { get; set; }
     }
 }

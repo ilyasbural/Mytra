@@ -31,14 +31,15 @@
             return new AnnounceResponse 
             { 
                 Single = announce, 
-                Success = result 
+                Success = result, 
+                Message = "Completed"
             };
         }
 
         public async Task<AnnounceResponse> UpdateAsync(AnnounceUpdateDataTransfer Model)
         {
-            List<Announce> DataSource = await UnitOfWork.Announce.SelectAsync(x => x.Id == Model.Id);
-            Announce announce = Mapper.Map<Announce>(DataSource[0]);
+            List<Announce> announceDataSource = await UnitOfWork.Announce.SelectAsync(x => x.Id == Model.Id);
+            Announce announce = Mapper.Map<Announce>(announceDataSource[0]);
             announce.UpdateDate = DateTime.Now;
 
             await UnitOfWork.Announce.UpdateAsync(announce);
@@ -47,36 +48,47 @@
             return new AnnounceResponse 
             {
                 Single = announce,
-                Success = result
+                Success = result, 
+                Message = "Completed"
             };
         }
 
         public async Task<AnnounceResponse> DeleteAsync(AnnounceDeleteDataTransfer Model)
         {
-            List<Announce> DataSource = await UnitOfWork.Announce.SelectAsync(x => x.Id == Model.Id);
-            Announce announce = Mapper.Map<Announce>(DataSource[0]);
+            List<Announce> announceDataSource = await UnitOfWork.Announce.SelectAsync(x => x.Id == Model.Id);
+            Announce announce = Mapper.Map<Announce>(announceDataSource[0]);
 
             await UnitOfWork.Announce.DeleteAsync(announce);
-            await UnitOfWork.SaveChangesAsync();
+            int result = await UnitOfWork.SaveChangesAsync();
 
-            AnnounceResponse Response = Mapper.Map<AnnounceResponse>(announce);
-            return new AnnounceResponse { };
+            return new AnnounceResponse 
+            {
+                Single = announce,
+                Success = result,
+                Message = "Completed"
+            };
         }
 
         public async Task<AnnounceResponse> SelectAsync(AnnounceSelectDataTransfer Model)
         {
-            List<Announce> DataSource = await UnitOfWork.Announce.SelectAsync(x => x.IsActive == true);
-            List<AnnounceResponse> announceResponses = Mapper.Map<List<AnnounceResponse>>(DataSource);
-            return new AnnounceResponse {  };
+            List<Announce> announceDataSource = await UnitOfWork.Announce.SelectAsync(x => x.IsActive == true);
+            return new AnnounceResponse 
+            {  
+                List = announceDataSource, 
+                Success = 1, 
+                Message = "Completed"
+            };
         }  
 
         public async Task<AnnounceResponse> AnyAsync(AnnounceAnyDataTransfer Model)
         {
-            AnnounceResponse announceResponse = new AnnounceResponse();
-            //Response.IsAvailable = await UnitOfWork.Announce.AnyAsync(x => x.Id == Model.Id);
-            //Response.Message = "Found";
-            //Response.IsSuccess = true;
-            return announceResponse;
+            List<Announce> announceDataSource = await UnitOfWork.Announce.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+            return new AnnounceResponse
+            {
+                List = announceDataSource,
+                Success = 1,
+                Message = "Completed"
+            };
         }
     }
 }

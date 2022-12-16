@@ -6,7 +6,7 @@
     [ApiController]
     public class UserSettingsController : ControllerBase
     {
-        private readonly IUserSettingsService Service;
+        readonly IUserSettingsService Service;
         public UserSettingsController(IUserSettingsService service)
         {
             Service = service;
@@ -17,7 +17,11 @@
         public async Task<UserSettingsWebResponse> Create([FromBody] UserSettingsInsertDataTransfer Model)
         {
             UserSettingsResponse userSettingsResponse = await Service.InsertAsync(Model);
-            return new UserSettingsWebResponse { Single = userSettingsResponse.Single };
+            return new UserSettingsWebResponse 
+            { 
+                Single = userSettingsResponse.Single, 
+                Success = userSettingsResponse.Success 
+            };
         }
 
         [HttpPut]
@@ -49,10 +53,9 @@
             UserSettingsResponse userSettingsResponse = await Service.SelectAsync(Model);
             return new UserSettingsWebResponse
             {
-
-
-
-
+                List = userSettingsResponse.List,
+                Success = userSettingsResponse.Success, 
+                Message = userSettingsResponse.Message
             };
         }
 
@@ -63,10 +66,9 @@
             UserSettingsResponse userSettingsResponse = await Service.AnyAsync(Model);
             return new UserSettingsWebResponse
             {
-
-
-
-
+                List = userSettingsResponse.List,
+                Success = userSettingsResponse.Success,
+                Message = userSettingsResponse.Message
             };
         }
     }

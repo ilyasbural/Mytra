@@ -6,7 +6,7 @@
     [ApiController]
     public class SurveyController : ControllerBase
     {
-        private readonly ISurveyService Service;
+        readonly ISurveyService Service;
         public SurveyController(ISurveyService service)
         {
             Service = service;
@@ -17,7 +17,11 @@
         public async Task<SurveyWebResponse> Create([FromBody] SurveyInsertDataTransfer Model)
         {
             SurveyResponse surveyResponse = await Service.InsertAsync(Model);
-            return new SurveyWebResponse { Single = surveyResponse.Single };
+            return new SurveyWebResponse 
+            { 
+                Single = surveyResponse.Single, 
+                Success = surveyResponse.Success
+            };
         }
 
         [HttpPut]
@@ -25,7 +29,11 @@
         public async Task<SurveyWebResponse> Update([FromBody] SurveyUpdateDataTransfer Model)
         {
             SurveyResponse surveyResponse = await Service.UpdateAsync(Model);
-            return new SurveyWebResponse { Single = surveyResponse.Single };
+            return new SurveyWebResponse
+            {
+                Single = surveyResponse.Single,
+                Success = surveyResponse.Success
+            };
         }
 
         [HttpDelete]
@@ -35,11 +43,7 @@
             SurveyResponse surveyResponse = await Service.DeleteAsync(Model);
             return new SurveyWebResponse
             {
-
-
-
-
-
+                Success = surveyResponse.Success
             };
         }
 
@@ -50,11 +54,9 @@
             SurveyResponse surveyResponse = await Service.SelectAsync(Model);
             return new SurveyWebResponse
             {
-
-
-
-
-
+                List = surveyResponse.List, 
+                Success = surveyResponse.Success, 
+                Message = surveyResponse.Message
             };
         }
 
@@ -65,11 +67,9 @@
             SurveyResponse surveyResponse = await Service.AnyAsync(Model);
             return new SurveyWebResponse
             {
-
-
-
-
-
+                List = surveyResponse.List,
+                Success = surveyResponse.Success,
+                Message = surveyResponse.Message
             };
         }
     }

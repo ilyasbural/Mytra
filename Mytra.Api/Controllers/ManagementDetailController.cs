@@ -6,7 +6,7 @@
     [ApiController]
     public class ManagementDetailController : ControllerBase
     {
-        private readonly IManagementDetailService Service;
+        readonly IManagementDetailService Service;
         public ManagementDetailController(IManagementDetailService service)
         {
             Service = service;
@@ -17,7 +17,11 @@
         public async Task<ManagementDetailWebResponse> Create([FromBody] ManagementDetailInsertDataTransfer Model)
         {
             ManagementDetailResponse managementDetailResponse = await Service.InsertAsync(Model);
-            return new ManagementDetailWebResponse { Single = managementDetailResponse.Single };
+            return new ManagementDetailWebResponse 
+            { 
+                Single = managementDetailResponse.Single, 
+                Success = managementDetailResponse.Success,
+            };
         }
 
         [HttpPut]
@@ -47,8 +51,9 @@
             ManagementDetailResponse managementDetailResponse = await Service.SelectAsync(Model);
             return new ManagementDetailWebResponse
             {
-
-
+                List = managementDetailResponse.List,
+                Success = managementDetailResponse.Success, 
+                Message = managementDetailResponse.Message
             };
         }
 
@@ -59,8 +64,9 @@
             ManagementDetailResponse managementDetailResponse = await Service.AnyAsync(Model);
             return new ManagementDetailWebResponse
             {
-
-
+                List = managementDetailResponse.List,
+                Success = managementDetailResponse.Success,
+                Message = managementDetailResponse.Message
             };
         }
     }

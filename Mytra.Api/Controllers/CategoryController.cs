@@ -6,7 +6,7 @@
     [ApiController]
     public class CategoryController : ControllerBase
     {
-        private readonly ICategoryService Service;
+        readonly ICategoryService Service;
         public CategoryController(ICategoryService service)
         {
             Service = service;
@@ -17,7 +17,12 @@
         public async Task<CategoryWebResponse> Create([FromBody] CategoryInsertDataTransfer Model)
         {
             CategoryResponse categoryResponse = await Service.InsertAsync(Model);
-            return new CategoryWebResponse { Single = categoryResponse.Single };
+            return new CategoryWebResponse 
+            { 
+                Single = categoryResponse.Single, 
+                Success = categoryResponse.Success, 
+                Message = categoryResponse.Message
+            };
         }
 
         [HttpPut]
@@ -25,7 +30,12 @@
         public async Task<CategoryWebResponse> Update([FromBody] CategoryUpdateDataTransfer Model)
         {
             CategoryResponse categoryResponse = await Service.UpdateAsync(Model);
-            return new CategoryWebResponse { Single = categoryResponse.Single };
+            return new CategoryWebResponse
+            {
+                Single = categoryResponse.Single,
+                Success = categoryResponse.Success,
+                Message = categoryResponse.Message
+            };
         }
 
         [HttpDelete]
@@ -35,9 +45,9 @@
             CategoryResponse categoryResponse = await Service.DeleteAsync(Model);
             return new CategoryWebResponse
             {
-
-
-
+                Single = categoryResponse.Single,
+                Success = categoryResponse.Success,
+                Message = categoryResponse.Message
             };
         }
 
@@ -48,9 +58,9 @@
             CategoryResponse categoryResponse = await Service.SelectAsync(Model);
             return new CategoryWebResponse
             {
-
-
-
+                List = categoryResponse.List,
+                Success = categoryResponse.Success, 
+                Message = categoryResponse.Message
             };
         }
 
@@ -61,9 +71,9 @@
             CategoryResponse categoryResponse = await Service.AnyAsync(Model);
             return new CategoryWebResponse
             {
-
-
-
+                List = categoryResponse.List,
+                Success = categoryResponse.Success,
+                Message = categoryResponse.Message
             };
         }
     }

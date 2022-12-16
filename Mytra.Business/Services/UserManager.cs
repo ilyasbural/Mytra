@@ -33,7 +33,8 @@
             return new UserResponse 
             { 
                 Single = user, 
-                Success = result 
+                Success = result,
+                Message = "Completed"
             };
         }
 
@@ -49,23 +50,47 @@
             return new UserResponse 
             {
                 Single = user,
-                Success = result
+                Success = result,
+                Message = "Completed"
             };
         }
 
         public async Task<UserResponse> DeleteAsync(UserDeleteDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<User> userDataSource = await UnitOfWork.User.SelectAsync(x => x.Id == Model.Id);
+            User user = Mapper.Map<User>(userDataSource[0]);
+
+            await UnitOfWork.User.DeleteAsync(user);
+            int result = await UnitOfWork.SaveChangesAsync();
+
+            return new UserResponse
+            {
+                Single = user,
+                Success = result,
+                Message = "Completed"
+            };
         }
 
         public async Task<UserResponse> SelectAsync(UserSelectDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<User> userDataSource = await UnitOfWork.User.SelectAsync(x => x.IsActive == true);
+            return new UserResponse
+            {
+                List = userDataSource,
+                Success = 1,
+                Message = "Completed"
+            };
         }
 
         public async Task<UserResponse> AnyAsync(UserAnyDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<User> userDataSource = await UnitOfWork.User.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+            return new UserResponse
+            {
+                List = userDataSource,
+                Success = 1,
+                Message = "Completed"
+            };
         }
     }
 }

@@ -6,7 +6,7 @@
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
 
-    public static class ServiceCollectionExtensions
+    public static class ServiceExtensions
     {
         public static IServiceCollection LoadServices(this IServiceCollection Service)
         {

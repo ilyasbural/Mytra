@@ -33,7 +33,8 @@
             return new ContentResponse 
             { 
                 Single = content, 
-                Success = result 
+                Success = result,
+                Message = "Completed"
             };
         }
 
@@ -49,23 +50,47 @@
             return new ContentResponse
             {
                 Single = content,
-                Success = result
+                Success = result,
+                Message = "Completed"
             };
         }
 
         public async Task<ContentResponse> DeleteAsync(ContentDeleteDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<Content> contentDataSource = await UnitOfWork.Content.SelectAsync(x => x.Id == Model.Id);
+            Content content = Mapper.Map<Content>(contentDataSource[0]);
+
+            await UnitOfWork.Content.DeleteAsync(content);
+            int result = await UnitOfWork.SaveChangesAsync();
+
+            return new ContentResponse
+            {
+                Single = content,
+                Success = result,
+                Message = "Completed"
+            };
         }
 
         public async Task<ContentResponse> SelectAsync(ContentSelectDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<Content> contentDataSource = await UnitOfWork.Content.SelectAsync(x => x.IsActive == true);
+            return new ContentResponse
+            {
+                List = contentDataSource,
+                Success = 1,
+                Message = "Completed"
+            };
         }
 
         public async Task<ContentResponse> AnyAsync(ContentAnyDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<Content> contentDataSource = await UnitOfWork.Content.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+            return new ContentResponse
+            {
+                List = contentDataSource,
+                Success = 1,
+                Message = "Completed"
+            };
         }
     }
 }

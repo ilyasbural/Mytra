@@ -2,6 +2,6 @@
 {
     public class ManagementContactAnyDataTransfer : DataTransferBase<ManagementContactAnyDataTransfer>
     {
-
+        public Guid Id { get; set; }
     }
 }

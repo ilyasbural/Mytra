@@ -33,7 +33,8 @@
             return new ManagementContactResponse 
             { 
                 Single = managementContact, 
-                Success = result 
+                Success = result,
+                Message = "Completed"
             };
         }
 
@@ -49,23 +50,47 @@
             return new ManagementContactResponse
             {
                 Single = managementContact,
-                Success = result
+                Success = result,
+                Message = "Completed"
             };
         }
 
         public async Task<ManagementContactResponse> DeleteAsync(ManagementContactDeleteDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<ManagementContact> managementContactDataSource = await UnitOfWork.ManagementContact.SelectAsync(x => x.Id == Model.Id);
+            ManagementContact managementContact = Mapper.Map<ManagementContact>(managementContactDataSource[0]);
+
+            await UnitOfWork.ManagementContact.DeleteAsync(managementContact);
+            int result = await UnitOfWork.SaveChangesAsync();
+
+            return new ManagementContactResponse
+            {
+                Single = managementContact,
+                Success = result,
+                Message = "Completed"
+            };
         }
 
         public async Task<ManagementContactResponse> SelectAsync(ManagementContactSelectDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<ManagementContact> managementDataSource = await UnitOfWork.ManagementContact.SelectAsync(x => x.IsActive == true);
+            return new ManagementContactResponse
+            {
+                List = managementDataSource,
+                Success = 1,
+                Message = "Completed"
+            };
         }
 
         public async Task<ManagementContactResponse> AnyAsync(ManagementContactAnyDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<ManagementContact> managementContactDataSource = await UnitOfWork.ManagementContact.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+            return new ManagementContactResponse
+            {
+                List = managementContactDataSource,
+                Success = 1,
+                Message = "Completed"
+            };
         }
     }
 }

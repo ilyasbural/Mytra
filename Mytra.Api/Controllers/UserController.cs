@@ -6,7 +6,7 @@
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly IUserService Service;
+        readonly IUserService Service;
         public UserController(IUserService service)
         {
             Service = service;
@@ -17,7 +17,11 @@
         public async Task<UserWebResponse> Create([FromBody] UserInsertDataTransfer Model)
         {
             UserResponse userResponse = await Service.InsertAsync(Model);
-            return new UserWebResponse { Single = userResponse.Single };
+            return new UserWebResponse 
+            { 
+                Single = userResponse.Single, 
+                Success = userResponse.Success
+            };
         }
 
         [HttpPut]
@@ -48,9 +52,9 @@
             UserResponse userResponse = await Service.SelectAsync(Model);
             return new UserWebResponse
             {
-
-
-
+                List = userResponse.List,
+                Success = userResponse.Success, 
+                Message = userResponse.Message
             };
         }
 
@@ -61,9 +65,9 @@
             UserResponse userResponse = await Service.AnyAsync(Model);
             return new UserWebResponse
             {
-
-
-
+                List = userResponse.List,
+                Success = userResponse.Success,
+                Message = userResponse.Message
             };
         }
     }

@@ -6,7 +6,7 @@
     [ApiController]
     public class ContentDetailController : ControllerBase
     {
-        private readonly IContentDetailService Service;
+        readonly IContentDetailService Service;
         public ContentDetailController(IContentDetailService service)
         {
             Service = service;
@@ -17,7 +17,11 @@
         public async Task<ContentDetailWebResponse> Create([FromBody] ContentDetailInsertDataTransfer Model)
         {
             ContentDetailResponse contentDetailResponse = await Service.InsertAsync(Model);
-            return new ContentDetailWebResponse { Single = contentDetailResponse.Single };
+            return new ContentDetailWebResponse 
+            { 
+                Single = contentDetailResponse.Single, 
+                Success = contentDetailResponse.Success 
+            };
         }
 
         [HttpPut]
@@ -50,11 +54,9 @@
             ContentDetailResponse contentDetailResponse = await Service.SelectAsync(Model);
             return new ContentDetailWebResponse
             {
-
-
-
-
-
+                List = contentDetailResponse.List,
+                Success = contentDetailResponse.Success, 
+                Message = contentDetailResponse.Message
             };
         }
 
@@ -65,11 +67,9 @@
             ContentDetailResponse contentDetailResponse = await Service.AnyAsync(Model);
             return new ContentDetailWebResponse
             {
-
-
-
-
-
+                List = contentDetailResponse.List,
+                Success = contentDetailResponse.Success,
+                Message = contentDetailResponse.Message
             };
         }
     }

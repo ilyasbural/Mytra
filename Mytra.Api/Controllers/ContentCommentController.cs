@@ -6,7 +6,7 @@
     [ApiController]
     public class ContentCommentController : ControllerBase
     {
-        private readonly IContentCommentService Service;
+        readonly IContentCommentService Service;
         public ContentCommentController(IContentCommentService service)
         {
             Service = service;
@@ -17,7 +17,11 @@
         public async Task<ContentCommentWebResponse> Create([FromBody] ContentCommentInsertDataTransfer Model)
         {
             ContentCommentResponse contentCommentResponse = await Service.InsertAsync(Model);
-            return new ContentCommentWebResponse { Single = contentCommentResponse.Single };
+            return new ContentCommentWebResponse 
+            { 
+                Single = contentCommentResponse.Single, 
+                Success = contentCommentResponse.Success
+            };
         }
 
         [HttpPut]
@@ -50,11 +54,9 @@
             ContentCommentResponse contentCommentResponse = await Service.SelectAsync(Model);
             return new ContentCommentWebResponse
             {
-
-
-
-
-
+                List = contentCommentResponse.List,
+                Success = contentCommentResponse.Success, 
+                Message = contentCommentResponse.Message
             };
         }
 
@@ -65,11 +67,9 @@
             ContentCommentResponse contentCommentResponse = await Service.AnyAsync(Model);
             return new ContentCommentWebResponse
             {
-
-
-
-
-
+                List = contentCommentResponse.List,
+                Success = contentCommentResponse.Success,
+                Message = contentCommentResponse.Message
             };
         }
     }

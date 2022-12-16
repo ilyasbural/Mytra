@@ -33,7 +33,8 @@
             return new ContentPictureResponse 
             { 
                 Single = contentPicture, 
-                Success = result 
+                Success = result,
+                Message = "Completed"
             };
         }
 
@@ -49,23 +50,47 @@
             return new ContentPictureResponse
             {
                 Single = contentPicture,
-                Success = result
+                Success = result,
+                Message = "Completed"
             };
         }
 
         public async Task<ContentPictureResponse> DeleteAsync(ContentPictureDeleteDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<ContentPicture> contentPictureDataSource = await UnitOfWork.ContentPicture.SelectAsync(x => x.Id == Model.Id);
+            ContentPicture content = Mapper.Map<ContentPicture>(contentPictureDataSource[0]);
+
+            await UnitOfWork.ContentPicture.DeleteAsync(content);
+            int result = await UnitOfWork.SaveChangesAsync();
+
+            return new ContentPictureResponse
+            {
+                Single = content,
+                Success = result,
+                Message = "Completed"
+            };
         }
 
         public async Task<ContentPictureResponse> SelectAsync(ContentPictureSelectDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<ContentPicture> contentPictureDataSource = await UnitOfWork.ContentPicture.SelectAsync(x => x.IsActive == true);
+            return new ContentPictureResponse
+            {
+                List = contentPictureDataSource,
+                Success = 1,
+                Message = "Completed"
+            };
         }
 
         public async Task<ContentPictureResponse> AnyAsync(ContentPictureAnyDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<ContentPicture> contentPictureDataSource = await UnitOfWork.ContentPicture.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+            return new ContentPictureResponse
+            {
+                List = contentPictureDataSource,
+                Success = 1,
+                Message = "Completed"
+            };
         }
     }
 }

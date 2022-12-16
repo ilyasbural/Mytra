@@ -4,10 +4,10 @@
     using System.Linq.Expressions;
     using Microsoft.EntityFrameworkCore;
 
-    public abstract class BaseRepository<T> : IRepository<T> where T : class, IEntity, new()
+    public abstract class RepositoryBase<T> : IRepository<T> where T : class, IEntity, new()
     {
         protected DbContext DbContext { get; set; }
-        public BaseRepository(DbContext dbContext)
+        public RepositoryBase(DbContext dbContext)
         {
             DbContext = dbContext;
         }

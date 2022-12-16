@@ -33,7 +33,8 @@
             return new SurveyResponse 
             { 
                 Single = survey, 
-                Success = result  
+                Success = result ,
+                Message = "Completed"
             };
         }
 
@@ -49,23 +50,47 @@
             return new SurveyResponse
             {
                 Single = survey,
-                Success = result
+                Success = result,
+                Message = "Completed"
             };
         }
 
         public async Task<SurveyResponse> DeleteAsync(SurveyDeleteDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<Survey> surveyDataSource = await UnitOfWork.Survey.SelectAsync(x => x.Id == Model.Id);
+            Survey survey = Mapper.Map<Survey>(surveyDataSource[0]);
+
+            await UnitOfWork.Survey.DeleteAsync(survey);
+            int result = await UnitOfWork.SaveChangesAsync();
+
+            return new SurveyResponse
+            {
+                Single = survey,
+                Success = result,
+                Message = "Completed"
+            };
         }
 
         public async Task<SurveyResponse> SelectAsync(SurveySelectDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<Survey> surveyDataSource = await UnitOfWork.Survey.SelectAsync(x => x.IsActive == true);
+            return new SurveyResponse
+            {
+                List = surveyDataSource,
+                Success = 1,
+                Message = "Completed"
+            };
         }
 
         public async Task<SurveyResponse> AnyAsync(SurveyAnyDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<Survey> surveyDataSource = await UnitOfWork.Survey.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+            return new SurveyResponse
+            {
+                List = surveyDataSource,
+                Success = 1,
+                Message = "Completed"
+            };
         }
     }
 }

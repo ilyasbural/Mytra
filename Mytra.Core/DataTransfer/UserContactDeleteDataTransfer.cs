@@ -2,6 +2,6 @@
 {
     public class UserContactDeleteDataTransfer : DataTransferBase<UserContactDeleteDataTransfer>
     {
-
+        public Guid Id { get; set; }
     }
 }

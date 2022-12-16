@@ -32,7 +32,8 @@
             return new ManagementDetailResponse 
             { 
                 Single = managementDetail, 
-                Success = result
+                Success = result,
+                Message = "Completed"
             };
         }
 
@@ -48,23 +49,47 @@
             return new ManagementDetailResponse
             {
                 Single = managementDetail,
-                Success = result
+                Success = result,
+                Message = "Completed"
             };
         }
 
         public async Task<ManagementDetailResponse> DeleteAsync(ManagementDetailDeleteDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<ManagementDetail> managementDetailDataSource = await UnitOfWork.ManagementDetail.SelectAsync(x => x.Id == Model.Id);
+            ManagementDetail managementDetail = Mapper.Map<ManagementDetail>(managementDetailDataSource[0]);
+
+            await UnitOfWork.ManagementDetail.DeleteAsync(managementDetail);
+            int result = await UnitOfWork.SaveChangesAsync();
+
+            return new ManagementDetailResponse
+            {
+                Single = managementDetail,
+                Success = result,
+                Message = "Completed"
+            };
         }
 
         public async Task<ManagementDetailResponse> SelectAsync(ManagementDetailSelectDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<ManagementDetail> managementDetailDataSource = await UnitOfWork.ManagementDetail.SelectAsync(x => x.IsActive == true);
+            return new ManagementDetailResponse
+            {
+                List = managementDetailDataSource,
+                Success = 1,
+                Message = "Completed"
+            };
         }
 
         public async Task<ManagementDetailResponse> AnyAsync(ManagementDetailAnyDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<ManagementDetail> managementDetailDataSource = await UnitOfWork.ManagementDetail.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+            return new ManagementDetailResponse
+            {
+                List = managementDetailDataSource,
+                Success = 1,
+                Message = "Completed"
+            };
         }
     }
 }

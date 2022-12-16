@@ -32,7 +32,8 @@
             return new UserDetailResponse 
             { 
                 Single = userDetail, 
-                Success = result 
+                Success = result,
+                Message = "Completed"
             };
         }
 
@@ -48,23 +49,47 @@
             return new UserDetailResponse 
             { 
                 Single = userDetail, 
-                Success = result 
+                Success = result,
+                Message = "Completed"
             };
         }
 
         public async Task<UserDetailResponse> DeleteAsync(UserDetailDeleteDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<UserDetail> userDetailDataSource = await UnitOfWork.UserDetail.SelectAsync(x => x.Id == Model.Id);
+            UserDetail userDetail = Mapper.Map<UserDetail>(userDetailDataSource[0]);
+
+            await UnitOfWork.UserDetail.DeleteAsync(userDetail);
+            int result = await UnitOfWork.SaveChangesAsync();
+
+            return new UserDetailResponse
+            {
+                Single = userDetail,
+                Success = result,
+                Message = "Completed"
+            };
         }
 
         public async Task<UserDetailResponse> SelectAsync(UserDetailSelectDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<UserDetail> userDetailDataSource = await UnitOfWork.UserDetail.SelectAsync(x => x.IsActive == true);
+            return new UserDetailResponse
+            {
+                List = userDetailDataSource,
+                Success = 1,
+                Message = "Completed"
+            };
         }
 
         public async Task<UserDetailResponse> AnyAsync(UserDetailAnyDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<UserDetail> userDetailDataSource = await UnitOfWork.UserDetail.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+            return new UserDetailResponse
+            {
+                List = userDetailDataSource,
+                Success = 1,
+                Message = "Completed"
+            };
         }
     }
 }

@@ -33,7 +33,8 @@
             return new UserEmailResponse 
             { 
                 Single = userEmail, 
-                Success = result  
+                Success = result ,
+                Message = "Completed"
             };
         }
 
@@ -49,23 +50,47 @@
             return new UserEmailResponse 
             { 
                 Single = userEmail, 
-                Success = result 
+                Success = result,
+                Message = "Completed"
             };
         }
 
         public async Task<UserEmailResponse> DeleteAsync(UserEmailDeleteDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<UserEmail> userEmailDataSource = await UnitOfWork.UserEmail.SelectAsync(x => x.Id == Model.Id);
+            UserEmail userEmail = Mapper.Map<UserEmail>(userEmailDataSource[0]);
+
+            await UnitOfWork.UserEmail.DeleteAsync(userEmail);
+            int result = await UnitOfWork.SaveChangesAsync();
+
+            return new UserEmailResponse
+            {
+                Single = userEmail,
+                Success = result,
+                Message = "Completed"
+            };
         }
 
         public async Task<UserEmailResponse> SelectAsync(UserEmailSelectDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<UserEmail> userEmailDataSource = await UnitOfWork.UserEmail.SelectAsync(x => x.IsActive == true);
+            return new UserEmailResponse
+            {
+                List = userEmailDataSource,
+                Success = 1,
+                Message = "Completed"
+            };
         }
 
         public async Task<UserEmailResponse> AnyAsync(UserEmailAnyDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<UserEmail> userEmailDataSource = await UnitOfWork.UserEmail.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+            return new UserEmailResponse
+            {
+                List = userEmailDataSource,
+                Success = 1,
+                Message = "Completed"
+            };
         }
     }
 }

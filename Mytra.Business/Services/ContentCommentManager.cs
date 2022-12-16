@@ -44,24 +44,52 @@
             contentComment.UpdateDate = DateTime.Now;
 
             await UnitOfWork.ContentComment.UpdateAsync(contentComment);
-            await UnitOfWork.SaveChangesAsync();
+            int result = await UnitOfWork.SaveChangesAsync();
 
-            return new ContentCommentResponse {  };
+            return new ContentCommentResponse
+            {
+                Single = contentComment,
+                Success = result,
+                Message = "Completed"
+            };
         }
 
         public async Task<ContentCommentResponse> DeleteAsync(ContentCommentDeleteDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<ContentComment> announceDataSource = await UnitOfWork.ContentComment.SelectAsync(x => x.Id == Model.Id);
+            ContentComment contentComment = Mapper.Map<ContentComment>(announceDataSource[0]);
+
+            await UnitOfWork.ContentComment.DeleteAsync(contentComment);
+            int result = await UnitOfWork.SaveChangesAsync();
+
+            return new ContentCommentResponse
+            {
+                Single = contentComment,
+                Success = result,
+                Message = "Completed"
+            };
         }
 
         public async Task<ContentCommentResponse> SelectAsync(ContentCommentSelectDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<ContentComment> contentCommentDataSource = await UnitOfWork.ContentComment.SelectAsync(x => x.IsActive == true);
+            return new ContentCommentResponse
+            {
+                List = contentCommentDataSource,
+                Success = 1,
+                Message = "Completed"
+            };
         }
 
         public async Task<ContentCommentResponse> AnyAsync(ContentCommentAnyDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<ContentComment> contentCommentDataSource = await UnitOfWork.ContentComment.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+            return new ContentCommentResponse
+            {
+                List = contentCommentDataSource,
+                Success = 1,
+                Message = "Completed"
+            };
         }
     }
 }

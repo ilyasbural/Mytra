@@ -6,7 +6,7 @@
     [ApiController]
     public class ContentTypeController : ControllerBase
     {
-        private readonly IContentTypeService Service;
+        readonly IContentTypeService Service;
         public ContentTypeController(IContentTypeService service)
         {
             Service = service;
@@ -17,7 +17,11 @@
         public async Task<ContentTypeWebResponse> Create([FromBody] ContentTypeInsertDataTransfer Model)
         {
             ContentTypeResponse contentTypeResponse = await Service.InsertAsync(Model);
-            return new ContentTypeWebResponse { Single = contentTypeResponse.Single };
+            return new ContentTypeWebResponse 
+            { 
+                Single = contentTypeResponse.Single, 
+                Success = contentTypeResponse.Success,
+            };
         }
 
         [HttpPut]
@@ -51,12 +55,9 @@
             ContentTypeResponse contentTypeResponse = await Service.SelectAsync(Model);
             return new ContentTypeWebResponse
             {
-
-
-
-
-
-
+                List = contentTypeResponse.List,
+                Success = contentTypeResponse.Success, 
+                Message = contentTypeResponse.Message
             };
         }
 
@@ -67,12 +68,9 @@
             ContentTypeResponse contentTypeResponse = await Service.AnyAsync(Model);
             return new ContentTypeWebResponse
             {
-
-
-
-
-
-
+                List = contentTypeResponse.List,
+                Success = contentTypeResponse.Success,
+                Message = contentTypeResponse.Message
             };
         }
     }

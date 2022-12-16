@@ -32,7 +32,8 @@
             return new UserSettingsResponse 
             { 
                 Single = userSettings, 
-                Success = result  
+                Success = result,
+                Message = "Completed"
             };
         }
 
@@ -48,23 +49,47 @@
             return new UserSettingsResponse 
             {
                 Single = userSettings,
-                Success = result
+                Success = result,
+                Message = "Completed"
             };
         }
 
         public async Task<UserSettingsResponse> DeleteAsync(UserSettingsDeleteDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<UserSettings> userSettingsDataSource = await UnitOfWork.UserSettings.SelectAsync(x => x.Id == Model.Id);
+            UserSettings userSettings = Mapper.Map<UserSettings>(userSettingsDataSource[0]);
+
+            await UnitOfWork.UserSettings.DeleteAsync(userSettings);
+            int result = await UnitOfWork.SaveChangesAsync();
+
+            return new UserSettingsResponse
+            {
+                Single = userSettings,
+                Success = result,
+                Message = "Completed"
+            };
         }
 
         public async Task<UserSettingsResponse> SelectAsync(UserSettingsSelectDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<UserSettings> userSettingDataSource = await UnitOfWork.UserSettings.SelectAsync(x => x.IsActive == true);
+            return new UserSettingsResponse
+            {
+                List = userSettingDataSource,
+                Success = 1,
+                Message = "Completed"
+            };
         }
 
         public async Task<UserSettingsResponse> AnyAsync(UserSettingsAnyDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<UserSettings> userSettingsDataSource = await UnitOfWork.UserSettings.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+            return new UserSettingsResponse
+            {
+                List = userSettingsDataSource,
+                Success = 1,
+                Message = "Completed"
+            };
         }
     }
 }

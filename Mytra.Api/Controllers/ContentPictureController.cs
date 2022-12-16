@@ -6,7 +6,7 @@
     [ApiController]
     public class ContentPictureController : ControllerBase
     {
-        private readonly IContentPictureService Service;
+        readonly IContentPictureService Service;
         public ContentPictureController(IContentPictureService service)
         {
             Service = service;
@@ -17,7 +17,11 @@
         public async Task<ContentPictureWebResponse> Create([FromBody] ContentPictureInsertDataTransfer Model)
         {
             ContentPictureResponse contentPictureResponse = await Service.InsertAsync(Model);
-            return new ContentPictureWebResponse { Single = contentPictureResponse.Single };
+            return new ContentPictureWebResponse 
+            { 
+                Single = contentPictureResponse.Single, 
+                Success = contentPictureResponse.Success
+            };
         }
 
         [HttpPut]
@@ -51,12 +55,9 @@
             ContentPictureResponse contentPictureResponse = await Service.SelectAsync(Model);
             return new ContentPictureWebResponse
             {
-
-
-
-
-
-
+                List = contentPictureResponse.List,
+                Success = contentPictureResponse.Success, 
+                Message = contentPictureResponse.Message
             };
         }
 
@@ -67,12 +68,9 @@
             ContentPictureResponse contentPictureResponse = await Service.AnyAsync(Model);
             return new ContentPictureWebResponse
             {
-
-
-
-
-
-
+                List = contentPictureResponse.List,
+                Success = contentPictureResponse.Success,
+                Message = contentPictureResponse.Message
             };
         }
     }

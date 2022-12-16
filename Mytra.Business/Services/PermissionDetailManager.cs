@@ -33,7 +33,8 @@
             return new PermissionDetailResponse 
             { 
                 Single = permissionDetail, 
-                Success = result  
+                Success = result,
+                Message = "Completed"
             };
         }
 
@@ -49,23 +50,47 @@
             return new PermissionDetailResponse
             {
                 Single = permissionDetail,
-                Success = result
+                Success = result,
+                Message = "Completed"
             };
         }
 
         public async Task<PermissionDetailResponse> DeleteAsync(PermissionDetailDeleteDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<PermissionDetail> permissionDetailDataSource = await UnitOfWork.PermissionDetail.SelectAsync(x => x.Id == Model.Id);
+            PermissionDetail permissionDetail = Mapper.Map<PermissionDetail>(permissionDetailDataSource[0]);
+
+            await UnitOfWork.PermissionDetail.DeleteAsync(permissionDetail);
+            int result = await UnitOfWork.SaveChangesAsync();
+
+            return new PermissionDetailResponse
+            {
+                Single = permissionDetail,
+                Success = result,
+                Message = "Completed"
+            };
         }
 
         public async Task<PermissionDetailResponse> SelectAsync(PermissionDetailSelectDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<PermissionDetail> permissionDetailDataSource = await UnitOfWork.PermissionDetail.SelectAsync(x => x.IsActive == true);
+            return new PermissionDetailResponse
+            {
+                List = permissionDetailDataSource,
+                Success = 1,
+                Message = "Completed"
+            };
         }
 
         public async Task<PermissionDetailResponse> AnyAsync(PermissionDetailAnyDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<PermissionDetail> permissionDetailDataSource = await UnitOfWork.PermissionDetail.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+            return new PermissionDetailResponse
+            {
+                List = permissionDetailDataSource,
+                Success = 1,
+                Message = "Completed"
+            };
         }
     }
 }

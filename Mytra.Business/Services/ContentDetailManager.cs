@@ -33,7 +33,8 @@
             return new ContentDetailResponse 
             { 
                 Single = contentDetail, 
-                Success = result  
+                Success = result, 
+                Message = "Completed"
             };
         }
 
@@ -49,23 +50,47 @@
             return new ContentDetailResponse 
             {
                 Single = contentDetail,
-                Success = result
+                Success = result, 
+                Message = "Completed"
             };
         }
 
         public async Task<ContentDetailResponse> DeleteAsync(ContentDetailDeleteDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<ContentDetail> contentDetailDataSource = await UnitOfWork.ContentDetail.SelectAsync(x => x.Id == Model.Id);
+            ContentDetail contentDetail = Mapper.Map<ContentDetail>(contentDetailDataSource[0]);
+
+            await UnitOfWork.ContentDetail.DeleteAsync(contentDetail);
+            int result = await UnitOfWork.SaveChangesAsync();
+
+            return new ContentDetailResponse
+            {
+                Single = contentDetail,
+                Success = result,
+                Message = "Completed"
+            };
         }
 
         public async Task<ContentDetailResponse> SelectAsync(ContentDetailSelectDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<ContentDetail> contentDetailDataSource = await UnitOfWork.ContentDetail.SelectAsync(x => x.IsActive == true);
+            return new ContentDetailResponse
+            {
+                List = contentDetailDataSource,
+                Success = 1,
+                Message = "Completed"
+            };
         }
 
         public async Task<ContentDetailResponse> AnyAsync(ContentDetailAnyDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<ContentDetail> contentDetailDataSource = await UnitOfWork.ContentDetail.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+            return new ContentDetailResponse
+            {
+                List = contentDetailDataSource,
+                Success = 1,
+                Message = "Completed"
+            };
         }
     }
 }

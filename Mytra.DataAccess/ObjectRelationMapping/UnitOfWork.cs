@@ -4,7 +4,7 @@
 
     public class UnitOfWork : IUnitOfWork
     {
-        protected MytraContext DbContext;
+        MytraContext DbContext;
 
         public IAnnounceRepository Announce => AnnounceRepository ?? new AnnounceRepositoryEF(DbContext);
         public IAnnounceDetailRepository AnnounceDetail => AnnounceDetailRepository ?? new AnnounceDetailRepositoryEF(DbContext);

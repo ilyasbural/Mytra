@@ -31,14 +31,15 @@
             return new CategoryResponse 
             { 
                 Single = category, 
-                Success = result  
+                Success = result, 
+                Message = "Completed"
             };
         }
 
         public async Task<CategoryResponse> UpdateAsync(CategoryUpdateDataTransfer Model)
         {
-            List<Category> DataSource = await UnitOfWork.Category.SelectAsync(x => x.Id == Model.Id);
-            Category category = Mapper.Map<Category>(DataSource[0]);
+            List<Category> categoryDataSource = await UnitOfWork.Category.SelectAsync(x => x.Id == Model.Id);
+            Category category = Mapper.Map<Category>(categoryDataSource[0]);
             category.UpdateDate = DateTime.Now;
 
             await UnitOfWork.Category.UpdateAsync(category);
@@ -47,23 +48,47 @@
             return new CategoryResponse 
             {
                 Single = category,
-                Success = result
+                Success = result,
+                Message = "Completed"
             };
         }
 
         public async Task<CategoryResponse> DeleteAsync(CategoryDeleteDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<Category> categoryDataSource = await UnitOfWork.Category.SelectAsync(x => x.Id == Model.Id);
+            Category category = Mapper.Map<Category>(categoryDataSource[0]);
+
+            await UnitOfWork.Category.DeleteAsync(category);
+            int result = await UnitOfWork.SaveChangesAsync();
+
+            return new CategoryResponse
+            {
+                Single = category,
+                Success = result,
+                Message = "Completed"
+            };
         }
 
         public async Task<CategoryResponse> SelectAsync(CategorySelectDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<Category> categoryDataSource = await UnitOfWork.Category.SelectAsync(x => x.IsActive == true);
+            return new CategoryResponse
+            {
+                List = categoryDataSource,
+                Success = 1,
+                Message = "Completed"
+            };
         }
 
         public async Task<CategoryResponse> AnyAsync(CategoryAnyDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<Category> categoryDataSource = await UnitOfWork.Category.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+            return new CategoryResponse
+            {
+                List = categoryDataSource,
+                Success = 1,
+                Message = "Completed"
+            };
         }
     }
 }

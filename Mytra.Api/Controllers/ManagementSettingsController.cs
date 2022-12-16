@@ -6,7 +6,7 @@
     [ApiController]
     public class ManagementSettingsController : ControllerBase
     {
-        private readonly IManagementSettingsService Service;
+        readonly IManagementSettingsService Service;
         public ManagementSettingsController(IManagementSettingsService service)
         {
             Service = service;
@@ -17,7 +17,11 @@
         public async Task<ManagementSettingsWebResponse> Create([FromBody] ManagementSettingsInsertDataTransfer Model)
         {
             ManagementSettingsResponse managementSettingsResponse = await Service.InsertAsync(Model);
-            return new ManagementSettingsWebResponse { Single = managementSettingsResponse.Single };
+            return new ManagementSettingsWebResponse 
+            { 
+                Single = managementSettingsResponse.Single, 
+                Success = managementSettingsResponse.Success,
+            };
         }
 
         [HttpPut]
@@ -47,8 +51,9 @@
             ManagementSettingsResponse managementSettingsResponse = await Service.SelectAsync(Model);
             return new ManagementSettingsWebResponse
             {
-
-
+                List = managementSettingsResponse.List,
+                Success = managementSettingsResponse.Success, 
+                Message = managementSettingsResponse.Message
             };
         }
 
@@ -59,8 +64,9 @@
             ManagementSettingsResponse managementSettingsResponse = await Service.AnyAsync(Model);
             return new ManagementSettingsWebResponse
             {
-
-
+                List = managementSettingsResponse.List,
+                Success = managementSettingsResponse.Success,
+                Message = managementSettingsResponse.Message
             };
         }
     }

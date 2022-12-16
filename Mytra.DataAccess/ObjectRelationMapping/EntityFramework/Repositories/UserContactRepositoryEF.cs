@@ -1,6 +1,6 @@
 ﻿namespace Mytra.DataAccess
 {
-    public class UserContactRepositoryEF : BaseRepository<Core.UserContact>, Core.IUserContactRepository
+    public class UserContactRepositoryEF : RepositoryBase<Core.UserContact>, Core.IUserContactRepository
     {
         public UserContactRepositoryEF(Microsoft.EntityFrameworkCore.DbContext dbContext) : base(dbContext)
         {

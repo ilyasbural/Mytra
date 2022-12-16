@@ -33,7 +33,8 @@
             return new ContentSettingsResponse 
             { 
                 Single = contentSettings, 
-                Success = result 
+                Success = result,
+                Message = "Completed"
             };
         }
 
@@ -49,23 +50,47 @@
             return new ContentSettingsResponse
             {
                 Single = contentSettings,
-                Success = result
+                Success = result,
+                Message = "Completed"
             };
         }
 
         public async Task<ContentSettingsResponse> DeleteAsync(ContentSettingsDeleteDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<ContentSettings> contentSettingsDataSource = await UnitOfWork.ContentSettings.SelectAsync(x => x.Id == Model.Id);
+            ContentSettings contentSettings = Mapper.Map<ContentSettings>(contentSettingsDataSource[0]);
+
+            await UnitOfWork.ContentSettings.DeleteAsync(contentSettings);
+            int result = await UnitOfWork.SaveChangesAsync();
+
+            return new ContentSettingsResponse
+            {
+                Single = contentSettings,
+                Success = result,
+                Message = "Completed"
+            };
         }
 
         public async Task<ContentSettingsResponse> SelectAsync(ContentSettingsSelectDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<ContentSettings> contentSettingsDataSource = await UnitOfWork.ContentSettings.SelectAsync(x => x.IsActive == true);
+            return new ContentSettingsResponse
+            {
+                List = contentSettingsDataSource,
+                Success = 1,
+                Message = "Completed"
+            };
         }
 
         public async Task<ContentSettingsResponse> AnyAsync(ContentSettingsAnyDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<ContentSettings> contentSettingsDataSource = await UnitOfWork.ContentSettings.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+            return new ContentSettingsResponse
+            {
+                List = contentSettingsDataSource,
+                Success = 1,
+                Message = "Completed"
+            };
         }
     }
 }

@@ -33,7 +33,8 @@
             return new ManagementResponse 
             { 
                 Single = management, 
-                Success = result 
+                Success = result ,
+                Message = "Completed"
             };
         }
 
@@ -49,23 +50,47 @@
             return new ManagementResponse
             {
                 Single = management,
-                Success = result
+                Success = result,
+                Message = "Completed"
             };
         }
 
         public async Task<ManagementResponse> DeleteAsync(ManagementDeleteDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<Management> managementDataSource = await UnitOfWork.Management.SelectAsync(x => x.Id == Model.Id);
+            Management management = Mapper.Map<Management>(managementDataSource[0]);
+
+            await UnitOfWork.Management.DeleteAsync(management);
+            int result = await UnitOfWork.SaveChangesAsync();
+
+            return new ManagementResponse
+            {
+                Single = management,
+                Success = result,
+                Message = "Completed"
+            };
         }
 
         public async Task<ManagementResponse> SelectAsync(ManagementSelectDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<Management> managementDataSource = await UnitOfWork.Management.SelectAsync(x => x.IsActive == true);
+            return new ManagementResponse
+            {
+                List = managementDataSource,
+                Success = 1,
+                Message = "Completed"
+            };
         }
 
         public async Task<ManagementResponse> AnyAsync(ManagementAnyDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<Management> managementDataSource = await UnitOfWork.Management.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+            return new ManagementResponse
+            {
+                List = managementDataSource,
+                Success = 1,
+                Message = "Completed"
+            };
         }
     }
 }

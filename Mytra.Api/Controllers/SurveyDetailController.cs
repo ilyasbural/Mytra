@@ -6,7 +6,7 @@
     [ApiController]
     public class SurveyDetailController : ControllerBase
     {
-        private readonly ISurveyDetailService Service;
+        readonly ISurveyDetailService Service;
         public SurveyDetailController(ISurveyDetailService service)
         {
             Service = service;
@@ -17,7 +17,11 @@
         public async Task<SurveyDetailWebResponse> Create([FromBody] SurveyDetailInsertDataTransfer Model)
         {
             SurveyDetailResponse surveyDetailResponse = await Service.InsertAsync(Model);
-            return new SurveyDetailWebResponse { Single = surveyDetailResponse.Single };
+            return new SurveyDetailWebResponse 
+            { 
+                Single = surveyDetailResponse.Single, 
+                Success = surveyDetailResponse.Success
+            };
         }
 
         [HttpPut]
@@ -47,8 +51,9 @@
             SurveyDetailResponse surveyDetailResponse = await Service.SelectAsync(Model);
             return new SurveyDetailWebResponse
             {
-
-
+                List = surveyDetailResponse.List,
+                Success = surveyDetailResponse.Success, 
+                Message = surveyDetailResponse.Message
             };
         }
 
@@ -59,8 +64,9 @@
             SurveyDetailResponse surveyDetailResponse = await Service.AnyAsync(Model);
             return new SurveyDetailWebResponse
             {
-
-
+                List = surveyDetailResponse.List,
+                Success = surveyDetailResponse.Success,
+                Message = surveyDetailResponse.Message
             };
         }
     }

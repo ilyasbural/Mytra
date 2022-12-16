@@ -6,7 +6,7 @@
     [ApiController]
     public class ContentSettingsController : ControllerBase
     {
-        private readonly IContentSettingsService Service;
+        readonly IContentSettingsService Service;
         public ContentSettingsController(IContentSettingsService service)
         {
             Service = service;
@@ -17,7 +17,11 @@
         public async Task<ContentSettingsWebResponse> Create([FromBody] ContentSettingsInsertDataTransfer Model)
         {
             ContentSettingsResponse contentSettingsResponse = await Service.InsertAsync(Model);
-            return new ContentSettingsWebResponse { Single = contentSettingsResponse.Single };
+            return new ContentSettingsWebResponse 
+            { 
+                Single = contentSettingsResponse.Single, 
+                Success = contentSettingsResponse.Success,
+            };
         }
 
         [HttpPut]
@@ -50,11 +54,9 @@
             ContentSettingsResponse contentSettingsResponse = await Service.SelectAsync(Model);
             return new ContentSettingsWebResponse
             {
-
-
-
-
-
+                List = contentSettingsResponse.List,
+                Success = contentSettingsResponse.Success, 
+                Message = contentSettingsResponse.Message
             };
         }
 
@@ -65,11 +67,9 @@
             ContentSettingsResponse contentSettingsResponse = await Service.AnyAsync(Model);
             return new ContentSettingsWebResponse
             {
-
-
-
-
-
+                List = contentSettingsResponse.List,
+                Success = contentSettingsResponse.Success,
+                Message = contentSettingsResponse.Message
             };
         }
     }

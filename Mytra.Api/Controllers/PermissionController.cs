@@ -6,7 +6,7 @@
     [ApiController]
     public class PermissionController : ControllerBase
     {
-        private readonly IPermissionService Service;
+        readonly IPermissionService Service;
         public PermissionController(IPermissionService service)
         {
             Service = service;
@@ -17,7 +17,11 @@
         public async Task<PermissionWebResponse> Create([FromBody] PermissionInsertDataTransfer Model)
         {
             PermissionResponse permissionResponse = await Service.InsertAsync(Model);
-            return new PermissionWebResponse { Single = permissionResponse.Single };
+            return new PermissionWebResponse 
+            { 
+                Single = permissionResponse.Single, 
+                Success = permissionResponse.Success,
+            };
         }
 
         [HttpPut]
@@ -47,8 +51,9 @@
             PermissionResponse permissionResponse = await Service.SelectAsync(Model);
             return new PermissionWebResponse
             {
-
-
+                List = permissionResponse.List,
+                Success = permissionResponse.Success, 
+                Message = permissionResponse.Message
             };
         }
 
@@ -59,8 +64,9 @@
             PermissionResponse permissionResponse = await Service.AnyAsync(Model);
             return new PermissionWebResponse
             {
-
-
+                List = permissionResponse.List,
+                Success = permissionResponse.Success,
+                Message = permissionResponse.Message
             };
         }
     }

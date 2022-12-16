@@ -6,7 +6,7 @@
     [ApiController]
     public class PermissionDetailController : ControllerBase
     {
-        private readonly IPermissionDetailService Service;
+        readonly IPermissionDetailService Service;
         public PermissionDetailController(IPermissionDetailService service)
         {
             Service = service;
@@ -17,7 +17,11 @@
         public async Task<PermissionDetailWebResponse> Create([FromBody] PermissionDetailInsertDataTransfer Model)
         {
             PermissionDetailResponse permissionDetailResponse = await Service.InsertAsync(Model);
-            return new PermissionDetailWebResponse { Single = permissionDetailResponse.Single };
+            return new PermissionDetailWebResponse 
+            { 
+                Single = permissionDetailResponse.Single, 
+                Success = permissionDetailResponse.Success
+            };
         }
 
         [HttpPut]
@@ -25,7 +29,11 @@
         public async Task<PermissionDetailWebResponse> Update([FromBody] PermissionDetailUpdateDataTransfer Model)
         {
             PermissionDetailResponse permissionDetailResponse = await Service.UpdateAsync(Model);
-            return new PermissionDetailWebResponse { Single = permissionDetailResponse.Single };
+            return new PermissionDetailWebResponse
+            {
+                Single = permissionDetailResponse.Single,
+                Success = permissionDetailResponse.Success
+            };
         }
 
         [HttpDelete]
@@ -35,8 +43,7 @@
             PermissionDetailResponse permissionDetailResponse = await Service.DeleteAsync(Model);
             return new PermissionDetailWebResponse
             {
-
-
+                Success = permissionDetailResponse.Success
             };
         }
 
@@ -47,8 +54,9 @@
             PermissionDetailResponse permissionDetailResponse = await Service.SelectAsync(Model);
             return new PermissionDetailWebResponse
             {
-
-
+                List = permissionDetailResponse.List, 
+                Success = permissionDetailResponse.Success, 
+                Message = permissionDetailResponse.Message
             };
         }
 
@@ -59,8 +67,9 @@
             PermissionDetailResponse permissionDetailResponse = await Service.AnyAsync(Model);
             return new PermissionDetailWebResponse
             {
-
-
+                List = permissionDetailResponse.List,
+                Success = permissionDetailResponse.Success,
+                Message = permissionDetailResponse.Message
             };
         }
     }

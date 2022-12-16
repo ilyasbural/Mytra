@@ -22,6 +22,7 @@
         public async Task<AnnounceDetailResponse> InsertAsync(AnnounceDetailInsertDataTransfer Model)
         {
             AnnounceDetail announceDetail = Mapper.Map<AnnounceDetail>(Model);
+            announceDetail.Id = Guid.NewGuid();
             announceDetail.RegisterDate = DateTime.Now;
             announceDetail.UpdateDate = DateTime.Now;
             announceDetail.IsActive = true;
@@ -32,7 +33,8 @@
             return new AnnounceDetailResponse 
             { 
                 Single = announceDetail, 
-                Success = result 
+                Success = result, 
+                Message = "Completed"
             };
         }
 
@@ -48,23 +50,47 @@
             return new AnnounceDetailResponse 
             { 
                 Single = picture, 
-                Success = result 
+                Success = result, 
+                Message = "Completed"
             };
         }      
 
         public async Task<AnnounceDetailResponse> DeleteAsync(AnnounceDetailDeleteDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<AnnounceDetail> announceDetailDataSource = await UnitOfWork.AnnounceDetail.SelectAsync(x => x.Id == Model.Id);
+            AnnounceDetail announceDetail = Mapper.Map<AnnounceDetail>(announceDetailDataSource[0]);
+
+            await UnitOfWork.AnnounceDetail.DeleteAsync(announceDetail);
+            int result = await UnitOfWork.SaveChangesAsync();
+
+            return new AnnounceDetailResponse
+            {
+                Single = announceDetail,
+                Success = result,
+                Message = "Completed"
+            };
         }  
 
         public async Task<AnnounceDetailResponse> SelectAsync(AnnounceDetailSelectDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<AnnounceDetail> announceDetailDataSource = await UnitOfWork.AnnounceDetail.SelectAsync(x => x.IsActive == true);
+            return new AnnounceDetailResponse
+            {
+                List = announceDetailDataSource, 
+                Success = 1, 
+                Message = "Completed"
+            };
         }
 
         public async Task<AnnounceDetailResponse> AnyAsync(AnnounceDetailAnyDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<AnnounceDetail> announceDetailDataSource = await UnitOfWork.AnnounceDetail.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+            return new AnnounceDetailResponse
+            {
+                List = announceDetailDataSource,
+                Success = 1,
+                Message = "Completed"
+            };
         }
     }
 }

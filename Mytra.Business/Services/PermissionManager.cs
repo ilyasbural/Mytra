@@ -33,7 +33,8 @@
             return new PermissionResponse 
             { 
                 Single = permission, 
-                Success = result 
+                Success = result,
+                Message = "Completed"
             };
         }
 
@@ -49,23 +50,47 @@
             return new PermissionResponse
             {
                 Single = permission,
-                Success = result
+                Success = result,
+                Message = "Completed"
             };
         }
 
         public async Task<PermissionResponse> DeleteAsync(PermissionDeleteDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<Permission> permissionDataSource = await UnitOfWork.Permission.SelectAsync(x => x.Id == Model.Id);
+            Permission permission = Mapper.Map<Permission>(permissionDataSource[0]);
+
+            await UnitOfWork.Permission.DeleteAsync(permission);
+            int result = await UnitOfWork.SaveChangesAsync();
+
+            return new PermissionResponse
+            {
+                Single = permission,
+                Success = result,
+                Message = "Completed"
+            };
         }
 
         public async Task<PermissionResponse> SelectAsync(PermissionSelectDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<Permission> permissionDataSource = await UnitOfWork.Permission.SelectAsync(x => x.IsActive == true);
+            return new PermissionResponse
+            {
+                List = permissionDataSource,
+                Success = 1,
+                Message = "Completed"
+            };
         }
 
         public async Task<PermissionResponse> AnyAsync(PermissionAnyDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<Permission> permissionDataSource = await UnitOfWork.Permission.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+            return new PermissionResponse
+            {
+                List = permissionDataSource,
+                Success = 1,
+                Message = "Completed"
+            };
         }
     }
 }

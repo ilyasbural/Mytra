@@ -6,7 +6,7 @@
     [ApiController]
     public class ContentLikeController : ControllerBase
     {
-        private readonly IContentLikeService Service;
+        readonly IContentLikeService Service;
         public ContentLikeController(IContentLikeService service)
         {
             Service = service;
@@ -17,7 +17,11 @@
         public async Task<ContentLikeWebResponse> Create([FromBody] ContentLikeInsertDataTransfer Model)
         {
             ContentLikeResponse contentLikeResponse = await Service.InsertAsync(Model);
-            return new ContentLikeWebResponse { Single = contentLikeResponse.Single };
+            return new ContentLikeWebResponse 
+            { 
+                Single = contentLikeResponse.Single, 
+                Success = contentLikeResponse.Success,
+            };
         }
 
         [HttpPut]
@@ -51,12 +55,9 @@
             ContentLikeResponse contentLikeResponse = await Service.SelectAsync(Model);
             return new ContentLikeWebResponse
             {
-
-
-
-
-
-
+                List = contentLikeResponse.List,
+                Success = contentLikeResponse.Success, 
+                Message = contentLikeResponse.Message
             };
         }
 
@@ -67,12 +68,9 @@
             ContentLikeResponse contentLikeResponse = await Service.AnyAsync(Model);
             return new ContentLikeWebResponse
             {
-
-
-
-
-
-
+                List = contentLikeResponse.List,
+                Success = contentLikeResponse.Success,
+                Message = contentLikeResponse.Message
             };
         }
     }

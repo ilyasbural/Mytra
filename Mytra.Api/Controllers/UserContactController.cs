@@ -6,7 +6,7 @@
     [ApiController]
     public class UserContactController : ControllerBase
     {
-        private readonly IUserContactService Service;
+        readonly IUserContactService Service;
         public UserContactController(IUserContactService service)
         {
             Service = service;
@@ -17,7 +17,11 @@
         public async Task<UserContactWebResponse> Create([FromBody] UserContactInsertDataTransfer Model)
         {
             UserContactResponse userContactResponse = await Service.InsertAsync(Model);
-            return new UserContactWebResponse { Single = userContactResponse.Single };
+            return new UserContactWebResponse 
+            { 
+                Single = userContactResponse.Single, 
+                Success = userContactResponse.Success
+            };
         }
 
         [HttpPut]
@@ -48,9 +52,9 @@
             UserContactResponse userContactResponse = await Service.SelectAsync(Model);
             return new UserContactWebResponse
             {
-
-
-
+                List = userContactResponse.List,
+                Success = userContactResponse.Success, 
+                Message = userContactResponse.Message
             };
         }
 
@@ -61,9 +65,9 @@
             UserContactResponse userContactResponse = await Service.AnyAsync(Model);
             return new UserContactWebResponse
             {
-
-
-
+                List = userContactResponse.List,
+                Success = userContactResponse.Success,
+                Message = userContactResponse.Message
             };
         }
     }

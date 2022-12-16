@@ -6,7 +6,7 @@
     [ApiController]
     public class UserEmailController : ControllerBase
     {
-        private readonly IUserEmailService Service;
+        readonly IUserEmailService Service;
         public UserEmailController(IUserEmailService service)
         {
             Service = service;
@@ -17,7 +17,11 @@
         public async Task<UserEmailWebResponse> Create([FromBody] UserEmailInsertDataTransfer Model)
         {
             UserEmailResponse userEmailResponse = await Service.InsertAsync(Model);
-            return new UserEmailWebResponse { Single = userEmailResponse.Single };
+            return new UserEmailWebResponse 
+            { 
+                Single = userEmailResponse.Single, 
+                Success = userEmailResponse.Success
+            };
         }
 
         [HttpPut]
@@ -47,8 +51,9 @@
             UserEmailResponse userEmailResponse = await Service.SelectAsync(Model);
             return new UserEmailWebResponse
             {
-
-
+                List = userEmailResponse.List,
+                Success = userEmailResponse.Success, 
+                Message = userEmailResponse.Message 
             };
         }
 
@@ -59,8 +64,9 @@
             UserEmailResponse userEmailResponse = await Service.AnyAsync(Model);
             return new UserEmailWebResponse
             {
-
-
+                List = userEmailResponse.List,
+                Success = userEmailResponse.Success,
+                Message = userEmailResponse.Message
             };
         }
     }

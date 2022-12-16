@@ -6,7 +6,7 @@
     [ApiController]
     public class UserDetailController : ControllerBase
     {
-        private readonly IUserDetailService Service;
+        readonly IUserDetailService Service;
         public UserDetailController(IUserDetailService service)
         {
             Service = service;
@@ -17,7 +17,11 @@
         public async Task<UserDetailWebResponse> Create([FromBody] UserDetailInsertDataTransfer Model)
         {
             UserDetailResponse userDetailResponse = await Service.InsertAsync(Model);
-            return new UserDetailWebResponse { Single = userDetailResponse.Single };
+            return new UserDetailWebResponse 
+            { 
+                Single = userDetailResponse.Single, 
+                Success = userDetailResponse.Success
+            };
         }
 
         [HttpPut]
@@ -51,12 +55,9 @@
             UserDetailResponse userDetailResponse = await Service.SelectAsync(Model);
             return new UserDetailWebResponse
             {
-
-
-
-
-
-
+                List = userDetailResponse.List,
+                Success = userDetailResponse.Success, 
+                Message = userDetailResponse.Message
             };
         }
 
@@ -67,12 +68,9 @@
             UserDetailResponse userDetailResponse = await Service.AnyAsync(Model);
             return new UserDetailWebResponse
             {
-
-
-
-
-
-
+                List = userDetailResponse.List,
+                Success = userDetailResponse.Success,
+                Message = userDetailResponse.Message
             };
         }
     }

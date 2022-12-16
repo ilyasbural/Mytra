@@ -6,7 +6,7 @@
     [ApiController]
     public class ManagementContactController : ControllerBase
     {
-        private readonly IManagementContactService Service;
+        readonly IManagementContactService Service;
         public ManagementContactController(IManagementContactService service)
         {
             Service = service;
@@ -17,7 +17,11 @@
         public async Task<ManagementContactWebResponse> Create([FromBody] ManagementContactInsertDataTransfer Model)
         {
             ManagementContactResponse managementContactResponse = await Service.InsertAsync(Model);
-            return new ManagementContactWebResponse { Single = managementContactResponse.Single };
+            return new ManagementContactWebResponse 
+            { 
+                Single = managementContactResponse.Single, 
+                Success = managementContactResponse.Success
+            };
         }
 
         [HttpGet]
@@ -25,7 +29,12 @@
         public async Task<ManagementContactWebResponse> Get([FromBody] ManagementContactSelectDataTransfer Model)
         {
             ManagementContactResponse managementContactResponse = await Service.SelectAsync(Model);
-            return new ManagementContactWebResponse { Single = managementContactResponse.Single };
+            return new ManagementContactWebResponse 
+            { 
+                List = managementContactResponse.List,
+                Success = managementContactResponse.Success, 
+                Message = managementContactResponse.Message
+            };
         }
 
         [HttpGet]
@@ -35,11 +44,9 @@
             ManagementContactResponse managementContactResponse = await Service.AnyAsync(Model);
             return new ManagementContactWebResponse
             {
-
-
-
-
-
+                List = managementContactResponse.List,
+                Success = managementContactResponse.Success,
+                Message = managementContactResponse.Message
             };
         }
     }

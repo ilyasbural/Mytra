@@ -33,7 +33,8 @@
             return new SurveyDetailResponse 
             { 
                 Single = surveyDetail, 
-                Success = result 
+                Success = result,
+                Message = "Completed"
             };
         }
 
@@ -49,23 +50,47 @@
             return new SurveyDetailResponse
             {
                 Single = surveyDetail,
-                Success = result
+                Success = result,
+                Message = "Completed"
             };
         }
 
         public async Task<SurveyDetailResponse> DeleteAsync(SurveyDetailDeleteDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<SurveyDetail> announceDataSource = await UnitOfWork.SurveyDetail.SelectAsync(x => x.Id == Model.Id);
+            SurveyDetail surveyDetail = Mapper.Map<SurveyDetail>(announceDataSource[0]);
+
+            await UnitOfWork.SurveyDetail.DeleteAsync(surveyDetail);
+            int result = await UnitOfWork.SaveChangesAsync();
+
+            return new SurveyDetailResponse
+            {
+                Single = surveyDetail,
+                Success = result,
+                Message = "Completed"
+            };
         }
 
         public async Task<SurveyDetailResponse> SelectAsync(SurveyDetailSelectDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<SurveyDetail> surveyDetailDataSource = await UnitOfWork.SurveyDetail.SelectAsync(x => x.IsActive == true);
+            return new SurveyDetailResponse
+            {
+                List = surveyDetailDataSource,
+                Success = 1,
+                Message = "Completed"
+            };
         }
 
         public async Task<SurveyDetailResponse> AnyAsync(SurveyDetailAnyDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<SurveyDetail> surveyDetailDataSource = await UnitOfWork.SurveyDetail.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+            return new SurveyDetailResponse
+            {
+                List = surveyDetailDataSource,
+                Success = 1,
+                Message = "Completed"
+            };
         }
     }
 }
