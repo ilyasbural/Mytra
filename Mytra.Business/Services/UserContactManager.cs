@@ -3,8 +3,7 @@
     using Core;
     using AutoMapper;
     using FluentValidation;
-    using System.Threading.Tasks;
-    using System.Collections.Generic;
+    using FluentValidation.Results;
 
     public class UserContactManager : BusinessObject<UserContact>, IUserContactService
     {
@@ -21,20 +20,32 @@
 
         public async Task<UserContactResponse> InsertAsync(UserContactInsertDataTransfer Model)
         {
-            UserContact userContact = Mapper.Map<UserContact>(Model);
-            userContact.Id = Guid.NewGuid();
-            userContact.RegisterDate = DateTime.Now;
-            userContact.UpdateDate = DateTime.Now;
-            userContact.IsActive = true;
+            Entity = Mapper.Map<UserContact>(Model);
+            Validations = Validator.Validate(Entity);
+            Entity.Id = Guid.NewGuid();
+            Entity.RegisterDate = DateTime.Now;
+            Entity.UpdateDate = DateTime.Now;
+            Entity.IsActive = true;
 
-            await UnitOfWork.UserContact.InsertAsync(userContact);
+
+
+
+
+
+
+
+
+            await UnitOfWork.UserContact.InsertAsync(Entity);
             int result = await UnitOfWork.SaveChangesAsync();
 
             return new UserContactResponse 
-            { 
-                Single = userContact, 
-                Success = result,
-                Message = "Completed"
+            {
+                Single = Entity,
+                Success = Success,
+                Message = Message,
+                Errors = new List<string>(),
+                IsValidationError = IsValidationError,
+                Validations = new List<ValidationResult> { Validations }
             };
         }
 
@@ -43,6 +54,14 @@
             List<UserContact> DataSource = await UnitOfWork.UserContact.SelectAsync(x => x.Id == Model.Id);
             UserContact userContact = Mapper.Map<UserContact>(DataSource[0]);
             userContact.UpdateDate = DateTime.Now;
+
+
+
+
+
+
+
+
 
             await UnitOfWork.UserContact.UpdateAsync(userContact);
             int result = await UnitOfWork.SaveChangesAsync();
@@ -59,6 +78,13 @@
         {
             List<UserContact> userContactDataSource = await UnitOfWork.UserContact.SelectAsync(x => x.Id == Model.Id);
             UserContact userContact = Mapper.Map<UserContact>(userContactDataSource[0]);
+
+
+
+
+
+
+
 
             await UnitOfWork.UserContact.DeleteAsync(userContact);
             int result = await UnitOfWork.SaveChangesAsync();

@@ -3,6 +3,7 @@
     using Core;
     using AutoMapper;
     using FluentValidation;
+    using FluentValidation.Results;
 
     public partial class CategoryManager : BusinessObject<Category>, ICategoryService
     {
@@ -19,20 +20,24 @@
 
         public async Task<CategoryResponse> InsertAsync(CategoryInsertDataTransfer Model)
         {
-            Category category = Mapper.Map<Category>(Model);
-            category.Id = Guid.NewGuid();
-            category.RegisterDate = DateTime.Now;
-            category.UpdateDate = DateTime.Now;
-            category.IsActive = true;
+            Entity = Mapper.Map<Category>(Model);
+            Validations = Validator.Validate(Entity);
+            Entity.Id = Guid.NewGuid();
+            Entity.RegisterDate = DateTime.Now;
+            Entity.UpdateDate = DateTime.Now;
+            Entity.IsActive = true;
 
-            await UnitOfWork.Category.InsertAsync(category);
+            await UnitOfWork.Category.InsertAsync(Entity);
             int result = await UnitOfWork.SaveChangesAsync();
 
             return new CategoryResponse 
-            { 
-                Single = category, 
-                Success = result, 
-                Message = "Completed"
+            {
+                Single = Entity,
+                Success = Success,
+                Message = Message,
+                Errors = new List<string>(),
+                IsValidationError = IsValidationError,
+                Validations = new List<ValidationResult> { Validations }
             };
         }
 
@@ -41,6 +46,12 @@
             List<Category> categoryDataSource = await UnitOfWork.Category.SelectAsync(x => x.Id == Model.Id);
             Category category = Mapper.Map<Category>(categoryDataSource[0]);
             category.UpdateDate = DateTime.Now;
+
+
+
+
+
+
 
             await UnitOfWork.Category.UpdateAsync(category);
             int result = await UnitOfWork.SaveChangesAsync();
@@ -57,6 +68,14 @@
         {
             List<Category> categoryDataSource = await UnitOfWork.Category.SelectAsync(x => x.Id == Model.Id);
             Category category = Mapper.Map<Category>(categoryDataSource[0]);
+
+
+
+
+
+
+
+
 
             await UnitOfWork.Category.DeleteAsync(category);
             int result = await UnitOfWork.SaveChangesAsync();

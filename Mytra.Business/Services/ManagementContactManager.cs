@@ -3,8 +3,7 @@
     using Core;
     using AutoMapper;
     using FluentValidation;
-    using System.Threading.Tasks;
-    using System.Collections.Generic;
+    using FluentValidation.Results;
 
     public class ManagementContactManager : BusinessObject<ManagementContact>, IManagementContactService
     {
@@ -21,20 +20,34 @@
 
         public async Task<ManagementContactResponse> InsertAsync(ManagementContactInsertDataTransfer Model)
         {
-            ManagementContact managementContact = Mapper.Map<ManagementContact>(Model);
-            managementContact.Id = Guid.NewGuid();
-            managementContact.RegisterDate = DateTime.Now;
-            managementContact.UpdateDate = DateTime.Now;
-            managementContact.IsActive = true;
+            Entity = Mapper.Map<ManagementContact>(Model);
+            Validations = Validator.Validate(Entity);
+            Entity.Id = Guid.NewGuid();
+            Entity.RegisterDate = DateTime.Now;
+            Entity.UpdateDate = DateTime.Now;
+            Entity.IsActive = true;
 
-            await UnitOfWork.ManagementContact.InsertAsync(managementContact);
+
+
+
+
+
+
+
+
+
+
+            await UnitOfWork.ManagementContact.InsertAsync(Entity);
             int result = await UnitOfWork.SaveChangesAsync();
 
             return new ManagementContactResponse 
-            { 
-                Single = managementContact, 
-                Success = result,
-                Message = "Completed"
+            {
+                Single = Entity,
+                Success = Success,
+                Message = Message,
+                Errors = new List<string>(),
+                IsValidationError = IsValidationError,
+                Validations = new List<ValidationResult> { Validations }
             };
         }
 
@@ -43,6 +56,15 @@
             List<ManagementContact> DataSource = await UnitOfWork.ManagementContact.SelectAsync(x => x.Id == Model.Id);
             ManagementContact managementContact = Mapper.Map<ManagementContact>(DataSource[0]);
             managementContact.UpdateDate = DateTime.Now;
+
+
+
+
+
+
+
+
+
 
             await UnitOfWork.ManagementContact.UpdateAsync(managementContact);
             int result = await UnitOfWork.SaveChangesAsync();
@@ -59,6 +81,16 @@
         {
             List<ManagementContact> managementContactDataSource = await UnitOfWork.ManagementContact.SelectAsync(x => x.Id == Model.Id);
             ManagementContact managementContact = Mapper.Map<ManagementContact>(managementContactDataSource[0]);
+
+
+
+
+
+
+
+
+
+
 
             await UnitOfWork.ManagementContact.DeleteAsync(managementContact);
             int result = await UnitOfWork.SaveChangesAsync();

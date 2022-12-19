@@ -3,8 +3,7 @@
     using Core;
     using AutoMapper;
     using FluentValidation;
-    using System.Threading.Tasks;
-    using System.Collections.Generic;
+    using FluentValidation.Results;
 
     public class ManagementDetailManager : BusinessObject<ManagementDetail>, IManagementDetailService
     {
@@ -21,19 +20,33 @@
 
         public async Task<ManagementDetailResponse> InsertAsync(ManagementDetailInsertDataTransfer Model)
         {
-            ManagementDetail managementDetail = Mapper.Map<ManagementDetail>(Model);
-            managementDetail.RegisterDate = DateTime.Now;
-            managementDetail.UpdateDate = DateTime.Now;
-            managementDetail.IsActive = true;
+            Entity = Mapper.Map<ManagementDetail>(Model);
+            Validations = Validator.Validate(Entity);
+            Entity.Id = Guid.NewGuid();
+            Entity.RegisterDate = DateTime.Now;
+            Entity.UpdateDate = DateTime.Now;
+            Entity.IsActive = true;
 
-            await UnitOfWork.ManagementDetail.InsertAsync(managementDetail);
+
+
+
+
+
+
+
+
+
+            await UnitOfWork.ManagementDetail.InsertAsync(Entity);
             int result = await UnitOfWork.SaveChangesAsync();
 
             return new ManagementDetailResponse 
-            { 
-                Single = managementDetail, 
-                Success = result,
-                Message = "Completed"
+            {
+                Single = Entity,
+                Success = Success,
+                Message = Message,
+                Errors = new List<string>(),
+                IsValidationError = IsValidationError,
+                Validations = new List<ValidationResult> { Validations }
             };
         }
 
@@ -42,6 +55,17 @@
             List<ManagementDetail> DataSource = await UnitOfWork.ManagementDetail.SelectAsync(x => x.Id == Model.Id);
             ManagementDetail managementDetail = Mapper.Map<ManagementDetail>(DataSource[0]);
             managementDetail.UpdateDate = DateTime.Now;
+
+
+
+
+
+
+
+
+
+
+
 
             await UnitOfWork.ManagementDetail.UpdateAsync(managementDetail);
             int result = await UnitOfWork.SaveChangesAsync();
@@ -58,6 +82,18 @@
         {
             List<ManagementDetail> managementDetailDataSource = await UnitOfWork.ManagementDetail.SelectAsync(x => x.Id == Model.Id);
             ManagementDetail managementDetail = Mapper.Map<ManagementDetail>(managementDetailDataSource[0]);
+
+
+
+
+
+
+
+
+
+
+
+
 
             await UnitOfWork.ManagementDetail.DeleteAsync(managementDetail);
             int result = await UnitOfWork.SaveChangesAsync();

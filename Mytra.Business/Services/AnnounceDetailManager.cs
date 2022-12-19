@@ -3,8 +3,7 @@
     using Core;
     using AutoMapper;
     using FluentValidation;
-    using System.Threading.Tasks;
-    using System.Collections.Generic;
+    using FluentValidation.Results;
 
     public partial class AnnounceDetailManager : BusinessObject<AnnounceDetail>, IAnnounceDetailService
     {
@@ -21,20 +20,23 @@
 
         public async Task<AnnounceDetailResponse> InsertAsync(AnnounceDetailInsertDataTransfer Model)
         {
-            AnnounceDetail announceDetail = Mapper.Map<AnnounceDetail>(Model);
-            announceDetail.Id = Guid.NewGuid();
-            announceDetail.RegisterDate = DateTime.Now;
-            announceDetail.UpdateDate = DateTime.Now;
-            announceDetail.IsActive = true;
+            Entity = Mapper.Map<AnnounceDetail>(Model);
+            Entity.Id = Guid.NewGuid();
+            Entity.RegisterDate = DateTime.Now;
+            Entity.UpdateDate = DateTime.Now;
+            Entity.IsActive = true;
 
-            await UnitOfWork.AnnounceDetail.InsertAsync(announceDetail);
+            await UnitOfWork.AnnounceDetail.InsertAsync(Entity);
             int result = await UnitOfWork.SaveChangesAsync();
 
             return new AnnounceDetailResponse 
-            { 
-                Single = announceDetail, 
-                Success = result, 
-                Message = "Completed"
+            {
+                Single = Entity,
+                Success = Success,
+                Message = Message,
+                Errors = new List<string>(),
+                IsValidationError = IsValidationError,
+                Validations = new List<ValidationResult> { Validations }
             };
         }
 
@@ -43,6 +45,15 @@
             List<AnnounceDetail> DataSource = await UnitOfWork.AnnounceDetail.SelectAsync(x => x.Id == Model.Id);
             AnnounceDetail picture = Mapper.Map<AnnounceDetail>(DataSource[0]);
             picture.UpdateDate = DateTime.Now;
+
+
+
+
+
+
+
+
+
 
             await UnitOfWork.AnnounceDetail.UpdateAsync(picture);
             int result = await UnitOfWork.SaveChangesAsync();
@@ -59,6 +70,16 @@
         {
             List<AnnounceDetail> announceDetailDataSource = await UnitOfWork.AnnounceDetail.SelectAsync(x => x.Id == Model.Id);
             AnnounceDetail announceDetail = Mapper.Map<AnnounceDetail>(announceDetailDataSource[0]);
+
+
+
+
+
+
+
+
+
+
 
             await UnitOfWork.AnnounceDetail.DeleteAsync(announceDetail);
             int result = await UnitOfWork.SaveChangesAsync();

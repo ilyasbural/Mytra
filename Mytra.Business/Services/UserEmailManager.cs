@@ -3,8 +3,7 @@
     using Core;
     using AutoMapper;
     using FluentValidation;
-    using System.Threading.Tasks;
-    using System.Collections.Generic;
+    using FluentValidation.Results;
 
     public class UserEmailManager : BusinessObject<UserEmail>, IUserEmailService
     {
@@ -21,20 +20,34 @@
 
         public async Task<UserEmailResponse> InsertAsync(UserEmailInsertDataTransfer Model)
         {
-            UserEmail userEmail = Mapper.Map<UserEmail>(Model);
-            userEmail.Id = Guid.NewGuid();
-            userEmail.RegisterDate = DateTime.Now;
-            userEmail.UpdateDate = DateTime.Now;
-            userEmail.IsActive = true;
+            Entity = Mapper.Map<UserEmail>(Model);
+            Validations = Validator.Validate(Entity);
+            Entity.Id = Guid.NewGuid();
+            Entity.RegisterDate = DateTime.Now;
+            Entity.UpdateDate = DateTime.Now;
+            Entity.IsActive = true;
 
-            await UnitOfWork.UserEmail.InsertAsync(userEmail);
+
+
+
+
+
+
+
+
+
+
+            await UnitOfWork.UserEmail.InsertAsync(Entity);
             int result = await UnitOfWork.SaveChangesAsync();
 
             return new UserEmailResponse 
-            { 
-                Single = userEmail, 
-                Success = result ,
-                Message = "Completed"
+            {
+                Single = Entity,
+                Success = Success,
+                Message = Message,
+                Errors = new List<string>(),
+                IsValidationError = IsValidationError,
+                Validations = new List<ValidationResult> { Validations }
             };
         }
 
@@ -43,6 +56,16 @@
             List<UserEmail> DataSource = await UnitOfWork.UserEmail.SelectAsync(x => x.Id == Model.Id);
             UserEmail userEmail = Mapper.Map<UserEmail>(DataSource[0]);
             userEmail.UpdateDate = DateTime.Now;
+
+
+
+
+
+
+
+
+
+
 
             await UnitOfWork.UserEmail.UpdateAsync(userEmail);
             int result = await UnitOfWork.SaveChangesAsync();
@@ -59,6 +82,18 @@
         {
             List<UserEmail> userEmailDataSource = await UnitOfWork.UserEmail.SelectAsync(x => x.Id == Model.Id);
             UserEmail userEmail = Mapper.Map<UserEmail>(userEmailDataSource[0]);
+
+
+
+
+
+
+
+
+
+
+
+
 
             await UnitOfWork.UserEmail.DeleteAsync(userEmail);
             int result = await UnitOfWork.SaveChangesAsync();

@@ -3,8 +3,7 @@
     using Core;
     using AutoMapper;
     using FluentValidation;
-    using System.Threading.Tasks;
-    using System.Collections.Generic;
+    using FluentValidation.Results;
 
     public class UserDetailManager : BusinessObject<UserDetail>, IUserDetailService
     {
@@ -21,19 +20,34 @@
 
         public async Task<UserDetailResponse> InsertAsync(UserDetailInsertDataTransfer Model)
         {
-            UserDetail userDetail = Mapper.Map<UserDetail>(Model);
-            userDetail.RegisterDate = DateTime.Now;
-            userDetail.UpdateDate = DateTime.Now;
-            userDetail.IsActive = true;
+            Entity = Mapper.Map<UserDetail>(Model);
+            Validations = Validator.Validate(Entity);
+            Entity.Id = Guid.NewGuid();
+            Entity.RegisterDate = DateTime.Now;
+            Entity.UpdateDate = DateTime.Now;
+            Entity.IsActive = true;
 
-            await UnitOfWork.UserDetail.InsertAsync(userDetail);
+
+
+
+
+
+
+
+
+
+
+            await UnitOfWork.UserDetail.InsertAsync(Entity);
             int result = await UnitOfWork.SaveChangesAsync();
 
             return new UserDetailResponse 
-            { 
-                Single = userDetail, 
-                Success = result,
-                Message = "Completed"
+            {
+                Single = Entity,
+                Success = Success,
+                Message = Message,
+                Errors = new List<string>(),
+                IsValidationError = IsValidationError,
+                Validations = new List<ValidationResult> { Validations }
             };
         }
 
@@ -42,6 +56,17 @@
             List<UserDetail> DataSource = await UnitOfWork.UserDetail.SelectAsync(x => x.Id == Model.Id);
             UserDetail userDetail = Mapper.Map<UserDetail>(DataSource[0]);
             userDetail.UpdateDate = DateTime.Now;
+
+
+
+
+
+
+
+
+
+
+
 
             await UnitOfWork.UserDetail.UpdateAsync(userDetail);
             int result = await UnitOfWork.SaveChangesAsync();
@@ -58,6 +83,18 @@
         {
             List<UserDetail> userDetailDataSource = await UnitOfWork.UserDetail.SelectAsync(x => x.Id == Model.Id);
             UserDetail userDetail = Mapper.Map<UserDetail>(userDetailDataSource[0]);
+
+
+
+
+
+
+
+
+
+
+
+
 
             await UnitOfWork.UserDetail.DeleteAsync(userDetail);
             int result = await UnitOfWork.SaveChangesAsync();

@@ -3,8 +3,7 @@
     using Core;
     using AutoMapper;
     using FluentValidation;
-    using System.Threading.Tasks;
-    using System.Collections.Generic;
+    using FluentValidation.Results;
 
     public class ContentPictureManager : BusinessObject<ContentPicture>, IContentPictureService
     {
@@ -21,20 +20,24 @@
 
         public async Task<ContentPictureResponse> InsertAsync(ContentPictureInsertDataTransfer Model)
         {
-            ContentPicture contentPicture = Mapper.Map<ContentPicture>(Model);
-            contentPicture.Id = Guid.NewGuid();
-            contentPicture.RegisterDate = DateTime.Now;
-            contentPicture.UpdateDate = DateTime.Now;
-            contentPicture.IsActive = true;
+            Entity = Mapper.Map<ContentPicture>(Model);
+            Validations = Validator.Validate(Entity);
+            Entity.Id = Guid.NewGuid();
+            Entity.RegisterDate = DateTime.Now;
+            Entity.UpdateDate = DateTime.Now;
+            Entity.IsActive = true;
 
-            await UnitOfWork.ContentPicture.InsertAsync(contentPicture);
+            await UnitOfWork.ContentPicture.InsertAsync(Entity);
             int result = await UnitOfWork.SaveChangesAsync();
 
             return new ContentPictureResponse 
-            { 
-                Single = contentPicture, 
-                Success = result,
-                Message = "Completed"
+            {
+                Single = Entity,
+                Success = Success,
+                Message = Message,
+                Errors = new List<string>(),
+                IsValidationError = IsValidationError,
+                Validations = new List<ValidationResult> { Validations }
             };
         }
 
@@ -43,6 +46,15 @@
             List<ContentPicture> DataSource = await UnitOfWork.ContentPicture.SelectAsync(x => x.Id == Model.Id);
             ContentPicture contentPicture = Mapper.Map<ContentPicture>(DataSource[0]);
             contentPicture.UpdateDate = DateTime.Now;
+
+
+
+
+
+
+
+
+
 
             await UnitOfWork.ContentPicture.UpdateAsync(contentPicture);
             int result = await UnitOfWork.SaveChangesAsync();
@@ -59,6 +71,15 @@
         {
             List<ContentPicture> contentPictureDataSource = await UnitOfWork.ContentPicture.SelectAsync(x => x.Id == Model.Id);
             ContentPicture content = Mapper.Map<ContentPicture>(contentPictureDataSource[0]);
+
+
+
+
+
+
+
+
+
 
             await UnitOfWork.ContentPicture.DeleteAsync(content);
             int result = await UnitOfWork.SaveChangesAsync();

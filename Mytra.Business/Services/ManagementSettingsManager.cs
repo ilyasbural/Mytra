@@ -3,8 +3,7 @@
     using Core;
     using AutoMapper;
     using FluentValidation;
-    using System.Threading.Tasks;
-    using System.Collections.Generic;
+    using FluentValidation.Results;
 
     public class ManagementSettingsManager : BusinessObject<ManagementSettings>, IManagementSettingsService
     {
@@ -21,19 +20,33 @@
 
         public async Task<ManagementSettingsResponse> InsertAsync(ManagementSettingsInsertDataTransfer Model)
         {
-            ManagementSettings managementSettings = Mapper.Map<ManagementSettings>(Model);
-            managementSettings.RegisterDate = DateTime.Now;
-            managementSettings.UpdateDate = DateTime.Now;
-            managementSettings.IsActive = true;
+            Entity = Mapper.Map<ManagementSettings>(Model);
+            Validations = Validator.Validate(Entity);
+            Entity.Id = Guid.NewGuid();
+            Entity.RegisterDate = DateTime.Now;
+            Entity.UpdateDate = DateTime.Now;
+            Entity.IsActive = true;
 
-            await UnitOfWork.ManagementSettings.InsertAsync(managementSettings);
+
+
+
+
+
+
+
+
+
+            await UnitOfWork.ManagementSettings.InsertAsync(Entity);
             int result = await UnitOfWork.SaveChangesAsync();
 
             return new ManagementSettingsResponse 
-            { 
-                Single = managementSettings, 
-                Success = result,
-                Message = "Completed"
+            {
+                Single = Entity,
+                Success = Success,
+                Message = Message,
+                Errors = new List<string>(),
+                IsValidationError = IsValidationError,
+                Validations = new List<ValidationResult> { Validations }
             };
         }
 
@@ -42,6 +55,16 @@
             List<ManagementSettings> DataSource = await UnitOfWork.ManagementSettings.SelectAsync(x => x.Id == Model.Id);
             ManagementSettings managementSettings = Mapper.Map<ManagementSettings>(DataSource[0]);
             managementSettings.UpdateDate = DateTime.Now;
+
+
+
+
+
+
+
+
+
+
 
             await UnitOfWork.ManagementSettings.UpdateAsync(managementSettings);
             int result = await UnitOfWork.SaveChangesAsync();
@@ -58,6 +81,18 @@
         {
             List<ManagementSettings> managementSettingsDataSource = await UnitOfWork.ManagementSettings.SelectAsync(x => x.Id == Model.Id);
             ManagementSettings managementSettings = Mapper.Map<ManagementSettings>(managementSettingsDataSource[0]);
+
+
+
+
+
+
+
+
+
+
+
+
 
             await UnitOfWork.ManagementSettings.DeleteAsync(managementSettings);
             int result = await UnitOfWork.SaveChangesAsync();

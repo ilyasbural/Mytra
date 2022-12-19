@@ -3,8 +3,7 @@
     using Core;
     using AutoMapper;
     using FluentValidation;
-    using System.Threading.Tasks;
-    using System.Collections.Generic;
+    using FluentValidation.Results;
 
     public class ContentCommentManager : BusinessObject<ContentComment>, IContentCommentService
     {
@@ -21,19 +20,24 @@
 
         public async Task<ContentCommentResponse> InsertAsync(ContentCommentInsertDataTransfer Model)
         {
-            ContentComment contentComment = Mapper.Map<ContentComment>(Model);
-            contentComment.Id = Guid.NewGuid();
-            contentComment.RegisterDate = DateTime.Now;
-            contentComment.UpdateDate = DateTime.Now;
-            contentComment.IsActive = true;
+            Entity = Mapper.Map<ContentComment>(Model);
+            Validations = Validator.Validate(Entity);
+            Entity.Id = Guid.NewGuid();
+            Entity.RegisterDate = DateTime.Now;
+            Entity.UpdateDate = DateTime.Now;
+            Entity.IsActive = true;
 
-            await UnitOfWork.ContentComment.InsertAsync(contentComment);
+            await UnitOfWork.ContentComment.InsertAsync(Entity);
             int result = await UnitOfWork.SaveChangesAsync();
 
             return new ContentCommentResponse 
-            { 
-                Single = contentComment,
-                Success = result  
+            {
+                Single = Entity,
+                Success = Success,
+                Message = Message,
+                Errors = new List<string>(),
+                IsValidationError = IsValidationError,
+                Validations = new List<ValidationResult> { Validations }
             };
         }
 
@@ -42,6 +46,15 @@
             List<ContentComment> DataSource = await UnitOfWork.ContentComment.SelectAsync(x => x.Id == Model.Id);
             ContentComment contentComment = Mapper.Map<ContentComment>(DataSource[0]);
             contentComment.UpdateDate = DateTime.Now;
+
+
+
+
+
+
+
+
+
 
             await UnitOfWork.ContentComment.UpdateAsync(contentComment);
             int result = await UnitOfWork.SaveChangesAsync();
@@ -58,6 +71,18 @@
         {
             List<ContentComment> announceDataSource = await UnitOfWork.ContentComment.SelectAsync(x => x.Id == Model.Id);
             ContentComment contentComment = Mapper.Map<ContentComment>(announceDataSource[0]);
+
+
+
+
+
+
+
+
+
+
+
+
 
             await UnitOfWork.ContentComment.DeleteAsync(contentComment);
             int result = await UnitOfWork.SaveChangesAsync();

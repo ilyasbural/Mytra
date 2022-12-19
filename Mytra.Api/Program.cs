@@ -1,3 +1,4 @@
+using FluentValidation.AspNetCore;
 using Mytra.Business;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,7 +7,6 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers().AddJsonOptions(opts => opts.JsonSerializerOptions.PropertyNamingPolicy = null);
-builder.Services.AddControllersWithViews();
 builder.Services.LoadServices();
 builder.Services.AddAutoMapper(typeof(AnnounceMapper));
 builder.Services.AddCors(c => {

@@ -3,8 +3,7 @@
     using Core;
     using AutoMapper;
     using FluentValidation;
-    using System.Threading.Tasks;
-    using System.Collections.Generic;
+    using FluentValidation.Results;
 
     public class ContentDetailManager : BusinessObject<ContentDetail>, IContentDetailService
     {
@@ -21,20 +20,24 @@
 
         public async Task<ContentDetailResponse> InsertAsync(ContentDetailInsertDataTransfer Model)
         {
-            ContentDetail contentDetail = Mapper.Map<ContentDetail>(Model);
-            contentDetail.Id = Guid.NewGuid();
-            contentDetail.RegisterDate = DateTime.Now;
-            contentDetail.UpdateDate = DateTime.Now;
-            contentDetail.IsActive = true;
+            Entity = Mapper.Map<ContentDetail>(Model);
+            Validations = Validator.Validate(Entity);
+            Entity.Id = Guid.NewGuid();
+            Entity.RegisterDate = DateTime.Now;
+            Entity.UpdateDate = DateTime.Now;
+            Entity.IsActive = true;
 
-            await UnitOfWork.ContentDetail.InsertAsync(contentDetail);
+            await UnitOfWork.ContentDetail.InsertAsync(Entity);
             int result = await UnitOfWork.SaveChangesAsync();
 
             return new ContentDetailResponse 
-            { 
-                Single = contentDetail, 
-                Success = result, 
-                Message = "Completed"
+            {
+                Single = Entity,
+                Success = Success,
+                Message = Message,
+                Errors = new List<string>(),
+                IsValidationError = IsValidationError,
+                Validations = new List<ValidationResult> { Validations }
             };
         }
 
@@ -43,6 +46,17 @@
             List<ContentDetail> DataSource = await UnitOfWork.ContentDetail.SelectAsync(x => x.Id == Model.Id);
             ContentDetail contentDetail = Mapper.Map<ContentDetail>(DataSource[0]);
             contentDetail.UpdateDate = DateTime.Now;
+
+
+
+
+
+
+
+
+
+
+
 
             await UnitOfWork.ContentDetail.UpdateAsync(contentDetail);
             int result = await UnitOfWork.SaveChangesAsync();
@@ -59,6 +73,15 @@
         {
             List<ContentDetail> contentDetailDataSource = await UnitOfWork.ContentDetail.SelectAsync(x => x.Id == Model.Id);
             ContentDetail contentDetail = Mapper.Map<ContentDetail>(contentDetailDataSource[0]);
+
+
+
+
+
+
+
+
+
 
             await UnitOfWork.ContentDetail.DeleteAsync(contentDetail);
             int result = await UnitOfWork.SaveChangesAsync();

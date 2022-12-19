@@ -3,8 +3,7 @@
     using Core;
     using AutoMapper;
     using FluentValidation;
-    using System.Threading.Tasks;
-    using System.Collections.Generic;
+    using FluentValidation.Results;
 
     public class PermissionDetailManager : BusinessObject<PermissionDetail>, IPermissionDetailService
     {
@@ -21,20 +20,33 @@
 
         public async Task<PermissionDetailResponse> InsertAsync(PermissionDetailInsertDataTransfer Model)
         {
-            PermissionDetail permissionDetail = Mapper.Map<PermissionDetail>(Model);
-            permissionDetail.Id = Guid.NewGuid();
-            permissionDetail.RegisterDate = DateTime.Now;
-            permissionDetail.UpdateDate = DateTime.Now;
-            permissionDetail.IsActive = true;
+            Entity = Mapper.Map<PermissionDetail>(Model);
+            Validations = Validator.Validate(Entity);
+            Entity.Id = Guid.NewGuid();
+            Entity.RegisterDate = DateTime.Now;
+            Entity.UpdateDate = DateTime.Now;
+            Entity.IsActive = true;
 
-            await UnitOfWork.PermissionDetail.InsertAsync(permissionDetail);
+
+
+
+
+
+
+
+
+
+            await UnitOfWork.PermissionDetail.InsertAsync(Entity);
             int result = await UnitOfWork.SaveChangesAsync();
 
             return new PermissionDetailResponse 
-            { 
-                Single = permissionDetail, 
-                Success = result,
-                Message = "Completed"
+            {
+                Single = Entity,
+                Success = Success,
+                Message = Message,
+                Errors = new List<string>(),
+                IsValidationError = IsValidationError,
+                Validations = new List<ValidationResult> { Validations }
             };
         }
 
@@ -43,6 +55,15 @@
             List<PermissionDetail> DataSource = await UnitOfWork.PermissionDetail.SelectAsync(x => x.Id == Model.Id);
             PermissionDetail permissionDetail = Mapper.Map<PermissionDetail>(DataSource[0]);
             permissionDetail.UpdateDate = DateTime.Now;
+
+
+
+
+
+
+
+
+
 
             await UnitOfWork.PermissionDetail.UpdateAsync(permissionDetail);
             int result = await UnitOfWork.SaveChangesAsync();
@@ -59,6 +80,17 @@
         {
             List<PermissionDetail> permissionDetailDataSource = await UnitOfWork.PermissionDetail.SelectAsync(x => x.Id == Model.Id);
             PermissionDetail permissionDetail = Mapper.Map<PermissionDetail>(permissionDetailDataSource[0]);
+
+
+
+
+
+
+
+
+
+
+
 
             await UnitOfWork.PermissionDetail.DeleteAsync(permissionDetail);
             int result = await UnitOfWork.SaveChangesAsync();

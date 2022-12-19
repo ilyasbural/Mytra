@@ -3,8 +3,7 @@
     using Core;
     using AutoMapper;
     using FluentValidation;
-    using System.Threading.Tasks;
-    using System.Collections.Generic;
+    using FluentValidation.Results;
 
     public class UserSettingsManager : BusinessObject<UserSettings>, IUserSettingsService
     {
@@ -21,19 +20,30 @@
 
         public async Task<UserSettingsResponse> InsertAsync(UserSettingsInsertDataTransfer Model)
         {
-            UserSettings userSettings = Mapper.Map<UserSettings>(Model);
-            userSettings.RegisterDate = DateTime.Now;
-            userSettings.UpdateDate = DateTime.Now;
-            userSettings.IsActive = true;
+            Entity = Mapper.Map<UserSettings>(Model);
+            Validations = Validator.Validate(Entity);
+            Entity.Id = Guid.NewGuid();
+            Entity.RegisterDate = DateTime.Now;
+            Entity.UpdateDate = DateTime.Now;
+            Entity.IsActive = true;
 
-            await UnitOfWork.UserSettings.InsertAsync(userSettings);
+
+
+
+
+
+
+            await UnitOfWork.UserSettings.InsertAsync(Entity);
             int result = await UnitOfWork.SaveChangesAsync();
 
             return new UserSettingsResponse 
-            { 
-                Single = userSettings, 
-                Success = result,
-                Message = "Completed"
+            {
+                Single = Entity,
+                Success = Success,
+                Message = Message,
+                Errors = new List<string>(),
+                IsValidationError = IsValidationError,
+                Validations = new List<ValidationResult> { Validations }
             };
         }
 
@@ -42,6 +52,16 @@
             List<UserSettings> DataSource = await UnitOfWork.UserSettings.SelectAsync(x => x.Id == Model.Id);
             UserSettings userSettings = Mapper.Map<UserSettings>(DataSource[0]);
             userSettings.UpdateDate = DateTime.Now;
+
+
+
+
+
+
+
+
+
+
 
             await UnitOfWork.UserSettings.UpdateAsync(userSettings);
             int result = await UnitOfWork.SaveChangesAsync();
@@ -58,6 +78,18 @@
         {
             List<UserSettings> userSettingsDataSource = await UnitOfWork.UserSettings.SelectAsync(x => x.Id == Model.Id);
             UserSettings userSettings = Mapper.Map<UserSettings>(userSettingsDataSource[0]);
+
+
+
+
+
+
+
+
+
+
+
+
 
             await UnitOfWork.UserSettings.DeleteAsync(userSettings);
             int result = await UnitOfWork.SaveChangesAsync();

@@ -3,6 +3,7 @@
     using Core;
     using AutoMapper;
     using FluentValidation;
+    using FluentValidation.Results;
 
     public partial class AnnounceManager : BusinessObject<Announce>, IAnnounceService
     {
@@ -17,22 +18,31 @@
             Validator = validator;
         }
 
-        public async Task<AnnounceResponse> InsertAsync(AnnounceInsertDataTransfer model)
+        public async Task<AnnounceResponse> InsertAsync(AnnounceInsertDataTransfer Model)
         {
-            Announce announce = Mapper.Map<Announce>(model);
-            announce.Id = Guid.NewGuid();
-            announce.RegisterDate = DateTime.Now;
-            announce.UpdateDate = DateTime.Now;
-            announce.IsActive = true;
+            Entity = Mapper.Map<Announce>(Model);
+            Validations = Validator.Validate(Entity);
+            Entity.Id = Guid.NewGuid();
+            Entity.RegisterDate = DateTime.Now;
+            Entity.UpdateDate = DateTime.Now;
+            Entity.IsActive = true;
 
-            await UnitOfWork.Announce.InsertAsync(announce);
-            int result = await UnitOfWork.SaveChangesAsync();
+            await UnitOfWork.Announce.InsertAsync(Entity);
+            await UnitOfWork.SaveChangesAsync();
 
-            return new AnnounceResponse 
-            { 
-                Single = announce, 
-                Success = result, 
-                Message = "Completed"
+            //await UnitOfWork.Announce.InsertAsync(Entity);
+            //Result = await UnitOfWork.SaveChangesAsync();
+
+            //if (Result == 1) { Success = Result; Message = "Data Saved"; } else Message = "Error";
+
+            return new AnnounceResponse
+            {
+                Single = Entity,
+                Success = Success,
+                Message = Message,
+                Errors = new List<string>(),
+                IsValidationError = IsValidationError,
+                Validations = new List<ValidationResult> { Validations }
             };
         }
 
@@ -41,6 +51,15 @@
             List<Announce> announceDataSource = await UnitOfWork.Announce.SelectAsync(x => x.Id == Model.Id);
             Announce announce = Mapper.Map<Announce>(announceDataSource[0]);
             announce.UpdateDate = DateTime.Now;
+
+
+
+
+
+
+
+
+
 
             await UnitOfWork.Announce.UpdateAsync(announce);
             int result = await UnitOfWork.SaveChangesAsync();
@@ -57,6 +76,18 @@
         {
             List<Announce> announceDataSource = await UnitOfWork.Announce.SelectAsync(x => x.Id == Model.Id);
             Announce announce = Mapper.Map<Announce>(announceDataSource[0]);
+
+
+
+
+
+
+
+
+
+
+
+
 
             await UnitOfWork.Announce.DeleteAsync(announce);
             int result = await UnitOfWork.SaveChangesAsync();
