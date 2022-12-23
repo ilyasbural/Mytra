@@ -18,7 +18,7 @@
             Validator = validator;
         }
 
-        public async Task<ManagementContactResponse> InsertAsync(ManagementContactInsertDataTransfer Model)
+        public async Task<Response<ManagementContact>> InsertAsync(ManagementContactInsertDataTransfer Model)
         {
             Entity = Mapper.Map<ManagementContact>(Model);
             Validations = Validator.Validate(Entity);
@@ -40,18 +40,18 @@
             await UnitOfWork.ManagementContact.InsertAsync(Entity);
             int result = await UnitOfWork.SaveChangesAsync();
 
-            return new ManagementContactResponse 
+            return new Response<ManagementContact>
             {
-                Single = Entity,
-                Success = Success,
-                Message = Message,
-                Errors = new List<string>(),
-                IsValidationError = IsValidationError,
-                Validations = new List<ValidationResult> { Validations }
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<ManagementContactResponse> UpdateAsync(ManagementContactUpdateDataTransfer Model)
+        public async Task<Response<ManagementContact>> UpdateAsync(ManagementContactUpdateDataTransfer Model)
         {
             List<ManagementContact> DataSource = await UnitOfWork.ManagementContact.SelectAsync(x => x.Id == Model.Id);
             ManagementContact managementContact = Mapper.Map<ManagementContact>(DataSource[0]);
@@ -69,15 +69,18 @@
             await UnitOfWork.ManagementContact.UpdateAsync(managementContact);
             int result = await UnitOfWork.SaveChangesAsync();
 
-            return new ManagementContactResponse
+            return new Response<ManagementContact>
             {
-                Single = managementContact,
-                Success = result,
-                Message = "Completed"
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<ManagementContactResponse> DeleteAsync(ManagementContactDeleteDataTransfer Model)
+        public async Task<Response<ManagementContact>> DeleteAsync(ManagementContactDeleteDataTransfer Model)
         {
             List<ManagementContact> managementContactDataSource = await UnitOfWork.ManagementContact.SelectAsync(x => x.Id == Model.Id);
             ManagementContact managementContact = Mapper.Map<ManagementContact>(managementContactDataSource[0]);
@@ -95,33 +98,42 @@
             await UnitOfWork.ManagementContact.DeleteAsync(managementContact);
             int result = await UnitOfWork.SaveChangesAsync();
 
-            return new ManagementContactResponse
+            return new Response<ManagementContact>
             {
-                Single = managementContact,
-                Success = result,
-                Message = "Completed"
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<ManagementContactResponse> SelectAsync(ManagementContactSelectDataTransfer Model)
+        public async Task<Response<ManagementContact>> SelectAsync(ManagementContactSelectDataTransfer Model)
         {
             List<ManagementContact> managementDataSource = await UnitOfWork.ManagementContact.SelectAsync(x => x.IsActive == true);
-            return new ManagementContactResponse
+            return new Response<ManagementContact>
             {
-                List = managementDataSource,
-                Success = 1,
-                Message = "Completed"
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<ManagementContactResponse> AnyAsync(ManagementContactAnyDataTransfer Model)
+        public async Task<Response<ManagementContact>> AnySelectAsync(ManagementContactAnyDataTransfer Model)
         {
             List<ManagementContact> managementContactDataSource = await UnitOfWork.ManagementContact.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
-            return new ManagementContactResponse
+            return new Response<ManagementContact>
             {
-                List = managementContactDataSource,
-                Success = 1,
-                Message = "Completed"
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
     }

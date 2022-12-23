@@ -14,63 +14,81 @@
 
         [HttpPost]
         [Route("api/userdetail")]
-        public async Task<UserDetailWebResponse> Create([FromBody] UserDetailInsertDataTransfer Model)
+        public async Task<Response<UserDetail>> Create([FromBody] UserDetailInsertDataTransfer Model)
         {
-            UserDetailResponse userDetailResponse = await Service.InsertAsync(Model);
-            return new UserDetailWebResponse 
-            { 
-                Single = userDetailResponse.Single, 
-                Success = userDetailResponse.Success
+            await Service.InsertAsync(Model);
+            return new Response<UserDetail>
+            {
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpPut]
         [Route("api/userdetail")]
-        public async Task<UserDetailWebResponse> Update([FromBody] UserDetailUpdateDataTransfer Model)
+        public async Task<Response<UserDetail>> Update([FromBody] UserDetailUpdateDataTransfer Model)
         {
-            UserDetailResponse userDetailResponse = await Service.UpdateAsync(Model);
-            return new UserDetailWebResponse { Single = userDetailResponse.Single };
+            await Service.UpdateAsync(Model);
+            return new Response<UserDetail>
+            {
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
+            };
         }
 
         [HttpDelete]
         [Route("api/userdetail")]
-        public async Task<UserDetailWebResponse> Delete([FromBody] UserDetailDeleteDataTransfer Model)
+        public async Task<Response<UserDetail>> Delete([FromBody] UserDetailDeleteDataTransfer Model)
         {
-            UserDetailResponse userDetailResponse = await Service.DeleteAsync(Model);
-            return new UserDetailWebResponse
+            await Service.DeleteAsync(Model);
+            return new Response<UserDetail>
             {
-
-
-
-
-
-
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpGet]
         [Route("api/userdetail")]
-        public async Task<UserDetailWebResponse> Get([FromBody] UserDetailSelectDataTransfer Model)
+        public async Task<Response<UserDetail>> Get([FromBody] UserDetailSelectDataTransfer Model)
         {
-            UserDetailResponse userDetailResponse = await Service.SelectAsync(Model);
-            return new UserDetailWebResponse
+            await Service.SelectAsync(Model);
+            return new Response<UserDetail>
             {
-                List = userDetailResponse.List,
-                Success = userDetailResponse.Success, 
-                Message = userDetailResponse.Message
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpGet]
         [Route("api/userdetail/{id}")]
-        public async Task<UserDetailWebResponse> Get([FromBody] UserDetailAnyDataTransfer Model)
+        public async Task<Response<UserDetail>> Get([FromBody] UserDetailAnyDataTransfer Model)
         {
-            UserDetailResponse userDetailResponse = await Service.AnyAsync(Model);
-            return new UserDetailWebResponse
+            await Service.AnySelectAsync(Model);
+            return new Response<UserDetail>
             {
-                List = userDetailResponse.List,
-                Success = userDetailResponse.Success,
-                Message = userDetailResponse.Message
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
     }

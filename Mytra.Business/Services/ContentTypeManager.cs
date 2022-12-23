@@ -18,7 +18,7 @@
             Validator = validator;
         }
 
-        public async Task<ContentTypeResponse> InsertAsync(ContentTypeInsertDataTransfer Model)
+        public async Task<Response<ContentType>> InsertAsync(ContentTypeInsertDataTransfer Model)
         {
             Entity = Mapper.Map<ContentType>(Model);
             Validations = Validator.Validate(Entity);
@@ -31,18 +31,18 @@
             await UnitOfWork.ContentType.InsertAsync(Entity);
             int result = await UnitOfWork.SaveChangesAsync();
 
-            return new ContentTypeResponse 
+            return new Response<ContentType>
             {
-                Single = Entity,
-                Success = Success,
-                Message = Message,
-                Errors = new List<string>(),
-                IsValidationError = IsValidationError,
-                Validations = new List<ValidationResult> { Validations }
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<ContentTypeResponse> UpdateAsync(ContentTypeUpdateDataTransfer Model)
+        public async Task<Response<ContentType>> UpdateAsync(ContentTypeUpdateDataTransfer Model)
         {
             List<ContentType> DataSource = await UnitOfWork.ContentType.SelectAsync(x => x.Id == Model.Id);
             ContentType contentType = Mapper.Map<ContentType>(DataSource[0]);
@@ -52,23 +52,21 @@
 
 
 
-
-
-
-
-
             await UnitOfWork.ContentType.UpdateAsync(contentType);
             int result = await UnitOfWork.SaveChangesAsync();
 
-            return new ContentTypeResponse
+            return new Response<ContentType>
             {
-                Single = contentType,
-                Success = result,
-                Message = "Completed"
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<ContentTypeResponse> DeleteAsync(ContentTypeDeleteDataTransfer Model)
+        public async Task<Response<ContentType>> DeleteAsync(ContentTypeDeleteDataTransfer Model)
         {
             List<ContentType> contentTypeDataSource = await UnitOfWork.ContentType.SelectAsync(x => x.Id == Model.Id);
             ContentType contentType = Mapper.Map<ContentType>(contentTypeDataSource[0]);
@@ -76,44 +74,45 @@
 
 
 
-
-
-
-
-
-
-
-
             await UnitOfWork.ContentType.DeleteAsync(contentType);
             int result = await UnitOfWork.SaveChangesAsync();
 
-            return new ContentTypeResponse
+            return new Response<ContentType>
             {
-                Single = contentType,
-                Success = result,
-                Message = "Completed"
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<ContentTypeResponse> SelectAsync(ContentTypeSelectDataTransfer Model)
+        public async Task<Response<ContentType>> SelectAsync(ContentTypeSelectDataTransfer Model)
         {
             List<ContentType> contentTypeDataSource = await UnitOfWork.ContentType.SelectAsync(x => x.IsActive == true);
-            return new ContentTypeResponse
+            return new Response<ContentType>
             {
-                List = contentTypeDataSource,
-                Success = 1,
-                Message = "Completed"
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<ContentTypeResponse> AnyAsync(ContentTypeAnyDataTransfer Model)
+        public async Task<Response<ContentType>> AnySelectAsync(ContentTypeAnyDataTransfer Model)
         {
             List<ContentType> contentTypeDataSource = await UnitOfWork.ContentType.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
-            return new ContentTypeResponse
+            return new Response<ContentType>
             {
-                List = contentTypeDataSource,
-                Success = 1,
-                Message = "Completed"
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
     }

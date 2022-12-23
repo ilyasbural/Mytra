@@ -2,10 +2,10 @@
 {
     public interface IContentLikeService
     {
-        Task<ContentLikeResponse> InsertAsync(ContentLikeInsertDataTransfer Model);
-        Task<ContentLikeResponse> UpdateAsync(ContentLikeUpdateDataTransfer Model);
-        Task<ContentLikeResponse> DeleteAsync(ContentLikeDeleteDataTransfer Model);
-        Task<ContentLikeResponse> SelectAsync(ContentLikeSelectDataTransfer Model);
-        Task<ContentLikeResponse> AnyAsync(ContentLikeAnyDataTransfer Model);
+        Task<Response<ContentLike>> InsertAsync(ContentLikeInsertDataTransfer Model);
+        Task<Response<ContentLike>> UpdateAsync(ContentLikeUpdateDataTransfer Model);
+        Task<Response<ContentLike>> DeleteAsync(ContentLikeDeleteDataTransfer Model);
+        Task<Response<ContentLike>> SelectAsync(ContentLikeSelectDataTransfer Model);
+        Task<Response<ContentLike>> AnySelectAsync(ContentLikeAnyDataTransfer Model);
     }
 }

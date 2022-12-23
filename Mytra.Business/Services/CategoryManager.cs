@@ -18,7 +18,7 @@
             Validator = validator;
         }
 
-        public async Task<CategoryResponse> InsertAsync(CategoryInsertDataTransfer Model)
+        public async Task<Response<Category>> InsertAsync(CategoryInsertDataTransfer Model)
         {
             Entity = Mapper.Map<Category>(Model);
             Validations = Validator.Validate(Entity);
@@ -30,18 +30,18 @@
             await UnitOfWork.Category.InsertAsync(Entity);
             int result = await UnitOfWork.SaveChangesAsync();
 
-            return new CategoryResponse 
+            return new Response<Category>
             {
-                Single = Entity,
-                Success = Success,
-                Message = Message,
-                Errors = new List<string>(),
-                IsValidationError = IsValidationError,
-                Validations = new List<ValidationResult> { Validations }
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<CategoryResponse> UpdateAsync(CategoryUpdateDataTransfer Model)
+        public async Task<Response<Category>> UpdateAsync(CategoryUpdateDataTransfer Model)
         {
             List<Category> categoryDataSource = await UnitOfWork.Category.SelectAsync(x => x.Id == Model.Id);
             Category category = Mapper.Map<Category>(categoryDataSource[0]);
@@ -56,15 +56,18 @@
             await UnitOfWork.Category.UpdateAsync(category);
             int result = await UnitOfWork.SaveChangesAsync();
 
-            return new CategoryResponse 
+            return new Response<Category>
             {
-                Single = category,
-                Success = result,
-                Message = "Completed"
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<CategoryResponse> DeleteAsync(CategoryDeleteDataTransfer Model)
+        public async Task<Response<Category>> DeleteAsync(CategoryDeleteDataTransfer Model)
         {
             List<Category> categoryDataSource = await UnitOfWork.Category.SelectAsync(x => x.Id == Model.Id);
             Category category = Mapper.Map<Category>(categoryDataSource[0]);
@@ -80,33 +83,42 @@
             await UnitOfWork.Category.DeleteAsync(category);
             int result = await UnitOfWork.SaveChangesAsync();
 
-            return new CategoryResponse
+            return new Response<Category>
             {
-                Single = category,
-                Success = result,
-                Message = "Completed"
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<CategoryResponse> SelectAsync(CategorySelectDataTransfer Model)
+        public async Task<Response<Category>> SelectAsync(CategorySelectDataTransfer Model)
         {
             List<Category> categoryDataSource = await UnitOfWork.Category.SelectAsync(x => x.IsActive == true);
-            return new CategoryResponse
+            return new Response<Category>
             {
-                List = categoryDataSource,
-                Success = 1,
-                Message = "Completed"
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<CategoryResponse> AnyAsync(CategoryAnyDataTransfer Model)
+        public async Task<Response<Category>> AnySelectAsync(CategoryAnyDataTransfer Model)
         {
             List<Category> categoryDataSource = await UnitOfWork.Category.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
-            return new CategoryResponse
+            return new Response<Category>
             {
-                List = categoryDataSource,
-                Success = 1,
-                Message = "Completed"
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
     }

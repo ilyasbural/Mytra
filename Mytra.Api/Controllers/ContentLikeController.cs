@@ -14,63 +14,81 @@
 
         [HttpPost]
         [Route("api/contentlike")]
-        public async Task<ContentLikeWebResponse> Create([FromBody] ContentLikeInsertDataTransfer Model)
+        public async Task<Response<ContentLike>> Create([FromBody] ContentLikeInsertDataTransfer Model)
         {
-            ContentLikeResponse contentLikeResponse = await Service.InsertAsync(Model);
-            return new ContentLikeWebResponse 
-            { 
-                Single = contentLikeResponse.Single, 
-                Success = contentLikeResponse.Success,
+            await Service.InsertAsync(Model);
+            return new Response<ContentLike>
+            {
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpPut]
         [Route("api/contentlike")]
-        public async Task<ContentLikeWebResponse> Update([FromBody] ContentLikeUpdateDataTransfer Model)
+        public async Task<Response<ContentLike>> Update([FromBody] ContentLikeUpdateDataTransfer Model)
         {
-            ContentLikeResponse contentLikeResponse = await Service.UpdateAsync(Model);
-            return new ContentLikeWebResponse { Single = contentLikeResponse.Single };
+            await Service.UpdateAsync(Model);
+            return new Response<ContentLike>
+            {
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
+            };
         }
 
         [HttpDelete]
         [Route("api/contentlike")]
-        public async Task<ContentLikeWebResponse> Delete([FromBody] ContentLikeDeleteDataTransfer Model)
+        public async Task<Response<ContentLike>> Delete([FromBody] ContentLikeDeleteDataTransfer Model)
         {
-            ContentLikeResponse contentLikeResponse = await Service.DeleteAsync(Model);
-            return new ContentLikeWebResponse
+            await Service.DeleteAsync(Model);
+            return new Response<ContentLike>
             {
-
-
-
-
-
-
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpGet]
         [Route("api/contentlike")]
-        public async Task<ContentLikeWebResponse> Get([FromBody] ContentLikeSelectDataTransfer Model)
+        public async Task<Response<ContentLike>> Get([FromBody] ContentLikeSelectDataTransfer Model)
         {
-            ContentLikeResponse contentLikeResponse = await Service.SelectAsync(Model);
-            return new ContentLikeWebResponse
+            await Service.SelectAsync(Model);
+            return new Response<ContentLike>
             {
-                List = contentLikeResponse.List,
-                Success = contentLikeResponse.Success, 
-                Message = contentLikeResponse.Message
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpGet]
         [Route("api/contentlike/{id}")]
-        public async Task<ContentLikeWebResponse> Get([FromBody] ContentLikeAnyDataTransfer Model)
+        public async Task<Response<ContentLike>> Get([FromBody] ContentLikeAnyDataTransfer Model)
         {
-            ContentLikeResponse contentLikeResponse = await Service.AnyAsync(Model);
-            return new ContentLikeWebResponse
+            await Service.AnySelectAsync(Model);
+            return new Response<ContentLike>
             {
-                List = contentLikeResponse.List,
-                Success = contentLikeResponse.Success,
-                Message = contentLikeResponse.Message
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
     }

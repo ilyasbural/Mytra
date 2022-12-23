@@ -14,59 +14,81 @@
 
         [HttpPost]
         [Route("api/permission")]
-        public async Task<PermissionWebResponse> Create([FromBody] PermissionInsertDataTransfer Model)
+        public async Task<Response<Permission>> Create([FromBody] PermissionInsertDataTransfer Model)
         {
-            PermissionResponse permissionResponse = await Service.InsertAsync(Model);
-            return new PermissionWebResponse 
-            { 
-                Single = permissionResponse.Single, 
-                Success = permissionResponse.Success,
+            await Service.InsertAsync(Model);
+            return new Response<Permission>
+            {
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpPut]
         [Route("api/permission")]
-        public async Task<PermissionWebResponse> Update([FromBody] PermissionUpdateDataTransfer Model)
+        public async Task<Response<Permission>> Update([FromBody] PermissionUpdateDataTransfer Model)
         {
-            PermissionResponse permissionResponse = await Service.UpdateAsync(Model);
-            return new PermissionWebResponse { Single = permissionResponse.Single };
+            await Service.UpdateAsync(Model);
+            return new Response<Permission>
+            {
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
+            };
         }
 
         [HttpDelete]
         [Route("api/permission")]
-        public async Task<PermissionWebResponse> Delete([FromBody] PermissionDeleteDataTransfer Model)
+        public async Task<Response<Permission>> Delete([FromBody] PermissionDeleteDataTransfer Model)
         {
-            PermissionResponse permissionResponse = await Service.DeleteAsync(Model);
-            return new PermissionWebResponse
+            await Service.DeleteAsync(Model);
+            return new Response<Permission>
             {
-
-
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpGet]
         [Route("api/permission")]
-        public async Task<PermissionWebResponse> Get([FromBody] PermissionSelectDataTransfer Model)
+        public async Task<Response<Permission>> Get([FromBody] PermissionSelectDataTransfer Model)
         {
-            PermissionResponse permissionResponse = await Service.SelectAsync(Model);
-            return new PermissionWebResponse
+            await Service.SelectAsync(Model);
+            return new Response<Permission>
             {
-                List = permissionResponse.List,
-                Success = permissionResponse.Success, 
-                Message = permissionResponse.Message
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpGet]
         [Route("api/permission/{id}")]
-        public async Task<PermissionWebResponse> Get([FromBody] PermissionAnyDataTransfer Model)
+        public async Task<Response<Permission>> Get([FromBody] PermissionAnyDataTransfer Model)
         {
-            PermissionResponse permissionResponse = await Service.AnyAsync(Model);
-            return new PermissionWebResponse
+            await Service.AnySelectAsync(Model);
+            return new Response<Permission>
             {
-                List = permissionResponse.List,
-                Success = permissionResponse.Success,
-                Message = permissionResponse.Message
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
     }

@@ -14,66 +14,66 @@
 
         [HttpPost]
         [Route("api/announcedetail")]
-        public async Task<AnnounceDetailWebResponse> Create([FromBody] AnnounceDetailInsertDataTransfer Model)
+        public async Task<Response<AnnounceDetail>> Create([FromBody] AnnounceDetailInsertDataTransfer Model)
         {
-            AnnounceDetailResponse announceDetailResponse = await Service.InsertAsync(Model);
-            return new AnnounceDetailWebResponse 
-            { 
-                Single = announceDetailResponse.Single, 
-                Success = announceDetailResponse.Success, 
-                Message = announceDetailResponse.Message
+            await Service.InsertAsync(Model);
+            return new Response<AnnounceDetail>
+            {
+                //Single = announceDetailResponse.Single,
+                //Success = announceDetailResponse.Success, 
+                //Message = announceDetailResponse.Message
             };
         }
 
         [HttpPut]
         [Route("api/announcedetail")]
-        public async Task<AnnounceDetailWebResponse> Update([FromBody] AnnounceDetailUpdateDataTransfer Model)
+        public async Task<Response<AnnounceDetail>> Update([FromBody] AnnounceDetailUpdateDataTransfer Model)
         {
-            AnnounceDetailResponse announceDetailResponse = await Service.UpdateAsync(Model);
-            return new AnnounceDetailWebResponse
+            await Service.UpdateAsync(Model);
+            return new Response<AnnounceDetail>
             {
-                Single = announceDetailResponse.Single,
-                Success = announceDetailResponse.Success, 
-                Message = announceDetailResponse.Message
+                //Single = announceDetailResponse.Single,
+                //Success = announceDetailResponse.Success, 
+                //Message = announceDetailResponse.Message
             };
         }
 
         [HttpDelete]
         [Route("api/announcedetail")]
-        public async Task<AnnounceDetailWebResponse> Delete([FromBody] AnnounceDetailDeleteDataTransfer Model)
+        public async Task<Response<AnnounceDetail>> Delete([FromBody] AnnounceDetailDeleteDataTransfer Model)
         {
-            AnnounceDetailResponse announceDetailResponse = await Service.DeleteAsync(Model);
-            return new AnnounceDetailWebResponse
+            await Service.DeleteAsync(Model);
+            return new Response<AnnounceDetail>
             {
-                Single = announceDetailResponse.Single,
-                Success = announceDetailResponse.Success, 
-                Message = announceDetailResponse.Message
+                //Single = announceDetailResponse.Single,
+                //Success = announceDetailResponse.Success, 
+                //Message = announceDetailResponse.Message
             };
         }
 
         [HttpGet]
         [Route("api/announcedetail")]
-        public async Task<AnnounceDetailWebResponse> Get([FromBody] AnnounceDetailSelectDataTransfer Model)
+        public async Task<Response<AnnounceDetail>> Get([FromBody] AnnounceDetailSelectDataTransfer Model)
         {
-            AnnounceDetailResponse announceDetailResponse = await Service.SelectAsync(Model);
-            return new AnnounceDetailWebResponse
+            await Service.SelectAsync(Model);
+            return new Response<AnnounceDetail>
             {
-                List = announceDetailResponse.List, 
-                Success = announceDetailResponse.Success, 
-                Message = announceDetailResponse.Message
+                //Single = announceDetailResponse.Single,
+                //Success = announceDetailResponse.Success, 
+                //Message = announceDetailResponse.Message
             };
         }
 
         [HttpGet]
         [Route("api/announcedetail/{id}")]
-        public async Task<AnnounceDetailWebResponse> Get([FromBody] AnnounceDetailAnyDataTransfer Model)
+        public async Task<Response<AnnounceDetail>> Get([FromBody] AnnounceDetailAnyDataTransfer Model)
         {
-            AnnounceDetailResponse announceDetailResponse = await Service.AnyAsync(Model);
-            return new AnnounceDetailWebResponse
+            await Service.AnyAsync(Model);
+            return new Response<AnnounceDetail>
             {
-                List = announceDetailResponse.List, 
-                Success = announceDetailResponse.Success, 
-                Message = announceDetailResponse.Message
+                //Single = announceDetailResponse.Single,
+                //Success = announceDetailResponse.Success, 
+                //Message = announceDetailResponse.Message
             };
         }
     }

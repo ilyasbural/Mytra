@@ -14,39 +14,49 @@
 
         [HttpPost]
         [Route("api/managementcontact")]
-        public async Task<ManagementContactWebResponse> Create([FromBody] ManagementContactInsertDataTransfer Model)
+        public async Task<Response<ManagementContact>> Create([FromBody] ManagementContactInsertDataTransfer Model)
         {
-            ManagementContactResponse managementContactResponse = await Service.InsertAsync(Model);
-            return new ManagementContactWebResponse 
-            { 
-                Single = managementContactResponse.Single, 
-                Success = managementContactResponse.Success
+            await Service.InsertAsync(Model);
+            return new Response<ManagementContact>
+            {
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpGet]
         [Route("api/managementcontact")]
-        public async Task<ManagementContactWebResponse> Get([FromBody] ManagementContactSelectDataTransfer Model)
+        public async Task<Response<ManagementContact>> Get([FromBody] ManagementContactSelectDataTransfer Model)
         {
-            ManagementContactResponse managementContactResponse = await Service.SelectAsync(Model);
-            return new ManagementContactWebResponse 
-            { 
-                List = managementContactResponse.List,
-                Success = managementContactResponse.Success, 
-                Message = managementContactResponse.Message
+            await Service.SelectAsync(Model);
+            return new Response<ManagementContact>
+            {
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpGet]
         [Route("api/managementcontact/{id}")]
-        public async Task<ManagementContactWebResponse> Get([FromBody] ManagementContactAnyDataTransfer Model)
+        public async Task<Response<ManagementContact>> Get([FromBody] ManagementContactAnyDataTransfer Model)
         {
-            ManagementContactResponse managementContactResponse = await Service.AnyAsync(Model);
-            return new ManagementContactWebResponse
+            await Service.AnySelectAsync(Model);
+            return new Response<ManagementContact>
             {
-                List = managementContactResponse.List,
-                Success = managementContactResponse.Success,
-                Message = managementContactResponse.Message
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
     }

@@ -2,10 +2,10 @@
 {
     public interface IManagementDetailService
     {
-        Task<ManagementDetailResponse> InsertAsync(ManagementDetailInsertDataTransfer Model);
-        Task<ManagementDetailResponse> UpdateAsync(ManagementDetailUpdateDataTransfer Model);
-        Task<ManagementDetailResponse> DeleteAsync(ManagementDetailDeleteDataTransfer Model);
-        Task<ManagementDetailResponse> SelectAsync(ManagementDetailSelectDataTransfer Model);
-        Task<ManagementDetailResponse> AnyAsync(ManagementDetailAnyDataTransfer Model);
+        Task<Response<ManagementDetail>> InsertAsync(ManagementDetailInsertDataTransfer Model);
+        Task<Response<ManagementDetail>> UpdateAsync(ManagementDetailUpdateDataTransfer Model);
+        Task<Response<ManagementDetail>> DeleteAsync(ManagementDetailDeleteDataTransfer Model);
+        Task<Response<ManagementDetail>> SelectAsync(ManagementDetailSelectDataTransfer Model);
+        Task<Response<ManagementDetail>> AnySelectAsync(ManagementDetailAnyDataTransfer Model);
     }
 }

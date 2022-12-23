@@ -2,10 +2,10 @@
 {
     public interface IUserContactService
     {
-        Task<UserContactResponse> InsertAsync(UserContactInsertDataTransfer Model);
-        Task<UserContactResponse> UpdateAsync(UserContactUpdateDataTransfer Model);
-        Task<UserContactResponse> DeleteAsync(UserContactDeleteDataTransfer Model);
-        Task<UserContactResponse> SelectAsync(UserContactSelectDataTransfer Model);
-        Task<UserContactResponse> AnyAsync(UserContactAnyDataTransfer Model);
+        Task<Response<UserContact>> InsertAsync(UserContactInsertDataTransfer Model);
+        Task<Response<UserContact>> UpdateAsync(UserContactUpdateDataTransfer Model);
+        Task<Response<UserContact>> DeleteAsync(UserContactDeleteDataTransfer Model);
+        Task<Response<UserContact>> SelectAsync(UserContactSelectDataTransfer Model);
+        Task<Response<UserContact>> AnySelectAsync(UserContactAnyDataTransfer Model);
     }
 }

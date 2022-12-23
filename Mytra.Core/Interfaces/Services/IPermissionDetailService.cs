@@ -2,10 +2,10 @@
 {
     public interface IPermissionDetailService
     {
-        Task<PermissionDetailResponse> InsertAsync(PermissionDetailInsertDataTransfer Model);
-        Task<PermissionDetailResponse> UpdateAsync(PermissionDetailUpdateDataTransfer Model);
-        Task<PermissionDetailResponse> DeleteAsync(PermissionDetailDeleteDataTransfer Model);
-        Task<PermissionDetailResponse> SelectAsync(PermissionDetailSelectDataTransfer Model);
-        Task<PermissionDetailResponse> AnyAsync(PermissionDetailAnyDataTransfer Model);
+        Task<Response<PermissionDetail>> InsertAsync(PermissionDetailInsertDataTransfer Model);
+        Task<Response<PermissionDetail>> UpdateAsync(PermissionDetailUpdateDataTransfer Model);
+        Task<Response<PermissionDetail>> DeleteAsync(PermissionDetailDeleteDataTransfer Model);
+        Task<Response<PermissionDetail>> SelectAsync(PermissionDetailSelectDataTransfer Model);
+        Task<Response<PermissionDetail>> AnySelectAsync(PermissionDetailAnyDataTransfer Model);
     }
 }

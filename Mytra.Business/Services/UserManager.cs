@@ -18,7 +18,7 @@
             Validator = validator;
         }
 
-        public async Task<UserResponse> InsertAsync(UserInsertDataTransfer Model)
+        public async Task<Response<User>> InsertAsync(UserInsertDataTransfer Model)
         {
             Entity = Mapper.Map<User>(Model);
             Validations = Validator.Validate(Entity);
@@ -42,18 +42,18 @@
             await UnitOfWork.User.InsertAsync(Entity);
             await UnitOfWork.SaveChangesAsync();
 
-            return new UserResponse 
+            return new Response<User>
             {
-                Single = Entity,
-                Success = Success,
-                Message = Message,
-                Errors = new List<string>(),
-                IsValidationError = IsValidationError,
-                Validations = new List<ValidationResult> { Validations }
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<UserResponse> UpdateAsync(UserUpdateDataTransfer Model)
+        public async Task<Response<User>> UpdateAsync(UserUpdateDataTransfer Model)
         {
             List<User> DataSource = await UnitOfWork.User.SelectAsync(x => x.Id == Model.Id);
             User user = Mapper.Map<User>(DataSource[0]);
@@ -74,15 +74,18 @@
             await UnitOfWork.User.UpdateAsync(user);
             int result = await UnitOfWork.SaveChangesAsync();
 
-            return new UserResponse 
+            return new Response<User>
             {
-                Single = user,
-                Success = result,
-                Message = "Completed"
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<UserResponse> DeleteAsync(UserDeleteDataTransfer Model)
+        public async Task<Response<User>> DeleteAsync(UserDeleteDataTransfer Model)
         {
             List<User> userDataSource = await UnitOfWork.User.SelectAsync(x => x.Id == Model.Id);
             User user = Mapper.Map<User>(userDataSource[0]);
@@ -103,33 +106,42 @@
             await UnitOfWork.User.DeleteAsync(user);
             int result = await UnitOfWork.SaveChangesAsync();
 
-            return new UserResponse
+            return new Response<User>
             {
-                Single = user,
-                Success = result,
-                Message = "Completed"
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<UserResponse> SelectAsync(UserSelectDataTransfer Model)
+        public async Task<Response<User>> SelectAsync(UserSelectDataTransfer Model)
         {
             List<User> userDataSource = await UnitOfWork.User.SelectAsync(x => x.IsActive == true);
-            return new UserResponse
+            return new Response<User>
             {
-                List = userDataSource,
-                Success = 1,
-                Message = "Completed"
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<UserResponse> AnyAsync(UserAnyDataTransfer Model)
+        public async Task<Response<User>> AnySelectAsync(UserAnyDataTransfer Model)
         {
             List<User> userDataSource = await UnitOfWork.User.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
-            return new UserResponse
+            return new Response<User>
             {
-                List = userDataSource,
-                Success = 1,
-                Message = "Completed"
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
     }

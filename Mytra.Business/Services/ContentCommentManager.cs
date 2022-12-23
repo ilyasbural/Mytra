@@ -18,7 +18,7 @@
             Validator = validator;
         }
 
-        public async Task<ContentCommentResponse> InsertAsync(ContentCommentInsertDataTransfer Model)
+        public async Task<Response<ContentComment>> InsertAsync(ContentCommentInsertDataTransfer Model)
         {
             Entity = Mapper.Map<ContentComment>(Model);
             Validations = Validator.Validate(Entity);
@@ -30,18 +30,18 @@
             await UnitOfWork.ContentComment.InsertAsync(Entity);
             int result = await UnitOfWork.SaveChangesAsync();
 
-            return new ContentCommentResponse 
+            return new Response<ContentComment>
             {
-                Single = Entity,
-                Success = Success,
-                Message = Message,
-                Errors = new List<string>(),
-                IsValidationError = IsValidationError,
-                Validations = new List<ValidationResult> { Validations }
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<ContentCommentResponse> UpdateAsync(ContentCommentUpdateDataTransfer Model)
+        public async Task<Response<ContentComment>> UpdateAsync(ContentCommentUpdateDataTransfer Model)
         {
             List<ContentComment> DataSource = await UnitOfWork.ContentComment.SelectAsync(x => x.Id == Model.Id);
             ContentComment contentComment = Mapper.Map<ContentComment>(DataSource[0]);
@@ -50,70 +50,66 @@
 
 
 
-
-
-
-
-
-
             await UnitOfWork.ContentComment.UpdateAsync(contentComment);
             int result = await UnitOfWork.SaveChangesAsync();
 
-            return new ContentCommentResponse
+            return new Response<ContentComment>
             {
-                Single = contentComment,
-                Success = result,
-                Message = "Completed"
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<ContentCommentResponse> DeleteAsync(ContentCommentDeleteDataTransfer Model)
+        public async Task<Response<ContentComment>> DeleteAsync(ContentCommentDeleteDataTransfer Model)
         {
             List<ContentComment> announceDataSource = await UnitOfWork.ContentComment.SelectAsync(x => x.Id == Model.Id);
             ContentComment contentComment = Mapper.Map<ContentComment>(announceDataSource[0]);
 
 
 
-
-
-
-
-
-
-
-
-
-
             await UnitOfWork.ContentComment.DeleteAsync(contentComment);
             int result = await UnitOfWork.SaveChangesAsync();
 
-            return new ContentCommentResponse
+            return new Response<ContentComment>
             {
-                Single = contentComment,
-                Success = result,
-                Message = "Completed"
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<ContentCommentResponse> SelectAsync(ContentCommentSelectDataTransfer Model)
+        public async Task<Response<ContentComment>> SelectAsync(ContentCommentSelectDataTransfer Model)
         {
             List<ContentComment> contentCommentDataSource = await UnitOfWork.ContentComment.SelectAsync(x => x.IsActive == true);
-            return new ContentCommentResponse
+            return new Response<ContentComment>
             {
-                List = contentCommentDataSource,
-                Success = 1,
-                Message = "Completed"
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<ContentCommentResponse> AnyAsync(ContentCommentAnyDataTransfer Model)
+        public async Task<Response<ContentComment>> AnySelectAsync(ContentCommentAnyDataTransfer Model)
         {
             List<ContentComment> contentCommentDataSource = await UnitOfWork.ContentComment.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
-            return new ContentCommentResponse
+            return new Response<ContentComment>
             {
-                List = contentCommentDataSource,
-                Success = 1,
-                Message = "Completed"
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
     }

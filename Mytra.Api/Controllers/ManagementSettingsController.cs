@@ -14,59 +14,81 @@
 
         [HttpPost]
         [Route("api/managementsettings")]
-        public async Task<ManagementSettingsWebResponse> Create([FromBody] ManagementSettingsInsertDataTransfer Model)
+        public async Task<Response<ManagementSettings>> Create([FromBody] ManagementSettingsInsertDataTransfer Model)
         {
-            ManagementSettingsResponse managementSettingsResponse = await Service.InsertAsync(Model);
-            return new ManagementSettingsWebResponse 
-            { 
-                Single = managementSettingsResponse.Single, 
-                Success = managementSettingsResponse.Success,
+            await Service.InsertAsync(Model);
+            return new Response<ManagementSettings>
+            {
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpPut]
         [Route("api/managementsettings")]
-        public async Task<ManagementSettingsWebResponse> Update([FromBody] ManagementSettingsUpdateDataTransfer Model)
+        public async Task<Response<ManagementSettings>> Update([FromBody] ManagementSettingsUpdateDataTransfer Model)
         {
-            ManagementSettingsResponse managementSettingsResponse = await Service.UpdateAsync(Model);
-            return new ManagementSettingsWebResponse { Single = managementSettingsResponse.Single };
+            await Service.UpdateAsync(Model);
+            return new Response<ManagementSettings>
+            {
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
+            };
         }
 
         [HttpDelete]
         [Route("api/managementsettings")]
-        public async Task<ManagementSettingsWebResponse> Delete([FromBody] ManagementSettingsDeleteDataTransfer Model)
+        public async Task<Response<ManagementSettings>> Delete([FromBody] ManagementSettingsDeleteDataTransfer Model)
         {
-            ManagementSettingsResponse managementSettingsResponse = await Service.DeleteAsync(Model);
-            return new ManagementSettingsWebResponse
+            await Service.DeleteAsync(Model);
+            return new Response<ManagementSettings>
             {
-
-
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpGet]
         [Route("api/managementsettings")]
-        public async Task<ManagementSettingsWebResponse> Get([FromBody] ManagementSettingsSelectDataTransfer Model)
+        public async Task<Response<ManagementSettings>> Get([FromBody] ManagementSettingsSelectDataTransfer Model)
         {
-            ManagementSettingsResponse managementSettingsResponse = await Service.SelectAsync(Model);
-            return new ManagementSettingsWebResponse
+            await Service.SelectAsync(Model);
+            return new Response<ManagementSettings>
             {
-                List = managementSettingsResponse.List,
-                Success = managementSettingsResponse.Success, 
-                Message = managementSettingsResponse.Message
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpGet]
         [Route("api/managementsettings/{id}")]
-        public async Task<ManagementSettingsWebResponse> Get([FromBody] ManagementSettingsAnyDataTransfer Model)
+        public async Task<Response<ManagementSettings>> Get([FromBody] ManagementSettingsAnyDataTransfer Model)
         {
-            ManagementSettingsResponse managementSettingsResponse = await Service.AnyAsync(Model);
-            return new ManagementSettingsWebResponse
+            await Service.AnySelectAsync(Model);
+            return new Response<ManagementSettings>
             {
-                List = managementSettingsResponse.List,
-                Success = managementSettingsResponse.Success,
-                Message = managementSettingsResponse.Message
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
     }

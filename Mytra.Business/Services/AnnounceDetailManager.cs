@@ -18,7 +18,7 @@
             Validator = validator;
         }
 
-        public async Task<AnnounceDetailResponse> InsertAsync(AnnounceDetailInsertDataTransfer Model)
+        public async Task<Response<AnnounceDetail>> InsertAsync(AnnounceDetailInsertDataTransfer Model)
         {
             Entity = Mapper.Map<AnnounceDetail>(Model);
             Entity.Id = Guid.NewGuid();
@@ -29,18 +29,18 @@
             await UnitOfWork.AnnounceDetail.InsertAsync(Entity);
             int result = await UnitOfWork.SaveChangesAsync();
 
-            return new AnnounceDetailResponse 
+            return new Response<AnnounceDetail> 
             {
-                Single = Entity,
-                Success = Success,
-                Message = Message,
-                Errors = new List<string>(),
-                IsValidationError = IsValidationError,
-                Validations = new List<ValidationResult> { Validations }
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<AnnounceDetailResponse> UpdateAsync(AnnounceDetailUpdateDataTransfer Model)
+        public async Task<Response<AnnounceDetail>> UpdateAsync(AnnounceDetailUpdateDataTransfer Model)
         {
             List<AnnounceDetail> DataSource = await UnitOfWork.AnnounceDetail.SelectAsync(x => x.Id == Model.Id);
             AnnounceDetail picture = Mapper.Map<AnnounceDetail>(DataSource[0]);
@@ -58,15 +58,18 @@
             await UnitOfWork.AnnounceDetail.UpdateAsync(picture);
             int result = await UnitOfWork.SaveChangesAsync();
 
-            return new AnnounceDetailResponse 
-            { 
-                Single = picture, 
-                Success = result, 
-                Message = "Completed"
+            return new Response<AnnounceDetail>
+            {
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }      
 
-        public async Task<AnnounceDetailResponse> DeleteAsync(AnnounceDetailDeleteDataTransfer Model)
+        public async Task<Response<AnnounceDetail>> DeleteAsync(AnnounceDetailDeleteDataTransfer Model)
         {
             List<AnnounceDetail> announceDetailDataSource = await UnitOfWork.AnnounceDetail.SelectAsync(x => x.Id == Model.Id);
             AnnounceDetail announceDetail = Mapper.Map<AnnounceDetail>(announceDetailDataSource[0]);
@@ -84,33 +87,42 @@
             await UnitOfWork.AnnounceDetail.DeleteAsync(announceDetail);
             int result = await UnitOfWork.SaveChangesAsync();
 
-            return new AnnounceDetailResponse
+            return new Response<AnnounceDetail>
             {
-                Single = announceDetail,
-                Success = result,
-                Message = "Completed"
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }  
 
-        public async Task<AnnounceDetailResponse> SelectAsync(AnnounceDetailSelectDataTransfer Model)
+        public async Task<Response<AnnounceDetail>> SelectAsync(AnnounceDetailSelectDataTransfer Model)
         {
             List<AnnounceDetail> announceDetailDataSource = await UnitOfWork.AnnounceDetail.SelectAsync(x => x.IsActive == true);
-            return new AnnounceDetailResponse
+            return new Response<AnnounceDetail>
             {
-                List = announceDetailDataSource, 
-                Success = 1, 
-                Message = "Completed"
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<AnnounceDetailResponse> AnyAsync(AnnounceDetailAnyDataTransfer Model)
+        public async Task<Response<AnnounceDetail>> AnyAsync(AnnounceDetailAnyDataTransfer Model)
         {
             List<AnnounceDetail> announceDetailDataSource = await UnitOfWork.AnnounceDetail.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
-            return new AnnounceDetailResponse
+            return new Response<AnnounceDetail>
             {
-                List = announceDetailDataSource,
-                Success = 1,
-                Message = "Completed"
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
     }

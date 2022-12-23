@@ -14,62 +14,81 @@
 
         [HttpPost]
         [Route("api/management")]
-        public async Task<ManagementWebResponse> Create([FromBody] ManagementInsertDataTransfer Model)
+        public async Task<Response<Management>> Create([FromBody] ManagementInsertDataTransfer Model)
         {
-            ManagementResponse managementResponse = await Service.InsertAsync(Model);
-            return new ManagementWebResponse 
-            { 
-                Single = managementResponse.Single, 
-                Success = managementResponse.Success,
+            await Service.InsertAsync(Model);
+            return new Response<Management>
+            {
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpPut]
         [Route("api/management")]
-        public async Task<ManagementWebResponse> Update([FromBody] ManagementUpdateDataTransfer Model)
+        public async Task<Response<Management>> Update([FromBody] ManagementUpdateDataTransfer Model)
         {
-            ManagementResponse managementResponse = await Service.UpdateAsync(Model);
-            return new ManagementWebResponse { Single = managementResponse.Single };
+            await Service.UpdateAsync(Model);
+            return new Response<Management>
+            {
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
+            };
         }
 
         [HttpDelete]
         [Route("api/management")]
-        public async Task<ManagementWebResponse> Delete([FromBody] ManagementDeleteDataTransfer Model)
+        public async Task<Response<Management>> Delete([FromBody] ManagementDeleteDataTransfer Model)
         {
-            ManagementResponse managementResponse = await Service.DeleteAsync(Model);
-            return new ManagementWebResponse
+            await Service.DeleteAsync(Model);
+            return new Response<Management>
             {
-
-
-
-
-
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpGet]
         [Route("api/management")]
-        public async Task<ManagementWebResponse> Get([FromBody] ManagementSelectDataTransfer Model)
+        public async Task<Response<Management>> Get([FromBody] ManagementSelectDataTransfer Model)
         {
-            ManagementResponse managementResponse = await Service.SelectAsync(Model);
-            return new ManagementWebResponse
+            await Service.SelectAsync(Model);
+            return new Response<Management>
             {
-                List = managementResponse.List,
-                Success = managementResponse.Success, 
-                Message = managementResponse.Message
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpGet]
         [Route("api/management/{id}")]
-        public async Task<ManagementWebResponse> Get([FromBody] ManagementAnyDataTransfer Model)
+        public async Task<Response<Management>> Get([FromBody] ManagementAnyDataTransfer Model)
         {
-            ManagementResponse managementResponse = await Service.AnyAsync(Model);
-            return new ManagementWebResponse
+            await Service.AnySelectAsync(Model);
+            return new Response<Management>
             {
-                List = managementResponse.List,
-                Success = managementResponse.Success,
-                Message = managementResponse.Message
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
     }

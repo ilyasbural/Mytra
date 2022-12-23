@@ -14,66 +14,81 @@
 
         [HttpPost]
         [Route("api/category")]
-        public async Task<CategoryWebResponse> Create([FromBody] CategoryInsertDataTransfer Model)
+        public async Task<Response<Category>> Create([FromBody] CategoryInsertDataTransfer Model)
         {
-            CategoryResponse categoryResponse = await Service.InsertAsync(Model);
-            return new CategoryWebResponse 
-            { 
-                Single = categoryResponse.Single, 
-                Success = categoryResponse.Success, 
-                Message = categoryResponse.Message
+            await Service.InsertAsync(Model);
+            return new Response<Category>
+            {
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpPut]
         [Route("api/category")]
-        public async Task<CategoryWebResponse> Update([FromBody] CategoryUpdateDataTransfer Model)
+        public async Task<Response<Category>> Update([FromBody] CategoryUpdateDataTransfer Model)
         {
-            CategoryResponse categoryResponse = await Service.UpdateAsync(Model);
-            return new CategoryWebResponse
+            await Service.UpdateAsync(Model);
+            return new Response<Category>
             {
-                Single = categoryResponse.Single,
-                Success = categoryResponse.Success,
-                Message = categoryResponse.Message
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpDelete]
         [Route("api/category")]
-        public async Task<CategoryWebResponse> Delete([FromBody] CategoryDeleteDataTransfer Model)
+        public async Task<Response<Category>> Delete([FromBody] CategoryDeleteDataTransfer Model)
         {
-            CategoryResponse categoryResponse = await Service.DeleteAsync(Model);
-            return new CategoryWebResponse
+            await Service.DeleteAsync(Model);
+            return new Response<Category>
             {
-                Single = categoryResponse.Single,
-                Success = categoryResponse.Success,
-                Message = categoryResponse.Message
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpGet]
         [Route("api/category")]
-        public async Task<CategoryWebResponse> Get([FromBody] CategorySelectDataTransfer Model)
+        public async Task<Response<Category>> Get([FromBody] CategorySelectDataTransfer Model)
         {
-            CategoryResponse categoryResponse = await Service.SelectAsync(Model);
-            return new CategoryWebResponse
+            await Service.SelectAsync(Model);
+            return new Response<Category>
             {
-                List = categoryResponse.List,
-                Success = categoryResponse.Success, 
-                Message = categoryResponse.Message
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpGet]
         [Route("api/category/{id}")]
-        public async Task<CategoryWebResponse> Get([FromBody] CategoryAnyDataTransfer Model)
+        public async Task<Response<Category>> Get([FromBody] CategoryAnyDataTransfer Model)
         {
-            CategoryResponse categoryResponse = await Service.AnyAsync(Model);
-            return new CategoryWebResponse
+            await Service.AnySelectAsync(Model);
+            return new Response<Category>
             {
-                List = categoryResponse.List,
-                Success = categoryResponse.Success,
-                Message = categoryResponse.Message
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
     }

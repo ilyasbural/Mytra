@@ -14,60 +14,81 @@
 
         [HttpPost]
         [Route("api/user")]
-        public async Task<UserWebResponse> Create([FromBody] UserInsertDataTransfer Model)
+        public async Task<Response<User>> Create([FromBody] UserInsertDataTransfer Model)
         {
-            UserResponse userResponse = await Service.InsertAsync(Model);
-            return new UserWebResponse 
-            { 
-                Single = userResponse.Single, 
-                Success = userResponse.Success
+            await Service.InsertAsync(Model);
+            return new Response<User>
+            {
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpPut]
         [Route("api/user")]
-        public async Task<UserWebResponse> Update([FromBody] UserUpdateDataTransfer Model)
+        public async Task<Response<User>> Update([FromBody] UserUpdateDataTransfer Model)
         {
-            UserResponse userResponse = await Service.UpdateAsync(Model);
-            return new UserWebResponse { Single = userResponse.Single };
+            await Service.UpdateAsync(Model);
+            return new Response<User>
+            {
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
+            };
         }
 
         [HttpDelete]
         [Route("api/user")]
-        public async Task<UserWebResponse> Delete([FromBody] UserDeleteDataTransfer Model)
+        public async Task<Response<User>> Delete([FromBody] UserDeleteDataTransfer Model)
         {
-            UserResponse userResponse = await Service.DeleteAsync(Model);
-            return new UserWebResponse
+            await Service.DeleteAsync(Model);
+            return new Response<User>
             {
-
-
-
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpGet]
         [Route("api/user")]
-        public async Task<UserWebResponse> Get([FromBody] UserSelectDataTransfer Model)
+        public async Task<Response<User>> Get([FromBody] UserSelectDataTransfer Model)
         {
-            UserResponse userResponse = await Service.SelectAsync(Model);
-            return new UserWebResponse
+            await Service.SelectAsync(Model);
+            return new Response<User>
             {
-                List = userResponse.List,
-                Success = userResponse.Success, 
-                Message = userResponse.Message
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpGet]
         [Route("api/user/{id}")]
-        public async Task<UserWebResponse> Get([FromBody] UserAnyDataTransfer Model)
+        public async Task<Response<User>> Get([FromBody] UserAnyDataTransfer Model)
         {
-            UserResponse userResponse = await Service.AnyAsync(Model);
-            return new UserWebResponse
+            await Service.AnySelectAsync(Model);
+            return new Response<User>
             {
-                List = userResponse.List,
-                Success = userResponse.Success,
-                Message = userResponse.Message
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
     }

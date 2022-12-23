@@ -14,63 +14,81 @@
 
         [HttpPost]
         [Route("api/contentpicture")]
-        public async Task<ContentPictureWebResponse> Create([FromBody] ContentPictureInsertDataTransfer Model)
+        public async Task<Response<ContentPicture>> Create([FromBody] ContentPictureInsertDataTransfer Model)
         {
-            ContentPictureResponse contentPictureResponse = await Service.InsertAsync(Model);
-            return new ContentPictureWebResponse 
-            { 
-                Single = contentPictureResponse.Single, 
-                Success = contentPictureResponse.Success
+            await Service.InsertAsync(Model);
+            return new Response<ContentPicture>
+            {
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpPut]
         [Route("api/contentpicture")]
-        public async Task<ContentPictureWebResponse> Update([FromBody] ContentPictureUpdateDataTransfer Model)
+        public async Task<Response<ContentPicture>> Update([FromBody] ContentPictureUpdateDataTransfer Model)
         {
-            ContentPictureResponse contentPictureResponse = await Service.UpdateAsync(Model);
-            return new ContentPictureWebResponse { Single = contentPictureResponse.Single };
+            await Service.UpdateAsync(Model);
+            return new Response<ContentPicture>
+            {
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
+            };
         }
 
         [HttpDelete]
         [Route("api/contentpicture")]
-        public async Task<ContentPictureWebResponse> Delete([FromBody] ContentPictureDeleteDataTransfer Model)
+        public async Task<Response<ContentPicture>> Delete([FromBody] ContentPictureDeleteDataTransfer Model)
         {
-            ContentPictureResponse contentPictureResponse = await Service.DeleteAsync(Model);
-            return new ContentPictureWebResponse
+            await Service.DeleteAsync(Model);
+            return new Response<ContentPicture>
             {
-
-
-
-
-
-
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpGet]
         [Route("api/contentpicture")]
-        public async Task<ContentPictureWebResponse> Get([FromBody] ContentPictureSelectDataTransfer Model)
+        public async Task<Response<ContentPicture>> Get([FromBody] ContentPictureSelectDataTransfer Model)
         {
-            ContentPictureResponse contentPictureResponse = await Service.SelectAsync(Model);
-            return new ContentPictureWebResponse
+            await Service.SelectAsync(Model);
+            return new Response<ContentPicture>
             {
-                List = contentPictureResponse.List,
-                Success = contentPictureResponse.Success, 
-                Message = contentPictureResponse.Message
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpGet]
         [Route("api/contentpicture/{id}")]
-        public async Task<ContentPictureWebResponse> Get([FromBody] ContentPictureAnyDataTransfer Model)
+        public async Task<Response<ContentPicture>> Get([FromBody] ContentPictureAnyDataTransfer Model)
         {
-            ContentPictureResponse contentPictureResponse = await Service.AnyAsync(Model);
-            return new ContentPictureWebResponse
+            await Service.AnySelectAsync(Model);
+            return new Response<ContentPicture>
             {
-                List = contentPictureResponse.List,
-                Success = contentPictureResponse.Success,
-                Message = contentPictureResponse.Message
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
     }

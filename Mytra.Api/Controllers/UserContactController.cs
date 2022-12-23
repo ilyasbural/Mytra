@@ -14,60 +14,81 @@
 
         [HttpPost]
         [Route("api/usercontact")]
-        public async Task<UserContactWebResponse> Create([FromBody] UserContactInsertDataTransfer Model)
+        public async Task<Response<UserContact>> Create([FromBody] UserContactInsertDataTransfer Model)
         {
-            UserContactResponse userContactResponse = await Service.InsertAsync(Model);
-            return new UserContactWebResponse 
-            { 
-                Single = userContactResponse.Single, 
-                Success = userContactResponse.Success
+            await Service.InsertAsync(Model);
+            return new Response<UserContact>
+            {
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpPut]
         [Route("api/usercontact")]
-        public async Task<UserContactWebResponse> Update([FromBody] UserContactUpdateDataTransfer Model)
+        public async Task<Response<UserContact>> Update([FromBody] UserContactUpdateDataTransfer Model)
         {
-            UserContactResponse userContactResponse = await Service.UpdateAsync(Model);
-            return new UserContactWebResponse { Single = userContactResponse.Single };
+            await Service.UpdateAsync(Model);
+            return new Response<UserContact>
+            {
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
+            };
         }
 
         [HttpDelete]
         [Route("api/usercontact")]
-        public async Task<UserContactWebResponse> Delete([FromBody] UserContactDeleteDataTransfer Model)
+        public async Task<Response<UserContact>> Delete([FromBody] UserContactDeleteDataTransfer Model)
         {
-            UserContactResponse userContactResponse = await Service.DeleteAsync(Model);
-            return new UserContactWebResponse
+            await Service.DeleteAsync(Model);
+            return new Response<UserContact>
             {
-
-
-
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpGet]
         [Route("api/usercontact")]
-        public async Task<UserContactWebResponse> Get([FromBody] UserContactSelectDataTransfer Model)
+        public async Task<Response<UserContact>> Get([FromBody] UserContactSelectDataTransfer Model)
         {
-            UserContactResponse userContactResponse = await Service.SelectAsync(Model);
-            return new UserContactWebResponse
+            await Service.SelectAsync(Model);
+            return new Response<UserContact>
             {
-                List = userContactResponse.List,
-                Success = userContactResponse.Success, 
-                Message = userContactResponse.Message
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpGet]
         [Route("api/usercontact/{id}")]
-        public async Task<UserContactWebResponse> Get([FromBody] UserContactAnyDataTransfer Model)
+        public async Task<Response<UserContact>> Get([FromBody] UserContactAnyDataTransfer Model)
         {
-            UserContactResponse userContactResponse = await Service.AnyAsync(Model);
-            return new UserContactWebResponse
+            await Service.AnySelectAsync(Model);
+            return new Response<UserContact>
             {
-                List = userContactResponse.List,
-                Success = userContactResponse.Success,
-                Message = userContactResponse.Message
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
     }

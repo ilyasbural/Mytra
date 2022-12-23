@@ -14,59 +14,81 @@
 
         [HttpPost]
         [Route("api/managementdetail")]
-        public async Task<ManagementDetailWebResponse> Create([FromBody] ManagementDetailInsertDataTransfer Model)
+        public async Task<Response<ManagementDetail>> Create([FromBody] ManagementDetailInsertDataTransfer Model)
         {
-            ManagementDetailResponse managementDetailResponse = await Service.InsertAsync(Model);
-            return new ManagementDetailWebResponse 
-            { 
-                Single = managementDetailResponse.Single, 
-                Success = managementDetailResponse.Success,
+            await Service.InsertAsync(Model);
+            return new Response<ManagementDetail>
+            {
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpPut]
         [Route("api/managementdetail")]
-        public async Task<ManagementDetailWebResponse> Update([FromBody] ManagementDetailUpdateDataTransfer Model)
+        public async Task<Response<ManagementDetail>> Update([FromBody] ManagementDetailUpdateDataTransfer Model)
         {
-            ManagementDetailResponse managementDetailResponse = await Service.UpdateAsync(Model);
-            return new ManagementDetailWebResponse { Single = managementDetailResponse.Single };
+            await Service.UpdateAsync(Model);
+            return new Response<ManagementDetail>
+            {
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
+            };
         }
 
         [HttpDelete]
         [Route("api/managementdetail")]
-        public async Task<ManagementDetailWebResponse> Delete([FromBody] ManagementDetailDeleteDataTransfer Model)
+        public async Task<Response<ManagementDetail>> Delete([FromBody] ManagementDetailDeleteDataTransfer Model)
         {
-            ManagementDetailResponse managementDetailResponse = await Service.DeleteAsync(Model);
-            return new ManagementDetailWebResponse
+            await Service.DeleteAsync(Model);
+            return new Response<ManagementDetail>
             {
-
-
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpGet]
         [Route("api/managementdetail")]
-        public async Task<ManagementDetailWebResponse> Get([FromBody] ManagementDetailSelectDataTransfer Model)
+        public async Task<Response<ManagementDetail>> Get([FromBody] ManagementDetailSelectDataTransfer Model)
         {
-            ManagementDetailResponse managementDetailResponse = await Service.SelectAsync(Model);
-            return new ManagementDetailWebResponse
+            await Service.SelectAsync(Model);
+            return new Response<ManagementDetail>
             {
-                List = managementDetailResponse.List,
-                Success = managementDetailResponse.Success, 
-                Message = managementDetailResponse.Message
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpGet]
         [Route("api/managementdetail/{id}")]
-        public async Task<ManagementDetailWebResponse> Get([FromBody] ManagementDetailAnyDataTransfer Model)
+        public async Task<Response<ManagementDetail>> Get([FromBody] ManagementDetailAnyDataTransfer Model)
         {
-            ManagementDetailResponse managementDetailResponse = await Service.AnyAsync(Model);
-            return new ManagementDetailWebResponse
+            await Service.AnySelectAsync(Model);
+            return new Response<ManagementDetail>
             {
-                List = managementDetailResponse.List,
-                Success = managementDetailResponse.Success,
-                Message = managementDetailResponse.Message
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
     }

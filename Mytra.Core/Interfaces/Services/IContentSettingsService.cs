@@ -2,10 +2,10 @@
 {
     public interface IContentSettingsService
     {
-        Task<ContentSettingsResponse> InsertAsync(ContentSettingsInsertDataTransfer Model);
-        Task<ContentSettingsResponse> UpdateAsync(ContentSettingsUpdateDataTransfer Model);
-        Task<ContentSettingsResponse> DeleteAsync(ContentSettingsDeleteDataTransfer Model);
-        Task<ContentSettingsResponse> SelectAsync(ContentSettingsSelectDataTransfer Model);
-        Task<ContentSettingsResponse> AnyAsync(ContentSettingsAnyDataTransfer Model);
+        Task<Response<ContentSettings>> InsertAsync(ContentSettingsInsertDataTransfer Model);
+        Task<Response<ContentSettings>> UpdateAsync(ContentSettingsUpdateDataTransfer Model);
+        Task<Response<ContentSettings>> DeleteAsync(ContentSettingsDeleteDataTransfer Model);
+        Task<Response<ContentSettings>> SelectAsync(ContentSettingsSelectDataTransfer Model);
+        Task<Response<ContentSettings>> AnySelectAsync(ContentSettingsAnyDataTransfer Model);
     }
 }

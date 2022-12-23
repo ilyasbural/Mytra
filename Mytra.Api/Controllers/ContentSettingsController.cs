@@ -14,62 +14,81 @@
 
         [HttpPost]
         [Route("api/contentsettings")]
-        public async Task<ContentSettingsWebResponse> Create([FromBody] ContentSettingsInsertDataTransfer Model)
+        public async Task<Response<ContentSettings>> Create([FromBody] ContentSettingsInsertDataTransfer Model)
         {
-            ContentSettingsResponse contentSettingsResponse = await Service.InsertAsync(Model);
-            return new ContentSettingsWebResponse 
-            { 
-                Single = contentSettingsResponse.Single, 
-                Success = contentSettingsResponse.Success,
+            await Service.InsertAsync(Model);
+            return new Response<ContentSettings>
+            {
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpPut]
         [Route("api/contentsettings")]
-        public async Task<ContentSettingsWebResponse> Update([FromBody] ContentSettingsUpdateDataTransfer Model)
+        public async Task<Response<ContentSettings>> Update([FromBody] ContentSettingsUpdateDataTransfer Model)
         {
-            ContentSettingsResponse contentSettingsResponse = await Service.UpdateAsync(Model);
-            return new ContentSettingsWebResponse { Single = contentSettingsResponse.Single };
+            await Service.UpdateAsync(Model);
+            return new Response<ContentSettings>
+            {
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
+            };
         }
 
         [HttpDelete]
         [Route("api/contentsettings")]
-        public async Task<ContentSettingsWebResponse> Delete([FromBody] ContentSettingsDeleteDataTransfer Model)
+        public async Task<Response<ContentSettings>> Delete([FromBody] ContentSettingsDeleteDataTransfer Model)
         {
-            ContentSettingsResponse contentSettingsResponse = await Service.DeleteAsync(Model);
-            return new ContentSettingsWebResponse
+            await Service.DeleteAsync(Model);
+            return new Response<ContentSettings>
             {
-
-
-
-
-
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpGet]
         [Route("api/contentsettings")]
-        public async Task<ContentSettingsWebResponse> Get([FromBody] ContentSettingsSelectDataTransfer Model)
+        public async Task<Response<ContentSettings>> Get([FromBody] ContentSettingsSelectDataTransfer Model)
         {
-            ContentSettingsResponse contentSettingsResponse = await Service.SelectAsync(Model);
-            return new ContentSettingsWebResponse
+            await Service.SelectAsync(Model);
+            return new Response<ContentSettings>
             {
-                List = contentSettingsResponse.List,
-                Success = contentSettingsResponse.Success, 
-                Message = contentSettingsResponse.Message
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpGet]
         [Route("api/contentsettings/{id}")]
-        public async Task<ContentSettingsWebResponse> Get([FromBody] ContentSettingsAnyDataTransfer Model)
+        public async Task<Response<ContentSettings>> Get([FromBody] ContentSettingsAnyDataTransfer Model)
         {
-            ContentSettingsResponse contentSettingsResponse = await Service.AnyAsync(Model);
-            return new ContentSettingsWebResponse
+            await Service.AnySelectAsync(Model);
+            return new Response<ContentSettings>
             {
-                List = contentSettingsResponse.List,
-                Success = contentSettingsResponse.Success,
-                Message = contentSettingsResponse.Message
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
     }

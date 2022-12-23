@@ -18,7 +18,7 @@
             Validator = validator;
         }
 
-        public async Task<PermissionResponse> InsertAsync(PermissionInsertDataTransfer Model)
+        public async Task<Response<Permission>> InsertAsync(PermissionInsertDataTransfer Model)
         {
             Entity = Mapper.Map<Permission>(Model);
             Validations = Validator.Validate(Entity);
@@ -39,18 +39,18 @@
             await UnitOfWork.Permission.InsertAsync(Entity);
             int result = await UnitOfWork.SaveChangesAsync();
 
-            return new PermissionResponse 
+            return new Response<Permission>
             {
-                Single = Entity,
-                Success = Success,
-                Message = Message,
-                Errors = new List<string>(),
-                IsValidationError = IsValidationError,
-                Validations = new List<ValidationResult> { Validations }
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<PermissionResponse> UpdateAsync(PermissionUpdateDataTransfer Model)
+        public async Task<Response<Permission>> UpdateAsync(PermissionUpdateDataTransfer Model)
         {
             List<Permission> DataSource = await UnitOfWork.Permission.SelectAsync(x => x.Id == Model.Id);
             Permission permission = Mapper.Map<Permission>(DataSource[0]);
@@ -71,15 +71,18 @@
             await UnitOfWork.Permission.UpdateAsync(permission);
             int result = await UnitOfWork.SaveChangesAsync();
 
-            return new PermissionResponse
+            return new Response<Permission>
             {
-                Single = permission,
-                Success = result,
-                Message = "Completed"
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<PermissionResponse> DeleteAsync(PermissionDeleteDataTransfer Model)
+        public async Task<Response<Permission>> DeleteAsync(PermissionDeleteDataTransfer Model)
         {
             List<Permission> permissionDataSource = await UnitOfWork.Permission.SelectAsync(x => x.Id == Model.Id);
             Permission permission = Mapper.Map<Permission>(permissionDataSource[0]);
@@ -101,33 +104,42 @@
             await UnitOfWork.Permission.DeleteAsync(permission);
             int result = await UnitOfWork.SaveChangesAsync();
 
-            return new PermissionResponse
+            return new Response<Permission>
             {
-                Single = permission,
-                Success = result,
-                Message = "Completed"
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<PermissionResponse> SelectAsync(PermissionSelectDataTransfer Model)
+        public async Task<Response<Permission>> SelectAsync(PermissionSelectDataTransfer Model)
         {
             List<Permission> permissionDataSource = await UnitOfWork.Permission.SelectAsync(x => x.IsActive == true);
-            return new PermissionResponse
+            return new Response<Permission>
             {
-                List = permissionDataSource,
-                Success = 1,
-                Message = "Completed"
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<PermissionResponse> AnyAsync(PermissionAnyDataTransfer Model)
+        public async Task<Response<Permission>> AnySelectAsync(PermissionAnyDataTransfer Model)
         {
             List<Permission> permissionDataSource = await UnitOfWork.Permission.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
-            return new PermissionResponse
+            return new Response<Permission>
             {
-                List = permissionDataSource,
-                Success = 1,
-                Message = "Completed"
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
     }

@@ -14,62 +14,81 @@
 
         [HttpPost]
         [Route("api/contentcomment")]
-        public async Task<ContentCommentWebResponse> Create([FromBody] ContentCommentInsertDataTransfer Model)
+        public async Task<Response<ContentComment>> Create([FromBody] ContentCommentInsertDataTransfer Model)
         {
-            ContentCommentResponse contentCommentResponse = await Service.InsertAsync(Model);
-            return new ContentCommentWebResponse 
-            { 
-                Single = contentCommentResponse.Single, 
-                Success = contentCommentResponse.Success
+            await Service.InsertAsync(Model);
+            return new Response<ContentComment>
+            {
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpPut]
         [Route("api/contentcomment")]
-        public async Task<ContentCommentWebResponse> Update([FromBody] ContentCommentUpdateDataTransfer Model)
+        public async Task<Response<ContentComment>> Update([FromBody] ContentCommentUpdateDataTransfer Model)
         {
-            ContentCommentResponse contentCommentResponse = await Service.UpdateAsync(Model);
-            return new ContentCommentWebResponse { Single = contentCommentResponse.Single };
+            await Service.UpdateAsync(Model);
+            return new Response<ContentComment>
+            {
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
+            };
         }
 
         [HttpDelete]
         [Route("api/contentcomment")]
-        public async Task<ContentCommentWebResponse> Delete([FromBody] ContentCommentDeleteDataTransfer Model)
+        public async Task<Response<ContentComment>> Delete([FromBody] ContentCommentDeleteDataTransfer Model)
         {
-            ContentCommentResponse contentCommentResponse = await Service.DeleteAsync(Model);
-            return new ContentCommentWebResponse
+            await Service.DeleteAsync(Model);
+            return new Response<ContentComment>
             {
-
-
-
-
-
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpGet]
         [Route("api/contentcomment")]
-        public async Task<ContentCommentWebResponse> Get([FromBody] ContentCommentSelectDataTransfer Model)
+        public async Task<Response<ContentComment>> Get([FromBody] ContentCommentSelectDataTransfer Model)
         {
-            ContentCommentResponse contentCommentResponse = await Service.SelectAsync(Model);
-            return new ContentCommentWebResponse
+            await Service.SelectAsync(Model);
+            return new Response<ContentComment>
             {
-                List = contentCommentResponse.List,
-                Success = contentCommentResponse.Success, 
-                Message = contentCommentResponse.Message
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpGet]
         [Route("api/contentcomment/{id}")]
-        public async Task<ContentCommentWebResponse> Get([FromBody] ContentCommentAnyDataTransfer Model)
+        public async Task<Response<ContentComment>> Get([FromBody] ContentCommentAnyDataTransfer Model)
         {
-            ContentCommentResponse contentCommentResponse = await Service.AnyAsync(Model);
-            return new ContentCommentWebResponse
+            await Service.AnySelectAsync(Model);
+            return new Response<ContentComment>
             {
-                List = contentCommentResponse.List,
-                Success = contentCommentResponse.Success,
-                Message = contentCommentResponse.Message
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
     }

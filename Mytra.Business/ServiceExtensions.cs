@@ -64,6 +64,7 @@
 
             Service.AddScoped<IAnnounceService, AnnounceManager>();
             Service.AddScoped<IAnnounceDetailService, AnnounceDetailManager>();
+            Service.AddScoped<IAuthenticationService, AuthenticationManager>();
             Service.AddScoped<ICategoryService, CategoryManager>();
             Service.AddScoped<IContentService, ContentManager>();
             Service.AddScoped<IContentDetailService, ContentDetailManager>();
@@ -78,8 +79,9 @@
             Service.AddScoped<IManagementSettingsService, ManagementSettingsManager>();
             Service.AddScoped<IPermissionService, PermissionManager>();
             Service.AddScoped<IPermissionDetailService, PermissionDetailManager>();
-            Service.AddScoped<ISurveyService, SurveyManager>();
             Service.AddScoped<ISurveyDetailService, SurveyDetailManager>();
+            Service.AddScoped<ISurveyService, SurveyManager>();
+            Service.AddScoped<ITokenHandlerService, TokenHandlerManager>();
             Service.AddScoped<IUserService, UserManager>();
             Service.AddScoped<IUserDetailService, UserDetailManager>();
             Service.AddScoped<IUserContactService, UserContactManager>();

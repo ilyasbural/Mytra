@@ -2,10 +2,10 @@
 {
     public interface IContentCommentService
     {
-        Task<ContentCommentResponse> InsertAsync(ContentCommentInsertDataTransfer Model);
-        Task<ContentCommentResponse> UpdateAsync(ContentCommentUpdateDataTransfer Model);
-        Task<ContentCommentResponse> DeleteAsync(ContentCommentDeleteDataTransfer Model);
-        Task<ContentCommentResponse> SelectAsync(ContentCommentSelectDataTransfer Model);
-        Task<ContentCommentResponse> AnyAsync(ContentCommentAnyDataTransfer Model);
+        Task<Response<ContentComment>> InsertAsync(ContentCommentInsertDataTransfer Model);
+        Task<Response<ContentComment>> UpdateAsync(ContentCommentUpdateDataTransfer Model);
+        Task<Response<ContentComment>> DeleteAsync(ContentCommentDeleteDataTransfer Model);
+        Task<Response<ContentComment>> SelectAsync(ContentCommentSelectDataTransfer Model);
+        Task<Response<ContentComment>> AnySelectAsync(ContentCommentAnyDataTransfer Model);
     }
 }

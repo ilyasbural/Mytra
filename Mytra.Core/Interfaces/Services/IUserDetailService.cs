@@ -2,10 +2,10 @@
 {
     public interface IUserDetailService
     {
-        Task<UserDetailResponse> InsertAsync(UserDetailInsertDataTransfer Model);
-        Task<UserDetailResponse> UpdateAsync(UserDetailUpdateDataTransfer Model);
-        Task<UserDetailResponse> DeleteAsync(UserDetailDeleteDataTransfer Model);
-        Task<UserDetailResponse> SelectAsync(UserDetailSelectDataTransfer Model);
-        Task<UserDetailResponse> AnyAsync(UserDetailAnyDataTransfer Model);
+        Task<Response<UserDetail>> InsertAsync(UserDetailInsertDataTransfer Model);
+        Task<Response<UserDetail>> UpdateAsync(UserDetailUpdateDataTransfer Model);
+        Task<Response<UserDetail>> DeleteAsync(UserDetailDeleteDataTransfer Model);
+        Task<Response<UserDetail>> SelectAsync(UserDetailSelectDataTransfer Model);
+        Task<Response<UserDetail>> AnySelectAsync(UserDetailAnyDataTransfer Model);
     }
 }

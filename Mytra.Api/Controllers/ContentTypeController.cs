@@ -14,63 +14,81 @@
 
         [HttpPost]
         [Route("api/contenttype")]
-        public async Task<ContentTypeWebResponse> Create([FromBody] ContentTypeInsertDataTransfer Model)
+        public async Task<Response<ContentType>> Create([FromBody] ContentTypeInsertDataTransfer Model)
         {
-            ContentTypeResponse contentTypeResponse = await Service.InsertAsync(Model);
-            return new ContentTypeWebResponse 
-            { 
-                Single = contentTypeResponse.Single, 
-                Success = contentTypeResponse.Success,
+            await Service.InsertAsync(Model);
+            return new Response<ContentType>
+            {
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpPut]
         [Route("api/contenttype")]
-        public async Task<ContentTypeWebResponse> Update([FromBody] ContentTypeUpdateDataTransfer Model)
+        public async Task<Response<ContentType>> Update([FromBody] ContentTypeUpdateDataTransfer Model)
         {
-            ContentTypeResponse contentTypeResponse = await Service.UpdateAsync(Model);
-            return new ContentTypeWebResponse { Single = contentTypeResponse.Single };
+            await Service.UpdateAsync(Model);
+            return new Response<ContentType>
+            {
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
+            };
         }
 
         [HttpDelete]
         [Route("api/contenttype")]
-        public async Task<ContentTypeWebResponse> Delete([FromBody] ContentTypeDeleteDataTransfer Model)
+        public async Task<Response<ContentType>> Delete([FromBody] ContentTypeDeleteDataTransfer Model)
         {
-            ContentTypeResponse contentTypeResponse = await Service.DeleteAsync(Model);
-            return new ContentTypeWebResponse
+            await Service.DeleteAsync(Model);
+            return new Response<ContentType>
             {
-
-
-
-
-
-
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpGet]
         [Route("api/contenttype")]
-        public async Task<ContentTypeWebResponse> Get([FromBody] ContentTypeSelectDataTransfer Model)
+        public async Task<Response<ContentType>> Get([FromBody] ContentTypeSelectDataTransfer Model)
         {
-            ContentTypeResponse contentTypeResponse = await Service.SelectAsync(Model);
-            return new ContentTypeWebResponse
+            await Service.SelectAsync(Model);
+            return new Response<ContentType>
             {
-                List = contentTypeResponse.List,
-                Success = contentTypeResponse.Success, 
-                Message = contentTypeResponse.Message
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpGet]
         [Route("api/contenttype/{id}")]
-        public async Task<ContentTypeWebResponse> Get([FromBody] ContentTypeAnyDataTransfer Model)
+        public async Task<Response<ContentType>> Get([FromBody] ContentTypeAnyDataTransfer Model)
         {
-            ContentTypeResponse contentTypeResponse = await Service.AnyAsync(Model);
-            return new ContentTypeWebResponse
+            await Service.AnySelectAsync(Model);
+            return new Response<ContentType>
             {
-                List = contentTypeResponse.List,
-                Success = contentTypeResponse.Success,
-                Message = contentTypeResponse.Message
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
     }

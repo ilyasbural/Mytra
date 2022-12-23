@@ -14,62 +14,81 @@
 
         [HttpPost]
         [Route("api/permissiondetail")]
-        public async Task<PermissionDetailWebResponse> Create([FromBody] PermissionDetailInsertDataTransfer Model)
+        public async Task<Response<PermissionDetail>> Create([FromBody] PermissionDetailInsertDataTransfer Model)
         {
-            PermissionDetailResponse permissionDetailResponse = await Service.InsertAsync(Model);
-            return new PermissionDetailWebResponse 
-            { 
-                Single = permissionDetailResponse.Single, 
-                Success = permissionDetailResponse.Success
+            await Service.InsertAsync(Model);
+            return new Response<PermissionDetail>
+            {
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpPut]
         [Route("api/permissiondetail")]
-        public async Task<PermissionDetailWebResponse> Update([FromBody] PermissionDetailUpdateDataTransfer Model)
+        public async Task<Response<PermissionDetail>> Update([FromBody] PermissionDetailUpdateDataTransfer Model)
         {
-            PermissionDetailResponse permissionDetailResponse = await Service.UpdateAsync(Model);
-            return new PermissionDetailWebResponse
+            await Service.UpdateAsync(Model);
+            return new Response<PermissionDetail>
             {
-                Single = permissionDetailResponse.Single,
-                Success = permissionDetailResponse.Success
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpDelete]
         [Route("api/permissiondetail")]
-        public async Task<PermissionDetailWebResponse> Delete([FromBody] PermissionDetailDeleteDataTransfer Model)
+        public async Task<Response<PermissionDetail>> Delete([FromBody] PermissionDetailDeleteDataTransfer Model)
         {
-            PermissionDetailResponse permissionDetailResponse = await Service.DeleteAsync(Model);
-            return new PermissionDetailWebResponse
+            await Service.DeleteAsync(Model);
+            return new Response<PermissionDetail>
             {
-                Success = permissionDetailResponse.Success
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpGet]
         [Route("api/permissiondetail")]
-        public async Task<PermissionDetailWebResponse> Get([FromBody] PermissionDetailSelectDataTransfer Model)
+        public async Task<Response<PermissionDetail>> Get([FromBody] PermissionDetailSelectDataTransfer Model)
         {
-            PermissionDetailResponse permissionDetailResponse = await Service.SelectAsync(Model);
-            return new PermissionDetailWebResponse
+            await Service.SelectAsync(Model);
+            return new Response<PermissionDetail>
             {
-                List = permissionDetailResponse.List, 
-                Success = permissionDetailResponse.Success, 
-                Message = permissionDetailResponse.Message
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpGet]
         [Route("api/permissiondetail/{id}")]
-        public async Task<PermissionDetailWebResponse> Get([FromBody] PermissionDetailAnyDataTransfer Model)
+        public async Task<Response<PermissionDetail>> Get([FromBody] PermissionDetailAnyDataTransfer Model)
         {
-            PermissionDetailResponse permissionDetailResponse = await Service.AnyAsync(Model);
-            return new PermissionDetailWebResponse
+            await Service.AnySelectAsync(Model);
+            return new Response<PermissionDetail>
             {
-                List = permissionDetailResponse.List,
-                Success = permissionDetailResponse.Success,
-                Message = permissionDetailResponse.Message
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
     }

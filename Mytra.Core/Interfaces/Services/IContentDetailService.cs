@@ -2,10 +2,10 @@
 {
     public interface IContentDetailService
     {
-        Task<ContentDetailResponse> InsertAsync(ContentDetailInsertDataTransfer Model);
-        Task<ContentDetailResponse> UpdateAsync(ContentDetailUpdateDataTransfer Model);
-        Task<ContentDetailResponse> DeleteAsync(ContentDetailDeleteDataTransfer Model);
-        Task<ContentDetailResponse> SelectAsync(ContentDetailSelectDataTransfer Model);
-        Task<ContentDetailResponse> AnyAsync(ContentDetailAnyDataTransfer Model);
+        Task<Response<ContentDetail>> InsertAsync(ContentDetailInsertDataTransfer Model);
+        Task<Response<ContentDetail>> UpdateAsync(ContentDetailUpdateDataTransfer Model);
+        Task<Response<ContentDetail>> DeleteAsync(ContentDetailDeleteDataTransfer Model);
+        Task<Response<ContentDetail>> SelectAsync(ContentDetailSelectDataTransfer Model);
+        Task<Response<ContentDetail>> AnySelectAsync(ContentDetailAnyDataTransfer Model);
     }
 }

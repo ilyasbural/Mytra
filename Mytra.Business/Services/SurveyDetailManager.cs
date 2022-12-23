@@ -18,7 +18,7 @@
             Validator = validator;
         }
 
-        public async Task<SurveyDetailResponse> InsertAsync(SurveyDetailInsertDataTransfer Model)
+        public async Task<Response<SurveyDetail>> InsertAsync(SurveyDetailInsertDataTransfer Model)
         {
             Entity = Mapper.Map<SurveyDetail>(Model);
             Validations = Validator.Validate(Entity);
@@ -27,31 +27,25 @@
             Entity.UpdateDate = DateTime.Now;
             Entity.IsActive = true;
 
-            
-
-
-
-
-
-
+           
 
 
 
             await UnitOfWork.SurveyDetail.InsertAsync(Entity);
             int result = await UnitOfWork.SaveChangesAsync();
 
-            return new SurveyDetailResponse 
+            return new Response<SurveyDetail>
             {
-                Single = Entity,
-                Success = Success,
-                Message = Message,
-                Errors = new List<string>(),
-                IsValidationError = IsValidationError,
-                Validations = new List<ValidationResult> { Validations }
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<SurveyDetailResponse> UpdateAsync(SurveyDetailUpdateDataTransfer Model)
+        public async Task<Response<SurveyDetail>> UpdateAsync(SurveyDetailUpdateDataTransfer Model)
         {
             List<SurveyDetail> DataSource = await UnitOfWork.SurveyDetail.SelectAsync(x => x.Id == Model.Id);
             SurveyDetail surveyDetail = Mapper.Map<SurveyDetail>(DataSource[0]);
@@ -72,15 +66,18 @@
             await UnitOfWork.SurveyDetail.UpdateAsync(surveyDetail);
             int result = await UnitOfWork.SaveChangesAsync();
 
-            return new SurveyDetailResponse
+            return new Response<SurveyDetail>
             {
-                Single = surveyDetail,
-                Success = result,
-                Message = "Completed"
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<SurveyDetailResponse> DeleteAsync(SurveyDetailDeleteDataTransfer Model)
+        public async Task<Response<SurveyDetail>> DeleteAsync(SurveyDetailDeleteDataTransfer Model)
         {
             List<SurveyDetail> announceDataSource = await UnitOfWork.SurveyDetail.SelectAsync(x => x.Id == Model.Id);
             SurveyDetail surveyDetail = Mapper.Map<SurveyDetail>(announceDataSource[0]);
@@ -98,33 +95,42 @@
             await UnitOfWork.SurveyDetail.DeleteAsync(surveyDetail);
             int result = await UnitOfWork.SaveChangesAsync();
 
-            return new SurveyDetailResponse
+            return new Response<SurveyDetail>
             {
-                Single = surveyDetail,
-                Success = result,
-                Message = "Completed"
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<SurveyDetailResponse> SelectAsync(SurveyDetailSelectDataTransfer Model)
+        public async Task<Response<SurveyDetail>> SelectAsync(SurveyDetailSelectDataTransfer Model)
         {
             List<SurveyDetail> surveyDetailDataSource = await UnitOfWork.SurveyDetail.SelectAsync(x => x.IsActive == true);
-            return new SurveyDetailResponse
+            return new Response<SurveyDetail>
             {
-                List = surveyDetailDataSource,
-                Success = 1,
-                Message = "Completed"
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<SurveyDetailResponse> AnyAsync(SurveyDetailAnyDataTransfer Model)
+        public async Task<Response<SurveyDetail>> AnySelectAsync(SurveyDetailAnyDataTransfer Model)
         {
             List<SurveyDetail> surveyDetailDataSource = await UnitOfWork.SurveyDetail.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
-            return new SurveyDetailResponse
+            return new Response<SurveyDetail>
             {
-                List = surveyDetailDataSource,
-                Success = 1,
-                Message = "Completed"
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
     }

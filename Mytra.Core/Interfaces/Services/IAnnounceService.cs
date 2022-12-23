@@ -2,10 +2,10 @@
 {
     public interface IAnnounceService
     {
-        Task<AnnounceResponse> InsertAsync(AnnounceInsertDataTransfer Model);
-        Task<AnnounceResponse> UpdateAsync(AnnounceUpdateDataTransfer Model);
-        Task<AnnounceResponse> DeleteAsync(AnnounceDeleteDataTransfer Model);
-        Task<AnnounceResponse> SelectAsync(AnnounceSelectDataTransfer Model);
-        Task<AnnounceResponse> AnyAsync(AnnounceAnyDataTransfer Model);
+        Task<Response<Announce>> InsertAsync(AnnounceInsertDataTransfer Model);
+        Task<Response<Announce>> UpdateAsync(AnnounceUpdateDataTransfer Model);
+        Task<Response<Announce>> DeleteAsync(AnnounceDeleteDataTransfer Model);
+        Task<Response<Announce>> SelectAsync(AnnounceSelectDataTransfer Model);
+        Task<Response<Announce>> AnySelectAsync(AnnounceAnyDataTransfer Model);
     }
 }

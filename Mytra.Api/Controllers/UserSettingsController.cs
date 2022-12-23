@@ -14,61 +14,81 @@
 
         [HttpPost]
         [Route("api/usersettings")]
-        public async Task<UserSettingsWebResponse> Create([FromBody] UserSettingsInsertDataTransfer Model)
+        public async Task<Response<UserSettings>> Create([FromBody] UserSettingsInsertDataTransfer Model)
         {
-            UserSettingsResponse userSettingsResponse = await Service.InsertAsync(Model);
-            return new UserSettingsWebResponse 
-            { 
-                Single = userSettingsResponse.Single, 
-                Success = userSettingsResponse.Success 
+            await Service.InsertAsync(Model);
+            return new Response<UserSettings>
+            {
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpPut]
         [Route("api/usersettings")]
-        public async Task<UserSettingsWebResponse> Update([FromBody] UserSettingsUpdateDataTransfer Model)
+        public async Task<Response<UserSettings>> Update([FromBody] UserSettingsUpdateDataTransfer Model)
         {
-            UserSettingsResponse userSettingsResponse = await Service.UpdateAsync(Model);
-            return new UserSettingsWebResponse { Single = userSettingsResponse.Single };
+            await Service.UpdateAsync(Model);
+            return new Response<UserSettings>
+            {
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
+            };
         }
 
         [HttpDelete]
         [Route("api/usersettings")]
-        public async Task<UserSettingsWebResponse> Delete([FromBody] UserSettingsDeleteDataTransfer Model)
+        public async Task<Response<UserSettings>> Delete([FromBody] UserSettingsDeleteDataTransfer Model)
         {
-            UserSettingsResponse userSettingsResponse = await Service.DeleteAsync(Model);
-            return new UserSettingsWebResponse
+            await Service.DeleteAsync(Model);
+            return new Response<UserSettings>
             {
-
-
-
-
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpGet]
         [Route("api/usersettings")]
-        public async Task<UserSettingsWebResponse> Get([FromBody] UserSettingsSelectDataTransfer Model)
+        public async Task<Response<UserSettings>> Get([FromBody] UserSettingsSelectDataTransfer Model)
         {
-            UserSettingsResponse userSettingsResponse = await Service.SelectAsync(Model);
-            return new UserSettingsWebResponse
+            await Service.SelectAsync(Model);
+            return new Response<UserSettings>
             {
-                List = userSettingsResponse.List,
-                Success = userSettingsResponse.Success, 
-                Message = userSettingsResponse.Message
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpGet]
         [Route("api/usersettings/{id}")]
-        public async Task<UserSettingsWebResponse> Get([FromBody] UserSettingsAnyDataTransfer Model)
+        public async Task<Response<UserSettings>> Get([FromBody] UserSettingsAnyDataTransfer Model)
         {
-            UserSettingsResponse userSettingsResponse = await Service.AnyAsync(Model);
-            return new UserSettingsWebResponse
+            await Service.AnySelectAsync(Model);
+            return new Response<UserSettings>
             {
-                List = userSettingsResponse.List,
-                Success = userSettingsResponse.Success,
-                Message = userSettingsResponse.Message
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
     }

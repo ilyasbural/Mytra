@@ -2,10 +2,10 @@
 {
     public interface IManagementContactService
     {
-        Task<ManagementContactResponse> InsertAsync(ManagementContactInsertDataTransfer Model);
-        Task<ManagementContactResponse> UpdateAsync(ManagementContactUpdateDataTransfer Model);
-        Task<ManagementContactResponse> DeleteAsync(ManagementContactDeleteDataTransfer Model);
-        Task<ManagementContactResponse> SelectAsync(ManagementContactSelectDataTransfer Model);
-        Task<ManagementContactResponse> AnyAsync(ManagementContactAnyDataTransfer Model);
+        Task<Response<ManagementContact>> InsertAsync(ManagementContactInsertDataTransfer Model);
+        Task<Response<ManagementContact>> UpdateAsync(ManagementContactUpdateDataTransfer Model);
+        Task<Response<ManagementContact>> DeleteAsync(ManagementContactDeleteDataTransfer Model);
+        Task<Response<ManagementContact>> SelectAsync(ManagementContactSelectDataTransfer Model);
+        Task<Response<ManagementContact>> AnySelectAsync(ManagementContactAnyDataTransfer Model);
     }
 }

@@ -14,62 +14,81 @@
 
         [HttpPost]
         [Route("api/contentdetail")]
-        public async Task<ContentDetailWebResponse> Create([FromBody] ContentDetailInsertDataTransfer Model)
+        public async Task<Response<ContentDetail>> Create([FromBody] ContentDetailInsertDataTransfer Model)
         {
-            ContentDetailResponse contentDetailResponse = await Service.InsertAsync(Model);
-            return new ContentDetailWebResponse 
-            { 
-                Single = contentDetailResponse.Single, 
-                Success = contentDetailResponse.Success 
+            await Service.InsertAsync(Model);
+            return new Response<ContentDetail>
+            {
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpPut]
         [Route("api/contentdetail")]
-        public async Task<ContentDetailWebResponse> Update([FromBody] ContentDetailUpdateDataTransfer Model)
+        public async Task<Response<ContentDetail>> Update([FromBody] ContentDetailUpdateDataTransfer Model)
         {
-            ContentDetailResponse contentDetailResponse = await Service.UpdateAsync(Model);
-            return new ContentDetailWebResponse { Single = contentDetailResponse.Single };
+            await Service.UpdateAsync(Model);
+            return new Response<ContentDetail>
+            {
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
+            };
         }
 
         [HttpDelete]
         [Route("api/contentdetail")]
-        public async Task<ContentDetailWebResponse> Delete([FromBody] ContentDetailDeleteDataTransfer Model)
+        public async Task<Response<ContentDetail>> Delete([FromBody] ContentDetailDeleteDataTransfer Model)
         {
-            ContentDetailResponse contentDetailResponse = await Service.DeleteAsync(Model);
-            return new ContentDetailWebResponse
+            await Service.DeleteAsync(Model);
+            return new Response<ContentDetail>
             {
-
-
-
-
-
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpGet]
         [Route("api/contentdetail")]
-        public async Task<ContentDetailWebResponse> Get([FromBody] ContentDetailSelectDataTransfer Model)
+        public async Task<Response<ContentDetail>> Get([FromBody] ContentDetailSelectDataTransfer Model)
         {
-            ContentDetailResponse contentDetailResponse = await Service.SelectAsync(Model);
-            return new ContentDetailWebResponse
+            await Service.SelectAsync(Model);
+            return new Response<ContentDetail>
             {
-                List = contentDetailResponse.List,
-                Success = contentDetailResponse.Success, 
-                Message = contentDetailResponse.Message
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpGet]
         [Route("api/contentdetail/{id}")]
-        public async Task<ContentDetailWebResponse> Get([FromBody] ContentDetailAnyDataTransfer Model)
+        public async Task<Response<ContentDetail>> Get([FromBody] ContentDetailAnyDataTransfer Model)
         {
-            ContentDetailResponse contentDetailResponse = await Service.AnyAsync(Model);
-            return new ContentDetailWebResponse
+            await Service.AnySelectAsync(Model);
+            return new Response<ContentDetail>
             {
-                List = contentDetailResponse.List,
-                Success = contentDetailResponse.Success,
-                Message = contentDetailResponse.Message
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
     }

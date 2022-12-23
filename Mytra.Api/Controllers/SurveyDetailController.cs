@@ -14,59 +14,81 @@
 
         [HttpPost]
         [Route("api/surveydetail")]
-        public async Task<SurveyDetailWebResponse> Create([FromBody] SurveyDetailInsertDataTransfer Model)
+        public async Task<Response<SurveyDetail>> Create([FromBody] SurveyDetailInsertDataTransfer Model)
         {
-            SurveyDetailResponse surveyDetailResponse = await Service.InsertAsync(Model);
-            return new SurveyDetailWebResponse 
-            { 
-                Single = surveyDetailResponse.Single, 
-                Success = surveyDetailResponse.Success
+            await Service.InsertAsync(Model);
+            return new Response<SurveyDetail>
+            {
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpPut]
         [Route("api/surveydetail")]
-        public async Task<SurveyDetailWebResponse> Update([FromBody] SurveyDetailUpdateDataTransfer Model)
+        public async Task<Response<SurveyDetail>> Update([FromBody] SurveyDetailUpdateDataTransfer Model)
         {
-            SurveyDetailResponse surveyDetailResponse = await Service.UpdateAsync(Model);
-            return new SurveyDetailWebResponse { Single = surveyDetailResponse.Single };
+            await Service.UpdateAsync(Model);
+            return new Response<SurveyDetail>
+            {
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
+            };
         }
 
         [HttpDelete]
         [Route("api/surveydetail")]
-        public async Task<SurveyDetailWebResponse> Delete([FromBody] SurveyDetailDeleteDataTransfer Model)
+        public async Task<Response<SurveyDetail>> Delete([FromBody] SurveyDetailDeleteDataTransfer Model)
         {
-            SurveyDetailResponse surveyDetailResponse = await Service.DeleteAsync(Model);
-            return new SurveyDetailWebResponse
+            await Service.DeleteAsync(Model);
+            return new Response<SurveyDetail>
             {
-
-
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpGet]
         [Route("api/surveydetail")]
-        public async Task<SurveyDetailWebResponse> Get([FromBody] SurveyDetailSelectDataTransfer Model)
+        public async Task<Response<SurveyDetail>> Get([FromBody] SurveyDetailSelectDataTransfer Model)
         {
-            SurveyDetailResponse surveyDetailResponse = await Service.SelectAsync(Model);
-            return new SurveyDetailWebResponse
+            await Service.SelectAsync(Model);
+            return new Response<SurveyDetail>
             {
-                List = surveyDetailResponse.List,
-                Success = surveyDetailResponse.Success, 
-                Message = surveyDetailResponse.Message
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpGet]
         [Route("api/surveydetail/{id}")]
-        public async Task<SurveyDetailWebResponse> Get([FromBody] SurveyDetailAnyDataTransfer Model)
+        public async Task<Response<SurveyDetail>> Get([FromBody] SurveyDetailAnyDataTransfer Model)
         {
-            SurveyDetailResponse surveyDetailResponse = await Service.AnyAsync(Model);
-            return new SurveyDetailWebResponse
+            await Service.AnySelectAsync(Model);
+            return new Response<SurveyDetail>
             {
-                List = surveyDetailResponse.List,
-                Success = surveyDetailResponse.Success,
-                Message = surveyDetailResponse.Message
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
     }

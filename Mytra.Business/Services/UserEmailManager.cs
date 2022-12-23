@@ -18,7 +18,7 @@
             Validator = validator;
         }
 
-        public async Task<UserEmailResponse> InsertAsync(UserEmailInsertDataTransfer Model)
+        public async Task<Response<UserEmail>> InsertAsync(UserEmailInsertDataTransfer Model)
         {
             Entity = Mapper.Map<UserEmail>(Model);
             Validations = Validator.Validate(Entity);
@@ -40,18 +40,18 @@
             await UnitOfWork.UserEmail.InsertAsync(Entity);
             int result = await UnitOfWork.SaveChangesAsync();
 
-            return new UserEmailResponse 
+            return new Response<UserEmail>
             {
-                Single = Entity,
-                Success = Success,
-                Message = Message,
-                Errors = new List<string>(),
-                IsValidationError = IsValidationError,
-                Validations = new List<ValidationResult> { Validations }
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<UserEmailResponse> UpdateAsync(UserEmailUpdateDataTransfer Model)
+        public async Task<Response<UserEmail>> UpdateAsync(UserEmailUpdateDataTransfer Model)
         {
             List<UserEmail> DataSource = await UnitOfWork.UserEmail.SelectAsync(x => x.Id == Model.Id);
             UserEmail userEmail = Mapper.Map<UserEmail>(DataSource[0]);
@@ -70,15 +70,18 @@
             await UnitOfWork.UserEmail.UpdateAsync(userEmail);
             int result = await UnitOfWork.SaveChangesAsync();
 
-            return new UserEmailResponse 
-            { 
-                Single = userEmail, 
-                Success = result,
-                Message = "Completed"
+            return new Response<UserEmail>
+            {
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<UserEmailResponse> DeleteAsync(UserEmailDeleteDataTransfer Model)
+        public async Task<Response<UserEmail>> DeleteAsync(UserEmailDeleteDataTransfer Model)
         {
             List<UserEmail> userEmailDataSource = await UnitOfWork.UserEmail.SelectAsync(x => x.Id == Model.Id);
             UserEmail userEmail = Mapper.Map<UserEmail>(userEmailDataSource[0]);
@@ -98,33 +101,42 @@
             await UnitOfWork.UserEmail.DeleteAsync(userEmail);
             int result = await UnitOfWork.SaveChangesAsync();
 
-            return new UserEmailResponse
+            return new Response<UserEmail>
             {
-                Single = userEmail,
-                Success = result,
-                Message = "Completed"
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<UserEmailResponse> SelectAsync(UserEmailSelectDataTransfer Model)
+        public async Task<Response<UserEmail>> SelectAsync(UserEmailSelectDataTransfer Model)
         {
             List<UserEmail> userEmailDataSource = await UnitOfWork.UserEmail.SelectAsync(x => x.IsActive == true);
-            return new UserEmailResponse
+            return new Response<UserEmail>
             {
-                List = userEmailDataSource,
-                Success = 1,
-                Message = "Completed"
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<UserEmailResponse> AnyAsync(UserEmailAnyDataTransfer Model)
+        public async Task<Response<UserEmail>> AnySelectAsync(UserEmailAnyDataTransfer Model)
         {
             List<UserEmail> userEmailDataSource = await UnitOfWork.UserEmail.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
-            return new UserEmailResponse
+            return new Response<UserEmail>
             {
-                List = userEmailDataSource,
-                Success = 1,
-                Message = "Completed"
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
     }

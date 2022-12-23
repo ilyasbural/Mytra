@@ -14,62 +14,81 @@
 
         [HttpPost]
         [Route("api/announce")]
-        public async Task<AnnounceWebResponse> Create([FromBody] AnnounceInsertDataTransfer Model)
+        public async Task<Response<Announce>> Create([FromBody] AnnounceInsertDataTransfer Model)
         {
-            AnnounceResponse announceResponse = await Service.InsertAsync(Model);
-            return new AnnounceWebResponse 
-            { 
-                Single = announceResponse.Single, 
-                Success = announceResponse.Success 
+            await Service.InsertAsync(Model);
+            return new Response<Announce> 
+            {
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpPut]
         [Route("api/announce")]
-        public async Task<AnnounceWebResponse> Update([FromBody] AnnounceUpdateDataTransfer Model)
+        public async Task<Response<Announce>> Update([FromBody] AnnounceUpdateDataTransfer Model)
         {
-            AnnounceResponse announceResponse = await Service.UpdateAsync(Model);
-            return new AnnounceWebResponse
+            await Service.UpdateAsync(Model);
+            return new Response<Announce>
             {
-                Single = announceResponse.Single,
-                Success = announceResponse.Success
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpDelete]
         [Route("api/announce")]
-        public async Task<AnnounceWebResponse> Delete([FromBody] AnnounceDeleteDataTransfer Model)
+        public async Task<Response<Announce>> Delete([FromBody] AnnounceDeleteDataTransfer Model)
         {
-            AnnounceResponse announceResponse = await Service.DeleteAsync(Model);
-            return new AnnounceWebResponse
+            await Service.DeleteAsync(Model);
+            return new Response<Announce>
             {
-                Success = announceResponse.Success
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpGet]
         [Route("api/announce")]
-        public async Task<AnnounceWebResponse> Get([FromBody] AnnounceSelectDataTransfer Model)
+        public async Task<Response<Announce>> Get([FromBody] AnnounceSelectDataTransfer Model)
         {
-            AnnounceResponse announceResponse = await Service.SelectAsync(Model);
-            return new AnnounceWebResponse
+            await Service.SelectAsync(Model);
+            return new Response<Announce>
             {
-                List = announceResponse.List, 
-                Success = announceResponse.Success, 
-                Message = announceResponse.Message
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
         [HttpGet]
         [Route("api/announce/{id}")]
-        public async Task<AnnounceWebResponse> Get([FromBody] AnnounceAnyDataTransfer Model)
+        public async Task<Response<Announce>> Get([FromBody] AnnounceAnyDataTransfer Model)
         {
-            AnnounceResponse announceResponse = await Service.AnyAsync(Model);
-            return new AnnounceWebResponse
+            await Service.AnySelectAsync(Model);
+            return new Response<Announce>
             {
-                List = announceResponse.List,
-                Success = announceResponse.Success, 
-                Message = announceResponse.Message
+                //Single = Response.Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
     }
