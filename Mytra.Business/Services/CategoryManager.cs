@@ -3,7 +3,6 @@
     using Core;
     using AutoMapper;
     using FluentValidation;
-    using FluentValidation.Results;
 
     public partial class CategoryManager : BusinessObject<Category>, ICategoryService
     {
@@ -21,23 +20,20 @@
         public async Task<Response<Category>> InsertAsync(CategoryInsertDataTransfer Model)
         {
             Entity = Mapper.Map<Category>(Model);
-            Validations = Validator.Validate(Entity);
             Entity.Id = Guid.NewGuid();
             Entity.RegisterDate = DateTime.Now;
             Entity.UpdateDate = DateTime.Now;
             Entity.IsActive = true;
-
+            Validator.ValidateAndThrow(Entity);
             await UnitOfWork.Category.InsertAsync(Entity);
-            int result = await UnitOfWork.SaveChangesAsync();
+            Result = await UnitOfWork.SaveChangesAsync();
 
             return new Response<Category>
             {
-                //Single = Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Data = Entity,
+                Success = Result,
+                Message = "Success",
+                IsValidationError = false
             };
         }
 

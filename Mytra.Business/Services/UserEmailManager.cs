@@ -21,7 +21,6 @@
         public async Task<Response<UserEmail>> InsertAsync(UserEmailInsertDataTransfer Model)
         {
             Entity = Mapper.Map<UserEmail>(Model);
-            Validations = Validator.Validate(Entity);
             Entity.Id = Guid.NewGuid();
             Entity.RegisterDate = DateTime.Now;
             Entity.UpdateDate = DateTime.Now;

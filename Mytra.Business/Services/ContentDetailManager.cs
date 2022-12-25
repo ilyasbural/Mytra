@@ -21,7 +21,6 @@
         public async Task<Response<ContentDetail>> InsertAsync(ContentDetailInsertDataTransfer Model)
         {
             Entity = Mapper.Map<ContentDetail>(Model);
-            Validations = Validator.Validate(Entity);
             Entity.Id = Guid.NewGuid();
             Entity.RegisterDate = DateTime.Now;
             Entity.UpdateDate = DateTime.Now;

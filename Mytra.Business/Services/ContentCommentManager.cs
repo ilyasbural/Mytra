@@ -21,7 +21,6 @@
         public async Task<Response<ContentComment>> InsertAsync(ContentCommentInsertDataTransfer Model)
         {
             Entity = Mapper.Map<ContentComment>(Model);
-            Validations = Validator.Validate(Entity);
             Entity.Id = Guid.NewGuid();
             Entity.RegisterDate = DateTime.Now;
             Entity.UpdateDate = DateTime.Now;

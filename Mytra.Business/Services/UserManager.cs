@@ -21,13 +21,10 @@
         public async Task<Response<User>> InsertAsync(UserInsertDataTransfer Model)
         {
             Entity = Mapper.Map<User>(Model);
-            Validations = Validator.Validate(Entity);
             Entity.Id = Guid.NewGuid();
             Entity.RegisterDate = DateTime.Now;
             Entity.UpdateDate = DateTime.Now;
             Entity.IsActive = true;
-
-            Validations = Validator.Validate(Entity);
 
 
 

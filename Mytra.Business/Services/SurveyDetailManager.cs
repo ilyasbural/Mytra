@@ -21,7 +21,6 @@
         public async Task<Response<SurveyDetail>> InsertAsync(SurveyDetailInsertDataTransfer Model)
         {
             Entity = Mapper.Map<SurveyDetail>(Model);
-            Validations = Validator.Validate(Entity);
             Entity.Id = Guid.NewGuid();
             Entity.RegisterDate = DateTime.Now;
             Entity.UpdateDate = DateTime.Now;

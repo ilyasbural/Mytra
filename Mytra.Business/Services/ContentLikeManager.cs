@@ -21,7 +21,6 @@
         public async Task<Response<ContentLike>> InsertAsync(ContentLikeInsertDataTransfer Model)
         {
             Entity = Mapper.Map<ContentLike>(Model);
-            Validations = Validator.Validate(Entity);
             Entity.Id = Guid.NewGuid();
             Entity.RegisterDate = DateTime.Now;
             Entity.UpdateDate = DateTime.Now;

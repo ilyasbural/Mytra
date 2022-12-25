@@ -21,7 +21,6 @@
         public async Task<Response<ManagementSettings>> InsertAsync(ManagementSettingsInsertDataTransfer Model)
         {
             Entity = Mapper.Map<ManagementSettings>(Model);
-            Validations = Validator.Validate(Entity);
             Entity.Id = Guid.NewGuid();
             Entity.RegisterDate = DateTime.Now;
             Entity.UpdateDate = DateTime.Now;
