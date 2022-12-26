@@ -3,7 +3,6 @@
     using Core;
     using AutoMapper;
     using FluentValidation;
-    using FluentValidation.Results;
 
     public class ContentCommentManager : BusinessObject<ContentComment>, IContentCommentService
     {
@@ -31,12 +30,10 @@
 
             return new Response<ContentComment>
             {
-                //Single = Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Data = Entity,
+                Success = Result,
+                Message = "Success",
+                IsValidationError = false
             };
         }
 
@@ -54,12 +51,10 @@
 
             return new Response<ContentComment>
             {
-                //Single = Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Data = Entity,
+                Success = Result,
+                Message = "Success",
+                IsValidationError = false
             };
         }
 
@@ -75,40 +70,34 @@
 
             return new Response<ContentComment>
             {
-                //Single = Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Data = Entity,
+                Success = Result,
+                Message = "Success",
+                IsValidationError = false
             };
         }
 
         public async Task<Response<ContentComment>> SelectAsync(ContentCommentSelectDataTransfer Model)
         {
-            List<ContentComment> contentCommentDataSource = await UnitOfWork.ContentComment.SelectAsync(x => x.IsActive == true);
+            Collection = await UnitOfWork.ContentComment.SelectAsync(x => x.IsActive == true);
             return new Response<ContentComment>
             {
-                //Single = Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Collection = Collection,
+                Success = Result,
+                Message = "Success",
+                IsValidationError = false
             };
         }
 
         public async Task<Response<ContentComment>> AnySelectAsync(ContentCommentAnyDataTransfer Model)
         {
-            List<ContentComment> contentCommentDataSource = await UnitOfWork.ContentComment.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+            Collection = await UnitOfWork.ContentComment.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
             return new Response<ContentComment>
             {
-                //Single = Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Collection = Collection,
+                Success = Result,
+                Message = "Success",
+                IsValidationError = false
             };
         }
     }

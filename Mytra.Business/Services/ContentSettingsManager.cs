@@ -3,7 +3,6 @@
     using Core;
     using AutoMapper;
     using FluentValidation;
-    using FluentValidation.Results;
 
     public class ContentSettingsManager : BusinessObject<ContentSettings>, IContentSettingsService
     {
@@ -31,12 +30,10 @@
 
             return new Response<ContentSettings>
             {
-                //Single = Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Data = Entity,
+                Success = Result,
+                Message = "Success",
+                IsValidationError = false
             };
         }
 
@@ -102,29 +99,25 @@
 
         public async Task<Response<ContentSettings>> SelectAsync(ContentSettingsSelectDataTransfer Model)
         {
-            List<ContentSettings> contentSettingsDataSource = await UnitOfWork.ContentSettings.SelectAsync(x => x.IsActive == true);
+            Collection = await UnitOfWork.ContentSettings.SelectAsync(x => x.IsActive == true);
             return new Response<ContentSettings>
             {
-                //Single = Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Collection = Collection,
+                Success = Result,
+                Message = "Success",
+                IsValidationError = false
             };
         }
 
         public async Task<Response<ContentSettings>> AnySelectAsync(ContentSettingsAnyDataTransfer Model)
         {
-            List<ContentSettings> contentSettingsDataSource = await UnitOfWork.ContentSettings.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+            Collection = await UnitOfWork.ContentSettings.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
             return new Response<ContentSettings>
             {
-                //Single = Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Collection = Collection,
+                Success = Result,
+                Message = "Success",
+                IsValidationError = false
             };
         }
     }

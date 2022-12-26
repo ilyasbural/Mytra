@@ -3,7 +3,6 @@
     using Core;
     using AutoMapper;
     using FluentValidation;
-    using FluentValidation.Results;
 
     public class ContentTypeManager : BusinessObject<ContentType>, IContentTypeService
     {
@@ -32,12 +31,10 @@
 
             return new Response<ContentType>
             {
-                //Single = Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Data = Entity,
+                Success = Result,
+                Message = "Success",
+                IsValidationError = false
             };
         }
 
@@ -89,29 +86,25 @@
 
         public async Task<Response<ContentType>> SelectAsync(ContentTypeSelectDataTransfer Model)
         {
-            List<ContentType> contentTypeDataSource = await UnitOfWork.ContentType.SelectAsync(x => x.IsActive == true);
+            Collection = await UnitOfWork.ContentType.SelectAsync(x => x.IsActive == true);
             return new Response<ContentType>
             {
-                //Single = Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Collection = Collection,
+                Success = Result,
+                Message = "Success",
+                IsValidationError = false
             };
         }
 
         public async Task<Response<ContentType>> AnySelectAsync(ContentTypeAnyDataTransfer Model)
         {
-            List<ContentType> contentTypeDataSource = await UnitOfWork.ContentType.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+            Collection = await UnitOfWork.ContentType.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
             return new Response<ContentType>
             {
-                //Single = Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Collection = Collection,
+                Success = Result,
+                Message = "Success",
+                IsValidationError = false
             };
         }
     }

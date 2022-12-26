@@ -41,12 +41,10 @@
 
             return new Response<User>
             {
-                //Single = Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Data = Entity,
+                Success = Result,
+                Message = "Success",
+                IsValidationError = false
             };
         }
 
@@ -116,29 +114,25 @@
 
         public async Task<Response<User>> SelectAsync(UserSelectDataTransfer Model)
         {
-            List<User> userDataSource = await UnitOfWork.User.SelectAsync(x => x.IsActive == true);
+            Collection = await UnitOfWork.User.SelectAsync(x => x.IsActive == true);
             return new Response<User>
             {
-                //Single = Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Collection = Collection,
+                Success = Result,
+                Message = "Success",
+                IsValidationError = false
             };
         }
 
         public async Task<Response<User>> AnySelectAsync(UserAnyDataTransfer Model)
         {
-            List<User> userDataSource = await UnitOfWork.User.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+            Collection = await UnitOfWork.User.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
             return new Response<User>
             {
-                //Single = Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Collection = Collection,
+                Success = Result,
+                Message = "Success",
+                IsValidationError = false
             };
         }
     }

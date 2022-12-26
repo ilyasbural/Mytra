@@ -25,6 +25,7 @@
             Entity.UpdateDate = DateTime.Now;
             Entity.IsActive = true;
             Validator.ValidateAndThrow(Entity);
+
             await UnitOfWork.Announce.InsertAsync(Entity);
             Result = await UnitOfWork.SaveChangesAsync();
 
@@ -43,6 +44,7 @@
             Entity = Mapper.Map<Announce>(Collection[0]);
             Entity.UpdateDate = DateTime.Now;
             Validator.ValidateAndThrow(Entity);
+
             await UnitOfWork.Announce.UpdateAsync(Entity);
             Result = await UnitOfWork.SaveChangesAsync();
 
@@ -59,6 +61,7 @@
         {
             Collection = await UnitOfWork.Announce.SelectAsync(x => x.Id == Model.Id);
             Entity = Mapper.Map<Announce>(Collection[0]);
+
             await UnitOfWork.Announce.DeleteAsync(Entity);
             Result = await UnitOfWork.SaveChangesAsync();
 

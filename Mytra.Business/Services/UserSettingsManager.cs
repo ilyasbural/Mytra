@@ -37,12 +37,10 @@
 
             return new Response<UserSettings>
             {
-                //Single = Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Data = Entity,
+                Success = Result,
+                Message = "Success",
+                IsValidationError = false
             };
         }
 
@@ -109,29 +107,25 @@
 
         public async Task<Response<UserSettings>> SelectAsync(UserSettingsSelectDataTransfer Model)
         {
-            List<UserSettings> userSettingDataSource = await UnitOfWork.UserSettings.SelectAsync(x => x.IsActive == true);
+            Collection = await UnitOfWork.UserSettings.SelectAsync(x => x.IsActive == true);
             return new Response<UserSettings>
             {
-                //Single = Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Collection = Collection,
+                Success = Result,
+                Message = "Success",
+                IsValidationError = false
             };
         }
 
         public async Task<Response<UserSettings>> AnySelectAsync(UserSettingsAnyDataTransfer Model)
         {
-            List<UserSettings> userSettingsDataSource = await UnitOfWork.UserSettings.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+            Collection = await UnitOfWork.UserSettings.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
             return new Response<UserSettings>
             {
-                //Single = Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Collection = Collection,
+                Success = Result,
+                Message = "Success",
+                IsValidationError = false
             };
         }
     }

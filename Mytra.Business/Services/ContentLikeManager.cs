@@ -31,12 +31,10 @@
 
             return new Response<ContentLike> 
             {
-                //Single = Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Data = Entity,
+                Success = Result,
+                Message = "Success",
+                IsValidationError = false
             };
         }
 
@@ -60,12 +58,10 @@
 
             return new Response<ContentLike>
             {
-                //Single = Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Data = Entity,
+                Success = Result,
+                Message = "Success",
+                IsValidationError = false
             };
         }
 
@@ -90,40 +86,34 @@
 
             return new Response<ContentLike>
             {
-                //Single = Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Data = Entity,
+                Success = Result,
+                Message = "Success",
+                IsValidationError = false
             };
         }
 
         public async Task<Response<ContentLike>> SelectAsync(ContentLikeSelectDataTransfer Model)
         {
-            List<ContentLike> contentLikeDataSource = await UnitOfWork.ContentLike.SelectAsync(x => x.IsActive == true);
+            Collection = await UnitOfWork.ContentLike.SelectAsync(x => x.IsActive == true);
             return new Response<ContentLike>
             {
-                //Single = Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Collection = Collection,
+                Success = Result,
+                Message = "Success",
+                IsValidationError = false
             };
         }
 
         public async Task<Response<ContentLike>> AnySelectAsync(ContentLikeAnyDataTransfer Model)
         {
-            List<ContentLike> contentLikeDataSource = await UnitOfWork.ContentLike.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+            Collection = await UnitOfWork.ContentLike.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
             return new Response<ContentLike>
             {
-                //Single = Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Collection = Collection,
+                Success = Result,
+                Message = "Success",
+                IsValidationError = false
             };
         }
     }

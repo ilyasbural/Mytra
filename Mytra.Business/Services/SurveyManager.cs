@@ -39,12 +39,10 @@
 
             return new Response<Survey>
             {
-                //Single = Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Data = Entity,
+                Success = Result,
+                Message = "Success",
+                IsValidationError = false
             };
         }
 
@@ -109,29 +107,25 @@
 
         public async Task<Response<Survey>> SelectAsync(SurveySelectDataTransfer Model)
         {
-            List<Survey> surveyDataSource = await UnitOfWork.Survey.SelectAsync(x => x.IsActive == true);
+            Collection = await UnitOfWork.Survey.SelectAsync(x => x.IsActive == true);
             return new Response<Survey>
             {
-                //Single = Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Collection = Collection,
+                Success = Result,
+                Message = "Success",
+                IsValidationError = false
             };
         }
 
         public async Task<Response<Survey>> AnySelectAsync(SurveyAnyDataTransfer Model)
         {
-            List<Survey> surveyDataSource = await UnitOfWork.Survey.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+            Collection = await UnitOfWork.Survey.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
             return new Response<Survey>
             {
-                //Single = Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Collection = Collection,
+                Success = Result,
+                Message = "Success",
+                IsValidationError = false
             };
         }
     }

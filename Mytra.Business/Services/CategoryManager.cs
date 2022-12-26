@@ -25,6 +25,7 @@
             Entity.UpdateDate = DateTime.Now;
             Entity.IsActive = true;
             Validator.ValidateAndThrow(Entity);
+
             await UnitOfWork.Category.InsertAsync(Entity);
             Result = await UnitOfWork.SaveChangesAsync();
 
@@ -39,82 +40,61 @@
 
         public async Task<Response<Category>> UpdateAsync(CategoryUpdateDataTransfer Model)
         {
-            List<Category> categoryDataSource = await UnitOfWork.Category.SelectAsync(x => x.Id == Model.Id);
-            Category category = Mapper.Map<Category>(categoryDataSource[0]);
-            category.UpdateDate = DateTime.Now;
+            Collection = await UnitOfWork.Category.SelectAsync(x => x.Id == Model.Id);
+            Entity = Mapper.Map<Category>(Collection[0]);
+            Entity.UpdateDate = DateTime.Now;
+            Validator.ValidateAndThrow(Entity);
 
-
-
-
-
-
-
-            await UnitOfWork.Category.UpdateAsync(category);
-            int result = await UnitOfWork.SaveChangesAsync();
+            await UnitOfWork.Category.UpdateAsync(Entity);
+            Result = await UnitOfWork.SaveChangesAsync();
 
             return new Response<Category>
             {
-                //Single = Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Data = Entity,
+                Success = Result,
+                Message = "Success",
+                IsValidationError = false
             };
         }
 
         public async Task<Response<Category>> DeleteAsync(CategoryDeleteDataTransfer Model)
         {
-            List<Category> categoryDataSource = await UnitOfWork.Category.SelectAsync(x => x.Id == Model.Id);
-            Category category = Mapper.Map<Category>(categoryDataSource[0]);
+            Collection = await UnitOfWork.Category.SelectAsync(x => x.Id == Model.Id);
+            Entity = Mapper.Map<Category>(Collection[0]);
 
-
-
-
-
-
-
-
-
-            await UnitOfWork.Category.DeleteAsync(category);
-            int result = await UnitOfWork.SaveChangesAsync();
+            await UnitOfWork.Category.DeleteAsync(Entity);
+            Result = await UnitOfWork.SaveChangesAsync();
 
             return new Response<Category>
             {
-                //Single = Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Data = Entity,
+                Success = Result,
+                Message = "Success",
+                IsValidationError = false
             };
         }
 
         public async Task<Response<Category>> SelectAsync(CategorySelectDataTransfer Model)
         {
-            List<Category> categoryDataSource = await UnitOfWork.Category.SelectAsync(x => x.IsActive == true);
+            Collection = await UnitOfWork.Category.SelectAsync(x => x.IsActive == true);
             return new Response<Category>
             {
-                //Single = Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Collection = Collection,
+                Success = Result,
+                Message = "Success",
+                IsValidationError = false
             };
         }
 
         public async Task<Response<Category>> AnySelectAsync(CategoryAnyDataTransfer Model)
         {
-            List<Category> categoryDataSource = await UnitOfWork.Category.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+            Collection = await UnitOfWork.Category.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
             return new Response<Category>
             {
-                //Single = Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Collection = Collection,
+                Success = Result,
+                Message = "Success",
+                IsValidationError = false
             };
         }
     }
