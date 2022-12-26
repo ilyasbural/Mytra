@@ -36,7 +36,7 @@
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(@"Server=DESKTOP-LUSNRB7; Database=MYTRA; TrustServerCertificate=True; Trusted_Connection=True; User Id = sa; password = 1");
+                optionsBuilder.UseSqlServer(@"Server=DESKTOP-05I3M82; Database=MYTRA; TrustServerCertificate=True; Trusted_Connection=True; User Id = sa; password = 1");
             }
         }
 

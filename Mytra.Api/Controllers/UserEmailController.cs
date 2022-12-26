@@ -16,15 +16,13 @@
         [Route("api/useremail")]
         public async Task<Response<UserEmail>> Create([FromBody] UserEmailInsertDataTransfer Model)
         {
-            await Service.InsertAsync(Model);
+            Response<UserEmail> Response = await Service.InsertAsync(Model);
             return new Response<UserEmail>
             {
-                //Single = Response.Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Data = Response.Data,
+                Message = Response.Message,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
             };
         }
 
@@ -32,15 +30,13 @@
         [Route("api/useremail")]
         public async Task<Response<UserEmail>> Update([FromBody] UserEmailUpdateDataTransfer Model)
         {
-            await Service.UpdateAsync(Model);
+            Response<UserEmail> Response = await Service.UpdateAsync(Model);
             return new Response<UserEmail>
             {
-                //Single = Response.Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Data = Response.Data,
+                Message = Response.Message,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
             };
         }
 
@@ -48,15 +44,13 @@
         [Route("api/useremail")]
         public async Task<Response<UserEmail>> Delete([FromBody] UserEmailDeleteDataTransfer Model)
         {
-            await Service.DeleteAsync(Model);
+            Response<UserEmail> Response = await Service.DeleteAsync(Model);
             return new Response<UserEmail>
             {
-                //Single = Response.Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Data = Response.Data,
+                Message = Response.Message,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
             };
         }
 
@@ -64,15 +58,13 @@
         [Route("api/useremail")]
         public async Task<Response<UserEmail>> Get([FromBody] UserEmailSelectDataTransfer Model)
         {
-            await Service.SelectAsync(Model);
+            Response<UserEmail> Response = await Service.SelectAsync(Model);
             return new Response<UserEmail>
             {
-                //Single = Response.Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Collection = Response.Collection,
+                Message = Response.Message,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
             };
         }
 
@@ -80,15 +72,13 @@
         [Route("api/useremail/{id}")]
         public async Task<Response<UserEmail>> Get([FromBody] UserEmailAnyDataTransfer Model)
         {
-            await Service.AnySelectAsync(Model);
+            Response<UserEmail> Response = await Service.AnySelectAsync(Model);
             return new Response<UserEmail>
             {
-                //Single = Response.Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Collection = Response.Collection,
+                Message = Response.Message,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
             };
         }
     }

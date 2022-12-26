@@ -16,15 +16,13 @@
         [Route("api/category")]
         public async Task<Response<Category>> Create([FromBody] CategoryInsertDataTransfer Model)
         {
-            await Service.InsertAsync(Model);
+            Response<Category> Response = await Service.InsertAsync(Model);
             return new Response<Category>
             {
-                //Single = Response.Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Data = Response.Data,
+                Message = Response.Message,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
             };
         }
 
@@ -32,15 +30,13 @@
         [Route("api/category")]
         public async Task<Response<Category>> Update([FromBody] CategoryUpdateDataTransfer Model)
         {
-            await Service.UpdateAsync(Model);
+            Response<Category> Response = await Service.UpdateAsync(Model);
             return new Response<Category>
             {
-                //Single = Response.Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Data = Response.Data,
+                Message = Response.Message,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
             };
         }
 
@@ -48,15 +44,13 @@
         [Route("api/category")]
         public async Task<Response<Category>> Delete([FromBody] CategoryDeleteDataTransfer Model)
         {
-            await Service.DeleteAsync(Model);
+            Response<Category> Response = await Service.DeleteAsync(Model);
             return new Response<Category>
             {
-                //Single = Response.Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Data = Response.Data,
+                Message = Response.Message,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
             };
         }
 
@@ -64,15 +58,13 @@
         [Route("api/category")]
         public async Task<Response<Category>> Get([FromBody] CategorySelectDataTransfer Model)
         {
-            await Service.SelectAsync(Model);
+            Response<Category> Response = await Service.SelectAsync(Model);
             return new Response<Category>
             {
-                //Single = Response.Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Collection = Response.Collection,
+                Message = Response.Message,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
             };
         }
 
@@ -80,15 +72,13 @@
         [Route("api/category/{id}")]
         public async Task<Response<Category>> Get([FromBody] CategoryAnyDataTransfer Model)
         {
-            await Service.AnySelectAsync(Model);
+            Response<Category> Response = await Service.AnySelectAsync(Model);
             return new Response<Category>
             {
-                //Single = Response.Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Collection = Response.Collection,
+                Message = Response.Message,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
             };
         }
     }

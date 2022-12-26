@@ -16,15 +16,13 @@
         [Route("api/survey")]
         public async Task<Response<Survey>> Create([FromBody] SurveyInsertDataTransfer Model)
         {
-            await Service.InsertAsync(Model);
+            Response<Survey> Response = await Service.InsertAsync(Model);
             return new Response<Survey>
             {
-                //Single = Response.Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Data = Response.Data,
+                Message = Response.Message,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
             };
         }
 
@@ -32,15 +30,13 @@
         [Route("api/survey")]
         public async Task<Response<Survey>> Update([FromBody] SurveyUpdateDataTransfer Model)
         {
-            await Service.UpdateAsync(Model);
+            Response<Survey> Response = await Service.UpdateAsync(Model);
             return new Response<Survey>
             {
-                //Single = Response.Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Data = Response.Data,
+                Message = Response.Message,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
             };
         }
 
@@ -48,15 +44,13 @@
         [Route("api/survey")]
         public async Task<Response<Survey>> Delete([FromBody] SurveyDeleteDataTransfer Model)
         {
-            await Service.DeleteAsync(Model);
+            Response<Survey> Response = await Service.DeleteAsync(Model);
             return new Response<Survey>
             {
-                //Single = Response.Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Data = Response.Data,
+                Message = Response.Message,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
             };
         }
 
@@ -64,15 +58,13 @@
         [Route("api/survey")]
         public async Task<Response<Survey>> Get([FromBody] SurveySelectDataTransfer Model)
         {
-            await Service.SelectAsync(Model);
+            Response<Survey> Response = await Service.SelectAsync(Model);
             return new Response<Survey>
             {
-                //Single = Response.Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Collection = Response.Collection,
+                Message = Response.Message,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
             };
         }
 
@@ -80,15 +72,13 @@
         [Route("api/survey/{id}")]
         public async Task<Response<Survey>> Get([FromBody] SurveyAnyDataTransfer Model)
         {
-            await Service.AnySelectAsync(Model);
+            Response<Survey> Response = await Service.AnySelectAsync(Model);
             return new Response<Survey>
             {
-                //Single = Response.Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Collection = Response.Collection,
+                Message = Response.Message,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
             };
         }
     }

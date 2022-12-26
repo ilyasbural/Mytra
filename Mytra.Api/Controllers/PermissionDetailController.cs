@@ -16,15 +16,13 @@
         [Route("api/permissiondetail")]
         public async Task<Response<PermissionDetail>> Create([FromBody] PermissionDetailInsertDataTransfer Model)
         {
-            await Service.InsertAsync(Model);
+            Response<PermissionDetail> Response = await Service.InsertAsync(Model);
             return new Response<PermissionDetail>
             {
-                //Single = Response.Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Data = Response.Data,
+                Message = Response.Message,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
             };
         }
 
@@ -32,15 +30,13 @@
         [Route("api/permissiondetail")]
         public async Task<Response<PermissionDetail>> Update([FromBody] PermissionDetailUpdateDataTransfer Model)
         {
-            await Service.UpdateAsync(Model);
+            Response<PermissionDetail> Response = await Service.UpdateAsync(Model);
             return new Response<PermissionDetail>
             {
-                //Single = Response.Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Data = Response.Data,
+                Message = Response.Message,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
             };
         }
 
@@ -48,15 +44,13 @@
         [Route("api/permissiondetail")]
         public async Task<Response<PermissionDetail>> Delete([FromBody] PermissionDetailDeleteDataTransfer Model)
         {
-            await Service.DeleteAsync(Model);
+            Response<PermissionDetail> Response = await Service.DeleteAsync(Model);
             return new Response<PermissionDetail>
             {
-                //Single = Response.Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Data = Response.Data,
+                Message = Response.Message,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
             };
         }
 
@@ -64,15 +58,13 @@
         [Route("api/permissiondetail")]
         public async Task<Response<PermissionDetail>> Get([FromBody] PermissionDetailSelectDataTransfer Model)
         {
-            await Service.SelectAsync(Model);
+            Response<PermissionDetail> Response = await Service.SelectAsync(Model);
             return new Response<PermissionDetail>
             {
-                //Single = Response.Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Collection = Response.Collection,
+                Message = Response.Message,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
             };
         }
 
@@ -80,15 +72,13 @@
         [Route("api/permissiondetail/{id}")]
         public async Task<Response<PermissionDetail>> Get([FromBody] PermissionDetailAnyDataTransfer Model)
         {
-            await Service.AnySelectAsync(Model);
+            Response<PermissionDetail> Response = await Service.AnySelectAsync(Model);
             return new Response<PermissionDetail>
             {
-                //Single = Response.Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Collection = Response.Collection,
+                Message = Response.Message,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
             };
         }
     }

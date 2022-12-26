@@ -16,12 +16,13 @@
         [Route("api/announcedetail")]
         public async Task<Response<AnnounceDetail>> Create([FromBody] AnnounceDetailInsertDataTransfer Model)
         {
-            await Service.InsertAsync(Model);
+            Response<AnnounceDetail> Response = await Service.InsertAsync(Model);
             return new Response<AnnounceDetail>
             {
-                //Single = announceDetailResponse.Single,
-                //Success = announceDetailResponse.Success, 
-                //Message = announceDetailResponse.Message
+                Data = Response.Data,
+                Message = Response.Message,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
             };
         }
 
@@ -29,12 +30,13 @@
         [Route("api/announcedetail")]
         public async Task<Response<AnnounceDetail>> Update([FromBody] AnnounceDetailUpdateDataTransfer Model)
         {
-            await Service.UpdateAsync(Model);
+            Response<AnnounceDetail> Response = await Service.UpdateAsync(Model);
             return new Response<AnnounceDetail>
             {
-                //Single = announceDetailResponse.Single,
-                //Success = announceDetailResponse.Success, 
-                //Message = announceDetailResponse.Message
+                Data = Response.Data,
+                Message = Response.Message,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
             };
         }
 
@@ -42,12 +44,13 @@
         [Route("api/announcedetail")]
         public async Task<Response<AnnounceDetail>> Delete([FromBody] AnnounceDetailDeleteDataTransfer Model)
         {
-            await Service.DeleteAsync(Model);
+            Response<AnnounceDetail> Response = await Service.DeleteAsync(Model);
             return new Response<AnnounceDetail>
             {
-                //Single = announceDetailResponse.Single,
-                //Success = announceDetailResponse.Success, 
-                //Message = announceDetailResponse.Message
+                Data = Response.Data,
+                Message = Response.Message,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
             };
         }
 
@@ -55,12 +58,13 @@
         [Route("api/announcedetail")]
         public async Task<Response<AnnounceDetail>> Get([FromBody] AnnounceDetailSelectDataTransfer Model)
         {
-            await Service.SelectAsync(Model);
+            Response<AnnounceDetail> Response = await Service.SelectAsync(Model);
             return new Response<AnnounceDetail>
             {
-                //Single = announceDetailResponse.Single,
-                //Success = announceDetailResponse.Success, 
-                //Message = announceDetailResponse.Message
+                Collection = Response.Collection,
+                Message = Response.Message,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
             };
         }
 
@@ -68,12 +72,13 @@
         [Route("api/announcedetail/{id}")]
         public async Task<Response<AnnounceDetail>> Get([FromBody] AnnounceDetailAnyDataTransfer Model)
         {
-            await Service.AnyAsync(Model);
+            Response<AnnounceDetail> Response = await Service.AnyAsync(Model);
             return new Response<AnnounceDetail>
             {
-                //Single = announceDetailResponse.Single,
-                //Success = announceDetailResponse.Success, 
-                //Message = announceDetailResponse.Message
+                Collection = Response.Collection,
+                Message = Response.Message,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
             };
         }
     }

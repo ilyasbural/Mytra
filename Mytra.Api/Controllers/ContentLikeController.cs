@@ -16,15 +16,13 @@
         [Route("api/contentlike")]
         public async Task<Response<ContentLike>> Create([FromBody] ContentLikeInsertDataTransfer Model)
         {
-            await Service.InsertAsync(Model);
+            Response<ContentLike> Response = await Service.InsertAsync(Model);
             return new Response<ContentLike>
             {
-                //Single = Response.Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Data = Response.Data,
+                Message = Response.Message,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
             };
         }
 
@@ -32,15 +30,13 @@
         [Route("api/contentlike")]
         public async Task<Response<ContentLike>> Update([FromBody] ContentLikeUpdateDataTransfer Model)
         {
-            await Service.UpdateAsync(Model);
+            Response<ContentLike> Response = await Service.UpdateAsync(Model);
             return new Response<ContentLike>
             {
-                //Single = Response.Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Data = Response.Data,
+                Message = Response.Message,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
             };
         }
 
@@ -48,15 +44,13 @@
         [Route("api/contentlike")]
         public async Task<Response<ContentLike>> Delete([FromBody] ContentLikeDeleteDataTransfer Model)
         {
-            await Service.DeleteAsync(Model);
+            Response<ContentLike> Response = await Service.DeleteAsync(Model);
             return new Response<ContentLike>
             {
-                //Single = Response.Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Data = Response.Data,
+                Message = Response.Message,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
             };
         }
 
@@ -64,15 +58,13 @@
         [Route("api/contentlike")]
         public async Task<Response<ContentLike>> Get([FromBody] ContentLikeSelectDataTransfer Model)
         {
-            await Service.SelectAsync(Model);
+            Response<ContentLike> Response = await Service.SelectAsync(Model);
             return new Response<ContentLike>
             {
-                //Single = Response.Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Collection = Response.Collection,
+                Message = Response.Message,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
             };
         }
 
@@ -80,15 +72,13 @@
         [Route("api/contentlike/{id}")]
         public async Task<Response<ContentLike>> Get([FromBody] ContentLikeAnyDataTransfer Model)
         {
-            await Service.AnySelectAsync(Model);
+            Response<ContentLike> Response = await Service.AnySelectAsync(Model);
             return new Response<ContentLike>
             {
-                //Single = Response.Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Collection = Response.Collection,
+                Message = Response.Message,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
             };
         }
     }

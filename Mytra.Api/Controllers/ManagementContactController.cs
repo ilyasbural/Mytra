@@ -16,15 +16,41 @@
         [Route("api/managementcontact")]
         public async Task<Response<ManagementContact>> Create([FromBody] ManagementContactInsertDataTransfer Model)
         {
-            await Service.InsertAsync(Model);
+            Response<ManagementContact> Response = await Service.InsertAsync(Model);
             return new Response<ManagementContact>
             {
-                //Single = Response.Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Data = Response.Data,
+                Message = Response.Message,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
+            };
+        }
+
+        [HttpPut]
+        [Route("api/managementcontact")]
+        public async Task<Response<ManagementContact>> Update([FromBody] ManagementContactUpdateDataTransfer Model)
+        {
+            Response<ManagementContact> Response = await Service.UpdateAsync(Model);
+            return new Response<ManagementContact>
+            {
+                Data = Response.Data,
+                Message = Response.Message,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
+            };
+        }
+
+        [HttpDelete]
+        [Route("api/managementcontact")]
+        public async Task<Response<ManagementContact>> Delete([FromBody] ManagementContactDeleteDataTransfer Model)
+        {
+            Response<ManagementContact> Response = await Service.DeleteAsync(Model);
+            return new Response<ManagementContact>
+            {
+                Data = Response.Data,
+                Message = Response.Message,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
             };
         }
 
@@ -32,15 +58,13 @@
         [Route("api/managementcontact")]
         public async Task<Response<ManagementContact>> Get([FromBody] ManagementContactSelectDataTransfer Model)
         {
-            await Service.SelectAsync(Model);
+            Response<ManagementContact> Response = await Service.SelectAsync(Model);
             return new Response<ManagementContact>
             {
-                //Single = Response.Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Collection = Response.Collection,
+                Message = Response.Message,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
             };
         }
 
@@ -48,15 +72,13 @@
         [Route("api/managementcontact/{id}")]
         public async Task<Response<ManagementContact>> Get([FromBody] ManagementContactAnyDataTransfer Model)
         {
-            await Service.AnySelectAsync(Model);
+            Response<ManagementContact> Response = await Service.AnySelectAsync(Model);
             return new Response<ManagementContact>
             {
-                //Single = Response.Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Collection = Response.Collection,
+                Message = Response.Message,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
             };
         }
     }
