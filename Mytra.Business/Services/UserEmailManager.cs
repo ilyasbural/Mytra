@@ -3,7 +3,6 @@
     using Core;
     using AutoMapper;
     using FluentValidation;
-    using FluentValidation.Results;
 
     public class UserEmailManager : BusinessObject<UserEmail>, IUserEmailService
     {
@@ -25,19 +24,10 @@
             Entity.RegisterDate = DateTime.Now;
             Entity.UpdateDate = DateTime.Now;
             Entity.IsActive = true;
-
-
-
-
-
-
-
-
-
-
+            Validator.ValidateAndThrow(Entity);
 
             await UnitOfWork.UserEmail.InsertAsync(Entity);
-            int result = await UnitOfWork.SaveChangesAsync();
+            Result = await UnitOfWork.SaveChangesAsync();
 
             return new Response<UserEmail>
             {
@@ -50,62 +40,37 @@
 
         public async Task<Response<UserEmail>> UpdateAsync(UserEmailUpdateDataTransfer Model)
         {
-            List<UserEmail> DataSource = await UnitOfWork.UserEmail.SelectAsync(x => x.Id == Model.Id);
-            UserEmail userEmail = Mapper.Map<UserEmail>(DataSource[0]);
-            userEmail.UpdateDate = DateTime.Now;
+            Collection = await UnitOfWork.UserEmail.SelectAsync(x => x.Id == Model.Id);
+            Entity = Mapper.Map<UserEmail>(Collection[0]);
+            Entity.UpdateDate = DateTime.Now;
+            Validator.ValidateAndThrow(Entity);
 
-
-
-
-
-
-
-
-
-
-
-            await UnitOfWork.UserEmail.UpdateAsync(userEmail);
+            await UnitOfWork.UserEmail.UpdateAsync(Entity);
             int result = await UnitOfWork.SaveChangesAsync();
 
             return new Response<UserEmail>
             {
-                //Single = Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Data = Entity,
+                Success = Result,
+                Message = "Success",
+                IsValidationError = false
             };
         }
 
         public async Task<Response<UserEmail>> DeleteAsync(UserEmailDeleteDataTransfer Model)
         {
-            List<UserEmail> userEmailDataSource = await UnitOfWork.UserEmail.SelectAsync(x => x.Id == Model.Id);
-            UserEmail userEmail = Mapper.Map<UserEmail>(userEmailDataSource[0]);
+            Collection = await UnitOfWork.UserEmail.SelectAsync(x => x.Id == Model.Id);
+            Entity = Mapper.Map<UserEmail>(Collection[0]);
 
-
-
-
-
-
-
-
-
-
-
-
-
-            await UnitOfWork.UserEmail.DeleteAsync(userEmail);
-            int result = await UnitOfWork.SaveChangesAsync();
+            await UnitOfWork.UserEmail.DeleteAsync(Entity);
+            Result = await UnitOfWork.SaveChangesAsync();
 
             return new Response<UserEmail>
             {
-                //Single = Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Data = Entity,
+                Success = Result,
+                Message = "Success",
+                IsValidationError = false
             };
         }
 

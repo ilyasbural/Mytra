@@ -3,7 +3,6 @@
     using Core;
     using AutoMapper;
     using FluentValidation;
-    using FluentValidation.Results;
 
     public class ContentDetailManager : BusinessObject<ContentDetail>, IContentDetailService
     {
@@ -25,9 +24,10 @@
             Entity.RegisterDate = DateTime.Now;
             Entity.UpdateDate = DateTime.Now;
             Entity.IsActive = true;
+            Validator.ValidateAndThrow(Entity);
 
             await UnitOfWork.ContentDetail.InsertAsync(Entity);
-            int result = await UnitOfWork.SaveChangesAsync();
+            Result = await UnitOfWork.SaveChangesAsync();
 
             return new Response<ContentDetail>
             {
@@ -40,23 +40,13 @@
 
         public async Task<Response<ContentDetail>> UpdateAsync(ContentDetailUpdateDataTransfer Model)
         {
-            List<ContentDetail> DataSource = await UnitOfWork.ContentDetail.SelectAsync(x => x.Id == Model.Id);
-            ContentDetail contentDetail = Mapper.Map<ContentDetail>(DataSource[0]);
-            contentDetail.UpdateDate = DateTime.Now;
+            Collection = await UnitOfWork.ContentDetail.SelectAsync(x => x.Id == Model.Id);
+            Entity = Mapper.Map<ContentDetail>(Collection[0]);
+            Entity.UpdateDate = DateTime.Now;
+            Validator.ValidateAndThrow(Entity);
 
-
-
-
-
-
-
-
-
-
-
-
-            await UnitOfWork.ContentDetail.UpdateAsync(contentDetail);
-            int result = await UnitOfWork.SaveChangesAsync();
+            await UnitOfWork.ContentDetail.UpdateAsync(Entity);
+            Result = await UnitOfWork.SaveChangesAsync();
 
             return new Response<ContentDetail>
             {
@@ -69,14 +59,11 @@
 
         public async Task<Response<ContentDetail>> DeleteAsync(ContentDetailDeleteDataTransfer Model)
         {
-            List<ContentDetail> contentDetailDataSource = await UnitOfWork.ContentDetail.SelectAsync(x => x.Id == Model.Id);
-            ContentDetail contentDetail = Mapper.Map<ContentDetail>(contentDetailDataSource[0]);
+            Collection = await UnitOfWork.ContentDetail.SelectAsync(x => x.Id == Model.Id);
+            Entity = Mapper.Map<ContentDetail>(Collection[0]);
 
-
-
-
-            await UnitOfWork.ContentDetail.DeleteAsync(contentDetail);
-            int result = await UnitOfWork.SaveChangesAsync();
+            await UnitOfWork.ContentDetail.DeleteAsync(Entity);
+            Result = await UnitOfWork.SaveChangesAsync();
 
             return new Response<ContentDetail>
             {

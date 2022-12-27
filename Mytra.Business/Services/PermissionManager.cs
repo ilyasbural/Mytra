@@ -3,7 +3,6 @@
     using Core;
     using AutoMapper;
     using FluentValidation;
-    using FluentValidation.Results;
 
     public class PermissionManager : BusinessObject<Permission>, IPermissionService
     {
@@ -25,18 +24,10 @@
             Entity.RegisterDate = DateTime.Now;
             Entity.UpdateDate = DateTime.Now;
             Entity.IsActive = true;
-
-
-
-
-
-
-
-
-
+            Validator.ValidateAndThrow(Entity);
 
             await UnitOfWork.Permission.InsertAsync(Entity);
-            int result = await UnitOfWork.SaveChangesAsync();
+            Result = await UnitOfWork.SaveChangesAsync();
 
             return new Response<Permission>
             {
@@ -49,66 +40,37 @@
 
         public async Task<Response<Permission>> UpdateAsync(PermissionUpdateDataTransfer Model)
         {
-            List<Permission> DataSource = await UnitOfWork.Permission.SelectAsync(x => x.Id == Model.Id);
-            Permission permission = Mapper.Map<Permission>(DataSource[0]);
-            permission.UpdateDate = DateTime.Now;
+            Collection = await UnitOfWork.Permission.SelectAsync(x => x.Id == Model.Id);
+            Entity = Mapper.Map<Permission>(Collection[0]);
+            Entity.UpdateDate = DateTime.Now;
+            Validator.ValidateAndThrow(Entity);
 
-
-
-
-
-
-
-
-
-
-
-
-
-            await UnitOfWork.Permission.UpdateAsync(permission);
-            int result = await UnitOfWork.SaveChangesAsync();
+            await UnitOfWork.Permission.UpdateAsync(Entity);
+            Result = await UnitOfWork.SaveChangesAsync();
 
             return new Response<Permission>
             {
-                //Single = Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Data = Entity,
+                Success = Result,
+                Message = "Success",
+                IsValidationError = false
             };
         }
 
         public async Task<Response<Permission>> DeleteAsync(PermissionDeleteDataTransfer Model)
         {
-            List<Permission> permissionDataSource = await UnitOfWork.Permission.SelectAsync(x => x.Id == Model.Id);
-            Permission permission = Mapper.Map<Permission>(permissionDataSource[0]);
+            Collection = await UnitOfWork.Permission.SelectAsync(x => x.Id == Model.Id);
+            Entity = Mapper.Map<Permission>(Collection[0]);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            await UnitOfWork.Permission.DeleteAsync(permission);
-            int result = await UnitOfWork.SaveChangesAsync();
+            await UnitOfWork.Permission.DeleteAsync(Entity);
+            Result = await UnitOfWork.SaveChangesAsync();
 
             return new Response<Permission>
             {
-                //Single = Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Data = Entity,
+                Success = Result,
+                Message = "Success",
+                IsValidationError = false
             };
         }
 

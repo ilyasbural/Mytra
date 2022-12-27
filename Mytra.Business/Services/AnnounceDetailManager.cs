@@ -24,6 +24,7 @@
             Entity.RegisterDate = DateTime.Now;
             Entity.UpdateDate = DateTime.Now;
             Entity.IsActive = true;
+            Validator.ValidateAndThrow(Entity);
 
             await UnitOfWork.AnnounceDetail.InsertAsync(Entity);
             Result = await UnitOfWork.SaveChangesAsync();
@@ -40,10 +41,11 @@
         public async Task<Response<AnnounceDetail>> UpdateAsync(AnnounceDetailUpdateDataTransfer Model)
         {
             Collection = await UnitOfWork.AnnounceDetail.SelectAsync(x => x.Id == Model.Id);
-            AnnounceDetail picture = Mapper.Map<AnnounceDetail>(Collection[0]);
-            picture.UpdateDate = DateTime.Now;
+            Entity = Mapper.Map<AnnounceDetail>(Collection[0]);
+            Entity.UpdateDate = DateTime.Now;
+            Validator.ValidateAndThrow(Entity);
 
-            await UnitOfWork.AnnounceDetail.UpdateAsync(picture);
+            await UnitOfWork.AnnounceDetail.UpdateAsync(Entity);
             Result = await UnitOfWork.SaveChangesAsync();
 
             return new Response<AnnounceDetail>
@@ -58,9 +60,9 @@
         public async Task<Response<AnnounceDetail>> DeleteAsync(AnnounceDetailDeleteDataTransfer Model)
         {
             Collection = await UnitOfWork.AnnounceDetail.SelectAsync(x => x.Id == Model.Id);
-            AnnounceDetail announceDetail = Mapper.Map<AnnounceDetail>(Collection[0]);
+            Entity = Mapper.Map<AnnounceDetail>(Collection[0]);
 
-            await UnitOfWork.AnnounceDetail.DeleteAsync(announceDetail);
+            await UnitOfWork.AnnounceDetail.DeleteAsync(Entity);
             Result = await UnitOfWork.SaveChangesAsync();
 
             return new Response<AnnounceDetail>

@@ -3,7 +3,6 @@
     using Core;
     using AutoMapper;
     using FluentValidation;
-    using FluentValidation.Results;
 
     public class ContentLikeManager : BusinessObject<ContentLike>, IContentLikeService
     {
@@ -25,9 +24,10 @@
             Entity.RegisterDate = DateTime.Now;
             Entity.UpdateDate = DateTime.Now;
             Entity.IsActive = true;
+            Validator.ValidateAndThrow(Entity);
 
             await UnitOfWork.ContentLike.InsertAsync(Entity);
-            int result = await UnitOfWork.SaveChangesAsync();
+            Result = await UnitOfWork.SaveChangesAsync();
 
             return new Response<ContentLike> 
             {
@@ -40,21 +40,13 @@
 
         public async Task<Response<ContentLike>> UpdateAsync(ContentLikeUpdateDataTransfer Model)
         {
-            List<ContentLike> DataSource = await UnitOfWork.ContentLike.SelectAsync(x => x.Id == Model.Id);
-            ContentLike contentLike = Mapper.Map<ContentLike>(DataSource[0]);
-            contentLike.UpdateDate = DateTime.Now;
+            Collection = await UnitOfWork.ContentLike.SelectAsync(x => x.Id == Model.Id);
+            Entity = Mapper.Map<ContentLike>(Collection[0]);
+            Entity.UpdateDate = DateTime.Now;
+            Validator.ValidateAndThrow(Entity);
 
-
-
-
-
-
-
-
-
-
-            await UnitOfWork.ContentLike.UpdateAsync(contentLike);
-            int result = await UnitOfWork.SaveChangesAsync();
+            await UnitOfWork.ContentLike.UpdateAsync(Entity);
+            Result = await UnitOfWork.SaveChangesAsync();
 
             return new Response<ContentLike>
             {
@@ -67,22 +59,11 @@
 
         public async Task<Response<ContentLike>> DeleteAsync(ContentLikeDeleteDataTransfer Model)
         {
-            List<ContentLike> contentLikeDataSource = await UnitOfWork.ContentLike.SelectAsync(x => x.Id == Model.Id);
-            ContentLike contentLike = Mapper.Map<ContentLike>(contentLikeDataSource[0]);
+            Collection = await UnitOfWork.ContentLike.SelectAsync(x => x.Id == Model.Id);
+            Entity = Mapper.Map<ContentLike>(Collection[0]);
 
-
-
-
-
-
-
-
-
-
-
-
-            await UnitOfWork.ContentLike.DeleteAsync(contentLike);
-            int result = await UnitOfWork.SaveChangesAsync();
+            await UnitOfWork.ContentLike.DeleteAsync(Entity);
+            Result = await UnitOfWork.SaveChangesAsync();
 
             return new Response<ContentLike>
             {

@@ -3,7 +3,6 @@
     using Core;
     using AutoMapper;
     using FluentValidation;
-    using FluentValidation.Results;
 
     public class UserManager : BusinessObject<User>, IUserService
     {
@@ -25,19 +24,10 @@
             Entity.RegisterDate = DateTime.Now;
             Entity.UpdateDate = DateTime.Now;
             Entity.IsActive = true;
-
-
-
-
-
-
-
-
-
-
+            Validator.ValidateAndThrow(Entity);
 
             await UnitOfWork.User.InsertAsync(Entity);
-            await UnitOfWork.SaveChangesAsync();
+            Result = await UnitOfWork.SaveChangesAsync();
 
             return new Response<User>
             {
@@ -50,65 +40,37 @@
 
         public async Task<Response<User>> UpdateAsync(UserUpdateDataTransfer Model)
         {
-            List<User> DataSource = await UnitOfWork.User.SelectAsync(x => x.Id == Model.Id);
-            User user = Mapper.Map<User>(DataSource[0]);
-            user.UpdateDate = DateTime.Now;
+            Collection = await UnitOfWork.User.SelectAsync(x => x.Id == Model.Id);
+            Entity = Mapper.Map<User>(Collection[0]);
+            Entity.UpdateDate = DateTime.Now;
+            Validator.ValidateAndThrow(Entity);
 
-
-
-
-
-
-
-
-
-
-
-
-
-            await UnitOfWork.User.UpdateAsync(user);
-            int result = await UnitOfWork.SaveChangesAsync();
+            await UnitOfWork.User.UpdateAsync(Entity);
+            Result = await UnitOfWork.SaveChangesAsync();
 
             return new Response<User>
             {
-                //Single = Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Data = Entity,
+                Success = Result,
+                Message = "Success",
+                IsValidationError = false
             };
         }
 
         public async Task<Response<User>> DeleteAsync(UserDeleteDataTransfer Model)
         {
-            List<User> userDataSource = await UnitOfWork.User.SelectAsync(x => x.Id == Model.Id);
-            User user = Mapper.Map<User>(userDataSource[0]);
+            Collection = await UnitOfWork.User.SelectAsync(x => x.Id == Model.Id);
+            Entity = Mapper.Map<User>(Collection[0]);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-            await UnitOfWork.User.DeleteAsync(user);
-            int result = await UnitOfWork.SaveChangesAsync();
+            await UnitOfWork.User.DeleteAsync(Entity);
+            Result = await UnitOfWork.SaveChangesAsync();
 
             return new Response<User>
             {
-                //Single = Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Data = Entity,
+                Success = Result,
+                Message = "Success",
+                IsValidationError = false
             };
         }
 

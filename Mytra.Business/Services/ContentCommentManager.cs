@@ -24,9 +24,10 @@
             Entity.RegisterDate = DateTime.Now;
             Entity.UpdateDate = DateTime.Now;
             Entity.IsActive = true;
+            Validator.ValidateAndThrow(Entity);
 
             await UnitOfWork.ContentComment.InsertAsync(Entity);
-            int result = await UnitOfWork.SaveChangesAsync();
+            Result = await UnitOfWork.SaveChangesAsync();
 
             return new Response<ContentComment>
             {
@@ -39,15 +40,13 @@
 
         public async Task<Response<ContentComment>> UpdateAsync(ContentCommentUpdateDataTransfer Model)
         {
-            List<ContentComment> DataSource = await UnitOfWork.ContentComment.SelectAsync(x => x.Id == Model.Id);
-            ContentComment contentComment = Mapper.Map<ContentComment>(DataSource[0]);
-            contentComment.UpdateDate = DateTime.Now;
+            Collection = await UnitOfWork.ContentComment.SelectAsync(x => x.Id == Model.Id);
+            Entity = Mapper.Map<ContentComment>(Collection[0]);
+            Entity.UpdateDate = DateTime.Now;
+            Validator.ValidateAndThrow(Entity);
 
-
-
-
-            await UnitOfWork.ContentComment.UpdateAsync(contentComment);
-            int result = await UnitOfWork.SaveChangesAsync();
+            await UnitOfWork.ContentComment.UpdateAsync(Entity);
+            Result = await UnitOfWork.SaveChangesAsync();
 
             return new Response<ContentComment>
             {
@@ -60,13 +59,11 @@
 
         public async Task<Response<ContentComment>> DeleteAsync(ContentCommentDeleteDataTransfer Model)
         {
-            List<ContentComment> announceDataSource = await UnitOfWork.ContentComment.SelectAsync(x => x.Id == Model.Id);
-            ContentComment contentComment = Mapper.Map<ContentComment>(announceDataSource[0]);
+            Collection = await UnitOfWork.ContentComment.SelectAsync(x => x.Id == Model.Id);
+            Entity = Mapper.Map<ContentComment>(Collection[0]);
 
-
-
-            await UnitOfWork.ContentComment.DeleteAsync(contentComment);
-            int result = await UnitOfWork.SaveChangesAsync();
+            await UnitOfWork.ContentComment.DeleteAsync(Entity);
+            Result = await UnitOfWork.SaveChangesAsync();
 
             return new Response<ContentComment>
             {

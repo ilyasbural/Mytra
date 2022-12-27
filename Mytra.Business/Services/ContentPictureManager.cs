@@ -3,7 +3,6 @@
     using Core;
     using AutoMapper;
     using FluentValidation;
-    using FluentValidation.Results;
 
     public class ContentPictureManager : BusinessObject<ContentPicture>, IContentPictureService
     {
@@ -25,9 +24,10 @@
             Entity.RegisterDate = DateTime.Now;
             Entity.UpdateDate = DateTime.Now;
             Entity.IsActive = true;
+            Validator.ValidateAndThrow(Entity);
 
             await UnitOfWork.ContentPicture.InsertAsync(Entity);
-            int result = await UnitOfWork.SaveChangesAsync();
+            Result = await UnitOfWork.SaveChangesAsync();
 
             return new Response<ContentPicture>
             {
@@ -40,44 +40,37 @@
 
         public async Task<Response<ContentPicture>> UpdateAsync(ContentPictureUpdateDataTransfer Model)
         {
-            List<ContentPicture> DataSource = await UnitOfWork.ContentPicture.SelectAsync(x => x.Id == Model.Id);
-            ContentPicture contentPicture = Mapper.Map<ContentPicture>(DataSource[0]);
-            contentPicture.UpdateDate = DateTime.Now;
+            Collection = await UnitOfWork.ContentPicture.SelectAsync(x => x.Id == Model.Id);
+            Entity = Mapper.Map<ContentPicture>(Collection[0]);
+            Entity.UpdateDate = DateTime.Now;
+            Validator.ValidateAndThrow(Entity);
 
-
-
-            await UnitOfWork.ContentPicture.UpdateAsync(contentPicture);
-            int result = await UnitOfWork.SaveChangesAsync();
+            await UnitOfWork.ContentPicture.UpdateAsync(Entity);
+            Result = await UnitOfWork.SaveChangesAsync();
 
             return new Response<ContentPicture>
             {
-                //Single = Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Data = Entity,
+                Success = Result,
+                Message = "Success",
+                IsValidationError = false
             };
         }
 
         public async Task<Response<ContentPicture>> DeleteAsync(ContentPictureDeleteDataTransfer Model)
         {
-            List<ContentPicture> contentPictureDataSource = await UnitOfWork.ContentPicture.SelectAsync(x => x.Id == Model.Id);
-            ContentPicture content = Mapper.Map<ContentPicture>(contentPictureDataSource[0]);
+            Collection = await UnitOfWork.ContentPicture.SelectAsync(x => x.Id == Model.Id);
+            Entity = Mapper.Map<ContentPicture>(Collection[0]);
 
-
-
-            await UnitOfWork.ContentPicture.DeleteAsync(content);
-            int result = await UnitOfWork.SaveChangesAsync();
+            await UnitOfWork.ContentPicture.DeleteAsync(Entity);
+            Result = await UnitOfWork.SaveChangesAsync();
 
             return new Response<ContentPicture>
             {
-                //Single = Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Data = Entity,
+                Success = Result,
+                Message = "Success",
+                IsValidationError = false
             };
         }
 

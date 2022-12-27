@@ -3,7 +3,6 @@
     using Core;
     using AutoMapper;
     using FluentValidation;
-    using FluentValidation.Results;
 
     public class ManagementDetailManager : BusinessObject<ManagementDetail>, IManagementDetailService
     {
@@ -25,12 +24,10 @@
             Entity.RegisterDate = DateTime.Now;
             Entity.UpdateDate = DateTime.Now;
             Entity.IsActive = true;
-
-
-
+            Validator.ValidateAndThrow(Entity);
 
             await UnitOfWork.ManagementDetail.InsertAsync(Entity);
-            int result = await UnitOfWork.SaveChangesAsync();
+            Result = await UnitOfWork.SaveChangesAsync();
 
             return new Response<ManagementDetail>
             {
@@ -43,63 +40,37 @@
 
         public async Task<Response<ManagementDetail>> UpdateAsync(ManagementDetailUpdateDataTransfer Model)
         {
-            List<ManagementDetail> DataSource = await UnitOfWork.ManagementDetail.SelectAsync(x => x.Id == Model.Id);
-            ManagementDetail managementDetail = Mapper.Map<ManagementDetail>(DataSource[0]);
-            managementDetail.UpdateDate = DateTime.Now;
+            Collection = await UnitOfWork.ManagementDetail.SelectAsync(x => x.Id == Model.Id);
+            Entity = Mapper.Map<ManagementDetail>(Collection[0]);
+            Entity.UpdateDate = DateTime.Now;
+            Validator.ValidateAndThrow(Entity);
 
-
-
-
-
-
-
-
-
-
-
-
-            await UnitOfWork.ManagementDetail.UpdateAsync(managementDetail);
-            int result = await UnitOfWork.SaveChangesAsync();
+            await UnitOfWork.ManagementDetail.UpdateAsync(Entity);
+            Result = await UnitOfWork.SaveChangesAsync();
 
             return new Response<ManagementDetail>
             {
-                //Single = Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Data = Entity,
+                Success = Result,
+                Message = "Success",
+                IsValidationError = false
             };
         }
 
         public async Task<Response<ManagementDetail>> DeleteAsync(ManagementDetailDeleteDataTransfer Model)
         {
-            List<ManagementDetail> managementDetailDataSource = await UnitOfWork.ManagementDetail.SelectAsync(x => x.Id == Model.Id);
-            ManagementDetail managementDetail = Mapper.Map<ManagementDetail>(managementDetailDataSource[0]);
+            Collection = await UnitOfWork.ManagementDetail.SelectAsync(x => x.Id == Model.Id);
+            Entity = Mapper.Map<ManagementDetail>(Collection[0]);
 
-
-
-
-
-
-
-
-
-
-
-
-
-            await UnitOfWork.ManagementDetail.DeleteAsync(managementDetail);
-            int result = await UnitOfWork.SaveChangesAsync();
+            await UnitOfWork.ManagementDetail.DeleteAsync(Entity);
+            Result = await UnitOfWork.SaveChangesAsync();
 
             return new Response<ManagementDetail>
             {
-                //Single = Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Data = Entity,
+                Success = Result,
+                Message = "Success",
+                IsValidationError = false
             };
         }
 

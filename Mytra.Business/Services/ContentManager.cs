@@ -3,7 +3,6 @@
     using Core;
     using AutoMapper;
     using FluentValidation;
-    using FluentValidation.Results;
 
     public partial class ContentManager : BusinessObject<Content>, IContentService
     {
@@ -25,9 +24,10 @@
             Entity.RegisterDate = DateTime.Now;
             Entity.UpdateDate = DateTime.Now;
             Entity.IsActive = true;
+            Validator.ValidateAndThrow(Entity);
 
             await UnitOfWork.Content.InsertAsync(Entity);
-            int result = await UnitOfWork.SaveChangesAsync();
+            Result = await UnitOfWork.SaveChangesAsync();
 
             return new Response<Content>
             {
@@ -40,57 +40,37 @@
 
         public async Task<Response<Content>> UpdateAsync(ContentUpdateDataTransfer Model)
         {
-            List<Content> DataSource = await UnitOfWork.Content.SelectAsync(x => x.Id == Model.Id);
-            Content content = Mapper.Map<Content>(DataSource[0]);
-            content.UpdateDate = DateTime.Now;
+            Collection = await UnitOfWork.Content.SelectAsync(x => x.Id == Model.Id);
+            Entity = Mapper.Map<Content>(Collection[0]);
+            Entity.UpdateDate = DateTime.Now;
+            Validator.ValidateAndThrow(Entity);
 
-
-
-
-
-
-
-
-
-
-            await UnitOfWork.Content.UpdateAsync(content);
-            int result = await UnitOfWork.SaveChangesAsync();
+            await UnitOfWork.Content.UpdateAsync(Entity);
+            Result = await UnitOfWork.SaveChangesAsync();
 
             return new Response<Content>
             {
-                //Single = Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Data = Entity,
+                Success = Result,
+                Message = "Success",
+                IsValidationError = false
             };
         }
 
         public async Task<Response<Content>> DeleteAsync(ContentDeleteDataTransfer Model)
         {
-            List<Content> contentDataSource = await UnitOfWork.Content.SelectAsync(x => x.Id == Model.Id);
-            Content content = Mapper.Map<Content>(contentDataSource[0]);
+            Collection = await UnitOfWork.Content.SelectAsync(x => x.Id == Model.Id);
+            Entity = Mapper.Map<Content>(Collection[0]);
 
-
-
-
-
-
-
-
-
-            await UnitOfWork.Content.DeleteAsync(content);
-            int result = await UnitOfWork.SaveChangesAsync();
+            await UnitOfWork.Content.DeleteAsync(Entity);
+            Result = await UnitOfWork.SaveChangesAsync();
 
             return new Response<Content>
             {
-                //Single = Entity,
-                //Success = Success,
-                //Message = Message,
-                //Errors = new List<string>(),
-                //IsValidationError = IsValidationError,
-                //Validations = new List<ValidationResult> { Validations }
+                Data = Entity,
+                Success = Result,
+                Message = "Success",
+                IsValidationError = false
             };
         }
 

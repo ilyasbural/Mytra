@@ -1,6 +1,8 @@
 ﻿namespace Mytra.Business
 {
     using Core;
+    using AutoMapper;
+    using FluentValidation;
 
     public class AuthenticationManager : IAuthenticationService
     {
