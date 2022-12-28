@@ -1,6 +1,6 @@
 ﻿namespace Mytra.Core
 {
-    public interface IUnitOfWork
+    public interface IUnitOfWork : IDisposable
     {
         IAnnounceRepository Announce { get; }
         IAnnounceDetailRepository AnnounceDetail { get; }

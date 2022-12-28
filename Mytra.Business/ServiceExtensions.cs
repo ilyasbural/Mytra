@@ -75,6 +75,7 @@
             Service.AddScoped<IContentTypeService, ContentTypeManager>();
             Service.AddScoped<IManagementService, ManagementManager>();
             Service.AddScoped<IManagementDetailService, ManagementDetailManager>();
+            Service.AddScoped<IManagementLoginService, ManagementLoginManager>();
             Service.AddScoped<IManagementContactService, ManagementContactManager>();
             Service.AddScoped<IManagementSettingsService, ManagementSettingsManager>();
             Service.AddScoped<IPermissionService, PermissionManager>();
@@ -86,6 +87,7 @@
             Service.AddScoped<IUserDetailService, UserDetailManager>();
             Service.AddScoped<IUserContactService, UserContactManager>();
             Service.AddScoped<IUserEmailService, UserEmailManager>();
+            Service.AddScoped<IUserLoginService, UserLoginManager>();
             Service.AddScoped<IUserSettingsService, UserSettingsManager>();
 
             return Service;

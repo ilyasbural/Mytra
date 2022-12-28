@@ -63,5 +63,10 @@
         {
             return await DbContext.SaveChangesAsync();
         }
+
+        public async void Dispose()
+        {
+            await DbContext.DisposeAsync();
+        }
     }
 }
