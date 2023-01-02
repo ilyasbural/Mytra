@@ -2,6 +2,6 @@
 {
     public interface IAuthenticationService
     {
-        AccessToken CreateAccessToken(string email, string password);
+        Task<AccessToken> CreateAccessToken(string email, string password);
     }
 }

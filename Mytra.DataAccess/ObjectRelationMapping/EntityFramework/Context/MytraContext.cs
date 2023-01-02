@@ -613,7 +613,7 @@
                     .HasColumnType("datetime")
                     .HasColumnName("UPDATE DATE");
 
-                entity.HasOne(d => d.IdNavigation).WithOne(p => p.UserSetting)
+                entity.HasOne(d => d.IdNavigation).WithOne(p => p.UserSettings)
                     .HasForeignKey<UserSettings>(d => d.Id)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_USER SETTINGS_USER");

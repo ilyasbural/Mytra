@@ -86,7 +86,7 @@
             };
         }
 
-        public async Task<Response<AnnounceDetail>> AnyAsync(AnnounceDetailAnyDataTransfer Model)
+        public async Task<Response<AnnounceDetail>> AnySelectAsync(AnnounceDetailAnyDataTransfer Model)
         {
             Collection = await UnitOfWork.AnnounceDetail.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
             return new Response<AnnounceDetail>
@@ -96,6 +96,31 @@
                 Message = "Success",
                 IsValidationError = false
             };
+        }
+
+        public Response<AnnounceDetail> Insert(AnnounceDetailInsertDataTransfer Model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Response<AnnounceDetail> Update(AnnounceDetailUpdateDataTransfer Model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Response<AnnounceDetail> Delete(AnnounceDetailDeleteDataTransfer Model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Response<AnnounceDetail> Select(AnnounceDetailSelectDataTransfer Model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Response<AnnounceDetail> AnySelect(AnnounceDetailAnyDataTransfer Model)
+        {
+            throw new NotImplementedException();
         }
     }
 }

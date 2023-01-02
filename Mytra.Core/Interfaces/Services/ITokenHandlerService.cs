@@ -2,7 +2,7 @@
 {
     public interface ITokenHandlerService
     {
-        AccessToken CreateAccessToken(User user);
+        AccessToken CreateAccessToken(User user, UserDetail userDetail);
         void RevokeRefreshToken(User user);
     }
 }

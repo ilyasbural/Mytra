@@ -72,7 +72,7 @@
         [Route("api/announcedetail/{id}")]
         public async Task<Response<AnnounceDetail>> Get([FromBody] AnnounceDetailAnyDataTransfer Model)
         {
-            Response<AnnounceDetail> Response = await Service.AnyAsync(Model);
+            Response<AnnounceDetail> Response = await Service.AnySelectAsync(Model);
             return new Response<AnnounceDetail>
             {
                 Collection = Response.Collection,

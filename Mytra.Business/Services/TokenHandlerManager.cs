@@ -8,19 +8,18 @@
 
     public class TokenHandlerManager : ITokenHandlerService
     {
-        private readonly TokenOptions tokenOptions;
-
-        public TokenHandlerManager(IOptions<TokenOptions> tokenOptions)
+        readonly TokenOptions Options;
+        public TokenHandlerManager(IOptions<TokenOptions> options)
         {
-            this.tokenOptions = tokenOptions.Value;
+            Options = options.Value;
         }
 
-        public AccessToken CreateAccessToken(User user)
+        public AccessToken CreateAccessToken(User user, UserDetail userDetail)
         {
-            var accessTokenExpiration = DateTime.Now.AddMinutes(tokenOptions.AccessTokenExpiration);
-            var securityKey = SignHandler.GetSecurityKey(tokenOptions.SecurityKey);
-            SigningCredentials signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature);
-            JwtSecurityToken jwtSecurityToken = new JwtSecurityToken(issuer: tokenOptions.Issuer, audience: tokenOptions.Audience, expires: accessTokenExpiration, notBefore: DateTime.Now, claims: GetClaim(user), signingCredentials: signingCredentials);
+            DateTime accessTokenExpiration = DateTime.Now.AddMinutes(Options.AccessTokenExpiration);
+            SecurityKey SecurityKey = SignHandler.GetSecurityKey(Options.SecurityKey);
+            SigningCredentials signingCredentials = new SigningCredentials(SecurityKey, SecurityAlgorithms.HmacSha256Signature);
+            JwtSecurityToken jwtSecurityToken = new JwtSecurityToken(issuer: Options.Issuer, audience: Options.Audience, expires: accessTokenExpiration, notBefore: DateTime.Now, claims: GetClaim(user, userDetail), signingCredentials: signingCredentials);
 
             var handler = new JwtSecurityTokenHandler();
             var token = handler.WriteToken(jwtSecurityToken);
@@ -30,13 +29,13 @@
             return accessToken;
         }
 
-        private IEnumerable<Claim> GetClaim(User user)
+        private IEnumerable<Claim> GetClaim(User user, UserDetail userDetail)
         {
             var claims = new List<Claim>()
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                //new Claim(JwtRegisteredClaimNames.Email, user.Email),
-                //new Claim(ClaimTypes.Name, $" {user.Name} {user.Surname} "),
+                new Claim(JwtRegisteredClaimNames.Email, user.Email),
+                new Claim(ClaimTypes.Name, $" {userDetail.Name} {userDetail.Lastname} "),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
             return claims;

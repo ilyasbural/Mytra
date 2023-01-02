@@ -12,15 +12,13 @@
             this.tokenHandler = tokenHandler;
         }
 
-        public AccessToken CreateAccessToken(string email, string password)
+        public async Task<AccessToken> CreateAccessToken(string email, string password)
         {
             AccessToken accessToken = tokenHandler.CreateAccessToken(new User
             {
-                //Id = 1,
-                //Email = "ilyas@GMAİL.COM",
-                //Name = "ilyaS",
-                //Surname = "SS"
-            });
+                Email = email, 
+                Password = password
+            }, new UserDetail {     });
             return accessToken;
         }
     }
