@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mytra.Presentation", "Mytra.Presentation\Mytra.Presentation.csproj", "{6F9E7670-EE73-4708-9E7A-2FB059B8B4D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mytra.Presentation", "Mytra.Presentation\Mytra.Presentation.csproj", "{6F9E7670-EE73-4708-9E7A-2FB059B8B4D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mytra.Core", "Mytra.Core\Mytra.Core.csproj", "{0ABEB650-22B8-40B7-B46A-2F791CED1A45}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mytra.DataAccess", "Mytra.DataAccess\Mytra.DataAccess.csproj", "{6D84B697-2908-42EC-8DB4-4BC3C82E3F74}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mytra.Service", "Mytra.Service\Mytra.Service.csproj", "{59DA6248-B838-4EB3-B4E0-1DA931430784}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{6F9E7670-EE73-4708-9E7A-2FB059B8B4D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F9E7670-EE73-4708-9E7A-2FB059B8B4D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F9E7670-EE73-4708-9E7A-2FB059B8B4D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0ABEB650-22B8-40B7-B46A-2F791CED1A45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0ABEB650-22B8-40B7-B46A-2F791CED1A45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0ABEB650-22B8-40B7-B46A-2F791CED1A45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0ABEB650-22B8-40B7-B46A-2F791CED1A45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D84B697-2908-42EC-8DB4-4BC3C82E3F74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D84B697-2908-42EC-8DB4-4BC3C82E3F74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D84B697-2908-42EC-8DB4-4BC3C82E3F74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D84B697-2908-42EC-8DB4-4BC3C82E3F74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59DA6248-B838-4EB3-B4E0-1DA931430784}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59DA6248-B838-4EB3-B4E0-1DA931430784}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59DA6248-B838-4EB3-B4E0-1DA931430784}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59DA6248-B838-4EB3-B4E0-1DA931430784}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

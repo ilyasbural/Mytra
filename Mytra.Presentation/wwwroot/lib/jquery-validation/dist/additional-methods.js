@@ -155,7 +155,7 @@ $.validator.addMethod( "bankorgiroaccountNL", function( value, element ) {
 }, "Please specify a valid bank or giro account number." );
 
 /**
- * BIC is the business identifier code (ISO 9362). This BIC check is not a guarantee for authenticity.
+ * BIC is the Service identifier code (ISO 9362). This BIC check is not a guarantee for authenticity.
  *
  * BIC pattern: BBBBCCLLbbb (8 or 11 characters long; bbb is optional)
  *
