@@ -5,6 +5,8 @@ VisualStudioVersion = 17.13.35806.99
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mytra.Core", "Mytra.Core\Mytra.Core.csproj", "{F9360219-A8EF-4696-AE14-37551829CE2C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mytra.DataAccess", "Mytra.DataAccess\Mytra.DataAccess.csproj", "{5AE26360-9E21-4950-9ABE-F45C75852D90}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{F9360219-A8EF-4696-AE14-37551829CE2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9360219-A8EF-4696-AE14-37551829CE2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9360219-A8EF-4696-AE14-37551829CE2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AE26360-9E21-4950-9ABE-F45C75852D90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AE26360-9E21-4950-9ABE-F45C75852D90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AE26360-9E21-4950-9ABE-F45C75852D90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AE26360-9E21-4950-9ABE-F45C75852D90}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
