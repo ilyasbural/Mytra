@@ -6,9 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Mytra.Common\Mytra.Common.csproj" />
-    <ProjectReference Include="..\Mytra.DataAccess\Mytra.DataAccess.csproj" />
-  </ItemGroup>
-
 </Project>
