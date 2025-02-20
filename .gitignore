@@ -1,3 +1,6 @@
 /.vs/Mytra/v17/.suo
 /.vs/Mytra/v17/DocumentLayout.backup.json
 /.vs/Mytra/v17/DocumentLayout.json
+/.vs/Mytra
+/Mytra.Core/bin/Debug/net9.0
+/Mytra.Core/obj
