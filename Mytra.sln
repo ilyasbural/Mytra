@@ -1,9 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35806.99 d17.13
+VisualStudioVersion = 17.13.35806.99
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mytra.Core", "Mytra.Core\Mytra.Core.csproj", "{F9360219-A8EF-4696-AE14-37551829CE2C}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F9360219-A8EF-4696-AE14-37551829CE2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9360219-A8EF-4696-AE14-37551829CE2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9360219-A8EF-4696-AE14-37551829CE2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9360219-A8EF-4696-AE14-37551829CE2C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
