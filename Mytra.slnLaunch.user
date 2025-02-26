@@ -5,6 +5,10 @@
       {
         "Path": "Mytra.Presentation\\Mytra.Presentation.csproj",
         "Action": "Start"
+      },
+      {
+        "Path": "Mytra.Platform\\Mytra.Platform.csproj",
+        "Action": "Start"
       }
     ]
   }
