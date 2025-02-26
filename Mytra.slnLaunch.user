@@ -1,0 +1,11 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "Mytra.Presentation\\Mytra.Presentation.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]
