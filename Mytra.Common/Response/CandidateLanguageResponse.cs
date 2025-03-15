@@ -1,6 +1,6 @@
 ﻿namespace Mytra.Common
 {
-    class CandidateLanguageResponse
+    public class CandidateLanguageResponse : Response<CandidateLanguageResponse>
     {
         public CandidateLanguageResponse()
         {

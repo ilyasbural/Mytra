@@ -1,6 +1,6 @@
 ﻿namespace Mytra.Common
 {
-    class UserDetailResponse
+    public class UserDetailResponse : Response<UserDetailResponse>
     {
         public UserDetailResponse()
         {

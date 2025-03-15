@@ -1,6 +1,6 @@
 ﻿namespace Mytra.Common
 {
-    class JobPostingDetailResponse
+    public class JobPostingDetailResponse : Response<JobPostingDetailResponse>
     {
         public JobPostingDetailResponse()
         {

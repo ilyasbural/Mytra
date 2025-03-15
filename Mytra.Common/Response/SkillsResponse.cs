@@ -1,6 +1,6 @@
 ﻿namespace Mytra.Common
 {
-    class SkillsResponse
+    public class SkillsResponse : Response<SkillsResponse>
     {
         public SkillsResponse()
         {

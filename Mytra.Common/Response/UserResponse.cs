@@ -1,6 +1,6 @@
 ﻿namespace Mytra.Common
 {
-    public class UserResponse
+    public class UserResponse : Response<UserResponse>
     {
         public UserResponse()
         {

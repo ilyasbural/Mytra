@@ -1,6 +1,6 @@
 ﻿namespace Mytra.Common
 {
-    class CollegeResponse
+    public class CollegeResponse : Response<CollegeResponse>
     {
         public CollegeResponse()
         {

@@ -1,1 +1,3 @@
 # Mytra
+
+Monolithic Architecture

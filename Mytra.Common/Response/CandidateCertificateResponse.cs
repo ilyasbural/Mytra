@@ -1,6 +1,6 @@
 ﻿namespace Mytra.Common
 {
-    class CandidateCertificateResponse
+    public class CandidateCertificateResponse : Response<CandidateCertificateResponse>
     {
         public CandidateCertificateResponse()
         {

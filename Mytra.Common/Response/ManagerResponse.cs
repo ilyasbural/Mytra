@@ -1,6 +1,6 @@
 ﻿namespace Mytra.Common
 {
-    class ManagerResponse
+    public class ManagerResponse : Response<ManagerResponse>
     {
         public ManagerResponse()
         {
