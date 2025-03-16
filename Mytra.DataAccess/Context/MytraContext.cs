@@ -24,6 +24,9 @@
 
         protected override void OnModelCreating(ModelBuilder ModelBuilder)
         {
+            ModelBuilder.ApplyConfiguration(new UserMapping());
+            ModelBuilder.ApplyConfiguration(new UserDetailMapping());
+            ModelBuilder.ApplyConfiguration(new UserSettingsMapping());
             ModelBuilder.ApplyConfiguration(new UserAuthenticationMapping());
         }
     }
