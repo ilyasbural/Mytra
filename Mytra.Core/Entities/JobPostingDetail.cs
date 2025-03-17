@@ -2,6 +2,9 @@
 {
     public class JobPostingDetail : Base<JobPostingDetail>, IEntity
     {
-
-    }
+		public JobPostingDetail()
+		{
+			
+		}
+	}
 }

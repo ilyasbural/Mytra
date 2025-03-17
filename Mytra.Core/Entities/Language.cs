@@ -2,6 +2,9 @@
 {
     public class Language : Base<Language>, IEntity
     {
-
-    }
+		public Language()
+		{
+			
+		}
+	}
 }

@@ -2,6 +2,9 @@
 {
     public class UserSettings : Base<UserSettings>, IEntity
     {
-
-    }
+		public UserSettings()
+		{
+			
+		}
+	}
 }

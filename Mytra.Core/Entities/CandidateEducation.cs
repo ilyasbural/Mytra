@@ -2,6 +2,9 @@
 {
     public class CandidateEducation : Base<CandidateEducation>, IEntity
     {
-
-    }
+		public CandidateEducation()
+		{
+			
+		}
+	}
 }

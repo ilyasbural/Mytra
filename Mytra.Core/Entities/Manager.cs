@@ -2,6 +2,9 @@
 {
     public class Manager : Base<Manager>, IEntity
     {
-
-    }
+		public Manager()
+		{
+			
+		}
+	}
 }

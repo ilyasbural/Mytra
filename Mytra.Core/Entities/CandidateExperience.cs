@@ -2,6 +2,9 @@
 {
     public class CandidateExperience : Base<CandidateExperience>, IEntity
     {
-
-    }
+		public CandidateExperience()
+		{
+			
+		}
+	}
 }

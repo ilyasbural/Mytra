@@ -2,6 +2,9 @@
 {
     public class CandidateAuthentication : Base<CandidateAuthentication>, IEntity
     {
-
-    }
+		public CandidateAuthentication()
+		{
+			
+		}
+	}
 }
