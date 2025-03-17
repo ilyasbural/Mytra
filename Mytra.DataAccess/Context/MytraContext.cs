@@ -48,10 +48,34 @@
 
 		protected override void OnModelCreating(ModelBuilder ModelBuilder)
 		{
+			ModelBuilder.ApplyConfiguration(new CandidateMapping());
+			ModelBuilder.ApplyConfiguration(new CandidatePhotoMapping());
+			ModelBuilder.ApplyConfiguration(new CandidateDetailMapping());
+			ModelBuilder.ApplyConfiguration(new CandidateSkillsMapping());
+			ModelBuilder.ApplyConfiguration(new CandidateContactMapping());
+			ModelBuilder.ApplyConfiguration(new CandidateLanguageMapping());
+			ModelBuilder.ApplyConfiguration(new CandidateSettingsMapping());
+			ModelBuilder.ApplyConfiguration(new CandidateEducationMapping());
+			ModelBuilder.ApplyConfiguration(new CandidateReferanceMapping());
+			ModelBuilder.ApplyConfiguration(new CandidateExperienceMapping());
+			ModelBuilder.ApplyConfiguration(new CandidateCertificateMapping());
+			ModelBuilder.ApplyConfiguration(new CandidateAuthenticationMapping());
+			ModelBuilder.ApplyConfiguration(new JobPostingMapping());
+			ModelBuilder.ApplyConfiguration(new JobPostingDetailMapping());
+			ModelBuilder.ApplyConfiguration(new JobPostingApplyMapping());
+			ModelBuilder.ApplyConfiguration(new JobPostingVisitMapping());
+			ModelBuilder.ApplyConfiguration(new ManagerMapping());
+			ModelBuilder.ApplyConfiguration(new ManagerDetailMapping());
+			ModelBuilder.ApplyConfiguration(new ManagerSettingsMapping());
+			ModelBuilder.ApplyConfiguration(new ManagerAuthenticationMapping());
 			ModelBuilder.ApplyConfiguration(new UserMapping());
 			ModelBuilder.ApplyConfiguration(new UserDetailMapping());
 			ModelBuilder.ApplyConfiguration(new UserSettingsMapping());
 			ModelBuilder.ApplyConfiguration(new UserAuthenticationMapping());
+			ModelBuilder.ApplyConfiguration(new CollegeMapping());
+			ModelBuilder.ApplyConfiguration(new InstitutionMapping());
+			ModelBuilder.ApplyConfiguration(new LanguageMapping());
+			ModelBuilder.ApplyConfiguration(new SkillsMapping());
 		}
 	}
 }
