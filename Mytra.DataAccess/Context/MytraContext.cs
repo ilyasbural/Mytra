@@ -2,7 +2,6 @@
 {
 	using Core;
 	using Microsoft.EntityFrameworkCore;
-	using Microsoft.Extensions.Configuration;
 
 	public class MytraContext : DbContext
 	{

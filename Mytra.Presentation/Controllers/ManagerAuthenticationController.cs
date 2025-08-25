@@ -6,8 +6,8 @@
 
 	[Route("api/[controller]")]
 	[ApiController]
-    public class CandidateAuthenticationController : ControllerBase
-    {
+	public class ManagerAuthenticationController : ControllerBase
+	{
 
-    }
+	}
 }

@@ -51,7 +51,7 @@ Builder.Services.AddSwaggerGen(x =>
     });
 });
 Builder.Services.LoadServices();
-Builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+//Builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 Builder.Services.AddCors(options => options.AddDefaultPolicy(builder => { builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod(); }));
 Builder.Services.AddDbContext<MytraContext>(x => x.UseSqlServer(Configuration.GetConnectionString("SqlServer")!));
 
