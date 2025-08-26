@@ -25,6 +25,13 @@
             Service.AddScoped<ICandidateService, CandidateService>();
             Service.AddScoped<ICandidateSettingsService, CandidateSettingsService>();
             Service.AddScoped<ICandidateSkillsService, CandidateSkillsService>();
+            Service.AddScoped<ICollegeService, CollegeService>();
+            Service.AddScoped<IInstitutionService, InstitutionService>();
+            Service.AddScoped<IJobPostingApplyService, JobPostingApplyService>();
+            Service.AddScoped<IJobPostingDetailService, JobPostingDetailService>();
+            Service.AddScoped<IJobPostingService, JobPostingService>();
+            Service.AddScoped<IJobPostingVisitService, JobPostingVisitService>();
+            Service.AddScoped<ILanguageService, LanguageService>();
 
 			return Service;
         }
