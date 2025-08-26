@@ -32,6 +32,15 @@
             Service.AddScoped<IJobPostingService, JobPostingService>();
             Service.AddScoped<IJobPostingVisitService, JobPostingVisitService>();
             Service.AddScoped<ILanguageService, LanguageService>();
+			Service.AddScoped<IManagerAuthenticationService, ManagerAuthenticationService>();
+			Service.AddScoped<IManagerDetailService, ManagerDetailService>();
+			Service.AddScoped<IManagerService, ManagerService>();
+			Service.AddScoped<IManagerSettingsService, ManagerSettingsService>();
+			Service.AddScoped<ISkillsService, SkillsService>();
+			Service.AddScoped<IUserAuthenticationService, UserAuthenticationService>();
+			Service.AddScoped<IUserDetailService, UserDetailService>();
+			Service.AddScoped<IUserService, UserService>();
+			Service.AddScoped<IUserSettingsService, UserSettingsService>();
 
 			return Service;
         }
