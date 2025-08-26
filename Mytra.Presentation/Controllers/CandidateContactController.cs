@@ -4,10 +4,70 @@
 	using Common;
 	using Microsoft.AspNetCore.Mvc;
 
-	[Route("api/[controller]")]
     [ApiController]
     public class CandidateContactController : ControllerBase
     {
+		readonly ICandidateContactService Service;
+		public CandidateContactController(ICandidateContactService service) { Service = service; }
 
-    }
+		[HttpPost]
+		[Route("api/candidatecontact")]
+		[Produces(typeof(ServiceResponse<CandidateContactResponse>))]
+		public async Task<ServiceResponse<CandidateContactResponse>> Create([FromBody] CandidateContactInsert Model)
+		{
+			ServiceResponse<CandidateContactResponse> Response = await Service.InsertAsync(Model);
+			return new ServiceResponse<CandidateContactResponse>
+			{
+				ResponseData = Response.ResponseData
+			};
+		}
+
+		[HttpPut]
+		[Route("api/candidatecontact")]
+		[Produces(typeof(ServiceResponse<CandidateContactResponse>))]
+		public async Task<ServiceResponse<CandidateContactResponse>> Update([FromBody] CandidateContactUpdate Model)
+		{
+			ServiceResponse<CandidateContactResponse> Response = await Service.UpdateAsync(Model);
+			return new ServiceResponse<CandidateContactResponse>
+			{
+				ResponseData = Response.ResponseData
+			};
+		}
+
+		[HttpDelete]
+		[Route("api/candidatecontact")]
+		[Produces(typeof(ServiceResponse<CandidateContactResponse>))]
+		public async Task<ServiceResponse<CandidateContactResponse>> Delete([FromBody] CandidateContactDelete Model)
+		{
+			ServiceResponse<CandidateContactResponse> Response = await Service.DeleteAsync(Model);
+			return new ServiceResponse<CandidateContactResponse>
+			{
+				ResponseData = Response.ResponseData
+			};
+		}
+
+		[HttpGet]
+		[Route("api/candidatecontact")]
+		[Produces(typeof(ServiceResponse<CandidateContactResponse>))]
+		public async Task<ServiceResponse<CandidateContactResponse>> Get([FromQuery] CandidateContactSelect Model)
+		{
+			ServiceResponse<CandidateContactResponse> Response = await Service.SelectAsync(Model);
+			return new ServiceResponse<CandidateContactResponse>
+			{
+				ResponseDataSource = Response.ResponseDataSource
+			};
+		}
+
+		[HttpGet]
+		[Route("api/candidatecontactsingle")]
+		[Produces(typeof(ServiceResponse<CandidateContactResponse>))]
+		public async Task<ServiceResponse<CandidateContactResponse>> GetSingle([FromQuery] CandidateContactSelectSingle Model)
+		{
+			ServiceResponse<CandidateContactResponse> Response = await Service.SelectSingleAsync(Model);
+			return new ServiceResponse<CandidateContactResponse>
+			{
+				ResponseDataSource = Response.ResponseDataSource
+			};
+		}
+	}
 }
