@@ -2,6 +2,7 @@ namespace Mytra.DataAccess
 {
 	using Core;
 	using Microsoft.EntityFrameworkCore;
+	using Microsoft.Extensions.Configuration;
 
 	public class MytraContext : DbContext
 	{
@@ -37,6 +38,12 @@ namespace Mytra.DataAccess
         public MytraContext() { }
 		public MytraContext(DbContextOptions<MytraContext> options) : base(options) { }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder) => modelBuilder.ApplyConfigurationsFromAssembly(typeof(AssemblyReferance).Assembly);
+		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+		{
+			IConfigurationRoot Configuration = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json").Build();
+			optionsBuilder.UseSqlServer(Configuration.GetConnectionString("SqlServer"));
+		}
+
+		protected override void OnModelCreating(ModelBuilder modelBuilder) => modelBuilder.ApplyConfigurationsFromAssembly(typeof(AssemblyReferance).Assembly);
 	}
 }
