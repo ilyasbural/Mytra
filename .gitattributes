@@ -1,0 +1,9 @@
+# C# dosyaları her zaman CRLF (Windows uyumlu)
+*.cs text eol=crlf
+
+# Diğer metin dosyaları (opsiyonel, çoğu LF ile daha uyumlu)
+*.sh text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.json text eol=lf
+*.xml text eol=lf
