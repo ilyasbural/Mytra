@@ -1,6 +1,6 @@
 ﻿namespace Mytra.Service
 {
-	public class SkillsService
+	public class ManagerDetailMapper
 	{
 
 	}
