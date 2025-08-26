@@ -1,6 +1,6 @@
 ﻿namespace Mytra.Common
 {
-	public abstract class ServiceResponse<T>
+	public class ServiceResponse<T>
 	{
 		public T ResponseData { get; set; } = default(T)!;
 		public List<T> ResponseDataSource { get; set; } = new List<T>();
