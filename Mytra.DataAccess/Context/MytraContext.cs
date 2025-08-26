@@ -2,7 +2,6 @@ namespace Mytra.DataAccess
 {
 	using Core;
 	using Microsoft.EntityFrameworkCore;
-    using System.Reflection.Metadata;
 
 	public class MytraContext : DbContext
 	{
@@ -22,20 +21,20 @@ namespace Mytra.DataAccess
 		public virtual DbSet<JobPostingDetail> JobPostingDetails { get; set; }
 		public virtual DbSet<JobPostingApply> JobPostingApplies { get; set; }
 		public virtual DbSet<JobPostingVisit> JobPostingVisits { get; set; }
-		public virtual DbSet<Manager> Managers { get; set; }
-		public virtual DbSet<ManagerDetail> ManagerDetails { get; set; }
-		public virtual DbSet<ManagerSettings> ManagerSettings { get; set; }
-		public virtual DbSet<ManagerAuthentication> ManagerAuthentications { get; set; }
-		public virtual DbSet<User> Users { get; set; }
-		public virtual DbSet<UserDetail> UserDetails { get; set; }
-		public virtual DbSet<UserSettings> UserSettings { get; set; }
-		public virtual DbSet<UserAuthentication> UserAuthentications { get; set; }
 		public virtual DbSet<College> Colleges { get; set; }
 		public virtual DbSet<Institution> Institutions { get; set; }
 		public virtual DbSet<Language> Languages { get; set; }
 		public virtual DbSet<Skills> Skills { get; set; }
+        public virtual DbSet<Manager> Managers { get; set; }
+        public virtual DbSet<ManagerDetail> ManagerDetails { get; set; }
+        public virtual DbSet<ManagerSettings> ManagerSettings { get; set; }
+        public virtual DbSet<ManagerAuthentication> ManagerAuthentications { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<UserDetail> UserDetails { get; set; }
+        public virtual DbSet<UserSettings> UserSettings { get; set; }
+        public virtual DbSet<UserAuthentication> UserAuthentications { get; set; }
 
-		public MytraContext() { }
+        public MytraContext() { }
 		public MytraContext(DbContextOptions<MytraContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) => modelBuilder.ApplyConfigurationsFromAssembly(typeof(AssemblyReferance).Assembly);

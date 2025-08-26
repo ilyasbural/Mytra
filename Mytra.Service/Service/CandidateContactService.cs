@@ -1,6 +1,8 @@
 ﻿namespace Mytra.Service
 {
-	public class CandidateContactService
+	using Core;
+
+	public class CandidateContactService : ICandidateContactService
 	{
 
 	}

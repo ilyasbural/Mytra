@@ -1,6 +1,8 @@
 ﻿namespace Mytra.Service
 {
-	public class ManagerDetailService
+	using Core;
+
+	public class ManagerDetailService : IManagerDetailService
 	{
 
 	}

@@ -1,6 +1,8 @@
 ﻿namespace Mytra.Service
 {
-	public class JobPostingApplyService
+	using Core;
+
+	public class JobPostingApplyService : IJobPostingApplyService
 	{
 
 	}

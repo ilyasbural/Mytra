@@ -1,6 +1,8 @@
 ﻿namespace Mytra.Service
 {
-	public class ManagerAuthenticationService
+	using Core;
+
+	public class ManagerAuthenticationService : IManagerAuthenticationService
 	{
 
 	}

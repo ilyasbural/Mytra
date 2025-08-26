@@ -1,6 +1,8 @@
 ﻿namespace Mytra.Service
 {
-	public class CandidateReferanceService
+	using Core;
+
+	public class CandidateReferanceService : ICandidateReferanceService
 	{
 
 	}

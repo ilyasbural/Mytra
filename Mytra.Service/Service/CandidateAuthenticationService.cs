@@ -1,7 +1,9 @@
-﻿namespace Mytra.Service
+namespace Mytra.Service
 {
-	public class CandidateAuthenticationService
-	{
+    using Core;
+
+	public class CandidateAuthenticationService : ICandidateAuthenticationService
+    {
 
 	}
 }

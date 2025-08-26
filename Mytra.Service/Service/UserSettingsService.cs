@@ -1,7 +1,9 @@
-﻿namespace Mytra.Service
+namespace Mytra.Service
 {
-	public class UserSettingsService
-	{
+    using Core;
+
+	public class UserSettingsService : IUserSettingsService
+    {
 
 	}
 }

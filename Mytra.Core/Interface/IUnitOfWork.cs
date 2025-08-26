@@ -1,4 +1,4 @@
-﻿namespace Mytra.Core
+namespace Mytra.Core
 {
     public interface IUnitOfWork : IDisposable
     {
@@ -21,11 +21,11 @@
         IJobPostingVisit JobPostingVisit { get; }
         IInstitution Institution { get; }
         ILanguage Language { get; }
+        ISkills Skills { get; }
         IManager Manager { get; }
         IManagerAuthentication ManagerAuthentication { get; }
         IManagerDetail ManagerDetail { get; }
         IManagerSettings ManagerSettings { get; }
-        ISkills Skills { get; }
         IUser User { get; }
         IUserAuthentication UserAuthentication { get; }
         IUserDetail UserDetail { get; }

@@ -13,7 +13,10 @@
             Service.AddDbContext<DbContext>();
             Service.AddDbContext<MytraContext>();
 
-            return Service;
+            Service.AddScoped<ICandidateAuthenticationService, CandidateAuthenticationService>();
+            Service.AddScoped<ICandidateCertificateService, CandidateCertificateService>();
+
+			return Service;
         }
     }
 }

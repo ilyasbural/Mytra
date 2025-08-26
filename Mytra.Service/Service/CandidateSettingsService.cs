@@ -1,6 +1,8 @@
 ﻿namespace Mytra.Service
 {
-	public class CandidateSettingsService
+	using Core;
+
+	public class CandidateSettingsService : ICandidateSettingsService
 	{
 
 	}

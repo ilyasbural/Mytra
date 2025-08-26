@@ -1,6 +1,8 @@
 ﻿namespace Mytra.Service
 {
-	public class CollegeService
+	using Core;
+
+	public class CollegeService : ICollegeService
 	{
 
 	}

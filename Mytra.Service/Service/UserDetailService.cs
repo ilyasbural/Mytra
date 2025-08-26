@@ -1,6 +1,8 @@
-﻿namespace Mytra.Service
+namespace Mytra.Service
 {
-	public class UserDetailService
+    using Core;
+
+    public class UserDetailService : IUserDetailService
 	{
 
 	}

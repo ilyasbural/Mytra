@@ -1,6 +1,8 @@
-﻿namespace Mytra.Service
+namespace Mytra.Service
 {
-	public class UserAuthenticationService
+    using Core;
+
+    public class UserAuthenticationService : IUserAuthenticationService
 	{
 
 	}
