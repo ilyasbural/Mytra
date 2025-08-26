@@ -1,6 +1,6 @@
 ﻿namespace Mytra.Core
 {
-    public interface ICandidate
+    public interface ICandidate : IRepository<Candidate>
     {
 
     }
