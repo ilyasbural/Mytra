@@ -15,6 +15,16 @@
 
             Service.AddScoped<ICandidateAuthenticationService, CandidateAuthenticationService>();
             Service.AddScoped<ICandidateCertificateService, CandidateCertificateService>();
+            Service.AddScoped<ICandidateContactService, CandidateContactService>();
+            Service.AddScoped<ICandidateDetailService, CandidateDetailService>();
+            Service.AddScoped<ICandidateEducationService, CandidateEducationService>();
+            Service.AddScoped<ICandidateExperienceService, CandidateExperienceService>();
+            Service.AddScoped<ICandidateLanguageService, CandidateLanguageService>();
+            Service.AddScoped<ICandidatePhotoService, CandidatePhotoService>();
+            Service.AddScoped<ICandidateReferanceService, CandidateReferanceService>();
+            Service.AddScoped<ICandidateService, CandidateService>();
+            Service.AddScoped<ICandidateSettingsService, CandidateSettingsService>();
+            Service.AddScoped<ICandidateSkillsService, CandidateSkillsService>();
 
 			return Service;
         }
