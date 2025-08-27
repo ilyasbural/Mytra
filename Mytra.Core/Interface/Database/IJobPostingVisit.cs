@@ -1,6 +1,6 @@
 ﻿namespace Mytra.Core
 {
-    public interface IJobPostingVisit : IRepository<JobPosting>
+    public interface IJobPostingVisit : IRepository<JobPostingVisit>
 	{
 
     }

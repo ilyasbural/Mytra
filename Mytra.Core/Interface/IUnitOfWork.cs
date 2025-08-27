@@ -3,7 +3,7 @@ namespace Mytra.Core
     public interface IUnitOfWork : IDisposable
     {
 		ICandidate Candidate { get; }
-		ICandidateAuthentication Authentication { get; }
+		ICandidateAuthentication CandidateAuthentication { get; }
 		ICandidateCertificate Certificate { get; }
         ICandidateContact CandidateContact { get; }
         ICandidateDetail CandidateDetail { get; }

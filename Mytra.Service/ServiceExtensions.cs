@@ -13,7 +13,37 @@
             Service.AddDbContext<DbContext>();
             Service.AddDbContext<MytraContext>();
 
-            Service.AddScoped<IAuthenticationService, AuthenticationService>();
+            Service.AddScoped<ICandidateAuthentication, CandidateAuthenticationRepositoryEF>();
+            Service.AddScoped<ICandidateCertificate, CandidateCertificateRepositoryEF>();
+            Service.AddScoped<ICandidateContact, CandidateContactRepositoryEF>();
+            Service.AddScoped<ICandidateDetail, CandidateDetailRepositoryEF>();
+            Service.AddScoped<ICandidateEducation, CandidateEducationRepositoryEF>();
+            Service.AddScoped<ICandidateExperience, CandidateExperienceRepositoryEF>();
+            Service.AddScoped<ICandidateLanguage, CandidateLanguageRepositoryEF>();
+            Service.AddScoped<ICandidatePhoto, CandidatePhotoRepositoryEF>();
+            Service.AddScoped<ICandidateReferance, CandidateReferanceRepositoryEF>();
+            Service.AddScoped<ICandidate, CandidateRepositoryEF>();
+            Service.AddScoped<ICandidateSettings, CandidateSettingsRepositoryEF>();
+            Service.AddScoped<ICandidateSkills, CandidateSkillsRepositoryEF>();
+            Service.AddScoped<ICollege, CollegeRepositoryEF>();
+            Service.AddScoped<IInstitution, InstitutionRepositoryEF>();
+            Service.AddScoped<IJobPostingApply, JobPostingApplyRepositoryEF>();
+            Service.AddScoped<IJobPostingDetail, JobPostingDetailRepositoryEF>();
+            Service.AddScoped<IJobPosting, JobPostingRepositoryEF>();
+            Service.AddScoped<IJobPostingVisit, JobPostingVisitRepositoryEF>();
+            Service.AddScoped<ILanguage, LanguageRepositoryEF>();
+            Service.AddScoped<IManagerAuthentication, ManagerAuthenticationRepositoryEF>();
+            Service.AddScoped<IManagerDetail, ManagerDetailRepositoryEF>();
+            Service.AddScoped<IManager, ManagerRepositoryEF>();
+            Service.AddScoped<IManagerSettings, ManagerSettingsRepositoryEF>();
+            Service.AddScoped<ISkills, SkillsRepositoryEF>();
+            Service.AddScoped<IUserAuthentication, UserAuthenticationRepositoryEF>();
+            Service.AddScoped<IUserDetail, UserDetailRepositoryEF>();
+            Service.AddScoped<IUser, UserRepositoryEF>();
+            Service.AddScoped<IUserSettings, UserSettingsRepositoryEF>();
+			Service.AddScoped<IUnitOfWork, UnitOfWork>();
+
+			Service.AddScoped<IAuthenticationService, AuthenticationService>();
             Service.AddScoped<ICandidateAuthenticationService, CandidateAuthenticationService>();
             Service.AddScoped<ICandidateCertificateService, CandidateCertificateService>();
             Service.AddScoped<ICandidateContactService, CandidateContactService>();
