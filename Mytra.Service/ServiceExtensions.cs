@@ -13,6 +13,7 @@
             Service.AddDbContext<DbContext>();
             Service.AddDbContext<MytraContext>();
 
+            Service.AddScoped<IAuthenticationService, AuthenticationService>();
             Service.AddScoped<ICandidateAuthenticationService, CandidateAuthenticationService>();
             Service.AddScoped<ICandidateCertificateService, CandidateCertificateService>();
             Service.AddScoped<ICandidateContactService, CandidateContactService>();
