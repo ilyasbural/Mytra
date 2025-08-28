@@ -2,6 +2,13 @@
 {
 	public class LanguageMapper : AutoMapper.Profile
 	{
-
+		public LanguageMapper()
+		{
+			CreateMap<Common.LanguageInsert, Core.Language>().ReverseMap();
+			CreateMap<Common.LanguageUpdate, Core.Language>().ReverseMap();
+			CreateMap<Common.LanguageDelete, Core.Language>().ReverseMap();
+			CreateMap<Common.LanguageSelect, Core.Language>().ReverseMap();
+			CreateMap<Common.LanguageSelectSingle, Core.Language>().ReverseMap();
+		}
 	}
 }

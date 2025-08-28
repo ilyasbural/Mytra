@@ -44,6 +44,33 @@
 			Service.AddScoped<IUnitOfWork, UnitOfWork>();
 
             Service.AddSingleton<IValidator<CandidateAuthentication>, CandidateAuthenticationValidator>();
+            Service.AddSingleton<IValidator<CandidateCertificate>, CandidateCertificateValidator>();
+            Service.AddSingleton<IValidator<CandidateContact>, CandidateContactValidator>();
+            Service.AddSingleton<IValidator<CandidateDetail>, CandidateDetailValidator>();
+            Service.AddSingleton<IValidator<CandidateEducation>, CandidateEducationValidator>();
+            Service.AddSingleton<IValidator<CandidateExperience>, CandidateExperienceValidator>();
+            Service.AddSingleton<IValidator<CandidateLanguage>, CandidateLanguageValidator>();
+            Service.AddSingleton<IValidator<CandidatePhoto>, CandidatePhotoValidator>();
+            Service.AddSingleton<IValidator<CandidateReferance>, CandidateReferanceValidator>();
+            Service.AddSingleton<IValidator<CandidateSettings>, CandidateSettingsValidator>();
+            Service.AddSingleton<IValidator<CandidateSkills>, CandidateSkillsValidator>();
+            Service.AddSingleton<IValidator<Candidate>, CandidateValidator>();
+            Service.AddSingleton<IValidator<College>, CollegeValidator>();
+            Service.AddSingleton<IValidator<Institution>, InstitutionValidator>();
+            Service.AddSingleton<IValidator<JobPostingApply>, JobPostingApplyValidator>();
+            Service.AddSingleton<IValidator<JobPostingDetail>, JobPostingDetailValidator>();
+            Service.AddSingleton<IValidator<JobPosting>, JobPostingValidator>();
+            Service.AddSingleton<IValidator<JobPostingVisit>, JobPostingVisitValidator>();
+            Service.AddSingleton<IValidator<Language>, LanguageValidator>();
+            Service.AddSingleton<IValidator<ManagerAuthentication>, ManagerAuthenticationValidator>();
+            Service.AddSingleton<IValidator<ManagerDetail>, ManagerDetailValidator>();
+            Service.AddSingleton<IValidator<ManagerSettings>, ManagerSettingsValidator>();
+            Service.AddSingleton<IValidator<Manager>, ManagerValidator>();
+            Service.AddSingleton<IValidator<Skills>, SkillsValidator>();
+            Service.AddSingleton<IValidator<UserAuthentication>, UserAuthenticationValidator>();
+            Service.AddSingleton<IValidator<UserDetail>, UserDetailValidator>();
+            Service.AddSingleton<IValidator<UserSettings>, UserSettingsValidator>();
+            Service.AddSingleton<IValidator<User>, UserValidator>();
 
 			Service.AddScoped<IAuthenticationService, AuthenticationService>();
             Service.AddScoped<ICandidateAuthenticationService, CandidateAuthenticationService>();
