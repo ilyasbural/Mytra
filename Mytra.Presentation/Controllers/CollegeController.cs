@@ -4,6 +4,7 @@
 	using Common;
 	using Microsoft.AspNetCore.Mvc;
 
+
 	[Route("api/[controller]")]
     [ApiController]
     public class CollegeController : ControllerBase

@@ -3,8 +3,9 @@
 	using Core;
 	using Common;
 	using Microsoft.AspNetCore.Mvc;
+	using Microsoft.AspNetCore.Authorization;
 
-    [ApiController]
+	[ApiController]
     public class CandidateEducationController : ControllerBase
     {
 		readonly ICandidateEducationService Service;

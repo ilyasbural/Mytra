@@ -3,14 +3,16 @@
 	using Core;
 	using Common;
 	using Microsoft.AspNetCore.Mvc;
+	using Microsoft.AspNetCore.Authorization;
 
-    [ApiController]
+	[ApiController]
     public class CandidateCertificateController : ControllerBase
     {
 		readonly ICandidateCertificateService Service;
 		public CandidateCertificateController(ICandidateCertificateService service) { Service = service; }
 
 		[HttpPost]
+		[Authorize]
 		[Route("api/candidatecertificate")]
 		[Produces(typeof(ServiceResponse<CandidateCertificateResponse>))]
 		public async Task<ServiceResponse<CandidateCertificateResponse>> Create([FromBody] CandidateCertificateInsert Model)
@@ -23,6 +25,7 @@
 		}
 
 		[HttpPut]
+		[Authorize]
 		[Route("api/candidatecertificate")]
 		[Produces(typeof(ServiceResponse<CandidateCertificateResponse>))]
 		public async Task<ServiceResponse<CandidateCertificateResponse>> Update([FromBody] CandidateCertificateUpdate Model)
@@ -35,6 +38,7 @@
 		}
 
 		[HttpDelete]
+		[Authorize]
 		[Route("api/candidatecertificate")]
 		[Produces(typeof(ServiceResponse<CandidateCertificateResponse>))]
 		public async Task<ServiceResponse<CandidateCertificateResponse>> Delete([FromBody] CandidateCertificateDelete Model)
@@ -47,6 +51,7 @@
 		}
 
 		[HttpGet]
+		[Authorize]
 		[Route("api/candidatecertificate")]
 		[Produces(typeof(ServiceResponse<CandidateCertificateResponse>))]
 		public async Task<ServiceResponse<CandidateCertificateResponse>> Get([FromQuery] CandidateCertificateSelect Model)
@@ -59,6 +64,7 @@
 		}
 
 		[HttpGet]
+		[Authorize]
 		[Route("api/candidatecertificatesingle")]
 		[Produces(typeof(ServiceResponse<CandidateCertificateResponse>))]
 		public async Task<ServiceResponse<CandidateCertificateResponse>> GetSingle([FromQuery] CandidateCertificateSelectSingle Model)

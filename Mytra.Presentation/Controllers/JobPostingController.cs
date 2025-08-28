@@ -3,6 +3,7 @@
 	using Core;
 	using Common;
 	using Microsoft.AspNetCore.Mvc;
+	using Microsoft.AspNetCore.Authorization;
 
 	[Route("api/[controller]")]
     [ApiController]
