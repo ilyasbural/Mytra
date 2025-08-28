@@ -4,10 +4,22 @@
 	using Common;
 	using Microsoft.AspNetCore.Mvc;
 
-	[Route("api/[controller]")]
 	[ApiController]
 	public class UserAuthenticationController : ControllerBase
 	{
+		readonly IUserAuthenticationService Service;
+		public UserAuthenticationController(IUserAuthenticationService service) { Service = service; }
 
+		[HttpPost]
+		[Route("api/userauthentication")]
+		[Produces(typeof(ServiceResponse<UserAuthenticationResponse>))]
+		public async Task<ServiceResponse<UserAuthenticationResponse>> Create([FromBody] UserAuthenticationInsert Model)
+		{
+			ServiceResponse<UserAuthenticationResponse> Response = await Service.InsertAsync(Model);
+			return new ServiceResponse<UserAuthenticationResponse>
+			{
+				ResponseData = Response.ResponseData
+			};
+		}
 	}
 }

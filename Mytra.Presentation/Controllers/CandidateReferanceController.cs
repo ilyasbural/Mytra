@@ -5,10 +5,23 @@
 	using Microsoft.AspNetCore.Mvc;
 	using Microsoft.AspNetCore.Authorization;
 
-	[Route("api/[controller]")]
     [ApiController]
     public class CandidateReferanceController : ControllerBase
     {
+		readonly ICandidateReferanceService Service;
+		public CandidateReferanceController(ICandidateReferanceService service) { Service = service; }
 
-    }
+		[HttpPost]
+		[Authorize]
+		[Route("api/candidatereferance")]
+		[Produces(typeof(ServiceResponse<CandidateReferanceResponse>))]
+		public async Task<ServiceResponse<CandidateReferanceResponse>> Create([FromBody] CandidateReferanceInsert Model)
+		{
+			ServiceResponse<CandidateReferanceResponse> Response = await Service.InsertAsync(Model);
+			return new ServiceResponse<CandidateReferanceResponse>
+			{
+				ResponseData = Response.ResponseData
+			};
+		}
+	}
 }

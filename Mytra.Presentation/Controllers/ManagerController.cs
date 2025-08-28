@@ -5,10 +5,23 @@
 	using Microsoft.AspNetCore.Mvc;
 	using Microsoft.AspNetCore.Authorization;
 
-	[Route("api/[controller]")]
 	[ApiController]
 	public class ManagerController : ControllerBase
 	{
+		readonly IManagerService Service;
+		public ManagerController(IManagerService service) { Service = service; }
 
+		[HttpPost]
+		[Authorize]
+		[Route("api/manager")]
+		[Produces(typeof(ServiceResponse<ManagerResponse>))]
+		public async Task<ServiceResponse<ManagerResponse>> Create([FromBody] ManagerInsert Model)
+		{
+			ServiceResponse<ManagerResponse> Response = await Service.InsertAsync(Model);
+			return new ServiceResponse<ManagerResponse>
+			{
+				ResponseData = Response.ResponseData
+			};
+		}
 	}
 }
