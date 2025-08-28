@@ -2,12 +2,20 @@
 {
 	using Core;
 	using Common;
+	using AutoMapper;
+	using FluentValidation;
 
 	public class CollegeService : ICollegeService
 	{
-		public CollegeService()
+		readonly IMapper Mapper;
+		readonly IUnitOfWork UnitOfWork;
+		readonly IValidator<College> Validator;
+
+		public CollegeService(IMapper mapper, IUnitOfWork unitOfWork, IValidator<College> validator)
 		{
-			
+			Mapper = mapper;
+			UnitOfWork = unitOfWork;
+			Validator = validator;
 		}
 
 		public async Task<ServiceResponse<CollegeResponse>> InsertAsync(CollegeInsert Model)

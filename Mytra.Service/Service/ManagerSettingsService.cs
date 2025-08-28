@@ -2,12 +2,20 @@
 {
 	using Core;
 	using Common;
+	using AutoMapper;
+	using FluentValidation;
 
 	public class ManagerSettingsService : IManagerSettingsService
 	{
-		public ManagerSettingsService()
+		readonly IMapper Mapper;
+		readonly IUnitOfWork UnitOfWork;
+		readonly IValidator<ManagerSettings> Validator;
+
+		public ManagerSettingsService(IMapper mapper, IUnitOfWork unitOfWork, IValidator<ManagerSettings> validator)
 		{
-			
+			Mapper = mapper;
+			UnitOfWork = unitOfWork;
+			Validator = validator;
 		}
 
 		public async Task<ServiceResponse<ManagerSettingsResponse>> InsertAsync(ManagerSettingsInsert Model)

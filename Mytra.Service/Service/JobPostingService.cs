@@ -2,12 +2,20 @@
 {
 	using Core;
 	using Common;
+	using AutoMapper;
+	using FluentValidation;
 
 	public class JobPostingService : IJobPostingService
 	{
-		public JobPostingService()
+		readonly IMapper Mapper;
+		readonly IUnitOfWork UnitOfWork;
+		readonly IValidator<JobPosting> Validator;
+
+		public JobPostingService(IMapper mapper, IUnitOfWork unitOfWork, IValidator<JobPosting> validator)
 		{
-			
+			Mapper = mapper;
+			UnitOfWork = unitOfWork;
+			Validator = validator;
 		}
 
 		public async Task<ServiceResponse<JobPostingResponse>> InsertAsync(JobPostingInsert Model)

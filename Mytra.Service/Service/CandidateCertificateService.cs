@@ -2,12 +2,20 @@
 {
 	using Core;
 	using Common;
+	using AutoMapper;
+	using FluentValidation;
 
 	public class CandidateCertificateService : ICandidateCertificateService
 	{
-		public CandidateCertificateService()
+		readonly IMapper Mapper;
+		readonly IUnitOfWork UnitOfWork;
+		readonly IValidator<CandidateAuthentication> Validator;
+
+		public CandidateCertificateService(IMapper mapper, IUnitOfWork unitOfWork, IValidator<CandidateAuthentication> validator)
 		{
-			
+			Mapper = mapper;
+			UnitOfWork = unitOfWork;
+			Validator = validator;
 		}
 
 		public async Task<ServiceResponse<CandidateCertificateResponse>> InsertAsync(CandidateCertificateInsert Model)

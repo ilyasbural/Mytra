@@ -2,12 +2,20 @@
 {
 	using Core;
 	using Common;
+	using AutoMapper;
+	using FluentValidation;
 
 	public class SkillsService : ISkillsService
 	{
-		public SkillsService()
+		readonly IMapper Mapper;
+		readonly IUnitOfWork UnitOfWork;
+		readonly IValidator<Skills> Validator;
+
+		public SkillsService(IMapper mapper, IUnitOfWork unitOfWork, IValidator<Skills> validator)
 		{
-			
+			Mapper = mapper;
+			UnitOfWork = unitOfWork;
+			Validator = validator;
 		}
 
 		public Task<ServiceResponse<SkillsResponse>> InsertAsync(SkillsInsert Model)

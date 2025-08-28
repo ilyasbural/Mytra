@@ -1,13 +1,21 @@
 namespace Mytra.Service
 {
-    using Core;
+	using Core;
 	using Common;
+	using AutoMapper;
+	using FluentValidation;
 
 	public class CandidateAuthenticationService : ICandidateAuthenticationService
 	{
-		public CandidateAuthenticationService()
+		readonly IMapper Mapper;
+		readonly IUnitOfWork UnitOfWork;
+		readonly IValidator<CandidateAuthentication> Validator;
+
+		public CandidateAuthenticationService(IMapper mapper, IUnitOfWork unitOfWork, IValidator<CandidateAuthentication> validator)
 		{
-			
+			Mapper = mapper;
+			UnitOfWork = unitOfWork;
+			Validator = validator;
 		}
 
 		public async Task<ServiceResponse<CandidateAuthenticationResponse>> InsertAsync(CandidateAuthenticationInsert Model)

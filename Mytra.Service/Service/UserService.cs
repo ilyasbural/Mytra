@@ -1,13 +1,21 @@
 namespace Mytra.Service
 {
-    using Core;
+	using Core;
 	using Common;
+	using AutoMapper;
+	using FluentValidation;
 
 	public class UserService : IUserService
 	{
-		public UserService()
+		readonly IMapper Mapper;
+		readonly IUnitOfWork UnitOfWork;
+		readonly IValidator<User> Validator;
+
+		public UserService(IMapper mapper, IUnitOfWork unitOfWork, IValidator<User> validator)
 		{
-			
+			Mapper = mapper;
+			UnitOfWork = unitOfWork;
+			Validator = validator;
 		}
 
 		public async Task<ServiceResponse<UserResponse>> InsertAsync(UserInsert Model)

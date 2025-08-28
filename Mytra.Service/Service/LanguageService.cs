@@ -2,12 +2,20 @@
 {
 	using Core;
 	using Common;
+	using AutoMapper;
+	using FluentValidation;
 
 	public class LanguageService : ILanguageService
 	{
-		public LanguageService()
+		readonly IMapper Mapper;
+		readonly IUnitOfWork UnitOfWork;
+		readonly IValidator<Language> Validator;
+
+		public LanguageService(IMapper mapper, IUnitOfWork unitOfWork, IValidator<Language> validator)
 		{
-			
+			Mapper = mapper;
+			UnitOfWork = unitOfWork;
+			Validator = validator;
 		}
 
 		public async Task<ServiceResponse<LanguageResponse>> InsertAsync(LanguageInsert Model)
