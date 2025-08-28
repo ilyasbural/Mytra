@@ -1,6 +1,6 @@
 ﻿namespace Mytra.Service
 {
-	public class CandidateCertificateMapper
+	public class CandidateCertificateMapper : AutoMapper.Profile
 	{
 	}
 }

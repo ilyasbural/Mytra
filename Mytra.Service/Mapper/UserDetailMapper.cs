@@ -1,6 +1,6 @@
 ﻿namespace Mytra.Service
 {
-	public class UserDetailMapper
+	public class UserDetailMapper : AutoMapper.Profile
 	{
 
 	}

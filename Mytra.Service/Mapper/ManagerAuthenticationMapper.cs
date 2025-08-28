@@ -1,6 +1,6 @@
 ﻿namespace Mytra.Service
 {
-	public class ManagerAuthenticationMapper
+	public class ManagerAuthenticationMapper : AutoMapper.Profile
 	{
 
 	}

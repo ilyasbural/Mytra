@@ -43,6 +43,8 @@
             Service.AddScoped<IUserSettings, UserSettingsRepositoryEF>();
 			Service.AddScoped<IUnitOfWork, UnitOfWork>();
 
+            Service.AddSingleton<IValidator<CandidateAuthentication>, CandidateAuthenticationValidator>();
+
 			Service.AddScoped<IAuthenticationService, AuthenticationService>();
             Service.AddScoped<ICandidateAuthenticationService, CandidateAuthenticationService>();
             Service.AddScoped<ICandidateCertificateService, CandidateCertificateService>();

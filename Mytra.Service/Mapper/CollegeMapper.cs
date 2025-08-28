@@ -1,6 +1,6 @@
 ﻿namespace Mytra.Service
 {
-	public class CollegeMapper
+	public class CollegeMapper : AutoMapper.Profile
 	{
 
 	}

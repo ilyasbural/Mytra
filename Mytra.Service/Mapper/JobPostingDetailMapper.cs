@@ -1,6 +1,6 @@
 ﻿namespace Mytra.Service
 {
-	public class JobPostingDetailMapper
+	public class JobPostingDetailMapper : AutoMapper.Profile
 	{
 
 	}
