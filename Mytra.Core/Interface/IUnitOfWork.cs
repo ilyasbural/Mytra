@@ -2,9 +2,8 @@ namespace Mytra.Core
 {
     public interface IUnitOfWork : IDisposable
     {
-		ICandidate Candidate { get; }
 		ICandidateAuthentication CandidateAuthentication { get; }
-		ICandidateCertificate Certificate { get; }
+		ICandidateCertificate CandidateCertificate { get; }
         ICandidateContact CandidateContact { get; }
         ICandidateDetail CandidateDetail { get; }
         ICandidateEducation CandidateEducation { get; }
@@ -12,7 +11,8 @@ namespace Mytra.Core
         ICandidateLanguage CandidateLanguage { get; }
         ICandidatePhoto CandidatePhoto { get; }
         ICandidateReferance CandidateReferance { get; }
-        ICandidateSettings CandidateSettings { get; }
+		ICandidate Candidate { get; }
+		ICandidateSettings CandidateSettings { get; }
         ICandidateSkills CandidateSkills { get; }
         ICollege College { get; }
 		IJobPostingApply JobPostingApply { get; }

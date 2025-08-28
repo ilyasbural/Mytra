@@ -4,34 +4,34 @@
 
     public class UnitOfWork : IUnitOfWork
     {
-		public ICandidateAuthentication CandidateAuthentication => throw new NotImplementedException();
+		public ICandidateAuthentication CandidateAuthentication => CandidateAuthenticationRepository ?? new CandidateAuthenticationRepositoryEF(DbContext);
+		public ICandidateCertificate CandidateCertificate => CandidateCertificateRepository ?? new CandidateCertificateRepositoryEF(DbContext);
+		public ICandidateContact CandidateContact => CandidateContactRepository ?? new CandidateContactRepositoryEF(DbContext);
+		public ICandidateDetail CandidateDetail => CandidateDetailRepository ?? new CandidateDetailRepositoryEF(DbContext);
+		public ICandidateEducation CandidateEducation => CandidateEducationRepository ?? new CandidateEducationRepositoryEF(DbContext);
+		public ICandidateExperience CandidateExperience => CandidateExperienceRepository ?? new CandidateExperienceRepositoryEF(DbContext);
+		public ICandidateLanguage CandidateLanguage => CandidateLanguageRepository ?? new CandidateLanguageRepositoryEF(DbContext);
+		public ICandidatePhoto CandidatePhoto => CandidatePhotoRepository ?? new CandidatePhotoRepositoryEF(DbContext);
+		public ICandidateReferance CandidateReferance => CandidateReferanceRepository ?? new CandidateReferanceRepositoryEF(DbContext);
 		public ICandidate Candidate => CandidateRepository ?? new CandidateRepositoryEF(DbContext);
-		public ICandidateCertificate Certificate => throw new NotImplementedException();
-		public ICandidateContact CandidateContact => throw new NotImplementedException();
-		public ICandidateDetail CandidateDetail => throw new NotImplementedException();
-		public ICandidateEducation CandidateEducation => throw new NotImplementedException();
-		public ICandidateExperience CandidateExperience => throw new NotImplementedException();
-		public ICandidateLanguage CandidateLanguage => throw new NotImplementedException();
-		public ICandidatePhoto CandidatePhoto => throw new NotImplementedException();
-		public ICandidateReferance CandidateReferance => throw new NotImplementedException();
-		public ICandidateSettings CandidateSettings => throw new NotImplementedException();
-		public ICandidateSkills CandidateSkills => throw new NotImplementedException();
-		public ICollege College => throw new NotImplementedException();
+		public ICandidateSettings CandidateSettings => CandidateSettingsRepository ?? new CandidateSettingsRepositoryEF(DbContext);
+		public ICandidateSkills CandidateSkills => CandidateSkillsRepository ?? new CandidateSkillsRepositoryEF(DbContext);
+		public ICollege College => CollegeRepository ?? new CollegeRepositoryEF(DbContext);
 		public IJobPostingApply JobPostingApply => JobPostingApplyRepository = new JobPostingApplyRepositoryEF(DbContext);
 		public IJobPostingDetail JobPostingDetail => JobPostingDetailRepository = new JobPostingDetailRepositoryEF(DbContext);
 		public IJobPosting JobPosting => JobPostingRepository ?? new JobPostingRepositoryEF(DbContext);
 		public IJobPostingVisit JobPostingVisit => JobPostingVisitRepository = new JobPostingVisitRepositoryEF(DbContext);
-		public IInstitution Institution => throw new NotImplementedException();
-		public ILanguage Language => throw new NotImplementedException();
-		public ISkills Skills => throw new NotImplementedException();
-		public IManager Manager => throw new NotImplementedException();
-		public IManagerAuthentication ManagerAuthentication => throw new NotImplementedException();
-		public IManagerDetail ManagerDetail => throw new NotImplementedException();
-		public IManagerSettings ManagerSettings => throw new NotImplementedException();
+		public IInstitution Institution => InstitutionRepository ?? new InstitutionRepositoryEF(DbContext);
+		public ILanguage Language => LanguageRepository ?? new LanguageRepositoryEF(DbContext);
+		public ISkills Skills => SkillsRepository ?? new SkillsRepositoryEF(DbContext);
+		public IManager Manager => ManagerRepository ?? new ManagerRepositoryEF(DbContext);
+		public IManagerAuthentication ManagerAuthentication => ManagerAuthenticationRepository ?? new ManagerAuthenticationRepositoryEF(DbContext);
+		public IManagerDetail ManagerDetail => ManagerDetailRepository ?? new ManagerDetailRepositoryEF(DbContext);
+		public IManagerSettings ManagerSettings => ManagerSettingsRepository ?? new ManagerSettingsRepositoryEF(DbContext);
 		public IUser User => UserRepository ?? new UserRepositoryEF(DbContext);
-		public IUserAuthentication UserAuthentication => throw new NotImplementedException();
-		public IUserDetail UserDetail => throw new NotImplementedException();
-		public IUserSettings UserSettings => throw new NotImplementedException();
+		public IUserAuthentication UserAuthentication => UserAuthenticationRepository ?? new UserAuthenticationRepositoryEF(DbContext);
+		public IUserDetail UserDetail => UserDetailRepository ?? new UserDetailRepositoryEF(DbContext);
+		public IUserSettings UserSettings => UserSettingsRepository ?? new UserSettingsRepositoryEF(DbContext);
 
 		MytraContext DbContext;
 		public UnitOfWork(MytraContext dbContext)
