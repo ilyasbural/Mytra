@@ -23,5 +23,18 @@
 				ResponseData = Response.ResponseData
 			};
 		}
+
+		[HttpPut]
+		[Authorize]   
+		[Route("api/manager")]
+		[Produces(typeof(ServiceResponse<ManagerResponse>))]
+		public async Task<ServiceResponse<ManagerResponse>> Update([FromBody] ManagerUpdate Model)
+		{
+			ServiceResponse<ManagerResponse> Response = await Service.UpdateAsync(Model);
+			return new ServiceResponse<ManagerResponse>
+			{
+				ResponseData = Response.ResponseData
+			};
+		}
 	}
 }

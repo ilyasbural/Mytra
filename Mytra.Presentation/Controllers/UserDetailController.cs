@@ -23,5 +23,18 @@
 				ResponseData = Response.ResponseData
 			};
 		}
+
+		[HttpPut]
+		[Authorize]
+		[Route("api/userdetail")]
+		[Produces(typeof(ServiceResponse<UserDetailResponse>))]
+		public async Task<ServiceResponse<UserDetailResponse>> Update([FromBody] UserDetailUpdate Model)
+		{
+			ServiceResponse<UserDetailResponse> Response = await Service.UpdateAsync(Model);
+			return new ServiceResponse<UserDetailResponse>
+			{
+				ResponseData = Response.ResponseData
+			};
+		}
 	}
 }

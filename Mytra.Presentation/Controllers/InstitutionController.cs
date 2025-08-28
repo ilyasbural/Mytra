@@ -23,5 +23,18 @@
 				ResponseData = Response.ResponseData
 			};
 		}
+
+		[HttpPut]
+		[Authorize]
+		[Route("api/institution")]
+		[Produces(typeof(ServiceResponse<InstitutionResponse>))]
+		public async Task<ServiceResponse<InstitutionResponse>> Update([FromBody] InstitutionUpdate Model)
+		{
+			ServiceResponse<InstitutionResponse> Response = await Service.UpdateAsync(Model);
+			return new ServiceResponse<InstitutionResponse>
+			{
+				ResponseData = Response.ResponseData
+			};
+		}
 	}
 }

@@ -23,5 +23,18 @@
 				ResponseData = Response.ResponseData
 			};
 		}
+
+		[HttpPut]
+		[Authorize]
+		[Route("api/candidatereferance")]
+		[Produces(typeof(ServiceResponse<CandidateReferanceResponse>))]
+		public async Task<ServiceResponse<CandidateReferanceResponse>> Update([FromBody] CandidateReferanceUpdate Model)
+		{
+			ServiceResponse<CandidateReferanceResponse> Response = await Service.UpdateAsync(Model);
+			return new ServiceResponse<CandidateReferanceResponse>
+			{
+				ResponseData = Response.ResponseData
+			};
+		}
 	}
 }

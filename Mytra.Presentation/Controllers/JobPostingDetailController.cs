@@ -23,5 +23,18 @@
 				ResponseData = Response.ResponseData
 			};
 		}
+
+		[HttpPut]
+		[Authorize]
+		[Route("api/jobpostingdetail")]
+		[Produces(typeof(ServiceResponse<JobPostingDetailResponse>))]
+		public async Task<ServiceResponse<JobPostingDetailResponse>> Update([FromBody] JobPostingDetailUpdate Model)
+		{
+			ServiceResponse<JobPostingDetailResponse> Response = await Service.UpdateAsync(Model);
+			return new ServiceResponse<JobPostingDetailResponse>
+			{
+				ResponseData = Response.ResponseData
+			};
+		}
 	}
 }

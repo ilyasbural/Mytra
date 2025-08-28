@@ -23,5 +23,18 @@
 				ResponseData = Response.ResponseData
 			};
 		}
+
+		[HttpPut]
+		[Authorize]
+		[Route("api/user")]
+		[Produces(typeof(ServiceResponse<UserResponse>))]
+		public async Task<ServiceResponse<UserResponse>> Update([FromBody] UserUpdate Model)
+		{
+			ServiceResponse<UserResponse> Response = await Service.UpdateAsync(Model);
+			return new ServiceResponse<UserResponse>
+			{
+				ResponseData = Response.ResponseData
+			};
+		}
 	}
 }

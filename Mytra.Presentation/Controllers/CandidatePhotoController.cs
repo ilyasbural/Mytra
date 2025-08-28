@@ -23,5 +23,18 @@
 				ResponseData = Response.ResponseData
 			};
 		}
+
+		[HttpPut]
+		[Authorize]
+		[Route("api/candidatephoto")]
+		[Produces(typeof(ServiceResponse<CandidatePhotoResponse>))]
+		public async Task<ServiceResponse<CandidatePhotoResponse>> Update([FromBody] CandidatePhotoUpdate Model)
+		{
+			ServiceResponse<CandidatePhotoResponse> Response = await Service.UpdateAsync(Model);
+			return new ServiceResponse<CandidatePhotoResponse>
+			{
+				ResponseData = Response.ResponseData
+			};
+		}
 	}
 }

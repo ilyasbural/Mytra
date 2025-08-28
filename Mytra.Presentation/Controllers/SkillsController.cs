@@ -23,5 +23,18 @@
 				ResponseData = Response.ResponseData
 			};
 		}
+
+		[HttpPut]
+		[Authorize]
+		[Route("api/skills")]
+		[Produces(typeof(ServiceResponse<SkillsResponse>))]
+		public async Task<ServiceResponse<SkillsResponse>> Update([FromBody] SkillsUpdate Model)
+		{
+			ServiceResponse<SkillsResponse> Response = await Service.UpdateAsync(Model);
+			return new ServiceResponse<SkillsResponse>
+			{
+				ResponseData = Response.ResponseData
+			};
+		}
 	}
 }

@@ -23,5 +23,18 @@
 				ResponseData = Response.ResponseData
 			};
 		}
+
+		[HttpPut]
+		[Authorize]
+		[Route("api/candidatelanguage")]
+		[Produces(typeof(ServiceResponse<CandidateLanguageResponse>))]
+		public async Task<ServiceResponse<CandidateLanguageResponse>> Update([FromBody] CandidateLanguageUpdate Model)
+		{
+			ServiceResponse<CandidateLanguageResponse> Response = await Service.UpdateAsync(Model);
+			return new ServiceResponse<CandidateLanguageResponse>
+			{
+				ResponseData = Response.ResponseData
+			};
+		}
 	}
 }
