@@ -38,6 +38,7 @@
 		}
 
 		[HttpDelete]
+		[Authorize]
 		[Route("api/usersettings")]
 		[Produces(typeof(ServiceResponse<UserSettingsResponse>))]
 		public async Task<ServiceResponse<UserSettingsResponse>> Delete([FromBody] UserSettingsDelete Model)

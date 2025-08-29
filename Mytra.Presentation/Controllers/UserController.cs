@@ -38,6 +38,7 @@
 		}
 
 		[HttpDelete]
+		[Authorize]
 		[Route("api/user")]
 		[Produces(typeof(ServiceResponse<UserResponse>))]
 		public async Task<ServiceResponse<UserResponse>> Delete([FromBody] UserDelete Model)

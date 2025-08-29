@@ -38,6 +38,7 @@
 		}
 
 		[HttpDelete]
+		[Authorize]
 		[Route("api/institution")]
 		[Produces(typeof(ServiceResponse<InstitutionResponse>))]
 		public async Task<ServiceResponse<InstitutionResponse>> Delete([FromBody] InstitutionDelete Model)

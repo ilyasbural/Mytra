@@ -38,6 +38,7 @@
 		}
 
 		[HttpDelete]
+		[Authorize]
 		[Route("api/candidatephoto")]
 		[Produces(typeof(ServiceResponse<CandidatePhotoResponse>))]
 		public async Task<ServiceResponse<CandidatePhotoResponse>> Delete([FromBody] CandidatePhotoDelete Model)

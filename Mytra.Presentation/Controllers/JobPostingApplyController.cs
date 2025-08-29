@@ -38,6 +38,7 @@
 		}
 
 		[HttpDelete]
+		[Authorize]
 		[Route("api/jobpostingapply")]
 		[Produces(typeof(ServiceResponse<JobPostingApplyResponse>))]
 		public async Task<ServiceResponse<JobPostingApplyResponse>> Delete([FromBody] JobPostingApplyDelete Model)

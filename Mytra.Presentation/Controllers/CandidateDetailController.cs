@@ -12,6 +12,7 @@
 		public CandidateDetailController(ICandidateDetailService service) { Service = service; }
 
 		[HttpPost]
+		[Authorize]
 		[Route("api/candidatedetail")]
 		[Produces(typeof(ServiceResponse<CandidateDetailResponse>))]
 		public async Task<ServiceResponse<CandidateDetailResponse>> Create([FromBody] CandidateDetailInsert Model)
@@ -24,6 +25,7 @@
 		}
 
 		[HttpPut]
+		[Authorize]
 		[Route("api/candidatedetail")]
 		[Produces(typeof(ServiceResponse<CandidateDetailResponse>))]
 		public async Task<ServiceResponse<CandidateDetailResponse>> Update([FromBody] CandidateDetailUpdate Model)
@@ -36,6 +38,7 @@
 		}
 
 		[HttpDelete]
+		[Authorize]
 		[Route("api/candidatedetail")]
 		[Produces(typeof(ServiceResponse<CandidateDetailResponse>))]
 		public async Task<ServiceResponse<CandidateDetailResponse>> Delete([FromBody] CandidateDetailDelete Model)
@@ -48,6 +51,7 @@
 		}
 
 		[HttpGet]
+		[Authorize]
 		[Route("api/candidatedetail")]
 		[Produces(typeof(ServiceResponse<CandidateDetailResponse>))]
 		public async Task<ServiceResponse<CandidateDetailResponse>> Get([FromQuery] CandidateDetailSelect Model)
@@ -60,6 +64,7 @@
 		}
 
 		[HttpGet]
+		[Authorize]
 		[Route("api/candidatedetailsingle")]
 		[Produces(typeof(ServiceResponse<CandidateDetailResponse>))]
 		public async Task<ServiceResponse<CandidateDetailResponse>> GetSingle([FromQuery] CandidateDetailSelectSingle Model)

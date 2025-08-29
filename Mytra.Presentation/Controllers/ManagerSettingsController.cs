@@ -38,6 +38,7 @@
 		}
 
 		[HttpDelete]
+		[Authorize]
 		[Route("api/managersettings")]
 		[Produces(typeof(ServiceResponse<ManagerSettingsResponse>))]
 		public async Task<ServiceResponse<ManagerSettingsResponse>> Delete([FromBody] ManagerSettingsDelete Model)
