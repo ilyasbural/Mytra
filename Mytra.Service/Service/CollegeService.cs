@@ -20,27 +20,52 @@
 
 		public async Task<ServiceResponse<CollegeResponse>> InsertAsync(CollegeInsert Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<CollegeResponse>()
+			{
+				//ResponseData = new CollegeResponse(),
+				//ResponseDataSource = new List<CollegeResponse>(),
+				//Success = 1
+			};
 		}
 
 		public async Task<ServiceResponse<CollegeResponse>> UpdateAsync(CollegeUpdate Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<CollegeResponse>()
+			{
+				//ResponseData = new CollegeResponse(),
+				//ResponseDataSource = new List<CollegeResponse>(),
+				//Success = 1
+			};
 		}
 
 		public async Task<ServiceResponse<CollegeResponse>> DeleteAsync(CollegeDelete Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<CollegeResponse>()
+			{
+				//ResponseData = new CollegeResponse(),
+				//ResponseDataSource = new List<CollegeResponse>(),
+				//Success = 1
+			};
 		}
 
 		public async Task<ServiceResponse<CollegeResponse>> SelectAsync(CollegeSelect Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<CollegeResponse>()
+			{
+				//ResponseData = new CollegeResponse(),
+				//ResponseDataSource = new List<CollegeResponse>(),
+				//Success = 1
+			};
 		}
 
 		public async Task<ServiceResponse<CollegeResponse>> SelectSingleAsync(CollegeSelectSingle Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<CollegeResponse>()
+			{
+				//ResponseData = new CollegeResponse(),
+				//ResponseDataSource = new List<CollegeResponse>(),
+				//Success = 1
+			};
 		}
 	}
 }

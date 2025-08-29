@@ -5,7 +5,6 @@ namespace Mytra.Service
 	using AutoMapper;
 	using FluentValidation;
 
-
 	public class UserSettingsService : IUserSettingsService
 	{
 		readonly IMapper Mapper;

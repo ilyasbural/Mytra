@@ -20,27 +20,54 @@
 
 		public async Task<ServiceResponse<CandidateContactResponse>> InsertAsync(CandidateContactInsert Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<CandidateContactResponse>()
+			{
+
+			};
 		}
 
 		public async Task<ServiceResponse<CandidateContactResponse>> DeleteAsync(CandidateContactDelete Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<CandidateContactResponse>()
+			{
+
+			};
 		}
 
 		public async Task<ServiceResponse<CandidateContactResponse>> UpdateAsync(CandidateContactUpdate Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<CandidateContactResponse>()
+			{
+
+			};
 		}
 
 		public async Task<ServiceResponse<CandidateContactResponse>> SelectAsync(CandidateContactSelect Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<CandidateContactResponse>()
+			{
+				//ResponseDataSource = new List<CandidateContactResponse>()
+				//{
+				//	new CandidateContactResponse()
+				//	{
+				//	}
+				//},
+				//Success = 1
+			};
 		}
 
 		public async Task<ServiceResponse<CandidateContactResponse>> SelectSingleAsync(CandidateContactSelectSingle Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<CandidateContactResponse>()
+			{
+				//ResponseDataSource = new List<CandidateContactResponse>()
+				//{
+				//	new CandidateContactResponse()
+				//	{
+				//	}
+				//},
+				//Success = 1
+			};
 		}
 	}
 }

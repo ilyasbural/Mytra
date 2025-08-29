@@ -20,27 +20,72 @@
 
 		public async Task<ServiceResponse<CandidateSettingsResponse>> InsertAsync(CandidateSettingsInsert Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<CandidateSettingsResponse>()
+			{
+
+			};
 		}
 
 		public async Task<ServiceResponse<CandidateSettingsResponse>> UpdateAsync(CandidateSettingsUpdate Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<CandidateSettingsResponse>()
+			{
+
+			};
 		}
 
 		public async Task<ServiceResponse<CandidateSettingsResponse>> DeleteAsync(CandidateSettingsDelete Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<CandidateSettingsResponse>()
+			{
+
+			};
 		}
 
 		public async Task<ServiceResponse<CandidateSettingsResponse>> SelectAsync(CandidateSettingsSelect Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<CandidateSettingsResponse>()
+			{
+				//ResponseDataSource = new List<CandidateSettingsResponse>
+				//{
+				//	new CandidateSettingsResponse
+				//	{
+				//		Id = 1,
+				//		CandidateId = 1,
+				//		SettingName = "Notification",
+				//		SettingValue = "Email",
+				//		CreatedAt = DateTime.UtcNow,
+				//		UpdatedAt = DateTime.UtcNow
+				//	},
+				//	new CandidateSettingsResponse
+				//	{
+				//		Id = 2,
+				//		CandidateId = 1,
+				//		SettingName = "Privacy",
+				//		SettingValue = "High",
+				//		CreatedAt = DateTime.UtcNow,
+				//		UpdatedAt = DateTime.UtcNow
+				//	}
+				//},
+				//Success = 1
+			};
 		}
 
 		public async Task<ServiceResponse<CandidateSettingsResponse>> SelectSingleAsync(CandidateSettingsSelectSingle Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<CandidateSettingsResponse>()
+			{
+				//ResponseDataSource = new CandidateSettingsResponse
+				//{
+				//	Id = 1,
+				//	CandidateId = 1,
+				//	SettingName = "Notification",
+				//	SettingValue = "Email",
+				//	CreatedAt = DateTime.UtcNow,
+				//	UpdatedAt = DateTime.UtcNow
+				//},
+				//Success = 1
+			};
 		}
 	}
 }

@@ -20,27 +20,42 @@
 
 		public async Task<ServiceResponse<CandidateReferanceResponse>> InsertAsync(CandidateReferanceInsert Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<CandidateReferanceResponse>()
+			{
+
+			};
 		}
 
 		public async Task<ServiceResponse<CandidateReferanceResponse>> UpdateAsync(CandidateReferanceUpdate Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<CandidateReferanceResponse>()
+			{
+
+			};
 		}
 
 		public async Task<ServiceResponse<CandidateReferanceResponse>> DeleteAsync(CandidateReferanceDelete Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<CandidateReferanceResponse>()
+			{
+
+			};
 		}
 
 		public async Task<ServiceResponse<CandidateReferanceResponse>> SelectAsync(CandidateReferanceSelect Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<CandidateReferanceResponse>()
+			{
+
+			};
 		}
 
 		public async Task<ServiceResponse<CandidateReferanceResponse>> SelectSingleAsync(CandidateReferanceSelectSingle Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<CandidateReferanceResponse>()
+			{
+
+			};
 		}
 	}
 }

@@ -20,27 +20,67 @@
 
 		public async Task<ServiceResponse<CandidateCertificateResponse>> InsertAsync(CandidateCertificateInsert Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<CandidateCertificateResponse>()
+			{
+				//ResponseData = new CandidateCertificateResponse()
+				//{
+				//	Success = 1
+				//},
+				//ResponseDataSource = new List<CandidateCertificateResponse>(),
+				//Success = 1
+			};
 		}
 
 		public async Task<ServiceResponse<CandidateCertificateResponse>> UpdateAsync(CandidateCertificateUpdate Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<CandidateCertificateResponse>()
+			{
+				//ResponseData = new CandidateCertificateResponse()
+				//{
+				//	Success = 1
+				//},
+				//ResponseDataSource = new List<CandidateCertificateResponse>(),
+				//Success = 1
+			};
 		}
 
 		public async Task<ServiceResponse<CandidateCertificateResponse>> DeleteAsync(CandidateCertificateDelete Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<CandidateCertificateResponse>()
+			{
+				//ResponseData = new CandidateCertificateResponse()
+				//{
+				//	Success = 1
+				//},
+				//ResponseDataSource = new List<CandidateCertificateResponse>(),
+				//Success = 1
+			};
 		}
 
 		public async Task<ServiceResponse<CandidateCertificateResponse>> SelectAsync(CandidateCertificateSelect Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<CandidateCertificateResponse>()
+			{
+				//ResponseData = new CandidateCertificateResponse()
+				//{
+				//	Success = 1
+				//},
+				//ResponseDataSource = new List<CandidateCertificateResponse>(),
+				//Success = 1
+			};
 		}
 
 		public async Task<ServiceResponse<CandidateCertificateResponse>> SelectSingleAsync(CandidateCertificateSelectSingle Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<CandidateCertificateResponse>()
+			{
+				//ResponseData = new CandidateCertificateResponse()
+				//{
+				//	Success = 1
+				//},
+				//ResponseDataSource = new List<CandidateCertificateResponse>(),
+				//Success = 1
+			};
 		}
 	}
 }

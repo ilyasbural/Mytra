@@ -20,27 +20,54 @@
 
 		public async Task<ServiceResponse<CandidateEducationResponse>> InsertAsync(CandidateEducationInsert Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<CandidateEducationResponse>()
+			{
+
+			};
 		}
 
 		public async Task<ServiceResponse<CandidateEducationResponse>> UpdateAsync(CandidateEducationUpdate Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<CandidateEducationResponse>()
+			{
+
+			};
 		}
 
 		public async Task<ServiceResponse<CandidateEducationResponse>> DeleteAsync(CandidateEducationDelete Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<CandidateEducationResponse>()
+			{
+
+			};
 		}
 
 		public async Task<ServiceResponse<CandidateEducationResponse>> SelectAsync(CandidateEducationSelect Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<CandidateEducationResponse>()
+			{
+				//ResponseDataSource = new List<CandidateEducationResponse>()
+				//{
+				//	new CandidateEducationResponse()
+				//	{
+				//	}
+				//},
+				//Success = 1
+			};
 		}
 
 		public async Task<ServiceResponse<CandidateEducationResponse>> SelectSingleAsync(CandidateEducationSelectSingle Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<CandidateEducationResponse>()
+			{
+				//ResponseDataSource = new List<CandidateEducationResponse>()
+				//{
+				//	new CandidateEducationResponse()
+				//	{
+				//	}
+				//},
+				//Success = 1
+			};
 		}
 	}
 }

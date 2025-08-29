@@ -20,27 +20,69 @@
 
 		public async Task<ServiceResponse<CandidateSkillsResponse>> InsertAsync(CandidateSkillsInsert Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<CandidateSkillsResponse>()
+			{
+
+			};
 		}
 
 		public async Task<ServiceResponse<CandidateSkillsResponse>> UpdateAsync(CandidateSkillsUpdate Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<CandidateSkillsResponse>()
+			{
+
+			};
 		}
 
 		public async Task<ServiceResponse<CandidateSkillsResponse>> DeleteAsync(CandidateSkillsDelete Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<CandidateSkillsResponse>()
+			{
+
+			};
 		}
 
 		public async Task<ServiceResponse<CandidateSkillsResponse>> SelectAsync(CandidateSkillsSelect Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<CandidateSkillsResponse>()
+			{
+				//ResponseDataSource = new List<CandidateSkillsResponse>()
+				//{
+				//	new CandidateSkillsResponse()
+				//	{
+				//		Id = 1,
+				//		CandidateId = 1,
+				//		SkillName = "C#",
+				//		ProficiencyLevel = "Expert",
+				//		YearsOfExperience = 5
+				//	},
+				//	new CandidateSkillsResponse()
+				//	{
+				//		Id = 2,
+				//		CandidateId = 1,
+				//		SkillName = "JavaScript",
+				//		ProficiencyLevel = "Intermediate",
+				//		YearsOfExperience = 3
+				//	}
+				//},
+				//Success = 1
+			};
 		}
 
 		public async Task<ServiceResponse<CandidateSkillsResponse>> SelectSingleAsync(CandidateSkillsSelectSingle Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<CandidateSkillsResponse>()
+			{
+				//ResponseDataSource = new CandidateSkillsResponse()
+				//{
+				//	Id = 1,
+				//	CandidateId = 1,
+				//	SkillName = "C#",
+				//	ProficiencyLevel = "Expert",
+				//	YearsOfExperience = 5
+				//},
+				//Success = 1
+			};
 		}
 	}
 }

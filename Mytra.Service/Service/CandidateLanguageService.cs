@@ -20,27 +20,42 @@
 
 		public async Task<ServiceResponse<CandidateLanguageResponse>> InsertAsync(CandidateLanguageInsert Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<CandidateLanguageResponse>()
+			{
+
+			};
 		}
 
 		public async Task<ServiceResponse<CandidateLanguageResponse>> UpdateAsync(CandidateLanguageUpdate Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<CandidateLanguageResponse>()
+			{
+
+			};
 		}
 
 		public async Task<ServiceResponse<CandidateLanguageResponse>> DeleteAsync(CandidateLanguageDelete Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<CandidateLanguageResponse>()
+			{
+
+			};
 		}
 
 		public async Task<ServiceResponse<CandidateLanguageResponse>> SelectAsync(CandidateLanguageSelect Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<CandidateLanguageResponse>()
+			{
+
+			};
 		}
 
 		public async Task<ServiceResponse<CandidateLanguageResponse>> SelectSingleAsync(CandidateLanguageSelectSingle Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<CandidateLanguageResponse>()
+			{
+
+			};
 		}
 	}
 }
