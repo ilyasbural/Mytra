@@ -49,5 +49,31 @@
 				ResponseData = Response.ResponseData
 			};
 		}
+
+		[HttpGet]
+		[Authorize]
+		[Route("api/userdetail")]
+		[Produces(typeof(ServiceResponse<UserDetailResponse>))]
+		public async Task<ServiceResponse<UserDetailResponse>> Get([FromQuery] UserDetailSelect Model)
+		{
+			ServiceResponse<UserDetailResponse> Response = await Service.SelectAsync(Model);
+			return new ServiceResponse<UserDetailResponse>
+			{
+				ResponseDataSource = Response.ResponseDataSource
+			};
+		}
+
+		[HttpGet]
+		[Authorize]
+		[Route("api/userdetailsingle")]
+		[Produces(typeof(ServiceResponse<UserDetailResponse>))]
+		public async Task<ServiceResponse<UserDetailResponse>> GetSingle([FromQuery] UserDetailSelectSingle Model)
+		{
+			ServiceResponse<UserDetailResponse> Response = await Service.SelectSingleAsync(Model);
+			return new ServiceResponse<UserDetailResponse>
+			{
+				ResponseDataSource = Response.ResponseDataSource
+			};
+		}
 	}
 }

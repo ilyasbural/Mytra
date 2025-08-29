@@ -49,5 +49,31 @@
 				ResponseData = Response.ResponseData
 			};
 		}
+
+		[HttpGet]
+		[Authorize]
+		[Route("api/institution")]
+		[Produces(typeof(ServiceResponse<InstitutionResponse>))]
+		public async Task<ServiceResponse<InstitutionResponse>> Get([FromQuery] InstitutionSelect Model)
+		{
+			ServiceResponse<InstitutionResponse> Response = await Service.SelectAsync(Model);
+			return new ServiceResponse<InstitutionResponse>
+			{
+				ResponseDataSource = Response.ResponseDataSource
+			};
+		}
+
+		[HttpGet]
+		[Authorize]
+		[Route("api/institutionsingle")]
+		[Produces(typeof(ServiceResponse<InstitutionResponse>))]
+		public async Task<ServiceResponse<InstitutionResponse>> GetSingle([FromQuery] InstitutionSelectSingle Model)
+		{
+			ServiceResponse<InstitutionResponse> Response = await Service.SelectSingleAsync(Model);
+			return new ServiceResponse<InstitutionResponse>
+			{
+				ResponseDataSource = Response.ResponseDataSource
+			};
+		}
 	}
 }

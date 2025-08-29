@@ -49,5 +49,31 @@
 				ResponseData = Response.ResponseData
 			};
 		}
+
+		[HttpGet]
+		[Authorize]
+		[Route("api/candidatesettings")]
+		[Produces(typeof(ServiceResponse<CandidateSettingsResponse>))]
+		public async Task<ServiceResponse<CandidateSettingsResponse>> Get([FromQuery] CandidateSettingsSelect Model)
+		{
+			ServiceResponse<CandidateSettingsResponse> Response = await Service.SelectAsync(Model);
+			return new ServiceResponse<CandidateSettingsResponse>
+			{
+				ResponseDataSource = Response.ResponseDataSource
+			};
+		}
+
+		[HttpGet]
+		[Authorize]
+		[Route("api/candidatesettingssingle")]
+		[Produces(typeof(ServiceResponse<CandidateSettingsResponse>))]
+		public async Task<ServiceResponse<CandidateSettingsResponse>> GetSingle([FromQuery] CandidateSettingsSelectSingle Model)
+		{
+			ServiceResponse<CandidateSettingsResponse> Response = await Service.SelectSingleAsync(Model);
+			return new ServiceResponse<CandidateSettingsResponse>
+			{
+				ResponseDataSource = Response.ResponseDataSource
+			};
+		}
 	}
 }

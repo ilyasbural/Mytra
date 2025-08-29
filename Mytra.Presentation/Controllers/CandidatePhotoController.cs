@@ -49,5 +49,31 @@
 				ResponseData = Response.ResponseData
 			};
 		}
+
+		[HttpGet]
+		[Authorize]
+		[Route("api/candidatephoto")]
+		[Produces(typeof(ServiceResponse<CandidatePhotoResponse>))]
+		public async Task<ServiceResponse<CandidatePhotoResponse>> Get([FromQuery] CandidatePhotoSelect Model)
+		{
+			ServiceResponse<CandidatePhotoResponse> Response = await Service.SelectAsync(Model);
+			return new ServiceResponse<CandidatePhotoResponse>
+			{
+				ResponseDataSource = Response.ResponseDataSource
+			};
+		}
+
+		[HttpGet]
+		[Authorize]
+		[Route("api/candidatephotosingle")]
+		[Produces(typeof(ServiceResponse<CandidatePhotoResponse>))]
+		public async Task<ServiceResponse<CandidatePhotoResponse>> GetSingle([FromQuery] CandidatePhotoSelectSingle Model)
+		{
+			ServiceResponse<CandidatePhotoResponse> Response = await Service.SelectSingleAsync(Model);
+			return new ServiceResponse<CandidatePhotoResponse>
+			{
+				ResponseDataSource = Response.ResponseDataSource
+			};
+		}
 	}
 }

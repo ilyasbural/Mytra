@@ -49,5 +49,31 @@
 				ResponseData = Response.ResponseData
 			};
 		}
+
+		[HttpGet]
+		[Authorize]
+		[Route("api/manager")]
+		[Produces(typeof(ServiceResponse<ManagerResponse>))]
+		public async Task<ServiceResponse<ManagerResponse>> Get([FromQuery] ManagerSelect Model)
+		{
+			ServiceResponse<ManagerResponse> Response = await Service.SelectAsync(Model);
+			return new ServiceResponse<ManagerResponse>
+			{
+				ResponseDataSource = Response.ResponseDataSource
+			};
+		}
+
+		[HttpGet]
+		[Authorize]
+		[Route("api/managersingle")]
+		[Produces(typeof(ServiceResponse<ManagerResponse>))]
+		public async Task<ServiceResponse<ManagerResponse>> GetSingle([FromQuery] ManagerSelectSingle Model)
+		{
+			ServiceResponse<ManagerResponse> Response = await Service.SelectSingleAsync(Model);
+			return new ServiceResponse<ManagerResponse>
+			{
+				ResponseDataSource = Response.ResponseDataSource
+			};
+		}
 	}
 }

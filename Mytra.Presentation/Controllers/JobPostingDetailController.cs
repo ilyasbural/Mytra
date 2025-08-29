@@ -49,5 +49,31 @@
 				ResponseData = Response.ResponseData
 			};
 		}
+
+		[HttpGet]
+		[Authorize]
+		[Route("api/jobpostingdetail")]
+		[Produces(typeof(ServiceResponse<JobPostingDetailResponse>))]
+		public async Task<ServiceResponse<JobPostingDetailResponse>> Get([FromQuery] JobPostingDetailSelect Model)
+		{
+			ServiceResponse<JobPostingDetailResponse> Response = await Service.SelectAsync(Model);
+			return new ServiceResponse<JobPostingDetailResponse>
+			{
+				ResponseDataSource = Response.ResponseDataSource
+			};
+		}
+
+		[HttpGet]
+		[Authorize]
+		[Route("api/jobpostingdetailsingle")]
+		[Produces(typeof(ServiceResponse<JobPostingDetailResponse>))]
+		public async Task<ServiceResponse<JobPostingDetailResponse>> GetSingle([FromQuery] JobPostingDetailSelectSingle Model)
+		{
+			ServiceResponse<JobPostingDetailResponse> Response = await Service.SelectSingleAsync(Model);
+			return new ServiceResponse<JobPostingDetailResponse>
+			{
+				ResponseDataSource = Response.ResponseDataSource
+			};
+		}
 	}
 }

@@ -49,5 +49,31 @@
 				ResponseData = Response.ResponseData
 			};
 		}
+
+		[HttpGet]
+		[Authorize]
+		[Route("api/language")]
+		[Produces(typeof(ServiceResponse<LanguageResponse>))]
+		public async Task<ServiceResponse<LanguageResponse>> Get([FromQuery] LanguageSelect Model)
+		{
+			ServiceResponse<LanguageResponse> Response = await Service.SelectAsync(Model);
+			return new ServiceResponse<LanguageResponse>
+			{
+				ResponseDataSource = Response.ResponseDataSource
+			};
+		}
+
+		[HttpGet]
+		[Authorize]
+		[Route("api/languagesingle")]
+		[Produces(typeof(ServiceResponse<LanguageResponse>))]
+		public async Task<ServiceResponse<LanguageResponse>> GetSingle([FromQuery] LanguageSelectSingle Model)
+		{
+			ServiceResponse<LanguageResponse> Response = await Service.SelectSingleAsync(Model);
+			return new ServiceResponse<LanguageResponse>
+			{
+				ResponseDataSource = Response.ResponseDataSource
+			};
+		}
 	}
 }
