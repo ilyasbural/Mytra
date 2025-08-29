@@ -5,6 +5,7 @@ namespace Mytra.Service
 	using AutoMapper;
 	using FluentValidation;
 
+
 	public class UserSettingsService : IUserSettingsService
 	{
 		readonly IMapper Mapper;
@@ -20,27 +21,42 @@ namespace Mytra.Service
 
 		public async Task<ServiceResponse<UserSettingsResponse>> InsertAsync(UserSettingsInsert Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<UserSettingsResponse>
+			{
+
+			};
 		}
 
 		public async Task<ServiceResponse<UserSettingsResponse>> UpdateAsync(UserSettingsUpdate Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<UserSettingsResponse>
+			{
+
+			};
 		}
 
 		public async Task<ServiceResponse<UserSettingsResponse>> DeleteAsync(UserSettingsDelete Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<UserSettingsResponse>
+			{
+
+			};
 		}
 
 		public async Task<ServiceResponse<UserSettingsResponse>> SelectAsync(UserSettingsSelect Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<UserSettingsResponse>
+			{
+
+			};
 		}
 
 		public async Task<ServiceResponse<UserSettingsResponse>> SelectSingleAsync(UserSettingsSelectSingle Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<UserSettingsResponse>
+			{
+
+			};
 		}
 	}
 }

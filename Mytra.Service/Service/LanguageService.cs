@@ -20,27 +20,71 @@
 
 		public async Task<ServiceResponse<LanguageResponse>> InsertAsync(LanguageInsert Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<LanguageResponse>
+			{
+				//IsSuccess = true,
+				//Message = "Language inserted successfully",
+				//Data = new LanguageResponse
+				//{
+				//	Id = 1,
+				//	Name = Model.Name,
+				//	Code = Model.Code
+				//}
+			};
 		}
 
 		public async Task<ServiceResponse<LanguageResponse>> UpdateAsync(LanguageUpdate Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<LanguageResponse>
+			{
+				//IsSuccess = true,
+				//Message = "Language updated successfully",
+				//Data = new LanguageResponse
+				//{
+				//	Id = Model.Id,
+				//	Name = Model.Name,
+				//	Code = Model.Code
+				//}
+			};
 		}
 
 		public async Task<ServiceResponse<LanguageResponse>> DeleteAsync(LanguageDelete Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<LanguageResponse>
+			{
+				//IsSuccess = true,
+				//Message = "Language deleted successfully",
+				//Data = null
+			};
 		}
 
 		public async Task<ServiceResponse<LanguageResponse>> SelectAsync(LanguageSelect Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<LanguageResponse>
+			{
+				//IsSuccess = true,
+				//Message = "Languages retrieved successfully",
+				//Data = new List<LanguageResponse>
+				//{
+				//	new LanguageResponse { Id = 1, Name = "English", Code = "EN" },
+				//	new LanguageResponse { Id = 2, Name = "Spanish", Code = "ES" }
+				//}
+			};
 		}
 
 		public async Task<ServiceResponse<LanguageResponse>> SelectSingleAsync(LanguageSelectSingle Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<LanguageResponse>
+			{
+				//IsSuccess = true,
+				//Message = "Language retrieved successfully",
+				//Data = new LanguageResponse
+				//{
+				//	Id = Model.Id,
+				//	Name = "English",
+				//	Code = "EN"
+				//}
+			};
 		}
 	}
 }

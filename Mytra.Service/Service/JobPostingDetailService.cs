@@ -20,27 +20,80 @@
 
 		public async Task<ServiceResponse<JobPostingDetailResponse>> InsertAsync(JobPostingDetailInsert Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<JobPostingDetailResponse>
+			{
+				//IsSuccess = true,
+				//Message = "Job posting details inserted successfully.",
+				//Data = new JobPostingDetailResponse
+				//{
+				//	Id = Guid.NewGuid(),
+				//	JobTitle = Model.JobTitle,
+				//	Description = Model.Description,
+				//	Location = Model.Location,
+				//	PostedDate = DateTime.UtcNow
+				//}
+			};
 		}
 
 		public async Task<ServiceResponse<JobPostingDetailResponse>> UpdateAsync(JobPostingDetailUpdate Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<JobPostingDetailResponse>
+			{
+				//IsSuccess = true,
+				//Message = "Job posting details updated successfully.",
+				//Data = new JobPostingDetailResponse
+				//{
+				//	Id = Model.Id,
+				//	JobTitle = Model.JobTitle,
+				//	Description = Model.Description,
+				//	Location = Model.Location,
+				//	PostedDate = DateTime.UtcNow
+				//}
+			};
 		}
 
 		public async Task<ServiceResponse<JobPostingDetailResponse>> DeleteAsync(JobPostingDetailDelete Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<JobPostingDetailResponse>
+			{
+				//IsSuccess = true,
+				//Message = "Job posting details deleted successfully.",
+				//Data = null
+			};
 		}
 
 		public async Task<ServiceResponse<JobPostingDetailResponse>> SelectAsync(JobPostingDetailSelect Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<JobPostingDetailResponse>
+			{
+				//IsSuccess = true,
+				//Message = "Job posting details retrieved successfully.",
+				//Data = new JobPostingDetailResponse
+				//{
+				//	Id = Guid.NewGuid(),
+				//	JobTitle = "Sample Job Title",
+				//	Description = "Sample Job Description",
+				//	Location = "Sample Location",
+				//	PostedDate = DateTime.UtcNow
+				//}
+			};
 		}
 
 		public async Task<ServiceResponse<JobPostingDetailResponse>> SelectSingleAsync(JobPostingDetailSelectSingle Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<JobPostingDetailResponse>
+			{
+				//IsSuccess = true,
+				//Message = "Job posting detail retrieved successfully.",
+				//Data = new JobPostingDetailResponse
+				//{
+				//	Id = Model.Id,
+				//	JobTitle = "Sample Job Title",
+				//	Description = "Sample Job Description",
+				//	Location = "Sample Location",
+				//	PostedDate = DateTime.UtcNow
+				//}
+			};
 		}
 	}
 }

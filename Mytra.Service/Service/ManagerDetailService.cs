@@ -17,29 +17,45 @@
 			UnitOfWork = unitOfWork;
 			Validator = validator;
 		}
+
 		public async Task<ServiceResponse<ManagerDetailResponse>> InsertAsync(ManagerDetailInsert Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<ManagerDetailResponse>()
+			{
+
+			};
 		}
 
 		public async Task<ServiceResponse<ManagerDetailResponse>> UpdateAsync(ManagerDetailUpdate Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<ManagerDetailResponse>()
+			{
+
+			};
 		}
 
 		public async Task<ServiceResponse<ManagerDetailResponse>> DeleteAsync(ManagerDetailDelete Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<ManagerDetailResponse>()
+			{
+
+			};
 		}
 
 		public async Task<ServiceResponse<ManagerDetailResponse>> SelectAsync(ManagerDetailSelect Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<ManagerDetailResponse>()
+			{
+
+			};
 		}
 
 		public async Task<ServiceResponse<ManagerDetailResponse>> SelectSingleAsync(ManagerDetailSelectSingle Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<ManagerDetailResponse>()
+			{
+
+			};
 		}
 	}
 }

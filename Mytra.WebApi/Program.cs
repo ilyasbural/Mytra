@@ -9,10 +9,10 @@ IConfiguration Configuration = Builder.Configuration;
 
 Builder.Services.AddControllers().AddApplicationPart(typeof(Mytra.Presentation.AssemblyReferance).Assembly);
 Builder.Services.AddEndpointsApiExplorer();
-Builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(option =>
+Builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(Option =>
 {
-    option.RequireHttpsMetadata = false;
-    option.TokenValidationParameters = new TokenValidationParameters()
+	Option.RequireHttpsMetadata = false;
+	Option.TokenValidationParameters = new TokenValidationParameters()
     {
         //ValidIssuer = JwtSettings.ValidIssuer,
         //ValidAudience = JwtSettings.ValidAudience,
@@ -55,18 +55,18 @@ Builder.Services.AddAutoMapper(cfg => { }, typeof(CandidateAuthenticationMapper)
 Builder.Services.AddCors(options => options.AddDefaultPolicy(builder => { builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod(); }));
 Builder.Services.AddDbContext<MytraContext>(x => x.UseSqlServer(Configuration.GetConnectionString("SqlServer")!));
 
-var app = Builder.Build();
+var App = Builder.Build();
 
-if (app.Environment.IsDevelopment())
+if (App.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+	App.MapOpenApi();
 }
 
-app.UseSwagger();
-app.UseSwaggerUI();
-app.UseHttpsRedirection();
-app.UseAuthentication();
-app.UseAuthorization();
-app.MapControllers();
-app.UseCors();
-app.Run();
+App.UseSwagger();
+App.UseSwaggerUI();
+App.UseHttpsRedirection();
+App.UseAuthentication();
+App.UseAuthorization();
+App.MapControllers();
+App.UseCors();
+App.Run();

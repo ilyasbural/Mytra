@@ -20,27 +20,60 @@ namespace Mytra.Service
 
 		public async Task<ServiceResponse<UserDetailResponse>> InsertAsync(UserDetailInsert Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<UserDetailResponse>()
+			{
+				//IsSuccess = true,
+				//Message = "User detail inserted successfully",
+				//Data = new UserDetailResponse()
+				//{
+				//	UserId = 1,
+				//	FirstName = Model.FirstName,
+				//	LastName = Model.LastName,
+				//	Email = Model.Email,
+				//	PhoneNumber = Model.PhoneNumber
+				//}
+			};
 		}
 
 		public async Task<ServiceResponse<UserDetailResponse>> UpdateAsync(UserDetailUpdate Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<UserDetailResponse>()
+			{
+				//IsSuccess = true,
+				//Message = "User detail updated successfully",
+				//Data = new UserDetailResponse()
+				//{
+				//	UserId = Model.UserId,
+				//	FirstName = Model.FirstName,
+				//	LastName = Model.LastName,
+				//	Email = Model.Email,
+				//	PhoneNumber = Model.PhoneNumber
+				//}
+			};
 		}
 
 		public async Task<ServiceResponse<UserDetailResponse>> DeleteAsync(UserDetailDelete Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<UserDetailResponse>()
+			{
+				
+			};
 		}
 
 		public async Task<ServiceResponse<UserDetailResponse>> SelectAsync(UserDetailSelect Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<UserDetailResponse>()
+			{
+				
+			};
 		}
 
 		public async Task<ServiceResponse<UserDetailResponse>> SelectSingleAsync(UserDetailSelectSingle Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<UserDetailResponse>()
+			{
+				
+			};
 		}
 	}
 }

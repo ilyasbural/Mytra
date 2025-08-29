@@ -20,27 +20,42 @@ namespace Mytra.Service
 
 		public async Task<ServiceResponse<CandidateAuthenticationResponse>> InsertAsync(CandidateAuthenticationInsert Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<CandidateAuthenticationResponse>
+			{
+
+			};
 		}
 
 		public async Task<ServiceResponse<CandidateAuthenticationResponse>> UpdateAsync(CandidateAuthenticationUpdate Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<CandidateAuthenticationResponse>
+			{
+
+			};
 		}
 
 		public async Task<ServiceResponse<CandidateAuthenticationResponse>> DeleteAsync(CandidateAuthenticationDelete Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<CandidateAuthenticationResponse>
+			{
+
+			};
 		}
 
 		public async Task<ServiceResponse<CandidateAuthenticationResponse>> SelectAsync(CandidateAuthenticationSelect Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<CandidateAuthenticationResponse>
+			{
+
+			};
 		}
 
 		public async Task<ServiceResponse<CandidateAuthenticationResponse>> SelectSingleAsync(CandidateAuthenticationSelectSingle Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<CandidateAuthenticationResponse>
+			{
+
+			};
 		}
 	}
 }

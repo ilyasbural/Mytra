@@ -9,16 +9,19 @@
 	{
 		readonly IMapper Mapper;
 		readonly IUnitOfWork UnitOfWork;
-		readonly IValidator<CandidateAuthentication> Validator;
 
-		public AuthenticationService()
+		public AuthenticationService(IMapper mapper, IUnitOfWork unitOfWork)
 		{
-			
+			Mapper = mapper;
+			UnitOfWork = unitOfWork;
 		}
 
 		public async Task<ServiceResponse<AuthenticationResponse>> AuthenticationAsync(Authentication Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<AuthenticationResponse>()
+			{
+
+			};
 		}
 	}
 }

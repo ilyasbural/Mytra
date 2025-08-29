@@ -4,6 +4,7 @@
 	using Common;
 	using AutoMapper;
 	using FluentValidation;
+	using System.Reflection.Metadata.Ecma335;
 
 	public class SkillsService : ISkillsService
 	{
@@ -18,29 +19,74 @@
 			Validator = validator;
 		}
 
-		public Task<ServiceResponse<SkillsResponse>> InsertAsync(SkillsInsert Model)
+		public async Task<ServiceResponse<SkillsResponse>> InsertAsync(SkillsInsert Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<SkillsResponse>
+			{
+				//IsSuccess = true,
+				//Message = "Skills inserted successfully",
+				//Data = new SkillsResponse
+				//{
+				//	SkillId = 1,
+				//	SkillName = Model.SkillName,
+				//	Description = Model.Description
+				//}
+			};
 		}
 
-		public Task<ServiceResponse<SkillsResponse>> UpdateAsync(SkillsUpdate Model)
+		public async Task<ServiceResponse<SkillsResponse>> UpdateAsync(SkillsUpdate Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<SkillsResponse>
+			{
+				//IsSuccess = true,
+				//Message = "Skills updated successfully",
+				//Data = new SkillsResponse
+				//{
+				//	SkillId = Model.SkillId,
+				//	SkillName = Model.SkillName,
+				//	Description = Model.Description
+				//}
+			};
 		}
 
-		public Task<ServiceResponse<SkillsResponse>> DeleteAsync(SkillsDelete Model)
+		public async Task<ServiceResponse<SkillsResponse>> DeleteAsync(SkillsDelete Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<SkillsResponse>
+			{
+				//IsSuccess = true,
+				//Message = "Skills deleted successfully",
+				//Data = null
+			};
 		}
 
-		public Task<ServiceResponse<SkillsResponse>> SelectAsync(SkillsSelect Model)
+		public async Task<ServiceResponse<SkillsResponse>> SelectAsync(SkillsSelect Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<SkillsResponse>
+			{
+				//IsSuccess = true,
+				//Message = "Skills retrieved successfully",
+				//Data = new SkillsResponse
+				//{
+				//	SkillId = 1,
+				//	SkillName = "Sample Skill",
+				//	Description = "This is a sample skill description"
+				//}
+			};
 		}
 
-		public Task<ServiceResponse<SkillsResponse>> SelectSingleAsync(SkillsSelectSingle Model)
+		public async Task<ServiceResponse<SkillsResponse>> SelectSingleAsync(SkillsSelectSingle Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<SkillsResponse>
+			{
+				//IsSuccess = true,
+				//Message = "Skills retrieved successfully",
+				//Data = new SkillsResponse
+				//{
+				//	SkillId = Model.SkillId,
+				//	SkillName = "Sample Skill",
+				//	Description = "This is a sample skill description"
+				//}
+			};
 		}
 	}
 }

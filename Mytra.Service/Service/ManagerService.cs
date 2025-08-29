@@ -20,27 +20,42 @@
 
 		public async Task<ServiceResponse<ManagerResponse>> InsertAsync(ManagerInsert Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<ManagerResponse>()
+			{
+
+			};
 		}
 
 		public async Task<ServiceResponse<ManagerResponse>> UpdateAsync(ManagerUpdate Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<ManagerResponse>()
+			{
+
+			};
 		}
 
 		public async Task<ServiceResponse<ManagerResponse>> DeleteAsync(ManagerDelete Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<ManagerResponse>()
+			{
+
+			};
 		}
 
 		public async Task<ServiceResponse<ManagerResponse>> SelectAsync(ManagerSelect Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<ManagerResponse>()
+			{
+
+			};
 		}
 
 		public async Task<ServiceResponse<ManagerResponse>> SelectSingleAsync(ManagerSelectSingle Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<ManagerResponse>()
+			{
+
+			};
 		}
 	}
 }

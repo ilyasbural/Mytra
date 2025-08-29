@@ -20,27 +20,44 @@ namespace Mytra.Service
 
 		public async Task<ServiceResponse<UserResponse>> InsertAsync(UserInsert Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<UserResponse>()
+			{
+				//IsSuccess = true,
+				//Message = "User inserted successfully",
+				//Data = new UserResponse { Id = 1, Username = Model.Username, Email = Model.Email }
+			};
 		}
 
 		public async Task<ServiceResponse<UserResponse>> UpdateAsync(UserUpdate Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<UserResponse>()
+			{
+				
+			};
 		}
 
 		public async Task<ServiceResponse<UserResponse>> DeleteAsync(UserDelete Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<UserResponse>()
+			{
+
+			};
 		}
 
 		public async Task<ServiceResponse<UserResponse>> SelectAsync(UserSelect Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<UserResponse>()
+			{
+
+			};
 		}
 
 		public async Task<ServiceResponse<UserResponse>> SelectSingleAsync(UserSelectSingle Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<UserResponse>()
+			{
+
+			};
 		}
 	}
 }

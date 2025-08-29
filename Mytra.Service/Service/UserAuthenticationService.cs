@@ -20,27 +20,69 @@ namespace Mytra.Service
 
 		public async Task<ServiceResponse<UserAuthenticationResponse>> InsertAsync(UserAuthenticationInsert Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<UserAuthenticationResponse>
+			{
+				//IsSuccess = true,
+				//Message = "User authentication successful",
+				//Data = new UserAuthenticationResponse
+				//{
+				//	UserId = Guid.NewGuid(),
+				//	Token = "mock-jwt-token",
+				//	ExpiresIn = 3600
+				//}
+			};
 		}
 
 		public async Task<ServiceResponse<UserAuthenticationResponse>> UpdateAsync(UserAuthenticationUpdate Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<UserAuthenticationResponse>
+			{
+				//IsSuccess = true,
+				//Message = "User token refreshed successfully",
+				//Data = new UserAuthenticationResponse
+				//{
+				//	UserId = Guid.NewGuid(),
+				//	Token = "mock-refreshed-jwt-token",
+				//	ExpiresIn = 3600
+				//}
+			};
 		}
 
 		public async Task<ServiceResponse<UserAuthenticationResponse>> DeleteAsync(UserAuthenticationDelete Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<UserAuthenticationResponse>
+			{
+				//IsSuccess = true,
+				//Message = "User logged out successfully",
+				//Data = null
+			};
 		}
 
 		public async Task<ServiceResponse<UserAuthenticationResponse>> SelectAsync(UserAuthenticationSelect Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<UserAuthenticationResponse>
+			{
+				//IsSuccess = true,
+				//Message = "User authentication details retrieved successfully",
+				//Data = new UserAuthenticationResponse
+				//{
+				//	UserId = Guid.NewGuid(),
+				//	Token = "mock-jwt-token",
+				//	ExpiresIn = 3600
+				//}
+			};
 		}
 
 		public async Task<ServiceResponse<UserAuthenticationResponse>> SelectSingleAsync(UserAuthenticationSelectSingle Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<UserAuthenticationResponse>
+			{
+				//IsSuccess = true,
+				//Message = "Single user authentication detail retrieved successfully",
+				//Data = new UserAuthenticationResponse
+				//{
+				//	UserId = Guid.NewGuid(),
+			};
 		}
 	}
 }

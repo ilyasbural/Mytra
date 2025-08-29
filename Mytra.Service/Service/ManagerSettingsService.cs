@@ -20,27 +20,76 @@
 
 		public async Task<ServiceResponse<ManagerSettingsResponse>> InsertAsync(ManagerSettingsInsert Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<ManagerSettingsResponse>
+			{
+				//IsSuccess = true,
+				//Message = "Manager settings updated successfully",
+				//Data = new ManagerSettingsResponse
+				//{
+				//	Id = 1,
+				//	SettingsJson = Model.SettingsJson,
+				//	CreatedAt = DateTime.UtcNow,
+				//	UpdatedAt = DateTime.UtcNow
+				//}
+			};
 		}
 
 		public async Task<ServiceResponse<ManagerSettingsResponse>> UpdateAsync(ManagerSettingsUpdate Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<ManagerSettingsResponse>
+			{
+				//IsSuccess = true,
+				//Message = "Manager settings updated successfully",
+				//Data = new ManagerSettingsResponse
+				//{
+				//	Id = Model.Id,
+				//	SettingsJson = Model.SettingsJson,
+				//	CreatedAt = DateTime.UtcNow.AddDays(-1), // Placeholder
+				//	UpdatedAt = DateTime.UtcNow
+				//}
+			};
 		}
 
 		public async Task<ServiceResponse<ManagerSettingsResponse>> DeleteAsync(ManagerSettingsDelete Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<ManagerSettingsResponse>
+			{
+				//IsSuccess = true,
+				//Message = "Manager settings deleted successfully",
+				//Data = null
+			};
 		}
 
 		public async Task<ServiceResponse<ManagerSettingsResponse>> SelectAsync(ManagerSettingsSelect Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<ManagerSettingsResponse>
+			{
+				//IsSuccess = true,
+				//Message = "Manager settings retrieved successfully",
+				//Data = new ManagerSettingsResponse
+				//{
+				//	Id = 1,
+				//	SettingsJson = "{}",
+				//	CreatedAt = DateTime.UtcNow.AddDays(-1), // Placeholder
+				//	UpdatedAt = DateTime.UtcNow
+				//}
+			};
 		}
 
 		public async Task<ServiceResponse<ManagerSettingsResponse>> SelectSingleAsync(ManagerSettingsSelectSingle Model)
 		{
-			throw new NotImplementedException();
+			return new ServiceResponse<ManagerSettingsResponse>
+			{
+				//IsSuccess = true,
+				//Message = "Manager settings retrieved successfully",
+				//Data = new ManagerSettingsResponse
+				//{
+				//	Id = Model.Id,
+				//	SettingsJson = "{}",
+				//	CreatedAt = DateTime.UtcNow.AddDays(-1), // Placeholder
+				//	UpdatedAt = DateTime.UtcNow
+				//}
+			};
 		}
 	}
 }
