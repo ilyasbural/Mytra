@@ -36,5 +36,18 @@
 				ResponseData = Response.ResponseData
 			};
 		}
+
+		[HttpDelete]
+		[Authorize]
+		[Route("api/manager")]
+		[Produces(typeof(ServiceResponse<ManagerResponse>))]
+		public async Task<ServiceResponse<ManagerResponse>> Delete([FromBody] ManagerDelete Model)
+		{
+			ServiceResponse<ManagerResponse> Response = await Service.DeleteAsync(Model);
+			return new ServiceResponse<ManagerResponse>
+			{
+				ResponseData = Response.ResponseData
+			};
+		}
 	}
 }

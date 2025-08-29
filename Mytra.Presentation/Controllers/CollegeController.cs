@@ -36,5 +36,18 @@
 				ResponseData = Response.ResponseData
 			};
 		}
+
+		[HttpDelete]
+		[Authorize]
+		[Route("api/college")]
+		[Produces(typeof(ServiceResponse<CollegeResponse>))]
+		public async Task<ServiceResponse<CollegeResponse>> Delete([FromBody] CollegeDelete Model)
+		{
+			ServiceResponse<CollegeResponse> Response = await Service.DeleteAsync(Model);
+			return new ServiceResponse<CollegeResponse>
+			{
+				ResponseData = Response.ResponseData
+			};
+		}
 	}
 }

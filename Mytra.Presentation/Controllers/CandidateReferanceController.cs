@@ -36,5 +36,18 @@
 				ResponseData = Response.ResponseData
 			};
 		}
+
+		[HttpDelete]
+		[Authorize]
+		[Route("api/candidatereferance")]
+		[Produces(typeof(ServiceResponse<CandidateReferanceResponse>))]
+		public async Task<ServiceResponse<CandidateReferanceResponse>> Delete([FromBody] CandidateReferanceDelete Model)
+		{
+			ServiceResponse<CandidateReferanceResponse> Response = await Service.DeleteAsync(Model);
+			return new ServiceResponse<CandidateReferanceResponse>
+			{
+				ResponseData = Response.ResponseData
+			};
+		}
 	}
 }

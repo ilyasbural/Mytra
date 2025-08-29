@@ -36,5 +36,17 @@
 				ResponseData = Response.ResponseData
 			};
 		}
+
+		[HttpDelete]
+		[Route("api/jobpostingapply")]
+		[Produces(typeof(ServiceResponse<JobPostingApplyResponse>))]
+		public async Task<ServiceResponse<JobPostingApplyResponse>> Delete([FromBody] JobPostingApplyDelete Model)
+		{
+			ServiceResponse<JobPostingApplyResponse> Response = await Service.DeleteAsync(Model);
+			return new ServiceResponse<JobPostingApplyResponse>
+			{
+				ResponseData = Response.ResponseData
+			};
+		}
 	}
 }

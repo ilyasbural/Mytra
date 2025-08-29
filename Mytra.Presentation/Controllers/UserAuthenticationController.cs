@@ -33,5 +33,17 @@
 				ResponseData = Response.ResponseData
 			};
 		}
+
+		[HttpDelete]
+		[Route("api/userauthentication")]
+		[Produces(typeof(ServiceResponse<UserAuthenticationResponse>))]
+		public async Task<ServiceResponse<UserAuthenticationResponse>> Delete([FromBody] UserAuthenticationDelete Model)
+		{
+			ServiceResponse<UserAuthenticationResponse> Response = await Service.DeleteAsync(Model);
+			return new ServiceResponse<UserAuthenticationResponse>
+			{
+				ResponseData = Response.ResponseData
+			};
+		}
 	}
 }

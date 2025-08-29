@@ -36,5 +36,18 @@
 				ResponseData = Response.ResponseData
 			};
 		}
+
+		[HttpDelete]
+		[Authorize]
+		[Route("api/candidatesettings")]
+		[Produces(typeof(ServiceResponse<CandidateSettingsResponse>))]
+		public async Task<ServiceResponse<CandidateSettingsResponse>> Delete([FromBody] CandidateSettingsDelete Model)
+		{
+			ServiceResponse<CandidateSettingsResponse> Response = await Service.DeleteAsync(Model);
+			return new ServiceResponse<CandidateSettingsResponse>
+			{
+				ResponseData = Response.ResponseData
+			};
+		}
 	}
 }

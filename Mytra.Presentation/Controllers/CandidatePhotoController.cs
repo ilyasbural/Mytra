@@ -36,5 +36,17 @@
 				ResponseData = Response.ResponseData
 			};
 		}
+
+		[HttpDelete]
+		[Route("api/candidatephoto")]
+		[Produces(typeof(ServiceResponse<CandidatePhotoResponse>))]
+		public async Task<ServiceResponse<CandidatePhotoResponse>> Delete([FromBody] CandidatePhotoDelete Model)
+		{
+			ServiceResponse<CandidatePhotoResponse> Response = await Service.DeleteAsync(Model);
+			return new ServiceResponse<CandidatePhotoResponse>
+			{
+				ResponseData = Response.ResponseData
+			};
+		}
 	}
 }

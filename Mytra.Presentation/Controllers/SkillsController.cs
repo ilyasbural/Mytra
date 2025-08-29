@@ -36,5 +36,18 @@
 				ResponseData = Response.ResponseData
 			};
 		}
+
+		[HttpDelete]
+		[Authorize]
+		[Route("api/skills")]
+		[Produces(typeof(ServiceResponse<SkillsResponse>))]
+		public async Task<ServiceResponse<SkillsResponse>> Delete([FromBody] SkillsDelete Model)
+		{
+			ServiceResponse<SkillsResponse> Response = await Service.DeleteAsync(Model);
+			return new ServiceResponse<SkillsResponse>
+			{
+				ResponseData = Response.ResponseData
+			};
+		}
 	}
 }

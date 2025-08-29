@@ -36,5 +36,18 @@
 				ResponseData = Response.ResponseData
 			};
 		}
+
+		[HttpDelete]
+		[Authorize]
+		[Route("api/candidatelanguage")]
+		[Produces(typeof(ServiceResponse<CandidateLanguageResponse>))]
+		public async Task<ServiceResponse<CandidateLanguageResponse>> Delete([FromBody] CandidateLanguageDelete Model)
+		{
+			ServiceResponse<CandidateLanguageResponse> Response = await Service.DeleteAsync(Model);
+			return new ServiceResponse<CandidateLanguageResponse>
+			{
+				ResponseData = Response.ResponseData
+			};
+		}
 	}
 }
