@@ -5,7 +5,7 @@ namespace Mytra.Service
 	using AutoMapper;
 	using FluentValidation;
 
-	public class CandidateAuthenticationService : ICandidateAuthenticationService
+	public class CandidateAuthenticationService : BusinessObject<CandidateAuthentication>, ICandidateAuthenticationService
 	{
 		readonly IMapper Mapper;
 		readonly IUnitOfWork UnitOfWork;
@@ -20,9 +20,20 @@ namespace Mytra.Service
 
 		public async Task<ServiceResponse<CandidateAuthenticationResponse>> InsertAsync(CandidateAuthenticationInsert Model)
 		{
+			Data = Mapper.Map<CandidateAuthentication>(Model);
+			Data.Id = Guid.NewGuid();
+			Data.RegisterDate = DateTime.Now;
+			Data.UpdateDate = DateTime.Now;
+			Data.IsActive = true;
+
+			Validator.ValidateAndThrow<CandidateAuthentication>(Data);
+			await UnitOfWork.CandidateAuthentication.InsertAsync(Data);
+			Success = await UnitOfWork.SaveChangesAsync();
+
 			return new ServiceResponse<CandidateAuthenticationResponse>
 			{
-
+				ResponseData = Mapper.Map<CandidateAuthenticationResponse>(Data),
+				Success = Success
 			};
 		}
 

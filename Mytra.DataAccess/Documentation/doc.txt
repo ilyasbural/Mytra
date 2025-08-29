@@ -15,3 +15,10 @@ bash
 Copy
 Update-Database
 Bu komut, veritabanındaki tabloları modeline göre oluşturacak.
+
+
+# Migration ekleme
+Add-Migration InitialCreate -Project Mytra.DataAccess -StartupProject Mytra.WebApi
+
+# Veritabanı güncelleme
+Update-Database -Project Mytra.DataAccess -StartupProject Mytra.WebApi

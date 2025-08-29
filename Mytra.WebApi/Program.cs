@@ -53,7 +53,8 @@ Builder.Services.AddSwaggerGen(x =>
 Builder.Services.LoadServices();
 Builder.Services.AddAutoMapper(cfg => { }, typeof(CandidateAuthenticationMapper));
 Builder.Services.AddCors(options => options.AddDefaultPolicy(builder => { builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod(); }));
-Builder.Services.AddDbContext<MytraContext>(x => x.UseSqlServer(Configuration.GetConnectionString("SqlServer")!));
+Builder.Services.AddDbContext<MytraContext>(options =>
+	options.UseSqlServer(Configuration.GetConnectionString("ConnectionStrings")));
 
 var App = Builder.Build();
 
