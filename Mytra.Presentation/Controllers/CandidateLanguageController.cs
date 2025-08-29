@@ -12,7 +12,6 @@
 		public CandidateLanguageController(ICandidateLanguageService service) { Service = service; }
 
 		[HttpPost]
-		[Authorize]
 		[Route("api/candidatelanguage")]
 		[Produces(typeof(ServiceResponse<CandidateLanguageResponse>))]
 		public async Task<ServiceResponse<CandidateLanguageResponse>> Create([FromBody] CandidateLanguageInsert Model)

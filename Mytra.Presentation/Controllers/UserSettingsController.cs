@@ -12,7 +12,6 @@
 		public UserSettingsController(IUserSettingsService service) { Service = service; }
 
 		[HttpPost]
-		[Authorize]
 		[Route("api/usersettings")]
 		[Produces(typeof(ServiceResponse<UserSettingsResponse>))]
 		public async Task<ServiceResponse<UserSettingsResponse>> Create([FromBody] UserSettingsInsert Model)

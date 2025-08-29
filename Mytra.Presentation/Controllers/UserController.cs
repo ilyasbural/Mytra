@@ -12,7 +12,6 @@
 		public UserController(IUserService service) { Service = service; }
 
 		[HttpPost]
-		[Authorize]
 		[Route("api/user")]
 		[Produces(typeof(ServiceResponse<UserResponse>))]
 		public async Task<ServiceResponse<UserResponse>> Create([FromBody] UserInsert Model)

@@ -12,7 +12,6 @@
 		public ManagerDetailController(IManagerDetailService service) { Service = service; }
 
 		[HttpPost]
-		[Authorize]
 		[Route("api/managerdetail")]
 		[Produces(typeof(ServiceResponse<ManagerDetailResponse>))]
 		public async Task<ServiceResponse<ManagerDetailResponse>> Create([FromBody] ManagerDetailInsert Model)

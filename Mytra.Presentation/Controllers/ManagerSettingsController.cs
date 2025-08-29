@@ -12,7 +12,6 @@
 		public ManagerSettingsController(IManagerSettingsService service) { Service = service; }
 
 		[HttpPost]
-		[Authorize]
 		[Route("api/managersettings")]
 		[Produces(typeof(ServiceResponse<ManagerSettingsResponse>))]
 		public async Task<ServiceResponse<ManagerSettingsResponse>> Create([FromBody] ManagerSettingsInsert Model)

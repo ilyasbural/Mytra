@@ -12,7 +12,6 @@
 		public CandidateCertificateController(ICandidateCertificateService service) { Service = service; }
 
 		[HttpPost]
-		[Authorize]
 		[Route("api/candidatecertificate")]
 		[Produces(typeof(ServiceResponse<CandidateCertificateResponse>))]
 		public async Task<ServiceResponse<CandidateCertificateResponse>> Create([FromBody] CandidateCertificateInsert Model)

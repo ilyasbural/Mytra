@@ -12,7 +12,6 @@
 		public ManagerController(IManagerService service) { Service = service; }
 
 		[HttpPost]
-		[Authorize]
 		[Route("api/manager")]
 		[Produces(typeof(ServiceResponse<ManagerResponse>))]
 		public async Task<ServiceResponse<ManagerResponse>> Create([FromBody] ManagerInsert Model)

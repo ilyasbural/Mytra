@@ -12,7 +12,6 @@
 		public CandidateReferanceController(ICandidateReferanceService service) { Service = service; }
 
 		[HttpPost]
-		[Authorize]
 		[Route("api/candidatereferance")]
 		[Produces(typeof(ServiceResponse<CandidateReferanceResponse>))]
 		public async Task<ServiceResponse<CandidateReferanceResponse>> Create([FromBody] CandidateReferanceInsert Model)

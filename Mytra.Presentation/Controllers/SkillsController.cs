@@ -12,7 +12,6 @@
 		public SkillsController(ISkillsService service) { Service = service; }
 
 		[HttpPost]
-		[Authorize]
 		[Route("api/skills")]
 		[Produces(typeof(ServiceResponse<SkillsResponse>))]
 		public async Task<ServiceResponse<SkillsResponse>> Create([FromBody] SkillsInsert Model)

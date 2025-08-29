@@ -12,7 +12,6 @@
 		public CollegeController(ICollegeService service) { Service = service; }
 
 		[HttpPost]
-		[Authorize]
 		[Route("api/college")]
 		[Produces(typeof(ServiceResponse<CollegeResponse>))]
 		public async Task<ServiceResponse<CollegeResponse>> Create([FromBody] CollegeInsert Model)

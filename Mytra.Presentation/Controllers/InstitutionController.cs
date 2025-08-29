@@ -12,7 +12,6 @@
 		public InstitutionController(IInstitutionService service) { Service = service; }
 
 		[HttpPost]
-		[Authorize]
 		[Route("api/institution")]
 		[Produces(typeof(ServiceResponse<InstitutionResponse>))]
 		public async Task<ServiceResponse<InstitutionResponse>> Create([FromBody] InstitutionInsert Model)

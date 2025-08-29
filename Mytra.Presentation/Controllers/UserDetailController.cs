@@ -12,7 +12,6 @@
 		public UserDetailController(IUserDetailService service) { Service = service; }
 
 		[HttpPost]
-		[Authorize]
 		[Route("api/userdetail")]
 		[Produces(typeof(ServiceResponse<UserDetailResponse>))]
 		public async Task<ServiceResponse<UserDetailResponse>> Create([FromBody] UserDetailInsert Model)

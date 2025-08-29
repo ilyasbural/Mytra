@@ -12,7 +12,6 @@
 		public CandidateSettingsController(ICandidateSettingsService service) { Service = service; }
 
 		[HttpPost]
-		[Authorize]
 		[Route("api/candidatesettings")]
 		[Produces(typeof(ServiceResponse<CandidateSettingsResponse>))]
 		public async Task<ServiceResponse<CandidateSettingsResponse>> Create([FromBody] CandidateSettingsInsert Model)

@@ -12,7 +12,6 @@
 		public CandidateExperienceController(ICandidateExperienceService service) { Service = service; }
 
 		[HttpPost]
-		[Authorize]
 		[Route("api/candidateexperience")]
 		[Produces(typeof(ServiceResponse<CandidateExperienceResponse>))]
 		public async Task<ServiceResponse<CandidateExperienceResponse>> Create([FromBody] CandidateExperienceInsert Model)

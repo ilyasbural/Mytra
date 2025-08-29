@@ -12,7 +12,6 @@
 		public CandidatePhotoController(ICandidatePhotoService service) { Service = service; }
 
 		[HttpPost]
-		[Authorize]
 		[Route("api/candidatephoto")]
 		[Produces(typeof(ServiceResponse<CandidatePhotoResponse>))]
 		public async Task<ServiceResponse<CandidatePhotoResponse>> Create([FromBody] CandidatePhotoInsert Model)

@@ -12,7 +12,6 @@
 		public CandidateDetailController(ICandidateDetailService service) { Service = service; }
 
 		[HttpPost]
-		[Authorize]
 		[Route("api/candidatedetail")]
 		[Produces(typeof(ServiceResponse<CandidateDetailResponse>))]
 		public async Task<ServiceResponse<CandidateDetailResponse>> Create([FromBody] CandidateDetailInsert Model)

@@ -12,7 +12,6 @@
 		public JobPostingController(IJobPostingService service) { Service = service; }
 
 		[HttpPost]
-		[Authorize]
 		[Route("api/jobposting")]
 		[Produces(typeof(ServiceResponse<JobPostingResponse>))]
 		public async Task<ServiceResponse<JobPostingResponse>> Create([FromBody] JobPostingInsert Model)
