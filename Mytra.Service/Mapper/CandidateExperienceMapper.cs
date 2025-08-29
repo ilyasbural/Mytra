@@ -9,6 +9,7 @@
 			CreateMap<Common.CandidateExperienceDelete, Core.CandidateExperience>().ReverseMap();
 			CreateMap<Common.CandidateExperienceSelect, Core.CandidateExperience>().ReverseMap();
 			CreateMap<Common.CandidateExperienceSelectSingle, Core.CandidateExperience>().ReverseMap();
+			CreateMap<Common.CandidateExperienceResponse, Core.CandidateExperience>().ReverseMap();
 		}
 	}
 }

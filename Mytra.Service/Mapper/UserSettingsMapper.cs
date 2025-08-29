@@ -9,6 +9,7 @@
 			CreateMap<Common.UserSettingsDelete, Core.UserSettings>().ReverseMap();
 			CreateMap<Common.UserSettingsSelect, Core.UserSettings>().ReverseMap();
 			CreateMap<Common.UserSettingsSelectSingle, Core.UserSettings>().ReverseMap();
+			CreateMap<Common.UserSettingsResponse, Core.UserSettings>().ReverseMap();
 		}
 	}
 }

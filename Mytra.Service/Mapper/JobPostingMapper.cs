@@ -9,6 +9,7 @@
 			CreateMap<Common.JobPostingDelete, Core.JobPosting>().ReverseMap();
 			CreateMap<Common.JobPostingSelect, Core.JobPosting>().ReverseMap();
 			CreateMap<Common.JobPostingSelectSingle, Core.JobPosting>().ReverseMap();
+			CreateMap<Common.JobPostingResponse, Core.JobPosting>().ReverseMap();
 		}
 	}
 }
