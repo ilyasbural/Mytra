@@ -2,7 +2,7 @@
 {
     public class JobPostingVisitResponse : ServiceResponse<JobPostingVisitResponse>
     {
-        public JobPostingVisitResponse()
+		public JobPostingVisitResponse()
         {
             
         }

@@ -2,7 +2,7 @@
 {
     public class CollegeResponse : ServiceResponse<CollegeResponse>
     {
-        public CollegeResponse()
+		public CollegeResponse()
         {
             
         }

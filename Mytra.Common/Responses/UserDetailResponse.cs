@@ -2,7 +2,7 @@
 {
     public class UserDetailResponse : ServiceResponse<UserDetailResponse>
     {
-        public UserDetailResponse()
+		public UserDetailResponse()
         {
             
         }

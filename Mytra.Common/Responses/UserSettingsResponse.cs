@@ -2,7 +2,7 @@
 {
     public class UserSettingsResponse : ServiceResponse<UserSettingsResponse>
     {
-        public UserSettingsResponse()
+		public UserSettingsResponse()
         {
             
         }

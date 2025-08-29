@@ -2,7 +2,7 @@
 {
     public class ManagerAuthenticationResponse : ServiceResponse<ManagerAuthenticationResponse>
     {
-        public ManagerAuthenticationResponse()
+		public ManagerAuthenticationResponse()
         {
             
         }

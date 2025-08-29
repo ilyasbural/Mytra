@@ -2,7 +2,7 @@
 {
     public class ManagerDetailResponse : ServiceResponse<ManagerDetailResponse>
     {
-        public ManagerDetailResponse()
+		public ManagerDetailResponse()
         {
             
         }

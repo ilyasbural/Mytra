@@ -2,7 +2,7 @@
 {
     public class CandidateLanguageResponse : ServiceResponse<CandidateLanguageResponse>
     {
-        public CandidateLanguageResponse()
+		public CandidateLanguageResponse()
         {
             
         }

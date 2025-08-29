@@ -2,7 +2,7 @@
 {
     public class ManagerSettingsResponse : ServiceResponse<ManagerSettingsResponse>
     {
-        public ManagerSettingsResponse()
+		public ManagerSettingsResponse()
         {
             
         }
