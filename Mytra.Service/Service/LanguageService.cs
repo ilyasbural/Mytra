@@ -5,7 +5,7 @@
 	using AutoMapper;
 	using FluentValidation;
 
-	public class LanguageService : ILanguageService
+	public class LanguageService : BusinessObject<Language>, ILanguageService
 	{
 		readonly IMapper Mapper;
 		readonly IUnitOfWork UnitOfWork;
@@ -20,16 +20,20 @@
 
 		public async Task<ServiceResponse<LanguageResponse>> InsertAsync(LanguageInsert Model)
 		{
+			Data = Mapper.Map<Language>(Model);
+			Data.Id = Guid.NewGuid();
+			Data.RegisterDate = DateTime.Now;
+			Data.UpdateDate = DateTime.Now;
+			Data.IsActive = true;
+
+			Validator.ValidateAndThrow<Language>(Data);
+			await UnitOfWork.Language.InsertAsync(Data);
+			Success = await UnitOfWork.SaveChangesAsync();
+
 			return new ServiceResponse<LanguageResponse>
 			{
-				//IsSuccess = true,
-				//Message = "Language inserted successfully",
-				//Data = new LanguageResponse
-				//{
-				//	Id = 1,
-				//	Name = Model.Name,
-				//	Code = Model.Code
-				//}
+				Success = Success,
+				ResponseData = Mapper.Map<LanguageResponse>(Data)
 			};
 		}
 

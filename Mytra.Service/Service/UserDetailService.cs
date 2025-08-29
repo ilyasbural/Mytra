@@ -5,7 +5,7 @@ namespace Mytra.Service
 	using AutoMapper;
 	using FluentValidation;
 
-	public class UserDetailService : IUserDetailService
+	public class UserDetailService : BusinessObject<UserDetail>, IUserDetailService
 	{
 		readonly IMapper Mapper;
 		readonly IUnitOfWork UnitOfWork;
@@ -20,18 +20,20 @@ namespace Mytra.Service
 
 		public async Task<ServiceResponse<UserDetailResponse>> InsertAsync(UserDetailInsert Model)
 		{
+			Data = Mapper.Map<UserDetail>(Model);
+			Data.Id = Guid.NewGuid();
+			Data.RegisterDate = DateTime.Now;
+			Data.UpdateDate = DateTime.Now;
+			Data.IsActive = true;
+
+			Validator.ValidateAndThrow<UserDetail>(Data);
+			await UnitOfWork.UserDetail.InsertAsync(Data);
+			Success = await UnitOfWork.SaveChangesAsync();
+
 			return new ServiceResponse<UserDetailResponse>()
 			{
-				//IsSuccess = true,
-				//Message = "User detail inserted successfully",
-				//Data = new UserDetailResponse()
-				//{
-				//	UserId = 1,
-				//	FirstName = Model.FirstName,
-				//	LastName = Model.LastName,
-				//	Email = Model.Email,
-				//	PhoneNumber = Model.PhoneNumber
-				//}
+				Success = Success,
+				ResponseData = Mapper.Map<UserDetailResponse>(Data)
 			};
 		}
 

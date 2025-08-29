@@ -5,7 +5,7 @@
 	using AutoMapper;
 	using FluentValidation;
 
-	public class ManagerDetailService : IManagerDetailService
+	public class ManagerDetailService : BusinessObject<ManagerDetail>, IManagerDetailService
 	{
 		readonly IMapper Mapper;
 		readonly IUnitOfWork UnitOfWork;
@@ -20,9 +20,20 @@
 
 		public async Task<ServiceResponse<ManagerDetailResponse>> InsertAsync(ManagerDetailInsert Model)
 		{
+			Data = Mapper.Map<ManagerDetail>(Model);
+			Data.Id = Guid.NewGuid();
+			Data.RegisterDate = DateTime.Now;
+			Data.UpdateDate = DateTime.Now;
+			Data.IsActive = true;
+
+			Validator.ValidateAndThrow<ManagerDetail>(Data);
+			await UnitOfWork.ManagerDetail.InsertAsync(Data);
+			Success = await UnitOfWork.SaveChangesAsync();
+
 			return new ServiceResponse<ManagerDetailResponse>()
 			{
-
+				Success = Success,
+				ResponseData = Mapper.Map<ManagerDetailResponse>(Data)
 			};
 		}
 

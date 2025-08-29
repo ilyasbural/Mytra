@@ -1,9 +1,10 @@
 ﻿namespace Mytra.Service
 {
-	using Core;
-	using Common;
 	using AutoMapper;
+	using Common;
+	using Core;
 	using FluentValidation;
+	using static System.Runtime.InteropServices.JavaScript.JSType;
 
 	public class AuthenticationService : IAuthenticationService
 	{
@@ -20,7 +21,7 @@
 		{
 			return new ServiceResponse<AuthenticationResponse>()
 			{
-
+				
 			};
 		}
 	}

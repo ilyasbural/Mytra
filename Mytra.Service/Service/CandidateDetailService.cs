@@ -5,7 +5,7 @@
 	using AutoMapper;
 	using FluentValidation;
 
-	public class CandidateDetailService : ICandidateDetailService
+	public class CandidateDetailService : BusinessObject<CandidateDetail>, ICandidateDetailService
 	{
 		readonly IMapper Mapper;
 		readonly IUnitOfWork UnitOfWork;
@@ -20,9 +20,20 @@
 
 		public async Task<ServiceResponse<CandidateDetailResponse>> InsertAsync(CandidateDetailInsert Model)
 		{
+			Data = Mapper.Map<CandidateDetail>(Model);
+			Data.Id = Guid.NewGuid();
+			Data.RegisterDate = DateTime.Now;
+			Data.UpdateDate = DateTime.Now;
+			Data.IsActive = true;
+
+			Validator.ValidateAndThrow<CandidateDetail>(Data);
+			await UnitOfWork.CandidateDetail.InsertAsync(Data);
+			Success = await UnitOfWork.SaveChangesAsync();
+
 			return new ServiceResponse<CandidateDetailResponse>()
 			{
-
+				Success = Success,
+				ResponseData = Mapper.Map<CandidateDetailResponse>(Data)
 			};
 		}
 

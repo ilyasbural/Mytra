@@ -5,7 +5,7 @@
 	using AutoMapper;
 	using FluentValidation;
 
-	public class CollegeService : ICollegeService
+	public class CollegeService : BusinessObject<College>, ICollegeService
 	{
 		readonly IMapper Mapper;
 		readonly IUnitOfWork UnitOfWork;
@@ -20,11 +20,20 @@
 
 		public async Task<ServiceResponse<CollegeResponse>> InsertAsync(CollegeInsert Model)
 		{
+			Data = Mapper.Map<College>(Model);
+			Data.Id = Guid.NewGuid();
+			Data.RegisterDate = DateTime.Now;
+			Data.UpdateDate = DateTime.Now;
+			Data.IsActive = true;
+
+			Validator.ValidateAndThrow<College>(Data);
+			await UnitOfWork.College.InsertAsync(Data);
+			Success = await UnitOfWork.SaveChangesAsync();
+
 			return new ServiceResponse<CollegeResponse>()
 			{
-				//ResponseData = new CollegeResponse(),
-				//ResponseDataSource = new List<CollegeResponse>(),
-				//Success = 1
+				Success = Success,
+				ResponseData = Mapper.Map<CollegeResponse>(Data)
 			};
 		}
 

@@ -5,7 +5,7 @@ namespace Mytra.Service
 	using AutoMapper;
 	using FluentValidation;
 
-	public class UserAuthenticationService : IUserAuthenticationService
+	public class UserAuthenticationService : BusinessObject<UserAuthentication>, IUserAuthenticationService
 	{
 		readonly IMapper Mapper;
 		readonly IUnitOfWork UnitOfWork;
@@ -20,16 +20,20 @@ namespace Mytra.Service
 
 		public async Task<ServiceResponse<UserAuthenticationResponse>> InsertAsync(UserAuthenticationInsert Model)
 		{
+			Data = Mapper.Map<UserAuthentication>(Model);
+			Data.Id = Guid.NewGuid();
+			Data.RegisterDate = DateTime.Now;
+			Data.UpdateDate = DateTime.Now;
+			Data.IsActive = true;
+
+			Validator.ValidateAndThrow<UserAuthentication>(Data);
+			await UnitOfWork.UserAuthentication.InsertAsync(Data);
+			Success = await UnitOfWork.SaveChangesAsync();
+
 			return new ServiceResponse<UserAuthenticationResponse>
 			{
-				//IsSuccess = true,
-				//Message = "User authentication successful",
-				//Data = new UserAuthenticationResponse
-				//{
-				//	UserId = Guid.NewGuid(),
-				//	Token = "mock-jwt-token",
-				//	ExpiresIn = 3600
-				//}
+				Success = Success,
+				ResponseData = Mapper.Map<UserAuthenticationResponse>(Data)
 			};
 		}
 

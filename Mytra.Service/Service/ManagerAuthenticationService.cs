@@ -5,7 +5,7 @@
 	using AutoMapper;
 	using FluentValidation;
 
-	public class ManagerAuthenticationService : IManagerAuthenticationService
+	public class ManagerAuthenticationService : BusinessObject<ManagerAuthentication>, IManagerAuthenticationService
 	{
 		readonly IMapper Mapper;
 		readonly IUnitOfWork UnitOfWork;
@@ -20,9 +20,20 @@
 
 		public async Task<ServiceResponse<ManagerAuthenticationResponse>> InsertAsync(ManagerAuthenticationInsert Model)
 		{
+			Data = Mapper.Map<ManagerAuthentication>(Model);
+			Data.Id = Guid.NewGuid();
+			Data.RegisterDate = DateTime.Now;
+			Data.UpdateDate = DateTime.Now;
+			Data.IsActive = true;
+
+			Validator.ValidateAndThrow<ManagerAuthentication>(Data);
+			await UnitOfWork.ManagerAuthentication.InsertAsync(Data);
+			Success = await UnitOfWork.SaveChangesAsync();
+
 			return new ServiceResponse<ManagerAuthenticationResponse>()
 			{
-
+				Success = Success,
+				ResponseData = Mapper.Map<ManagerAuthenticationResponse>(Data)
 			};
 		}
 

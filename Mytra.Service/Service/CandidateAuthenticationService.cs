@@ -32,8 +32,8 @@ namespace Mytra.Service
 
 			return new ServiceResponse<CandidateAuthenticationResponse>
 			{
-				ResponseData = Mapper.Map<CandidateAuthenticationResponse>(Data),
-				Success = Success
+				Success = Success,
+				ResponseData = Mapper.Map<CandidateAuthenticationResponse>(Data)
 			};
 		}
 

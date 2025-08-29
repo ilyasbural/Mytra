@@ -5,7 +5,7 @@
 	using AutoMapper;
 	using FluentValidation;
 
-	public class JobPostingService : IJobPostingService
+	public class JobPostingService : BusinessObject<JobPosting>, IJobPostingService
 	{
 		readonly IMapper Mapper;
 		readonly IUnitOfWork UnitOfWork;
@@ -20,19 +20,20 @@
 
 		public async Task<ServiceResponse<JobPostingResponse>> InsertAsync(JobPostingInsert Model)
 		{
+			Data = Mapper.Map<JobPosting>(Model);
+			Data.Id = Guid.NewGuid();
+			Data.RegisterDate = DateTime.Now;
+			Data.UpdateDate = DateTime.Now;
+			Data.IsActive = true;
+
+			Validator.ValidateAndThrow<JobPosting>(Data);
+			await UnitOfWork.JobPosting.InsertAsync(Data);
+			Success = await UnitOfWork.SaveChangesAsync();
+
 			return new ServiceResponse<JobPostingResponse>
 			{
-				//IsSuccess = true,
-				//Message = "Job posting created successfully.",
-				//Data = new JobPostingResponse
-				//{
-				//	JobPostingId = Guid.NewGuid(),
-				//	Title = Model.Title,
-				//	Description = Model.Description,
-				//	Location = Model.Location,
-				//	CompanyName = Model.CompanyName,
-				//	PostedDate = DateTime.UtcNow
-				//}
+				Success = Success,
+				ResponseData = Mapper.Map<JobPostingResponse>(Data)
 			};
 		}
 

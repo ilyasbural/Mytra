@@ -5,13 +5,13 @@
 	using AutoMapper;
 	using FluentValidation;
 
-	public class CandidateCertificateService : ICandidateCertificateService
+	public class CandidateCertificateService : BusinessObject<CandidateCertificate>, ICandidateCertificateService
 	{
 		readonly IMapper Mapper;
 		readonly IUnitOfWork UnitOfWork;
-		readonly IValidator<CandidateAuthentication> Validator;
+		readonly IValidator<CandidateCertificate> Validator;
 
-		public CandidateCertificateService(IMapper mapper, IUnitOfWork unitOfWork, IValidator<CandidateAuthentication> validator)
+		public CandidateCertificateService(IMapper mapper, IUnitOfWork unitOfWork, IValidator<CandidateCertificate> validator)
 		{
 			Mapper = mapper;
 			UnitOfWork = unitOfWork;
@@ -20,14 +20,20 @@
 
 		public async Task<ServiceResponse<CandidateCertificateResponse>> InsertAsync(CandidateCertificateInsert Model)
 		{
+			Data = Mapper.Map<CandidateCertificate>(Model);
+			Data.Id = Guid.NewGuid();
+			Data.RegisterDate = DateTime.Now;
+			Data.UpdateDate = DateTime.Now;
+			Data.IsActive = true;
+
+			Validator.ValidateAndThrow<CandidateCertificate>(Data);
+			await UnitOfWork.CandidateCertificate.InsertAsync(Data);
+			Success = await UnitOfWork.SaveChangesAsync();
+
 			return new ServiceResponse<CandidateCertificateResponse>()
 			{
-				//ResponseData = new CandidateCertificateResponse()
-				//{
-				//	Success = 1
-				//},
-				//ResponseDataSource = new List<CandidateCertificateResponse>(),
-				//Success = 1
+				Success = Success,
+				ResponseData = Mapper.Map<CandidateCertificateResponse>(Data),
 			};
 		}
 

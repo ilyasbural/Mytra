@@ -5,7 +5,7 @@ namespace Mytra.Service
 	using AutoMapper;
 	using FluentValidation;
 
-	public class UserSettingsService : IUserSettingsService
+	public class UserSettingsService : BusinessObject<UserSettings>, IUserSettingsService
 	{
 		readonly IMapper Mapper;
 		readonly IUnitOfWork UnitOfWork;
@@ -20,9 +20,20 @@ namespace Mytra.Service
 
 		public async Task<ServiceResponse<UserSettingsResponse>> InsertAsync(UserSettingsInsert Model)
 		{
+			Data = Mapper.Map<UserSettings>(Model);
+			Data.Id = Guid.NewGuid();
+			Data.RegisterDate = DateTime.Now;
+			Data.UpdateDate = DateTime.Now;
+			Data.IsActive = true;
+
+			Validator.ValidateAndThrow<UserSettings>(Data);
+			await UnitOfWork.UserSettings.InsertAsync(Data);
+			Success = await UnitOfWork.SaveChangesAsync();
+
 			return new ServiceResponse<UserSettingsResponse>
 			{
-
+				Success = Success,
+				ResponseData = Mapper.Map<UserSettingsResponse>(Data)
 			};
 		}
 
