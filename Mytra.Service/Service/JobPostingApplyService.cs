@@ -39,16 +39,16 @@
 
 		public async Task<ServiceResponse<JobPostingApplyResponse>> UpdateAsync(JobPostingApplyUpdate Model)
 		{
+			Collection = await UnitOfWork.JobPostingApply.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+			JobPostingApply JobPostingApply = Collection.SingleOrDefault()!;
+			JobPostingApply.Name = Model.Name;
+			await UnitOfWork.JobPostingApply.UpdateAsync(JobPostingApply);
+			Success = await UnitOfWork.SaveChangesAsync();
+
 			return new ServiceResponse<JobPostingApplyResponse>
 			{
-				//IsSucceed = true,
-				//Message = "Job application updated successfully.",
-				//Data = new JobPostingApplyResponse
-				//{
-				//	ApplicationId = Model.ApplicationId,
-				//	Status = "Updated",
-				//	AppliedOn = DateTime.UtcNow
-				//}
+				Success = Success,
+				ResponseData = Mapper.Map<JobPostingApplyResponse>(JobPostingApply)
 			};
 		}
 

@@ -39,9 +39,16 @@ namespace Mytra.Service
 
 		public async Task<ServiceResponse<CandidateAuthenticationResponse>> UpdateAsync(CandidateAuthenticationUpdate Model)
 		{
+			Collection = await UnitOfWork.CandidateAuthentication.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+			CandidateAuthentication CandidateAuthentication = Collection.SingleOrDefault()!;
+			CandidateAuthentication.Name = Model.Name;
+			await UnitOfWork.CandidateAuthentication.UpdateAsync(CandidateAuthentication);
+			Success = await UnitOfWork.SaveChangesAsync();
+
 			return new ServiceResponse<CandidateAuthenticationResponse>
 			{
-
+				Success = Success,
+				ResponseData = Mapper.Map<CandidateAuthenticationResponse>(CandidateAuthentication)
 			};
 		}
 

@@ -39,9 +39,16 @@ namespace Mytra.Service
 
 		public async Task<ServiceResponse<UserResponse>> UpdateAsync(UserUpdate Model)
 		{
+			Collection = await UnitOfWork.User.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+			User User = Collection.SingleOrDefault()!;
+			User.Name = Model.Name;
+			await UnitOfWork.User.UpdateAsync(User);
+			Success = await UnitOfWork.SaveChangesAsync();
+
 			return new ServiceResponse<UserResponse>()
 			{
-				
+				Success = Success,
+				ResponseData = Mapper.Map<UserResponse>(User)
 			};
 		}
 

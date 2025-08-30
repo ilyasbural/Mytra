@@ -39,9 +39,16 @@
 
 		public async Task<ServiceResponse<CandidateEducationResponse>> UpdateAsync(CandidateEducationUpdate Model)
 		{
+			Collection = await UnitOfWork.CandidateEducation.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+			CandidateEducation CandidateEducation = Collection.SingleOrDefault()!;
+			CandidateEducation.Name = Model.Name;
+			await UnitOfWork.CandidateEducation.UpdateAsync(CandidateEducation);
+			Success = await UnitOfWork.SaveChangesAsync();
+
 			return new ServiceResponse<CandidateEducationResponse>()
 			{
-
+				Success = Success,
+				ResponseData = Mapper.Map<CandidateEducationResponse>(CandidateEducation)
 			};
 		}
 

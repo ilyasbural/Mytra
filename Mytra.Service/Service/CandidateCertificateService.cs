@@ -39,14 +39,16 @@
 
 		public async Task<ServiceResponse<CandidateCertificateResponse>> UpdateAsync(CandidateCertificateUpdate Model)
 		{
+			Collection = await UnitOfWork.CandidateCertificate.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+			CandidateCertificate CandidateCertificate = Collection.SingleOrDefault()!;
+			CandidateCertificate.Name = Model.Name;
+			await UnitOfWork.CandidateCertificate.UpdateAsync(CandidateCertificate);
+			Success = await UnitOfWork.SaveChangesAsync();
+
 			return new ServiceResponse<CandidateCertificateResponse>()
 			{
-				//ResponseData = new CandidateCertificateResponse()
-				//{
-				//	Success = 1
-				//},
-				//ResponseDataSource = new List<CandidateCertificateResponse>(),
-				//Success = 1
+				Success = Success,
+				ResponseData = Mapper.Map<CandidateCertificateResponse>(CandidateCertificate)
 			};
 		}
 

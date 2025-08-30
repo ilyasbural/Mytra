@@ -39,9 +39,16 @@
 
 		public async Task<ServiceResponse<ManagerAuthenticationResponse>> UpdateAsync(ManagerAuthenticationUpdate Model)
 		{
+			Collection = await UnitOfWork.ManagerAuthentication.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+			ManagerAuthentication ManagerAuthentication = Collection.SingleOrDefault()!;
+			ManagerAuthentication.Name = Model.Name;
+			await UnitOfWork.ManagerAuthentication.UpdateAsync(ManagerAuthentication);
+			Success = await UnitOfWork.SaveChangesAsync();
+
 			return new ServiceResponse<ManagerAuthenticationResponse>()
 			{
-
+				Success = Success,
+				ResponseData = Mapper.Map<ManagerAuthenticationResponse>(ManagerAuthentication)
 			};
 		}
 

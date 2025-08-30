@@ -39,16 +39,16 @@
 
 		public async Task<ServiceResponse<LanguageResponse>> UpdateAsync(LanguageUpdate Model)
 		{
+			Collection = await UnitOfWork.Language.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+			Language Language = Collection.SingleOrDefault()!;
+			Language.Name = Model.Name;
+			await UnitOfWork.Language.UpdateAsync(Language);
+			Success = await UnitOfWork.SaveChangesAsync();
+
 			return new ServiceResponse<LanguageResponse>
 			{
-				//IsSuccess = true,
-				//Message = "Language updated successfully",
-				//Data = new LanguageResponse
-				//{
-				//	Id = Model.Id,
-				//	Name = Model.Name,
-				//	Code = Model.Code
-				//}
+				Success = Success,
+				ResponseData = Mapper.Map<LanguageResponse>(Language)
 			};
 		}
 

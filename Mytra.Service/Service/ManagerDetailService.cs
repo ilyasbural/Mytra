@@ -39,9 +39,16 @@
 
 		public async Task<ServiceResponse<ManagerDetailResponse>> UpdateAsync(ManagerDetailUpdate Model)
 		{
+			Collection = await UnitOfWork.ManagerDetail.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+			ManagerDetail ManagerDetail = Collection.SingleOrDefault()!;
+			ManagerDetail.Name = Model.Name;
+			await UnitOfWork.ManagerDetail.UpdateAsync(ManagerDetail);
+			Success = await UnitOfWork.SaveChangesAsync();
+
 			return new ServiceResponse<ManagerDetailResponse>()
 			{
-
+				Success = Success,
+				ResponseData = Mapper.Map<ManagerDetailResponse>(ManagerDetail)
 			};
 		}
 

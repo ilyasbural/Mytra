@@ -39,9 +39,16 @@ namespace Mytra.Service
 
 		public async Task<ServiceResponse<UserSettingsResponse>> UpdateAsync(UserSettingsUpdate Model)
 		{
+			Collection = await UnitOfWork.UserSettings.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+			UserSettings UserSettings = Collection.SingleOrDefault()!;
+			UserSettings.Name = Model.Name;
+			await UnitOfWork.UserSettings.UpdateAsync(UserSettings);
+			Success = await UnitOfWork.SaveChangesAsync();
+
 			return new ServiceResponse<UserSettingsResponse>
 			{
-
+				Success = Success,
+				ResponseData = Mapper.Map<UserSettingsResponse>(UserSettings)
 			};
 		}
 

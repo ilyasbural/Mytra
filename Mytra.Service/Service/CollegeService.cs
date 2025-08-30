@@ -39,11 +39,16 @@
 
 		public async Task<ServiceResponse<CollegeResponse>> UpdateAsync(CollegeUpdate Model)
 		{
+			Collection = await UnitOfWork.College.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+			College College = Collection.SingleOrDefault()!;
+			College.Name = Model.Name;
+			await UnitOfWork.College.UpdateAsync(College);
+			Success = await UnitOfWork.SaveChangesAsync();
+
 			return new ServiceResponse<CollegeResponse>()
 			{
-				//ResponseData = new CollegeResponse(),
-				//ResponseDataSource = new List<CollegeResponse>(),
-				//Success = 1
+				Success = Success,
+				ResponseData = Mapper.Map<CollegeResponse>(College)
 			};
 		}
 

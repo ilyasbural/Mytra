@@ -39,18 +39,16 @@ namespace Mytra.Service
 
 		public async Task<ServiceResponse<UserDetailResponse>> UpdateAsync(UserDetailUpdate Model)
 		{
+			Collection = await UnitOfWork.UserDetail.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+			UserDetail UserDetail = Collection.SingleOrDefault()!;
+			UserDetail.Name = Model.Name;
+			await UnitOfWork.UserDetail.UpdateAsync(UserDetail);
+			Success = await UnitOfWork.SaveChangesAsync();
+
 			return new ServiceResponse<UserDetailResponse>()
 			{
-				//IsSuccess = true,
-				//Message = "User detail updated successfully",
-				//Data = new UserDetailResponse()
-				//{
-				//	UserId = Model.UserId,
-				//	FirstName = Model.FirstName,
-				//	LastName = Model.LastName,
-				//	Email = Model.Email,
-				//	PhoneNumber = Model.PhoneNumber
-				//}
+				Success = Success,
+				ResponseData = Mapper.Map<UserDetailResponse>(UserDetail)
 			};
 		}
 

@@ -39,11 +39,16 @@
 
 		public async Task<ServiceResponse<InstitutionResponse>> UpdateAsync(InstitutionUpdate Model)
 		{
+			Collection = await UnitOfWork.Institution.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+			Institution Institution = Collection.SingleOrDefault()!;
+			Institution.Name = Model.Name;
+			await UnitOfWork.Institution.UpdateAsync(Institution);
+			Success = await UnitOfWork.SaveChangesAsync();
+
 			return new ServiceResponse<InstitutionResponse>
 			{
-				//IsSuccess = false,
-				//Message = "Not implemented",
-				//Errors = new List<string> { "This method is not yet implemented." }
+				Success = Success,
+				ResponseData = Mapper.Map<InstitutionResponse>(Institution)
 			};
 		}
 

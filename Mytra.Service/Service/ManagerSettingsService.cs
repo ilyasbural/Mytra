@@ -39,17 +39,16 @@
 
 		public async Task<ServiceResponse<ManagerSettingsResponse>> UpdateAsync(ManagerSettingsUpdate Model)
 		{
+			Collection = await UnitOfWork.ManagerSettings.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+			ManagerSettings ManagerSettings = Collection.SingleOrDefault()!;
+			ManagerSettings.Name = Model.Name;
+			await UnitOfWork.ManagerSettings.UpdateAsync(ManagerSettings);
+			Success = await UnitOfWork.SaveChangesAsync();
+
 			return new ServiceResponse<ManagerSettingsResponse>
 			{
-				//IsSuccess = true,
-				//Message = "Manager settings updated successfully",
-				//Data = new ManagerSettingsResponse
-				//{
-				//	Id = Model.Id,
-				//	SettingsJson = Model.SettingsJson,
-				//	CreatedAt = DateTime.UtcNow.AddDays(-1), // Placeholder
-				//	UpdatedAt = DateTime.UtcNow
-				//}
+				Success = Success,
+				ResponseData = Mapper.Map<ManagerSettingsResponse>(ManagerSettings)
 			};
 		}
 

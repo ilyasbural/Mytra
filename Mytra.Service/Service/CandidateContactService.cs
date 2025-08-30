@@ -37,19 +37,26 @@
 			};
 		}
 
+		public async Task<ServiceResponse<CandidateContactResponse>> UpdateAsync(CandidateContactUpdate Model)
+		{
+			Collection = await UnitOfWork.CandidateContact.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+			CandidateContact CandidateContact = Collection.SingleOrDefault()!;
+			CandidateContact.Name = Model.Name;
+			await UnitOfWork.CandidateContact.UpdateAsync(CandidateContact);
+			Success = await UnitOfWork.SaveChangesAsync();
+
+			return new ServiceResponse<CandidateContactResponse>()
+			{
+				Success = Success,
+				ResponseData = Mapper.Map<CandidateContactResponse>(CandidateContact)
+			};
+		}
+
 		public async Task<ServiceResponse<CandidateContactResponse>> DeleteAsync(CandidateContactDelete Model)
 		{
 			return new ServiceResponse<CandidateContactResponse>()
 			{
-
-			};
-		}
-
-		public async Task<ServiceResponse<CandidateContactResponse>> UpdateAsync(CandidateContactUpdate Model)
-		{
-			return new ServiceResponse<CandidateContactResponse>()
-			{
-
+				
 			};
 		}
 

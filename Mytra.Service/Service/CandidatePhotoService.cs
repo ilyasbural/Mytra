@@ -39,9 +39,16 @@
 
 		public async Task<ServiceResponse<CandidatePhotoResponse>> UpdateAsync(CandidatePhotoUpdate Model)
 		{
+			Collection = await UnitOfWork.CandidatePhoto.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+			CandidatePhoto CandidatePhoto = Collection.SingleOrDefault()!;
+			CandidatePhoto.Name = Model.Name;
+			await UnitOfWork.CandidatePhoto.UpdateAsync(CandidatePhoto);
+			Success = await UnitOfWork.SaveChangesAsync();
+
 			return new ServiceResponse<CandidatePhotoResponse>()
 			{
-
+				Success = Success,
+				ResponseData = Mapper.Map<CandidatePhotoResponse>(CandidatePhoto)
 			};
 		}
 

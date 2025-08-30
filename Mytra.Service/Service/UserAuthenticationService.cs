@@ -39,16 +39,16 @@ namespace Mytra.Service
 
 		public async Task<ServiceResponse<UserAuthenticationResponse>> UpdateAsync(UserAuthenticationUpdate Model)
 		{
+			Collection = await UnitOfWork.UserAuthentication.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+			UserAuthentication UserAuthentication = Collection.SingleOrDefault()!;
+			UserAuthentication.Name = Model.Name;
+			await UnitOfWork.UserAuthentication.UpdateAsync(UserAuthentication);
+			Success = await UnitOfWork.SaveChangesAsync();
+
 			return new ServiceResponse<UserAuthenticationResponse>
 			{
-				//IsSuccess = true,
-				//Message = "User token refreshed successfully",
-				//Data = new UserAuthenticationResponse
-				//{
-				//	UserId = Guid.NewGuid(),
-				//	Token = "mock-refreshed-jwt-token",
-				//	ExpiresIn = 3600
-				//}
+				Success = Success,
+				ResponseData = Mapper.Map<UserAuthenticationResponse>(UserAuthentication)
 			};
 		}
 

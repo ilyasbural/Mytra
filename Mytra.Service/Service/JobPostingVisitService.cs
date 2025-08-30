@@ -39,11 +39,16 @@
 
 		public async Task<ServiceResponse<JobPostingVisitResponse>> UpdateAsync(JobPostingVisitUpdate Model)
 		{
+			Collection = await UnitOfWork.JobPostingVisit.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+			JobPostingVisit JobPostingVisit = Collection.SingleOrDefault()!;
+			JobPostingVisit.Name = Model.Name;
+			await UnitOfWork.JobPostingVisit.UpdateAsync(JobPostingVisit);
+			Success = await UnitOfWork.SaveChangesAsync();
+
 			return new ServiceResponse<JobPostingVisitResponse>
 			{
-				//IsSuccess = true,
-				//Message = "Job posting visit updated successfully.",
-				//Data = null // In a real implementation, this would be the updated JobPostingVisitResponse object.
+				Success = Success,
+				ResponseData = Mapper.Map<JobPostingVisitResponse>(JobPostingVisit)
 			};
 		}
 
