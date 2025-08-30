@@ -51,7 +51,6 @@
 		}
 
 		[HttpGet]
-		[Authorize]
 		[Route("api/language")]
 		[Produces(typeof(ServiceResponse<LanguageResponse>))]
 		public async Task<ServiceResponse<LanguageResponse>> Get([FromQuery] LanguageSelect Model)
@@ -64,7 +63,6 @@
 		}
 
 		[HttpGet]
-		[Authorize]
 		[Route("api/languagesingle")]
 		[Produces(typeof(ServiceResponse<LanguageResponse>))]
 		public async Task<ServiceResponse<LanguageResponse>> GetSingle([FromQuery] LanguageSelectSingle Model)

@@ -63,7 +63,6 @@
 		}
 
 		[HttpGet]
-		[Authorize]
 		[Route("api/candidatesingle")]
 		[Produces(typeof(ServiceResponse<CandidateResponse>))]
 		public async Task<ServiceResponse<CandidateResponse>> GetSingle([FromQuery] CandidateSelectSingle Model)

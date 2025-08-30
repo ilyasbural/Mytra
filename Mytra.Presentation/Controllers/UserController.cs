@@ -51,7 +51,6 @@
 		}
 
 		[HttpGet]
-		[Authorize]
 		[Route("api/user")]
 		[Produces(typeof(ServiceResponse<UserResponse>))]
 		public async Task<ServiceResponse<UserResponse>> Get([FromQuery] UserSelect Model)
@@ -64,7 +63,6 @@
 		}
 
 		[HttpGet]
-		[Authorize]
 		[Route("api/usersingle")]
 		[Produces(typeof(ServiceResponse<UserResponse>))]
 		public async Task<ServiceResponse<UserResponse>> GetSingle([FromQuery] UserSelectSingle Model)

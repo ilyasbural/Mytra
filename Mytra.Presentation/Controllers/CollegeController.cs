@@ -51,7 +51,6 @@
 		}
 
 		[HttpGet]
-		[Authorize]
 		[Route("api/college")]
 		[Produces(typeof(ServiceResponse<CollegeResponse>))]
 		public async Task<ServiceResponse<CollegeResponse>> Get([FromQuery] CollegeSelect Model)
@@ -64,7 +63,6 @@
 		}
 
 		[HttpGet]
-		[Authorize]
 		[Route("api/collegesingle")]
 		[Produces(typeof(ServiceResponse<CollegeResponse>))]
 		public async Task<ServiceResponse<CollegeResponse>> GetSingle([FromQuery] CollegeSelectSingle Model)

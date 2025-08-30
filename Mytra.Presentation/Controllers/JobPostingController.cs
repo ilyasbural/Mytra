@@ -51,7 +51,6 @@
 		}
 
 		[HttpGet]
-		[Authorize]
 		[Route("api/jobposting")]
 		[Produces(typeof(ServiceResponse<JobPostingResponse>))]
 		public async Task<ServiceResponse<JobPostingResponse>> Get([FromQuery] JobPostingSelect Model)
@@ -64,7 +63,6 @@
 		}
 
 		[HttpGet]
-		[Authorize]
 		[Route("api/jobpostingsingle")]
 		[Produces(typeof(ServiceResponse<JobPostingResponse>))]
 		public async Task<ServiceResponse<JobPostingResponse>> GetSingle([FromQuery] JobPostingSelectSingle Model)

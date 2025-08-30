@@ -51,7 +51,6 @@
 		}
 
 		[HttpGet]
-		[Authorize]
 		[Route("api/managerdetail")]
 		[Produces(typeof(ServiceResponse<ManagerDetailResponse>))]
 		public async Task<ServiceResponse<ManagerDetailResponse>> Get([FromQuery] ManagerDetailSelect Model)
@@ -64,7 +63,6 @@
 		}
 
 		[HttpGet]
-		[Authorize]
 		[Route("api/managerdetailsingle")]
 		[Produces(typeof(ServiceResponse<ManagerDetailResponse>))]
 		public async Task<ServiceResponse<ManagerDetailResponse>> GetSingle([FromQuery] ManagerDetailSelectSingle Model)
