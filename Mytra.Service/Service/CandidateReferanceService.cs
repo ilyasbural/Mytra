@@ -54,9 +54,15 @@
 
 		public async Task<ServiceResponse<CandidateReferanceResponse>> DeleteAsync(CandidateReferanceDelete Model)
 		{
+			Collection = await UnitOfWork.CandidateReferance.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+			CandidateReferance CandidateReferance = Collection.SingleOrDefault()!;
+			await UnitOfWork.CandidateReferance.DeleteAsync(CandidateReferance);
+			Success = await UnitOfWork.SaveChangesAsync();
+
 			return new ServiceResponse<CandidateReferanceResponse>()
 			{
-
+				Success = Success,
+				ResponseData = Mapper.Map<CandidateReferanceResponse>(CandidateReferance)
 			};
 		}
 

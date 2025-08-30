@@ -54,9 +54,15 @@
 
 		public async Task<ServiceResponse<CandidateEducationResponse>> DeleteAsync(CandidateEducationDelete Model)
 		{
+			Collection = await UnitOfWork.CandidateEducation.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+			CandidateEducation CandidateEducation = Collection.SingleOrDefault()!;
+			await UnitOfWork.CandidateEducation.DeleteAsync(CandidateEducation);
+			Success = await UnitOfWork.SaveChangesAsync();
+
 			return new ServiceResponse<CandidateEducationResponse>()
 			{
-
+				Success = Success,
+				ResponseData = Mapper.Map<CandidateEducationResponse>(CandidateEducation)
 			};
 		}
 

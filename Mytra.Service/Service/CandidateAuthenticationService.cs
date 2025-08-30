@@ -54,9 +54,15 @@ namespace Mytra.Service
 
 		public async Task<ServiceResponse<CandidateAuthenticationResponse>> DeleteAsync(CandidateAuthenticationDelete Model)
 		{
+			Collection = await UnitOfWork.CandidateAuthentication.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+			CandidateAuthentication CandidateAuthentication = Collection.SingleOrDefault()!;
+			await UnitOfWork.CandidateAuthentication.DeleteAsync(CandidateAuthentication);
+			Success = await UnitOfWork.SaveChangesAsync();
+
 			return new ServiceResponse<CandidateAuthenticationResponse>
 			{
-
+				Success = Success,
+				ResponseData = Mapper.Map<CandidateAuthenticationResponse>(CandidateAuthentication)
 			};
 		}
 

@@ -54,9 +54,15 @@
 
 		public async Task<ServiceResponse<ManagerAuthenticationResponse>> DeleteAsync(ManagerAuthenticationDelete Model)
 		{
+			Collection = await UnitOfWork.ManagerAuthentication.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+			ManagerAuthentication ManagerAuthentication = Collection.SingleOrDefault()!;
+			await UnitOfWork.ManagerAuthentication.DeleteAsync(ManagerAuthentication);
+			Success = await UnitOfWork.SaveChangesAsync();
+
 			return new ServiceResponse<ManagerAuthenticationResponse>()
 			{
-
+				Success = Success,
+				ResponseData = Mapper.Map<ManagerAuthenticationResponse>(ManagerAuthentication)
 			};
 		}
 

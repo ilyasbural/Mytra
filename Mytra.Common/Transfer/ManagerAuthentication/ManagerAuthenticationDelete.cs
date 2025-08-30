@@ -2,5 +2,6 @@
 {
 	public class ManagerAuthenticationDelete
 	{
+		public Guid Id { get; set; }
 	}
 }

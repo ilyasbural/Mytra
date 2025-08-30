@@ -2,5 +2,6 @@
 {
 	public class ManagerSettingsDelete
 	{
+		public Guid Id { get; set; }
 	}
 }

@@ -2,5 +2,6 @@
 {
 	public class LanguageDelete
 	{
+		public Guid Id { get; set; }
 	}
 }

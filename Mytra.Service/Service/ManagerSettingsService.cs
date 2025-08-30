@@ -54,11 +54,15 @@
 
 		public async Task<ServiceResponse<ManagerSettingsResponse>> DeleteAsync(ManagerSettingsDelete Model)
 		{
+			Collection = await UnitOfWork.ManagerSettings.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+			ManagerSettings ManagerSettings = Collection.SingleOrDefault()!;
+			await UnitOfWork.ManagerSettings.DeleteAsync(ManagerSettings);
+			Success = await UnitOfWork.SaveChangesAsync();
+
 			return new ServiceResponse<ManagerSettingsResponse>
 			{
-				//IsSuccess = true,
-				//Message = "Manager settings deleted successfully",
-				//Data = null
+				Success = Success,
+				ResponseData = Mapper.Map<ManagerSettingsResponse>(ManagerSettings)
 			};
 		}
 

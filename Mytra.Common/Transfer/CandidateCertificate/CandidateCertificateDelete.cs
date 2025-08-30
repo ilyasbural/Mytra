@@ -2,5 +2,6 @@
 {
 	public class CandidateCertificateDelete
 	{
+		public Guid Id { get; set; }
 	}
 }

@@ -2,5 +2,6 @@
 {
 	public class JobPostingDetailDelete
 	{
+		public Guid Id { get; set; }
 	}
 }

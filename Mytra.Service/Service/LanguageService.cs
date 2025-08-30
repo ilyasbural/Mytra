@@ -54,11 +54,15 @@
 
 		public async Task<ServiceResponse<LanguageResponse>> DeleteAsync(LanguageDelete Model)
 		{
+			Collection = await UnitOfWork.Language.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+			Language Language = Collection.SingleOrDefault()!;
+			await UnitOfWork.Language.DeleteAsync(Language);
+			Success = await UnitOfWork.SaveChangesAsync();
+
 			return new ServiceResponse<LanguageResponse>
 			{
-				//IsSuccess = true,
-				//Message = "Language deleted successfully",
-				//Data = null
+				Success = Success,
+				ResponseData = Mapper.Map<LanguageResponse>(Language)
 			};
 		}
 

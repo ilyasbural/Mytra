@@ -2,5 +2,6 @@
 {
 	public class CandidateDelete
 	{
+		public Guid Id { get; set; }
 	}
 }

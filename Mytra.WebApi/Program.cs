@@ -51,10 +51,9 @@ Builder.Services.AddSwaggerGen(x =>
     });
 });
 Builder.Services.LoadServices();
-Builder.Services.AddAutoMapper(cfg => { }, typeof(CandidateAuthenticationMapper));
-Builder.Services.AddCors(options => options.AddDefaultPolicy(builder => { builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod(); }));
-Builder.Services.AddDbContext<MytraContext>(options =>
-	options.UseSqlServer(Configuration.GetConnectionString("ConnectionStrings")));
+Builder.Services.AddAutoMapper(Config => { }, typeof(CandidateAuthenticationMapper));
+Builder.Services.AddCors(Options => Options.AddDefaultPolicy(Builder => { Builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod(); }));
+Builder.Services.AddDbContext<MytraContext>(Options => Options.UseSqlServer(Configuration.GetConnectionString("ConnectionStrings")));
 
 var App = Builder.Build();
 

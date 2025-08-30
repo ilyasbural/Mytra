@@ -54,9 +54,15 @@ namespace Mytra.Service
 
 		public async Task<ServiceResponse<UserResponse>> DeleteAsync(UserDelete Model)
 		{
+			Collection = await UnitOfWork.User.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+			User User = Collection.SingleOrDefault()!;
+			await UnitOfWork.User.DeleteAsync(User);
+			Success = await UnitOfWork.SaveChangesAsync();
+
 			return new ServiceResponse<UserResponse>()
 			{
-
+				Success = Success,
+				ResponseData = Mapper.Map<UserResponse>(User)
 			};
 		}
 

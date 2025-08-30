@@ -54,11 +54,15 @@ namespace Mytra.Service
 
 		public async Task<ServiceResponse<UserAuthenticationResponse>> DeleteAsync(UserAuthenticationDelete Model)
 		{
+			Collection = await UnitOfWork.UserAuthentication.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+			UserAuthentication UserAuthentication = Collection.SingleOrDefault()!;
+			await UnitOfWork.UserAuthentication.DeleteAsync(UserAuthentication);
+			Success = await UnitOfWork.SaveChangesAsync();
+
 			return new ServiceResponse<UserAuthenticationResponse>
 			{
-				//IsSuccess = true,
-				//Message = "User logged out successfully",
-				//Data = null
+				Success = Success,
+				ResponseData = Mapper.Map<UserAuthenticationResponse>(UserAuthentication)
 			};
 		}
 

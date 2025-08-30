@@ -54,11 +54,15 @@
 
 		public async Task<ServiceResponse<JobPostingResponse>> DeleteAsync(JobPostingDelete Model)
 		{
+			Collection = await UnitOfWork.JobPosting.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+			JobPosting JobPosting = Collection.SingleOrDefault()!;
+			await UnitOfWork.JobPosting.DeleteAsync(JobPosting);
+			Success = await UnitOfWork.SaveChangesAsync();
+
 			return new ServiceResponse<JobPostingResponse>
 			{
-				//IsSuccess = true,
-				//Message = "Job posting deleted successfully.",
-				//Data = null
+				Success = Success,
+				ResponseData = Mapper.Map<JobPostingResponse>(JobPosting)
 			};
 		}
 
