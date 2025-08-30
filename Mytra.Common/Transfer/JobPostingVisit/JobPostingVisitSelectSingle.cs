@@ -2,5 +2,6 @@
 {
 	public class JobPostingVisitSelectSingle
 	{
+		public Guid Id { get; set; }
 	}
 }

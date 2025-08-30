@@ -80,7 +80,7 @@
 			return new ServiceResponse<ManagerResponse>()
 			{
 				ResponseDataSource = Mapper.Map<List<ManagerResponse>>
-				(await UnitOfWork.Manager.SelectAsync(x => x.IsActive == true))
+				(await UnitOfWork.Manager.SelectAsync(x => x.Id == Model.Id && x.IsActive == true))
 			};
 		}
 	}

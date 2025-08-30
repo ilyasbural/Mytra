@@ -2,5 +2,6 @@
 {
 	public class SkillsSelectSingle
 	{
+		public Guid Id { get; set; }
 	}
 }

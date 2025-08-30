@@ -2,5 +2,6 @@
 {
 	public class CandidateLanguageSelectSingle
 	{
+		public Guid Id { get; set; }
 	}
 }

@@ -80,7 +80,7 @@
 			return new ServiceResponse<LanguageResponse>
 			{
 				ResponseDataSource = Mapper.Map<List<LanguageResponse>>
-				(await UnitOfWork.Language.SelectAsync(x => x.IsActive == true))
+				(await UnitOfWork.Language.SelectAsync(x => x.Id == Model.Id && x.IsActive == true))
 			};
 		}
 	}

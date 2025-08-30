@@ -80,7 +80,7 @@
 			return new ServiceResponse<JobPostingApplyResponse>
 			{
 				ResponseDataSource = Mapper.Map<List<JobPostingApplyResponse>>
-				(await UnitOfWork.JobPostingApply.SelectAsync(x => x.IsActive == true))
+				(await UnitOfWork.JobPostingApply.SelectAsync(x => x.Id == Model.Id && x.IsActive == true))
 			};
 		}
 	}

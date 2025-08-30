@@ -80,7 +80,7 @@ namespace Mytra.Service
 			return new ServiceResponse<UserAuthenticationResponse>
 			{
 				ResponseDataSource = Mapper.Map<List<UserAuthenticationResponse>>
-				(await UnitOfWork.UserAuthentication.SelectAsync(x => x.IsActive == true))
+				(await UnitOfWork.UserAuthentication.SelectAsync(x => x.Id == Model.Id && x.IsActive == true))
 			};
 		}
 	}

@@ -80,7 +80,7 @@
 			return new ServiceResponse<CandidateCertificateResponse>()
 			{
 				ResponseDataSource = Mapper.Map<List<CandidateCertificateResponse>>
-				(await UnitOfWork.CandidateCertificate.SelectAsync(x => x.IsActive == true))
+				(await UnitOfWork.CandidateCertificate.SelectAsync(x => x.Id == Model.Id && x.IsActive == true))
 			};
 		}
 	}
