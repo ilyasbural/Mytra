@@ -32,12 +32,12 @@
 			ServiceResponse<CandidateResponse> Response = await Service.UpdateAsync(Model);
 			return new ServiceResponse<CandidateResponse>
 			{
+				Success = Response.Success,
 				ResponseData = Response.ResponseData
 			};
 		}
 
 		[HttpDelete]
-		[Authorize]
 		[Route("api/candidate")]
 		[Produces(typeof(ServiceResponse<CandidateResponse>))]
 		public async Task<ServiceResponse<CandidateResponse>> Delete([FromBody] CandidateDelete Model)
@@ -45,12 +45,12 @@
 			ServiceResponse<CandidateResponse> Response = await Service.DeleteAsync(Model);
 			return new ServiceResponse<CandidateResponse>
 			{
+				Success = Response.Success,
 				ResponseData = Response.ResponseData
 			};
 		}
 
 		[HttpGet]
-		[Authorize]
 		[Route("api/candidate")]
 		[Produces(typeof(ServiceResponse<CandidateResponse>))]
 		public async Task<ServiceResponse<CandidateResponse>> Get([FromQuery] CandidateSelect Model)

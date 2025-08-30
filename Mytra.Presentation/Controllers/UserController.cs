@@ -25,7 +25,6 @@
 		}
 
 		[HttpPut]
-		[Authorize]
 		[Route("api/user")]
 		[Produces(typeof(ServiceResponse<UserResponse>))]
 		public async Task<ServiceResponse<UserResponse>> Update([FromBody] UserUpdate Model)
@@ -33,12 +32,12 @@
 			ServiceResponse<UserResponse> Response = await Service.UpdateAsync(Model);
 			return new ServiceResponse<UserResponse>
 			{
+				Success = Response.Success,
 				ResponseData = Response.ResponseData
 			};
 		}
 
 		[HttpDelete]
-		[Authorize]
 		[Route("api/user")]
 		[Produces(typeof(ServiceResponse<UserResponse>))]
 		public async Task<ServiceResponse<UserResponse>> Delete([FromBody] UserDelete Model)
@@ -46,6 +45,7 @@
 			ServiceResponse<UserResponse> Response = await Service.DeleteAsync(Model);
 			return new ServiceResponse<UserResponse>
 			{
+				Success = Response.Success,
 				ResponseData = Response.ResponseData
 			};
 		}

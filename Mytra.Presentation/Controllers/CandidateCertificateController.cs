@@ -25,7 +25,6 @@
 		}
 
 		[HttpPut]
-		[Authorize]
 		[Route("api/candidatecertificate")]
 		[Produces(typeof(ServiceResponse<CandidateCertificateResponse>))]
 		public async Task<ServiceResponse<CandidateCertificateResponse>> Update([FromBody] CandidateCertificateUpdate Model)
@@ -33,12 +32,12 @@
 			ServiceResponse<CandidateCertificateResponse> Response = await Service.UpdateAsync(Model);
 			return new ServiceResponse<CandidateCertificateResponse>
 			{
+				Success = Response.Success,
 				ResponseData = Response.ResponseData
 			};
 		}
 
 		[HttpDelete]
-		[Authorize]
 		[Route("api/candidatecertificate")]
 		[Produces(typeof(ServiceResponse<CandidateCertificateResponse>))]
 		public async Task<ServiceResponse<CandidateCertificateResponse>> Delete([FromBody] CandidateCertificateDelete Model)
@@ -46,6 +45,7 @@
 			ServiceResponse<CandidateCertificateResponse> Response = await Service.DeleteAsync(Model);
 			return new ServiceResponse<CandidateCertificateResponse>
 			{
+				Success = Response.Success,
 				ResponseData = Response.ResponseData
 			};
 		}

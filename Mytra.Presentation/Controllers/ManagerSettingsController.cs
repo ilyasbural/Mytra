@@ -25,7 +25,6 @@
 		}
 
 		[HttpPut]
-		[Authorize]
 		[Route("api/managersettings")]
 		[Produces(typeof(ServiceResponse<ManagerSettingsResponse>))]
 		public async Task<ServiceResponse<ManagerSettingsResponse>> Update([FromBody] ManagerSettingsUpdate Model)
@@ -33,12 +32,12 @@
 			ServiceResponse<ManagerSettingsResponse> Response = await Service.UpdateAsync(Model);
 			return new ServiceResponse<ManagerSettingsResponse>
 			{
+				Success = Response.Success,
 				ResponseData = Response.ResponseData
 			};
 		}
 
 		[HttpDelete]
-		[Authorize]
 		[Route("api/managersettings")]
 		[Produces(typeof(ServiceResponse<ManagerSettingsResponse>))]
 		public async Task<ServiceResponse<ManagerSettingsResponse>> Delete([FromBody] ManagerSettingsDelete Model)
@@ -46,6 +45,7 @@
 			ServiceResponse<ManagerSettingsResponse> Response = await Service.DeleteAsync(Model);
 			return new ServiceResponse<ManagerSettingsResponse>
 			{
+				Success = Response.Success,
 				ResponseData = Response.ResponseData
 			};
 		}

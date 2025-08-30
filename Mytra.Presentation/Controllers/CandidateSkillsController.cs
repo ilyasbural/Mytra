@@ -25,7 +25,6 @@
 		}
 
 		[HttpPut]
-		[Authorize]
 		[Route("api/candidateskills")]
 		[Produces(typeof(ServiceResponse<CandidateSkillsResponse>))]
 		public async Task<ServiceResponse<CandidateSkillsResponse>> Update([FromBody] CandidateSkillsUpdate Model)
@@ -33,12 +32,12 @@
 			ServiceResponse<CandidateSkillsResponse> Response = await Service.UpdateAsync(Model);
 			return new ServiceResponse<CandidateSkillsResponse>
 			{
+				Success = Response.Success,
 				ResponseData = Response.ResponseData
 			};
 		}
 
 		[HttpDelete]
-		[Authorize]
 		[Route("api/candidateskills")]
 		[Produces(typeof(ServiceResponse<CandidateSkillsResponse>))]
 		public async Task<ServiceResponse<CandidateSkillsResponse>> Delete([FromBody] CandidateSkillsDelete Model)
@@ -46,6 +45,7 @@
 			ServiceResponse<CandidateSkillsResponse> Response = await Service.DeleteAsync(Model);
 			return new ServiceResponse<CandidateSkillsResponse>
 			{
+				Success = Response.Success,
 				ResponseData = Response.ResponseData
 			};
 		}

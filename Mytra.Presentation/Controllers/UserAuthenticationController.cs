@@ -31,6 +31,7 @@
 			ServiceResponse<UserAuthenticationResponse> Response = await Service.UpdateAsync(Model);
 			return new ServiceResponse<UserAuthenticationResponse>
 			{
+				Success = Response.Success,
 				ResponseData = Response.ResponseData
 			};
 		}
@@ -43,6 +44,7 @@
 			ServiceResponse<UserAuthenticationResponse> Response = await Service.DeleteAsync(Model);
 			return new ServiceResponse<UserAuthenticationResponse>
 			{
+				Success = Response.Success,
 				ResponseData = Response.ResponseData
 			};
 		}

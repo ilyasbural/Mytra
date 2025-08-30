@@ -25,7 +25,6 @@
 		}
 
 		[HttpPut]
-		[Authorize]
 		[Route("api/candidatelanguage")]
 		[Produces(typeof(ServiceResponse<CandidateLanguageResponse>))]
 		public async Task<ServiceResponse<CandidateLanguageResponse>> Update([FromBody] CandidateLanguageUpdate Model)
@@ -33,12 +32,12 @@
 			ServiceResponse<CandidateLanguageResponse> Response = await Service.UpdateAsync(Model);
 			return new ServiceResponse<CandidateLanguageResponse>
 			{
+				Success = Response.Success,
 				ResponseData = Response.ResponseData
 			};
 		}
 
 		[HttpDelete]
-		[Authorize]
 		[Route("api/candidatelanguage")]
 		[Produces(typeof(ServiceResponse<CandidateLanguageResponse>))]
 		public async Task<ServiceResponse<CandidateLanguageResponse>> Delete([FromBody] CandidateLanguageDelete Model)
@@ -46,6 +45,7 @@
 			ServiceResponse<CandidateLanguageResponse> Response = await Service.DeleteAsync(Model);
 			return new ServiceResponse<CandidateLanguageResponse>
 			{
+				Success = Response.Success,
 				ResponseData = Response.ResponseData
 			};
 		}
