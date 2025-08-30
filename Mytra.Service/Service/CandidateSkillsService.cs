@@ -70,26 +70,8 @@
 		{
 			return new ServiceResponse<CandidateSkillsResponse>()
 			{
-				//ResponseDataSource = new List<CandidateSkillsResponse>()
-				//{
-				//	new CandidateSkillsResponse()
-				//	{
-				//		Id = 1,
-				//		CandidateId = 1,
-				//		SkillName = "C#",
-				//		ProficiencyLevel = "Expert",
-				//		YearsOfExperience = 5
-				//	},
-				//	new CandidateSkillsResponse()
-				//	{
-				//		Id = 2,
-				//		CandidateId = 1,
-				//		SkillName = "JavaScript",
-				//		ProficiencyLevel = "Intermediate",
-				//		YearsOfExperience = 3
-				//	}
-				//},
-				//Success = 1
+				ResponseDataSource = Mapper.Map<List<CandidateSkillsResponse>>
+				(await UnitOfWork.CandidateSkills.SelectAsync(x => x.IsActive == true))
 			};
 		}
 
@@ -97,15 +79,8 @@
 		{
 			return new ServiceResponse<CandidateSkillsResponse>()
 			{
-				//ResponseDataSource = new CandidateSkillsResponse()
-				//{
-				//	Id = 1,
-				//	CandidateId = 1,
-				//	SkillName = "C#",
-				//	ProficiencyLevel = "Expert",
-				//	YearsOfExperience = 5
-				//},
-				//Success = 1
+				ResponseDataSource = Mapper.Map<List<CandidateSkillsResponse>>
+				(await UnitOfWork.CandidateSkills.SelectAsync(x => x.IsActive == true))
 			};
 		}
 	}

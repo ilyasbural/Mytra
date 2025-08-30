@@ -70,26 +70,8 @@
 		{
 			return new ServiceResponse<CandidatePhotoResponse>()
 			{
-				//ResponseDataSource = new List<CandidatePhotoResponse>()
-				//{
-				//	new CandidatePhotoResponse()
-				//	{
-				//		Id = 1,
-				//		CandidateId = 1,
-				//		PhotoPath = "path/to/photo1.jpg",
-				//		CreatedAt = DateTime.UtcNow,
-				//		UpdatedAt = DateTime.UtcNow
-				//	},
-				//	new CandidatePhotoResponse()
-				//	{
-				//		Id = 2,
-				//		CandidateId = 2,
-				//		PhotoPath = "path/to/photo2.jpg",
-				//		CreatedAt = DateTime.UtcNow,
-				//		UpdatedAt = DateTime.UtcNow
-				//	}
-				//},
-				//Success = 1
+				ResponseDataSource = Mapper.Map<List<CandidatePhotoResponse>>
+				(await UnitOfWork.CandidatePhoto.SelectAsync(x => x.IsActive == true))
 			};
 		}
 
@@ -97,18 +79,8 @@
 		{
 			return new ServiceResponse<CandidatePhotoResponse>()
 			{
-				//ResponseDataSource = new List<CandidatePhotoResponse>()
-				//{
-				//	new CandidatePhotoResponse()
-				//	{
-				//		Id = Model.Id,
-				//		CandidateId = 1,
-				//		PhotoPath = "path/to/photo1.jpg",
-				//		CreatedAt = DateTime.UtcNow,
-				//		UpdatedAt = DateTime.UtcNow
-				//	}
-				//},
-				//Success = 1
+				ResponseDataSource = Mapper.Map<List<CandidatePhotoResponse>>
+				(await UnitOfWork.CandidatePhoto.SelectAsync(x => x.IsActive == true))
 			};
 		}
 	}

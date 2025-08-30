@@ -70,15 +70,8 @@
 		{
 			return new ServiceResponse<ManagerSettingsResponse>
 			{
-				//IsSuccess = true,
-				//Message = "Manager settings retrieved successfully",
-				//Data = new ManagerSettingsResponse
-				//{
-				//	Id = 1,
-				//	SettingsJson = "{}",
-				//	CreatedAt = DateTime.UtcNow.AddDays(-1), // Placeholder
-				//	UpdatedAt = DateTime.UtcNow
-				//}
+				ResponseDataSource = Mapper.Map<List<ManagerSettingsResponse>>
+				(await UnitOfWork.ManagerSettings.SelectAsync(x => x.IsActive == true))
 			};
 		}
 
@@ -86,15 +79,8 @@
 		{
 			return new ServiceResponse<ManagerSettingsResponse>
 			{
-				//IsSuccess = true,
-				//Message = "Manager settings retrieved successfully",
-				//Data = new ManagerSettingsResponse
-				//{
-				//	Id = Model.Id,
-				//	SettingsJson = "{}",
-				//	CreatedAt = DateTime.UtcNow.AddDays(-1), // Placeholder
-				//	UpdatedAt = DateTime.UtcNow
-				//}
+				ResponseDataSource = Mapper.Map<List<ManagerSettingsResponse>>
+				(await UnitOfWork.ManagerSettings.SelectAsync(x => x.IsActive == true))
 			};
 		}
 	}

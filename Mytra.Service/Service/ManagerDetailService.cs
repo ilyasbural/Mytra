@@ -70,7 +70,8 @@
 		{
 			return new ServiceResponse<ManagerDetailResponse>()
 			{
-
+				ResponseDataSource = Mapper.Map<List<ManagerDetailResponse>>
+				(await UnitOfWork.ManagerDetail.SelectAsync(x => x.IsActive == true))
 			};
 		}
 
@@ -78,7 +79,8 @@
 		{
 			return new ServiceResponse<ManagerDetailResponse>()
 			{
-
+				ResponseDataSource = Mapper.Map<List<ManagerDetailResponse>>
+				(await UnitOfWork.ManagerDetail.SelectAsync(x => x.IsActive == true))
 			};
 		}
 	}

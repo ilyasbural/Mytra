@@ -70,13 +70,8 @@
 		{
 			return new ServiceResponse<CandidateEducationResponse>()
 			{
-				//ResponseDataSource = new List<CandidateEducationResponse>()
-				//{
-				//	new CandidateEducationResponse()
-				//	{
-				//	}
-				//},
-				//Success = 1
+				ResponseDataSource = Mapper.Map<List<CandidateEducationResponse>>
+				(await UnitOfWork.CandidateEducation.SelectAsync(x => x.IsActive == true))
 			};
 		}
 
@@ -84,13 +79,8 @@
 		{
 			return new ServiceResponse<CandidateEducationResponse>()
 			{
-				//ResponseDataSource = new List<CandidateEducationResponse>()
-				//{
-				//	new CandidateEducationResponse()
-				//	{
-				//	}
-				//},
-				//Success = 1
+				ResponseDataSource = Mapper.Map<List<CandidateEducationResponse>>
+				(await UnitOfWork.CandidateEducation.SelectAsync(x => x.IsActive == true))
 			};
 		}
 	}

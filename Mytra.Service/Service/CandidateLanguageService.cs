@@ -70,7 +70,8 @@
 		{
 			return new ServiceResponse<CandidateLanguageResponse>()
 			{
-
+				ResponseDataSource = Mapper.Map<List<CandidateLanguageResponse>>
+				(await UnitOfWork.CandidateLanguage.SelectAsync(x => x.IsActive == true))
 			};
 		}
 
@@ -78,7 +79,8 @@
 		{
 			return new ServiceResponse<CandidateLanguageResponse>()
 			{
-
+				ResponseDataSource = Mapper.Map<List<CandidateLanguageResponse>>
+				(await UnitOfWork.CandidateLanguage.SelectAsync(x => x.IsActive == true))
 			};
 		}
 	}

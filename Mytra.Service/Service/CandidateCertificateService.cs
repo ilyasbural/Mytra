@@ -70,12 +70,8 @@
 		{
 			return new ServiceResponse<CandidateCertificateResponse>()
 			{
-				//ResponseData = new CandidateCertificateResponse()
-				//{
-				//	Success = 1
-				//},
-				//ResponseDataSource = new List<CandidateCertificateResponse>(),
-				//Success = 1
+				ResponseDataSource = Mapper.Map<List<CandidateCertificateResponse>>
+				(await UnitOfWork.CandidateCertificate.SelectAsync(x => x.IsActive == true))
 			};
 		}
 
@@ -83,12 +79,8 @@
 		{
 			return new ServiceResponse<CandidateCertificateResponse>()
 			{
-				//ResponseData = new CandidateCertificateResponse()
-				//{
-				//	Success = 1
-				//},
-				//ResponseDataSource = new List<CandidateCertificateResponse>(),
-				//Success = 1
+				ResponseDataSource = Mapper.Map<List<CandidateCertificateResponse>>
+				(await UnitOfWork.CandidateCertificate.SelectAsync(x => x.IsActive == true))
 			};
 		}
 	}

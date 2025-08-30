@@ -70,14 +70,8 @@ namespace Mytra.Service
 		{
 			return new ServiceResponse<UserAuthenticationResponse>
 			{
-				//IsSuccess = true,
-				//Message = "User authentication details retrieved successfully",
-				//Data = new UserAuthenticationResponse
-				//{
-				//	UserId = Guid.NewGuid(),
-				//	Token = "mock-jwt-token",
-				//	ExpiresIn = 3600
-				//}
+				ResponseDataSource = Mapper.Map<List<UserAuthenticationResponse>>
+				(await UnitOfWork.UserAuthentication.SelectAsync(x => x.IsActive == true))
 			};
 		}
 
@@ -85,11 +79,8 @@ namespace Mytra.Service
 		{
 			return new ServiceResponse<UserAuthenticationResponse>
 			{
-				//IsSuccess = true,
-				//Message = "Single user authentication detail retrieved successfully",
-				//Data = new UserAuthenticationResponse
-				//{
-				//	UserId = Guid.NewGuid(),
+				ResponseDataSource = Mapper.Map<List<UserAuthenticationResponse>>
+				(await UnitOfWork.UserAuthentication.SelectAsync(x => x.IsActive == true))
 			};
 		}
 	}

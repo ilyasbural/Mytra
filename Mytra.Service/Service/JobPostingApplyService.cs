@@ -70,23 +70,8 @@
 		{
 			return new ServiceResponse<JobPostingApplyResponse>
 			{
-				//IsSucceed = true,
-				//Message = "Job applications retrieved successfully.",
-				//Data = new List<JobPostingApplyResponse>
-				//{
-				//	new JobPostingApplyResponse
-				//	{
-				//		ApplicationId = Guid.NewGuid(),
-				//		Status = "Submitted",
-				//		AppliedOn = DateTime.UtcNow
-				//	},
-				//	new JobPostingApplyResponse
-				//	{
-				//		ApplicationId = Guid.NewGuid(),
-				//		Status = "In Review",
-				//		AppliedOn = DateTime.UtcNow.AddDays(-1)
-				//	}
-				//}
+				ResponseDataSource = Mapper.Map<List<JobPostingApplyResponse>>
+				(await UnitOfWork.JobPostingApply.SelectAsync(x => x.IsActive == true))
 			};
 		}
 
@@ -94,14 +79,8 @@
 		{
 			return new ServiceResponse<JobPostingApplyResponse>
 			{
-				//IsSucceed = true,
-				//Message = "Job application retrieved successfully.",
-				//Data = new JobPostingApplyResponse
-				//{
-				//	ApplicationId = Model.ApplicationId,
-				//	Status = "Submitted",
-				//	AppliedOn = DateTime.UtcNow
-				//}
+				ResponseDataSource = Mapper.Map<List<JobPostingApplyResponse>>
+				(await UnitOfWork.JobPostingApply.SelectAsync(x => x.IsActive == true))
 			};
 		}
 	}

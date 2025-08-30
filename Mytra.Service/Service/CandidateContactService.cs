@@ -70,13 +70,8 @@
 		{
 			return new ServiceResponse<CandidateContactResponse>()
 			{
-				//ResponseDataSource = new List<CandidateContactResponse>()
-				//{
-				//	new CandidateContactResponse()
-				//	{
-				//	}
-				//},
-				//Success = 1
+				ResponseDataSource = Mapper.Map<List<CandidateContactResponse>>
+				(await UnitOfWork.CandidateContact.SelectAsync(x => x.IsActive == true))
 			};
 		}
 
@@ -84,13 +79,8 @@
 		{
 			return new ServiceResponse<CandidateContactResponse>()
 			{
-				//ResponseDataSource = new List<CandidateContactResponse>()
-				//{
-				//	new CandidateContactResponse()
-				//	{
-				//	}
-				//},
-				//Success = 1
+				ResponseDataSource = Mapper.Map<List<CandidateContactResponse>>
+				(await UnitOfWork.CandidateContact.SelectAsync(x => x.IsActive == true))
 			};
 		}
 	}

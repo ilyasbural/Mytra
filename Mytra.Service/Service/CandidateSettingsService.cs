@@ -70,28 +70,8 @@
 		{
 			return new ServiceResponse<CandidateSettingsResponse>()
 			{
-				//ResponseDataSource = new List<CandidateSettingsResponse>
-				//{
-				//	new CandidateSettingsResponse
-				//	{
-				//		Id = 1,
-				//		CandidateId = 1,
-				//		SettingName = "Notification",
-				//		SettingValue = "Email",
-				//		CreatedAt = DateTime.UtcNow,
-				//		UpdatedAt = DateTime.UtcNow
-				//	},
-				//	new CandidateSettingsResponse
-				//	{
-				//		Id = 2,
-				//		CandidateId = 1,
-				//		SettingName = "Privacy",
-				//		SettingValue = "High",
-				//		CreatedAt = DateTime.UtcNow,
-				//		UpdatedAt = DateTime.UtcNow
-				//	}
-				//},
-				//Success = 1
+				ResponseDataSource = Mapper.Map<List<CandidateSettingsResponse>>
+				(await UnitOfWork.CandidateSettings.SelectAsync(x => x.IsActive == true))
 			};
 		}
 
@@ -99,16 +79,8 @@
 		{
 			return new ServiceResponse<CandidateSettingsResponse>()
 			{
-				//ResponseDataSource = new CandidateSettingsResponse
-				//{
-				//	Id = 1,
-				//	CandidateId = 1,
-				//	SettingName = "Notification",
-				//	SettingValue = "Email",
-				//	CreatedAt = DateTime.UtcNow,
-				//	UpdatedAt = DateTime.UtcNow
-				//},
-				//Success = 1
+				ResponseDataSource = Mapper.Map<List<CandidateSettingsResponse>>
+				(await UnitOfWork.CandidateSettings.SelectAsync(x => x.IsActive == true))
 			};
 		}
 	}

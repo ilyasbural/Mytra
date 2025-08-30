@@ -70,9 +70,8 @@
 		{
 			return new ServiceResponse<JobPostingVisitResponse>
 			{
-				//IsSuccess = true,
-				//Message = "Job posting visits retrieved successfully.",
-				//Data = null // In a real implementation, this would be a list of JobPostingVisitResponse objects.
+				ResponseDataSource = Mapper.Map<List<JobPostingVisitResponse>>
+				(await UnitOfWork.JobPostingVisit.SelectAsync(x => x.IsActive == true))
 			};
 		}
 
@@ -80,9 +79,8 @@
 		{
 			return new ServiceResponse<JobPostingVisitResponse>
 			{
-				//IsSuccess = true,
-				//Message = "Job posting visit retrieved successfully.",
-				//Data = null // In a real implementation, this would be the requested JobPostingVisitResponse object.
+				ResponseDataSource = Mapper.Map<List<JobPostingVisitResponse>>
+				(await UnitOfWork.JobPostingVisit.SelectAsync(x => x.IsActive == true))
 			};
 		}
 	}

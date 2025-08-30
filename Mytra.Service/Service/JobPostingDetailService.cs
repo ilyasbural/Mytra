@@ -70,16 +70,8 @@
 		{
 			return new ServiceResponse<JobPostingDetailResponse>
 			{
-				//IsSuccess = true,
-				//Message = "Job posting details retrieved successfully.",
-				//Data = new JobPostingDetailResponse
-				//{
-				//	Id = Guid.NewGuid(),
-				//	JobTitle = "Sample Job Title",
-				//	Description = "Sample Job Description",
-				//	Location = "Sample Location",
-				//	PostedDate = DateTime.UtcNow
-				//}
+				ResponseDataSource = Mapper.Map<List<JobPostingDetailResponse>>
+				(await UnitOfWork.JobPostingDetail.SelectAsync(x => x.IsActive == true))
 			};
 		}
 
@@ -87,16 +79,8 @@
 		{
 			return new ServiceResponse<JobPostingDetailResponse>
 			{
-				//IsSuccess = true,
-				//Message = "Job posting detail retrieved successfully.",
-				//Data = new JobPostingDetailResponse
-				//{
-				//	Id = Model.Id,
-				//	JobTitle = "Sample Job Title",
-				//	Description = "Sample Job Description",
-				//	Location = "Sample Location",
-				//	PostedDate = DateTime.UtcNow
-				//}
+				ResponseDataSource = Mapper.Map<List<JobPostingDetailResponse>>
+				(await UnitOfWork.JobPostingDetail.SelectAsync(x => x.IsActive == true))
 			};
 		}
 	}

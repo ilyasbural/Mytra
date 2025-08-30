@@ -70,7 +70,8 @@ namespace Mytra.Service
 		{
 			return new ServiceResponse<CandidateAuthenticationResponse>
 			{
-				ResponseDataSource = Mapper.Map<List<CandidateAuthenticationResponse>>(await UnitOfWork.CandidateAuthentication.SelectAsync(x => x.IsActive == true))
+				ResponseDataSource = Mapper.Map<List<CandidateAuthenticationResponse>>
+				(await UnitOfWork.CandidateAuthentication.SelectAsync(x => x.IsActive == true))
 			};
 		}
 
@@ -78,7 +79,8 @@ namespace Mytra.Service
 		{
 			return new ServiceResponse<CandidateAuthenticationResponse>
 			{
-				ResponseDataSource = Mapper.Map<List<CandidateAuthenticationResponse>>(await UnitOfWork.CandidateAuthentication.SelectAsync(x => x.Id == Model.Id && x.IsActive == true))
+				ResponseDataSource = Mapper.Map<List<CandidateAuthenticationResponse>>
+				(await UnitOfWork.CandidateAuthentication.SelectAsync(x => x.Id == Model.Id && x.IsActive == true))
 			};
 		}
 	}

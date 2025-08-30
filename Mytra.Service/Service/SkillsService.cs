@@ -70,14 +70,8 @@
 		{
 			return new ServiceResponse<SkillsResponse>
 			{
-				//IsSuccess = true,
-				//Message = "Skills retrieved successfully",
-				//Data = new SkillsResponse
-				//{
-				//	SkillId = 1,
-				//	SkillName = "Sample Skill",
-				//	Description = "This is a sample skill description"
-				//}
+				ResponseDataSource = Mapper.Map<List<SkillsResponse>>
+				(await UnitOfWork.Skills.SelectAsync(x => x.IsActive == true))
 			};
 		}
 
@@ -85,14 +79,8 @@
 		{
 			return new ServiceResponse<SkillsResponse>
 			{
-				//IsSuccess = true,
-				//Message = "Skills retrieved successfully",
-				//Data = new SkillsResponse
-				//{
-				//	SkillId = Model.SkillId,
-				//	SkillName = "Sample Skill",
-				//	Description = "This is a sample skill description"
-				//}
+				ResponseDataSource = Mapper.Map<List<SkillsResponse>>
+				(await UnitOfWork.Skills.SelectAsync(x => x.IsActive == true))
 			};
 		}
 	}

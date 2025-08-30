@@ -70,7 +70,8 @@
 		{
 			return new ServiceResponse<ManagerAuthenticationResponse>()
 			{
-
+				ResponseDataSource = Mapper.Map<List<ManagerAuthenticationResponse>>
+				(await UnitOfWork.ManagerAuthentication.SelectAsync(x => x.IsActive == true))
 			};
 		}
 
@@ -78,7 +79,8 @@
 		{
 			return new ServiceResponse<ManagerAuthenticationResponse>()
 			{
-
+				ResponseDataSource = Mapper.Map<List<ManagerAuthenticationResponse>>
+				(await UnitOfWork.ManagerAuthentication.SelectAsync(x => x.IsActive == true))
 			};
 		}
 	}

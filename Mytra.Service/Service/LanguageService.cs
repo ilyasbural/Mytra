@@ -70,13 +70,8 @@
 		{
 			return new ServiceResponse<LanguageResponse>
 			{
-				//IsSuccess = true,
-				//Message = "Languages retrieved successfully",
-				//Data = new List<LanguageResponse>
-				//{
-				//	new LanguageResponse { Id = 1, Name = "English", Code = "EN" },
-				//	new LanguageResponse { Id = 2, Name = "Spanish", Code = "ES" }
-				//}
+				ResponseDataSource = Mapper.Map<List<LanguageResponse>>
+				(await UnitOfWork.Language.SelectAsync(x => x.IsActive == true))
 			};
 		}
 
@@ -84,14 +79,8 @@
 		{
 			return new ServiceResponse<LanguageResponse>
 			{
-				//IsSuccess = true,
-				//Message = "Language retrieved successfully",
-				//Data = new LanguageResponse
-				//{
-				//	Id = Model.Id,
-				//	Name = "English",
-				//	Code = "EN"
-				//}
+				ResponseDataSource = Mapper.Map<List<LanguageResponse>>
+				(await UnitOfWork.Language.SelectAsync(x => x.IsActive == true))
 			};
 		}
 	}

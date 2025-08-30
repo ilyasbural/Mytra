@@ -70,7 +70,8 @@ namespace Mytra.Service
 		{
 			return new ServiceResponse<UserSettingsResponse>
 			{
-
+				ResponseDataSource = Mapper.Map<List<UserSettingsResponse>>
+				(await UnitOfWork.UserSettings.SelectAsync(x => x.IsActive == true))
 			};
 		}
 
@@ -78,7 +79,8 @@ namespace Mytra.Service
 		{
 			return new ServiceResponse<UserSettingsResponse>
 			{
-
+				ResponseDataSource = Mapper.Map<List<UserSettingsResponse>>
+				(await UnitOfWork.UserSettings.SelectAsync(x => x.Id == Model.Id && x.IsActive == true))
 			};
 		}
 	}

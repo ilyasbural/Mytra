@@ -70,29 +70,8 @@
 		{
 			return new ServiceResponse<JobPostingResponse>
 			{
-				//IsSuccess = true,
-				//Message = "Job postings retrieved successfully.",
-				//Data = new List<JobPostingResponse>
-				//{
-				//	new JobPostingResponse
-				//	{
-				//		JobPostingId = Guid.NewGuid(),
-				//		Title = "Software Engineer",
-				//		Description = "Develop and maintain software applications.",
-				//		Location = "New York, NY",
-				//		CompanyName = "Tech Corp",
-				//		PostedDate = DateTime.UtcNow.AddDays(-5)
-				//	},
-				//	new JobPostingResponse
-				//	{
-				//		JobPostingId = Guid.NewGuid(),
-				//		Title = "Data Analyst",
-				//		Description = "Analyze and interpret complex data sets.",
-				//		Location = "San Francisco, CA",
-				//		CompanyName = "Data Inc",
-				//		PostedDate = DateTime.UtcNow.AddDays(-10)
-				//	}
-				//}
+				ResponseDataSource = Mapper.Map<List<JobPostingResponse>>
+				(await UnitOfWork.JobPosting.SelectAsync(x => x.IsActive == true))
 			};
 		}
 
@@ -100,17 +79,8 @@
 		{
 			return new ServiceResponse<JobPostingResponse>
 			{
-				//IsSuccess = true,
-				//Message = "Job posting retrieved successfully.",
-				//Data = new JobPostingResponse
-				//{
-				//	JobPostingId = Model.JobPostingId,
-				//	Title = "Software Engineer",
-				//	Description = "Develop and maintain software applications.",
-				//	Location = "New York, NY",
-				//	CompanyName = "Tech Corp",
-				//	PostedDate = DateTime.UtcNow.AddDays(-5)
-				//}
+				ResponseDataSource = Mapper.Map<List<JobPostingResponse>>
+				(await UnitOfWork.JobPosting.SelectAsync(x => x.IsActive == true))
 			};
 		}
 	}

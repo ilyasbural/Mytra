@@ -41,7 +41,7 @@ namespace Mytra.DataAccess
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
 			IConfigurationRoot Configuration = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json").Build();
-			optionsBuilder.UseSqlServer(Configuration.GetConnectionString("SqlServerLive"));
+			optionsBuilder.UseSqlServer(Configuration.GetConnectionString("SqlServer"));
 		}
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder) => modelBuilder.ApplyConfigurationsFromAssembly(typeof(AssemblyReferance).Assembly);

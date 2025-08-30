@@ -10,7 +10,7 @@ namespace Mytra.DataAccess
 		{
 			var Builder = new DbContextOptionsBuilder<MytraContext>();
 			IConfigurationRoot Configuration = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json").Build();
-			var ConnectionString = Configuration.GetConnectionString("SqlServerLive");
+			var ConnectionString = Configuration.GetConnectionString("SqlServer");
 			Builder.UseSqlServer(ConnectionString);
 			return new MytraContext(Builder.Options);
 		}

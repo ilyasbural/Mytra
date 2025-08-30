@@ -70,7 +70,8 @@
 		{
 			return new ServiceResponse<CandidateResponse>()
 			{
-
+				ResponseDataSource = Mapper.Map<List<CandidateResponse>>
+				(await UnitOfWork.Candidate.SelectAsync(x => x.IsActive == true))
 			};
 		}
 
@@ -78,7 +79,8 @@
 		{
 			return new ServiceResponse<CandidateResponse>()
 			{
-
+				ResponseDataSource = Mapper.Map<List<CandidateResponse>>
+				(await UnitOfWork.Candidate.SelectAsync(x => x.IsActive == true))
 			};
 		}
 	}

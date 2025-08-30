@@ -70,9 +70,8 @@
 		{
 			return new ServiceResponse<CollegeResponse>()
 			{
-				//ResponseData = new CollegeResponse(),
-				//ResponseDataSource = new List<CollegeResponse>(),
-				//Success = 1
+				ResponseDataSource = Mapper.Map<List<CollegeResponse>>
+				(await UnitOfWork.College.SelectAsync(x => x.IsActive == true))
 			};
 		}
 
@@ -80,9 +79,8 @@
 		{
 			return new ServiceResponse<CollegeResponse>()
 			{
-				//ResponseData = new CollegeResponse(),
-				//ResponseDataSource = new List<CollegeResponse>(),
-				//Success = 1
+				ResponseDataSource = Mapper.Map<List<CollegeResponse>>
+				(await UnitOfWork.College.SelectAsync(x => x.IsActive == true))
 			};
 		}
 	}

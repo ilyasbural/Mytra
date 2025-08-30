@@ -70,9 +70,8 @@
 		{
 			return new ServiceResponse<InstitutionResponse>
 			{
-				//IsSuccess = false,
-				//Message = "Not implemented",
-				//Errors = new List<string> { "This method is not yet implemented." }
+				ResponseDataSource = Mapper.Map<List<InstitutionResponse>>
+				(await UnitOfWork.Institution.SelectAsync(x => x.IsActive == true))
 			};
 		}
 
@@ -80,9 +79,8 @@
 		{
 			return new ServiceResponse<InstitutionResponse>
 			{
-				//IsSuccess = false,
-				//Message = "Not implemented",
-				//Errors = new List<string> { "This method is not yet implemented." }
+				ResponseDataSource = Mapper.Map<List<InstitutionResponse>>
+				(await UnitOfWork.Institution.SelectAsync(x => x.IsActive == true))
 			};
 		}
 	}
