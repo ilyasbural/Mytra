@@ -19,6 +19,7 @@
 			ServiceResponse<CandidateLanguageResponse> Response = await Service.InsertAsync(Model);
 			return new ServiceResponse<CandidateLanguageResponse>
 			{
+				Success = Response.Success,
 				ResponseData = Response.ResponseData
 			};
 		}

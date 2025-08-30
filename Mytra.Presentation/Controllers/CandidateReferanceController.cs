@@ -19,6 +19,7 @@
 			ServiceResponse<CandidateReferanceResponse> Response = await Service.InsertAsync(Model);
 			return new ServiceResponse<CandidateReferanceResponse>
 			{
+				Success = Response.Success,
 				ResponseData = Response.ResponseData
 			};
 		}

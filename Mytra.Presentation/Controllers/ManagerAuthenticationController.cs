@@ -18,6 +18,7 @@
 			ServiceResponse<ManagerAuthenticationResponse> Response = await Service.InsertAsync(Model);
 			return new ServiceResponse<ManagerAuthenticationResponse>
 			{
+				Success = Response.Success,
 				ResponseData = Response.ResponseData
 			};
 		}

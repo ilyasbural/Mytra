@@ -19,6 +19,7 @@
 			ServiceResponse<CandidateContactResponse> Response = await Service.InsertAsync(Model);
 			return new ServiceResponse<CandidateContactResponse>
 			{
+				Success = Response.Success,
 				ResponseData = Response.ResponseData
 			};
 		}

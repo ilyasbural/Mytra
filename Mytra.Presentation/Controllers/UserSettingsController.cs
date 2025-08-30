@@ -19,6 +19,7 @@
 			ServiceResponse<UserSettingsResponse> Response = await Service.InsertAsync(Model);
 			return new ServiceResponse<UserSettingsResponse>
 			{
+				Success = Response.Success,
 				ResponseData = Response.ResponseData
 			};
 		}

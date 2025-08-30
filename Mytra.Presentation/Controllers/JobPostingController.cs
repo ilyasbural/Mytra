@@ -19,6 +19,7 @@
 			ServiceResponse<JobPostingResponse> Response = await Service.InsertAsync(Model);
 			return new ServiceResponse<JobPostingResponse>
 			{
+				Success = Response.Success,
 				ResponseData = Response.ResponseData
 			};
 		}

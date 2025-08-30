@@ -19,6 +19,7 @@
 			ServiceResponse<CollegeResponse> Response = await Service.InsertAsync(Model);
 			return new ServiceResponse<CollegeResponse>
 			{
+				Success = Response.Success,
 				ResponseData = Response.ResponseData
 			};
 		}

@@ -19,6 +19,7 @@
 			ServiceResponse<ManagerResponse> Response = await Service.InsertAsync(Model);
 			return new ServiceResponse<ManagerResponse>
 			{
+				Success = Response.Success,
 				ResponseData = Response.ResponseData
 			};
 		}
