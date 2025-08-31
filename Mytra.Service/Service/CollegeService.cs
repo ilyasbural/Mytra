@@ -18,24 +18,37 @@
 			Validator = validator;
 		}
 
-		//public async Task<ServiceResponse<CollegeResponse>> InsertAsync(CollegeInsert Model)
-		//{
-		//	Data = Mapper.Map<College>(Model);
-		//	Data.Id = Guid.NewGuid();
-		//	Data.RegisterDate = DateTime.Now;
-		//	Data.UpdateDate = DateTime.Now;
-		//	Data.IsActive = true;
+		public async Task<DataService<College>> InsertAsync(CollegeInsert Model)
+		{
+			try
+			{
+				Data = Mapper.Map<College>(Model);
+				Data.Id = Guid.NewGuid();
+				Data.RegisterDate = DateTime.Now;
+				Data.UpdateDate = DateTime.Now;
+				Data.IsActive = true;
 
-		//	Validator.ValidateAndThrow<College>(Data);
-		//	await UnitOfWork.College.InsertAsync(Data);
-		//	Success = await UnitOfWork.SaveChangesAsync();
+				var validationResult = await Validator.ValidateAsync(Data);
+				if (!validationResult.IsValid)
+				{
+					return DataService<College>.FailureResult(
+						validationResult.Errors.Select(e => e.ErrorMessage).ToList(),
+						"Validasyon hatası");
+				}
 
-		//	return new ServiceResponse<CollegeResponse>()
-		//	{
-		//		Success = Success,
-		//		ResponseData = Mapper.Map<CollegeResponse>(Data)
-		//	};
-		//}
+				await UnitOfWork.College.InsertAsync(Data);
+				var affectedRows = await UnitOfWork.SaveChangesAsync();
+				var success = affectedRows > 0;
+
+				return success
+					? DataService<College>.SuccessResult(Data, "Record has been success")
+					: DataService<College>.FailureResult("fail");
+			}
+			catch (Exception ex)
+			{
+				return DataService<College>.FailureResult(ex.Message, "some error");
+			}
+		}
 
 		//public async Task<ServiceResponse<CollegeResponse>> UpdateAsync(CollegeUpdate Model)
 		//{

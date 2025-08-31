@@ -2,7 +2,7 @@
 {
     public interface IJobPostingApplyService
     {
-		//Task<Common.ServiceResponse<Common.JobPostingApplyResponse>> InsertAsync(Common.JobPostingApplyInsert Model);
+		Task<Common.DataService<JobPostingApply>> InsertAsync(Common.JobPostingApplyInsert Model);
 		//Task<Common.ServiceResponse<Common.JobPostingApplyResponse>> UpdateAsync(Common.JobPostingApplyUpdate Model);
 		//Task<Common.ServiceResponse<Common.JobPostingApplyResponse>> DeleteAsync(Common.JobPostingApplyDelete Model);
 		//Task<Common.ServiceResponse<Common.JobPostingApplyResponse>> SelectAsync(Common.JobPostingApplySelect Model);

@@ -2,7 +2,7 @@
 {
     public interface IManagerDetailService
     {
-		//Task<Common.ServiceResponse<Common.ManagerDetailResponse>> InsertAsync(Common.ManagerDetailInsert Model);
+		Task<Common.DataService<ManagerDetail>> InsertAsync(Common.ManagerDetailInsert Model);
 		//Task<Common.ServiceResponse<Common.ManagerDetailResponse>> UpdateAsync(Common.ManagerDetailUpdate Model);
 		//Task<Common.ServiceResponse<Common.ManagerDetailResponse>> DeleteAsync(Common.ManagerDetailDelete Model);
 		//Task<Common.ServiceResponse<Common.ManagerDetailResponse>> SelectAsync(Common.ManagerDetailSelect Model);

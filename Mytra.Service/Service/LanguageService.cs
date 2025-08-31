@@ -18,24 +18,37 @@
 			Validator = validator;
 		}
 
-		//public async Task<ServiceResponse<LanguageResponse>> InsertAsync(LanguageInsert Model)
-		//{
-		//	Data = Mapper.Map<Language>(Model);
-		//	Data.Id = Guid.NewGuid();
-		//	Data.RegisterDate = DateTime.Now;
-		//	Data.UpdateDate = DateTime.Now;
-		//	Data.IsActive = true;
+		public async Task<DataService<Language>> InsertAsync(LanguageInsert Model)
+		{
+			try
+			{
+				Data = Mapper.Map<Language>(Model);
+				Data.Id = Guid.NewGuid();
+				Data.RegisterDate = DateTime.Now;
+				Data.UpdateDate = DateTime.Now;
+				Data.IsActive = true;
 
-		//	Validator.ValidateAndThrow<Language>(Data);
-		//	await UnitOfWork.Language.InsertAsync(Data);
-		//	Success = await UnitOfWork.SaveChangesAsync();
+				var validationResult = await Validator.ValidateAsync(Data);
+				if (!validationResult.IsValid)
+				{
+					return DataService<Language>.FailureResult(
+						validationResult.Errors.Select(e => e.ErrorMessage).ToList(),
+						"Validasyon hatası");
+				}
 
-		//	return new ServiceResponse<LanguageResponse>
-		//	{
-		//		Success = Success,
-		//		ResponseData = Mapper.Map<LanguageResponse>(Data)
-		//	};
-		//}
+				await UnitOfWork.Language.InsertAsync(Data);
+				var affectedRows = await UnitOfWork.SaveChangesAsync();
+				var success = affectedRows > 0;
+
+				return success
+					? DataService<Language>.SuccessResult(Data, "Record has been success")
+					: DataService<Language>.FailureResult("fail");
+			}
+			catch (Exception ex)
+			{
+				return DataService<Language>.FailureResult(ex.Message, "some error");
+			}
+		}
 
 		//public async Task<ServiceResponse<LanguageResponse>> UpdateAsync(LanguageUpdate Model)
 		//{

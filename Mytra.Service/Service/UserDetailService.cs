@@ -1,4 +1,4 @@
-namespace Mytra.Service
+﻿namespace Mytra.Service
 {
 	using Core;
 	using Common;
@@ -18,24 +18,37 @@ namespace Mytra.Service
 			Validator = validator;
 		}
 
-		//public async Task<ServiceResponse<UserDetailResponse>> InsertAsync(UserDetailInsert Model)
-		//{
-		//	Data = Mapper.Map<UserDetail>(Model);
-		//	Data.Id = Guid.NewGuid();
-		//	Data.RegisterDate = DateTime.Now;
-		//	Data.UpdateDate = DateTime.Now;
-		//	Data.IsActive = true;
+		public async Task<DataService<UserDetail>> InsertAsync(UserDetailInsert Model)
+		{
+			try
+			{
+				Data = Mapper.Map<UserDetail>(Model);
+				Data.Id = Guid.NewGuid();
+				Data.RegisterDate = DateTime.Now;
+				Data.UpdateDate = DateTime.Now;
+				Data.IsActive = true;
 
-		//	Validator.ValidateAndThrow<UserDetail>(Data);
-		//	await UnitOfWork.UserDetail.InsertAsync(Data);
-		//	Success = await UnitOfWork.SaveChangesAsync();
+				var validationResult = await Validator.ValidateAsync(Data);
+				if (!validationResult.IsValid)
+				{
+					return DataService<UserDetail>.FailureResult(
+						validationResult.Errors.Select(e => e.ErrorMessage).ToList(),
+						"Validasyon hatası");
+				}
 
-		//	return new ServiceResponse<UserDetailResponse>()
-		//	{
-		//		Success = Success,
-		//		ResponseData = Mapper.Map<UserDetailResponse>(Data)
-		//	};
-		//}
+				await UnitOfWork.UserDetail.InsertAsync(Data);
+				var affectedRows = await UnitOfWork.SaveChangesAsync();
+				var success = affectedRows > 0;
+
+				return success
+					? DataService<UserDetail>.SuccessResult(Data, "Record has been success")
+					: DataService<UserDetail>.FailureResult("fail");
+			}
+			catch (Exception ex)
+			{
+				return DataService<UserDetail>.FailureResult(ex.Message, "some error");
+			}
+		}
 
 		//public async Task<ServiceResponse<UserDetailResponse>> UpdateAsync(UserDetailUpdate Model)
 		//{
