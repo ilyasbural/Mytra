@@ -3,9 +3,9 @@
     public interface ICandidatePhotoService
     {
 		Task<Common.DataService<CandidatePhoto>> InsertAsync(Common.CandidatePhotoInsert Model);
-		//Task<Common.ServiceResponse<Common.CandidatePhotoResponse>> UpdateAsync(Common.CandidatePhotoUpdate Model);
-		//Task<Common.ServiceResponse<Common.CandidatePhotoResponse>> DeleteAsync(Common.CandidatePhotoDelete Model);
-		//Task<Common.ServiceResponse<Common.CandidatePhotoResponse>> SelectAsync(Common.CandidatePhotoSelect Model);
-		//Task<Common.ServiceResponse<Common.CandidatePhotoResponse>> SelectSingleAsync(Common.CandidatePhotoSelectSingle Model);
+		Task<Common.DataService<CandidatePhoto>> UpdateAsync(Common.CandidatePhotoUpdate Model);
+		Task<Common.DataService<CandidatePhoto>> DeleteAsync(Common.CandidatePhotoDelete Model);
+		Task<Common.DataService<CandidatePhoto>> SelectAsync(Common.CandidatePhotoSelect Model);
+		Task<Common.DataService<CandidatePhoto>> SelectSingleAsync(Common.CandidatePhotoSelectSingle Model);
 	}
 }

@@ -3,9 +3,9 @@
     public interface IJobPostingDetailService
     {
 		Task<Common.DataService<JobPostingDetail>> InsertAsync(Common.JobPostingDetailInsert Model);
-		//Task<Common.ServiceResponse<Common.JobPostingDetailResponse>> UpdateAsync(Common.JobPostingDetailUpdate Model);
-		//Task<Common.ServiceResponse<Common.JobPostingDetailResponse>> DeleteAsync(Common.JobPostingDetailDelete Model);
-		//Task<Common.ServiceResponse<Common.JobPostingDetailResponse>> SelectAsync(Common.JobPostingDetailSelect Model);
-		//Task<Common.ServiceResponse<Common.JobPostingDetailResponse>> SelectSingleAsync(Common.JobPostingDetailSelectSingle Model);
+		Task<Common.DataService<JobPostingDetail>> UpdateAsync(Common.JobPostingDetailUpdate Model);
+		Task<Common.DataService<JobPostingDetail>> DeleteAsync(Common.JobPostingDetailDelete Model);
+		Task<Common.DataService<JobPostingDetail>> SelectAsync(Common.JobPostingDetailSelect Model);
+		Task<Common.DataService<JobPostingDetail>> SelectSingleAsync(Common.JobPostingDetailSelectSingle Model);
 	}
 }

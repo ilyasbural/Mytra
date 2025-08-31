@@ -50,20 +50,32 @@
 			}
 		}
 
-		//public async Task<ServiceResponse<CandidateAuthenticationResponse>> UpdateAsync(CandidateAuthenticationUpdate Model)
-		//{
-		//	Collection = await UnitOfWork.CandidateAuthentication.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
-		//	CandidateAuthentication CandidateAuthentication = Collection.SingleOrDefault()!;
-		//	CandidateAuthentication.Name = Model.Name;
-		//	await UnitOfWork.CandidateAuthentication.UpdateAsync(CandidateAuthentication);
-		//	Success = await UnitOfWork.SaveChangesAsync();
+		public async Task<DataService<CandidateAuthentication>> UpdateAsync(CandidateAuthenticationUpdate Model)
+		{
+			try
+			{
+				Collection = await UnitOfWork.CandidateAuthentication.SelectAsync(x => x.Id == Model.Id);
+				if (Collection == null)
+					return DataService<CandidateAuthentication>.FailureResult("Kayıt bulunamadı");
 
-		//	return new ServiceResponse<CandidateAuthenticationResponse>
-		//	{
-		//		Success = Success,
-		//		ResponseData = Mapper.Map<CandidateAuthenticationResponse>(CandidateAuthentication)
-		//	};
-		//}
+				Data = Collection.SingleOrDefault()!;
+				//Data = Mapper.Map(model, Data);
+				Data.Name = Model.Name;
+				Data.UpdateDate = DateTime.Now;
+
+				await UnitOfWork.CandidateAuthentication.InsertAsync(Data);
+				var affectedRows = await UnitOfWork.SaveChangesAsync();
+				var success = affectedRows > 0;
+
+				return Success
+					? DataService<CandidateAuthentication>.SuccessResult(Data, "Kayıt güncellendi")
+					: DataService<CandidateAuthentication>.FailureResult("Kayıt güncellenemedi");
+			}
+			catch (Exception ex)
+			{
+				return DataService<CandidateAuthentication>.FailureResult(ex.Message, "Beklenmeyen hata oluştu");
+			}
+		}
 
 		//public async Task<ServiceResponse<CandidateAuthenticationResponse>> DeleteAsync(CandidateAuthenticationDelete Model)
 		//{

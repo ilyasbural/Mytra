@@ -3,9 +3,9 @@
     public interface IInstitutionService
     {
 		Task<Common.DataService<Institution>> InsertAsync(Common.InstitutionInsert Model);
-		//Task<Common.ServiceResponse<Common.InstitutionResponse>> UpdateAsync(Common.InstitutionUpdate Model);
-		//Task<Common.ServiceResponse<Common.InstitutionResponse>> DeleteAsync(Common.InstitutionDelete Model);
-		//Task<Common.ServiceResponse<Common.InstitutionResponse>> SelectAsync(Common.InstitutionSelect Model);
-		//Task<Common.ServiceResponse<Common.InstitutionResponse>> SelectSingleAsync(Common.InstitutionSelectSingle Model);
+		Task<Common.DataService<Institution>> UpdateAsync(Common.InstitutionUpdate Model);
+		Task<Common.DataService<Institution>> DeleteAsync(Common.InstitutionDelete Model);
+		Task<Common.DataService<Institution>> SelectAsync(Common.InstitutionSelect Model);
+		Task<Common.DataService<Institution>> SelectSingleAsync(Common.InstitutionSelectSingle Model);
 	}
 }

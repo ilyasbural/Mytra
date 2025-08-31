@@ -3,9 +3,9 @@
     public interface ICandidateDetailService
     {
 		Task<Common.DataService<CandidateDetail>> InsertAsync(Common.CandidateDetailInsert Model);
-		//Task<Common.ServiceResponse<Common.CandidateDetailResponse>> UpdateAsync(Common.CandidateDetailUpdate Model);
-		//Task<Common.ServiceResponse<Common.CandidateDetailResponse>> DeleteAsync(Common.CandidateDetailDelete Model);
-		//Task<Common.ServiceResponse<Common.CandidateDetailResponse>> SelectAsync(Common.CandidateDetailSelect Model);
-		//Task<Common.ServiceResponse<Common.CandidateDetailResponse>> SelectSingleAsync(Common.CandidateDetailSelectSingle Model);
+		Task<Common.DataService<CandidateDetail>> UpdateAsync(Common.CandidateDetailUpdate Model);
+		Task<Common.DataService<CandidateDetail>> DeleteAsync(Common.CandidateDetailDelete Model);
+		Task<Common.DataService<CandidateDetail>> SelectAsync(Common.CandidateDetailSelect Model);
+		Task<Common.DataService<CandidateDetail>> SelectSingleAsync(Common.CandidateDetailSelectSingle Model);
 	}
 }

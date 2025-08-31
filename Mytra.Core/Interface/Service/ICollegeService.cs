@@ -3,9 +3,9 @@
     public interface ICollegeService
     {
 		Task<Common.DataService<College>> InsertAsync(Common.CollegeInsert Model);
-		//Task<Common.ServiceResponse<Common.CollegeResponse>> UpdateAsync(Common.CollegeUpdate Model);
-		//Task<Common.ServiceResponse<Common.CollegeResponse>> DeleteAsync(Common.CollegeDelete Model);
-		//Task<Common.ServiceResponse<Common.CollegeResponse>> SelectAsync(Common.CollegeSelect Model);
-		//Task<Common.ServiceResponse<Common.CollegeResponse>> SelectSingleAsync(Common.CollegeSelectSingle Model);
+		Task<Common.DataService<College>> UpdateAsync(Common.CollegeUpdate Model);
+		Task<Common.DataService<College>> DeleteAsync(Common.CollegeDelete Model);
+		Task<Common.DataService<College>> SelectAsync(Common.CollegeSelect Model);
+		Task<Common.DataService<College>> SelectSingleAsync(Common.CollegeSelectSingle Model);
 	}
 }

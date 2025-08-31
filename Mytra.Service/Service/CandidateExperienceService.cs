@@ -18,6 +18,11 @@
 			Validator = validator;
 		}
 
+		public Task<DataService<CandidateExperience>> DeleteAsync(CandidateExperienceDelete Model)
+		{
+			throw new NotImplementedException();
+		}
+
 		public async Task<DataService<CandidateExperience>> InsertAsync(CandidateExperienceInsert Model)
 		{
 			try
@@ -48,6 +53,21 @@
 			{
 				return DataService<CandidateExperience>.FailureResult(ex.Message, "some error");
 			}
+		}
+
+		public Task<DataService<CandidateExperience>> SelectAsync(CandidateExperienceSelect Model)
+		{
+			throw new NotImplementedException();
+		}
+
+		public Task<DataService<CandidateExperience>> SelectSingleAsync(CandidateExperienceSelectSingle Model)
+		{
+			throw new NotImplementedException();
+		}
+
+		public Task<DataService<CandidateExperience>> UpdateAsync(CandidateExperienceUpdate Model)
+		{
+			throw new NotImplementedException();
 		}
 
 		//public async Task<ServiceResponse<CandidateExperienceResponse>> UpdateAsync(CandidateExperienceUpdate Model)

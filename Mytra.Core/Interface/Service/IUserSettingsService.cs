@@ -3,9 +3,9 @@
     public interface IUserSettingsService
     {
 		Task<Common.DataService<UserSettings>> InsertAsync(Common.UserSettingsInsert Model);
-		//Task<Common.ServiceResponse<Common.UserSettingsResponse>> UpdateAsync(Common.UserSettingsUpdate Model);
-		//Task<Common.ServiceResponse<Common.UserSettingsResponse>> DeleteAsync(Common.UserSettingsDelete Model);
-		//Task<Common.ServiceResponse<Common.UserSettingsResponse>> SelectAsync(Common.UserSettingsSelect Model);
-		//Task<Common.ServiceResponse<Common.UserSettingsResponse>> SelectSingleAsync(Common.UserSettingsSelectSingle Model);
+		Task<Common.DataService<UserSettings>> UpdateAsync(Common.UserSettingsUpdate Model);
+		Task<Common.DataService<UserSettings>> DeleteAsync(Common.UserSettingsDelete Model);
+		Task<Common.DataService<UserSettings>> SelectAsync(Common.UserSettingsSelect Model);
+		Task<Common.DataService<UserSettings>> SelectSingleAsync(Common.UserSettingsSelectSingle Model);
 	}
 }

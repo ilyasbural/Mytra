@@ -3,9 +3,9 @@
     public interface ICandidateSkillsService
     {
 		Task<Common.DataService<CandidateSkills>> InsertAsync(Common.CandidateSkillsInsert Model);
-		//Task<Common.ServiceResponse<Common.CandidateSkillsResponse>> UpdateAsync(Common.CandidateSkillsUpdate Model);
-		//Task<Common.ServiceResponse<Common.CandidateSkillsResponse>> DeleteAsync(Common.CandidateSkillsDelete Model);
-		//Task<Common.ServiceResponse<Common.CandidateSkillsResponse>> SelectAsync(Common.CandidateSkillsSelect Model);
-		//Task<Common.ServiceResponse<Common.CandidateSkillsResponse>> SelectSingleAsync(Common.CandidateSkillsSelectSingle Model);
+		Task<Common.DataService<CandidateSkills>> UpdateAsync(Common.CandidateSkillsUpdate Model);
+		Task<Common.DataService<CandidateSkills>> DeleteAsync(Common.CandidateSkillsDelete Model);
+		Task<Common.DataService<CandidateSkills>> SelectAsync(Common.CandidateSkillsSelect Model);
+		Task<Common.DataService<CandidateSkills>> SelectSingleAsync(Common.CandidateSkillsSelectSingle Model);
 	}
 }

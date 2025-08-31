@@ -3,9 +3,9 @@
     public interface ICandidateSettingsService
     {
 		Task<Common.DataService<CandidateSettings>> InsertAsync(Common.CandidateSettingsInsert Model);
-		//Task<Common.ServiceResponse<Common.CandidateSettingsResponse>> UpdateAsync(Common.CandidateSettingsUpdate Model);
-		//Task<Common.ServiceResponse<Common.CandidateSettingsResponse>> DeleteAsync(Common.CandidateSettingsDelete Model);
-		//Task<Common.ServiceResponse<Common.CandidateSettingsResponse>> SelectAsync(Common.CandidateSettingsSelect Model);
-		//Task<Common.ServiceResponse<Common.CandidateSettingsResponse>> SelectSingleAsync(Common.CandidateSettingsSelectSingle Model);
+		Task<Common.DataService<CandidateSettings>> UpdateAsync(Common.CandidateSettingsUpdate Model);
+		Task<Common.DataService<CandidateSettings>> DeleteAsync(Common.CandidateSettingsDelete Model);
+		Task<Common.DataService<CandidateSettings>> SelectAsync(Common.CandidateSettingsSelect Model);
+		Task<Common.DataService<CandidateSettings>> SelectSingleAsync(Common.CandidateSettingsSelectSingle Model);
 	}
 }
