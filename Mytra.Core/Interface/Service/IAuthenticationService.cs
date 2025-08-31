@@ -2,6 +2,6 @@
 {
 	public interface IAuthenticationService
 	{
-		Task<Common.ServiceResponse<Common.AuthenticationResponse>> AuthenticationAsync(Common.Authentication Model);
+		//Task<Common.ServiceResponse<Common.AuthenticationResponse>> AuthenticationAsync(Common.Authentication Model);
 	}
 }

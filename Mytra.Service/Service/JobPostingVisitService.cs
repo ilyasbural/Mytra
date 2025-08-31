@@ -18,70 +18,70 @@
 			Validator = validator;
 		}
 
-		public async Task<ServiceResponse<JobPostingVisitResponse>> InsertAsync(JobPostingVisitInsert Model)
-		{
-			Data = Mapper.Map<JobPostingVisit>(Model);
-			Data.Id = Guid.NewGuid();
-			Data.RegisterDate = DateTime.Now;
-			Data.UpdateDate = DateTime.Now;
-			Data.IsActive = true;
+		//public async Task<ServiceResponse<JobPostingVisitResponse>> InsertAsync(JobPostingVisitInsert Model)
+		//{
+		//	Data = Mapper.Map<JobPostingVisit>(Model);
+		//	Data.Id = Guid.NewGuid();
+		//	Data.RegisterDate = DateTime.Now;
+		//	Data.UpdateDate = DateTime.Now;
+		//	Data.IsActive = true;
 
-			Validator.ValidateAndThrow<JobPostingVisit>(Data);
-			await UnitOfWork.JobPostingVisit.InsertAsync(Data);
-			Success = await UnitOfWork.SaveChangesAsync();
+		//	Validator.ValidateAndThrow<JobPostingVisit>(Data);
+		//	await UnitOfWork.JobPostingVisit.InsertAsync(Data);
+		//	Success = await UnitOfWork.SaveChangesAsync();
 
-			return new ServiceResponse<JobPostingVisitResponse>
-			{
-				Success = Success,
-				ResponseData = Mapper.Map<JobPostingVisitResponse>(Data)
-			};
-		}
+		//	return new ServiceResponse<JobPostingVisitResponse>
+		//	{
+		//		Success = Success,
+		//		ResponseData = Mapper.Map<JobPostingVisitResponse>(Data)
+		//	};
+		//}
 
-		public async Task<ServiceResponse<JobPostingVisitResponse>> UpdateAsync(JobPostingVisitUpdate Model)
-		{
-			Collection = await UnitOfWork.JobPostingVisit.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
-			JobPostingVisit JobPostingVisit = Collection.SingleOrDefault()!;
-			JobPostingVisit.Name = Model.Name;
-			await UnitOfWork.JobPostingVisit.UpdateAsync(JobPostingVisit);
-			Success = await UnitOfWork.SaveChangesAsync();
+		//public async Task<ServiceResponse<JobPostingVisitResponse>> UpdateAsync(JobPostingVisitUpdate Model)
+		//{
+		//	Collection = await UnitOfWork.JobPostingVisit.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+		//	JobPostingVisit JobPostingVisit = Collection.SingleOrDefault()!;
+		//	JobPostingVisit.Name = Model.Name;
+		//	await UnitOfWork.JobPostingVisit.UpdateAsync(JobPostingVisit);
+		//	Success = await UnitOfWork.SaveChangesAsync();
 
-			return new ServiceResponse<JobPostingVisitResponse>
-			{
-				Success = Success,
-				ResponseData = Mapper.Map<JobPostingVisitResponse>(JobPostingVisit)
-			};
-		}
+		//	return new ServiceResponse<JobPostingVisitResponse>
+		//	{
+		//		Success = Success,
+		//		ResponseData = Mapper.Map<JobPostingVisitResponse>(JobPostingVisit)
+		//	};
+		//}
 
-		public async Task<ServiceResponse<JobPostingVisitResponse>> DeleteAsync(JobPostingVisitDelete Model)
-		{
-			Collection = await UnitOfWork.JobPostingVisit.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
-			JobPostingVisit JobPostingVisit = Collection.SingleOrDefault()!;
-			await UnitOfWork.JobPostingVisit.DeleteAsync(JobPostingVisit);
-			Success = await UnitOfWork.SaveChangesAsync();
+		//public async Task<ServiceResponse<JobPostingVisitResponse>> DeleteAsync(JobPostingVisitDelete Model)
+		//{
+		//	Collection = await UnitOfWork.JobPostingVisit.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+		//	JobPostingVisit JobPostingVisit = Collection.SingleOrDefault()!;
+		//	await UnitOfWork.JobPostingVisit.DeleteAsync(JobPostingVisit);
+		//	Success = await UnitOfWork.SaveChangesAsync();
 
-			return new ServiceResponse<JobPostingVisitResponse>
-			{
-				Success = Success,
-				ResponseData = Mapper.Map<JobPostingVisitResponse>(JobPostingVisit)
-			};
-		}
+		//	return new ServiceResponse<JobPostingVisitResponse>
+		//	{
+		//		Success = Success,
+		//		ResponseData = Mapper.Map<JobPostingVisitResponse>(JobPostingVisit)
+		//	};
+		//}
 
-		public async Task<ServiceResponse<JobPostingVisitResponse>> SelectAsync(JobPostingVisitSelect Model)
-		{
-			return new ServiceResponse<JobPostingVisitResponse>
-			{
-				ResponseDataSource = Mapper.Map<List<JobPostingVisitResponse>>
-				(await UnitOfWork.JobPostingVisit.SelectAsync(x => x.IsActive == true))
-			};
-		}
+		//public async Task<ServiceResponse<JobPostingVisitResponse>> SelectAsync(JobPostingVisitSelect Model)
+		//{
+		//	return new ServiceResponse<JobPostingVisitResponse>
+		//	{
+		//		ResponseDataSource = Mapper.Map<List<JobPostingVisitResponse>>
+		//		(await UnitOfWork.JobPostingVisit.SelectAsync(x => x.IsActive == true))
+		//	};
+		//}
 
-		public async Task<ServiceResponse<JobPostingVisitResponse>> SelectSingleAsync(JobPostingVisitSelectSingle Model)
-		{
-			return new ServiceResponse<JobPostingVisitResponse>
-			{
-				ResponseDataSource = Mapper.Map<List<JobPostingVisitResponse>>
-				(await UnitOfWork.JobPostingVisit.SelectAsync(x => x.Id == Model.Id && x.IsActive == true))
-			};
-		}
+		//public async Task<ServiceResponse<JobPostingVisitResponse>> SelectSingleAsync(JobPostingVisitSelectSingle Model)
+		//{
+		//	return new ServiceResponse<JobPostingVisitResponse>
+		//	{
+		//		ResponseDataSource = Mapper.Map<List<JobPostingVisitResponse>>
+		//		(await UnitOfWork.JobPostingVisit.SelectAsync(x => x.Id == Model.Id && x.IsActive == true))
+		//	};
+		//}
 	}
 }

@@ -72,7 +72,7 @@
             Service.AddSingleton<IValidator<UserSettings>, UserSettingsValidator>();
             Service.AddSingleton<IValidator<User>, UserValidator>();
 
-			Service.AddScoped<IAuthenticationService, AuthenticationService>();
+            //Service.AddScoped<ICandidateLoginService, CandidateLoginService>();
             Service.AddScoped<ICandidateAuthenticationService, CandidateAuthenticationService>();
             Service.AddScoped<ICandidateCertificateService, CandidateCertificateService>();
             Service.AddScoped<ICandidateContactService, CandidateContactService>();
@@ -92,17 +92,18 @@
             Service.AddScoped<IJobPostingService, JobPostingService>();
             Service.AddScoped<IJobPostingVisitService, JobPostingVisitService>();
             Service.AddScoped<ILanguageService, LanguageService>();
-			Service.AddScoped<IManagerAuthenticationService, ManagerAuthenticationService>();
-			Service.AddScoped<IManagerDetailService, ManagerDetailService>();
-			Service.AddScoped<IManagerService, ManagerService>();
-			Service.AddScoped<IManagerSettingsService, ManagerSettingsService>();
-			Service.AddScoped<ISkillsService, SkillsService>();
-			Service.AddScoped<IUserAuthenticationService, UserAuthenticationService>();
-			Service.AddScoped<IUserDetailService, UserDetailService>();
-			Service.AddScoped<IUserService, UserService>();
-			Service.AddScoped<IUserSettingsService, UserSettingsService>();
+            Service.AddScoped<IManagerAuthenticationService, ManagerAuthenticationService>();
+            Service.AddScoped<IManagerDetailService, ManagerDetailService>();
+            Service.AddScoped<IManagerService, ManagerService>();
+            Service.AddScoped<IManagerSettingsService, ManagerSettingsService>();
+            Service.AddScoped<ISkillsService, SkillsService>();
+            //Service.AddScoped<IUserLoginService, UserLoginService>();
+            Service.AddScoped<IUserAuthenticationService, UserAuthenticationService>();
+            Service.AddScoped<IUserDetailService, UserDetailService>();
+            Service.AddScoped<IUserService, UserService>();
+            Service.AddScoped<IUserSettingsService, UserSettingsService>();
 
-			return Service;
+            return Service;
         }
     }
 }

@@ -18,70 +18,70 @@ namespace Mytra.Service
 			Validator = validator;
 		}
 
-		public async Task<ServiceResponse<UserDetailResponse>> InsertAsync(UserDetailInsert Model)
-		{
-			Data = Mapper.Map<UserDetail>(Model);
-			Data.Id = Guid.NewGuid();
-			Data.RegisterDate = DateTime.Now;
-			Data.UpdateDate = DateTime.Now;
-			Data.IsActive = true;
+		//public async Task<ServiceResponse<UserDetailResponse>> InsertAsync(UserDetailInsert Model)
+		//{
+		//	Data = Mapper.Map<UserDetail>(Model);
+		//	Data.Id = Guid.NewGuid();
+		//	Data.RegisterDate = DateTime.Now;
+		//	Data.UpdateDate = DateTime.Now;
+		//	Data.IsActive = true;
 
-			Validator.ValidateAndThrow<UserDetail>(Data);
-			await UnitOfWork.UserDetail.InsertAsync(Data);
-			Success = await UnitOfWork.SaveChangesAsync();
+		//	Validator.ValidateAndThrow<UserDetail>(Data);
+		//	await UnitOfWork.UserDetail.InsertAsync(Data);
+		//	Success = await UnitOfWork.SaveChangesAsync();
 
-			return new ServiceResponse<UserDetailResponse>()
-			{
-				Success = Success,
-				ResponseData = Mapper.Map<UserDetailResponse>(Data)
-			};
-		}
+		//	return new ServiceResponse<UserDetailResponse>()
+		//	{
+		//		Success = Success,
+		//		ResponseData = Mapper.Map<UserDetailResponse>(Data)
+		//	};
+		//}
 
-		public async Task<ServiceResponse<UserDetailResponse>> UpdateAsync(UserDetailUpdate Model)
-		{
-			Collection = await UnitOfWork.UserDetail.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
-			UserDetail UserDetail = Collection.SingleOrDefault()!;
-			UserDetail.Name = Model.Name;
-			await UnitOfWork.UserDetail.UpdateAsync(UserDetail);
-			Success = await UnitOfWork.SaveChangesAsync();
+		//public async Task<ServiceResponse<UserDetailResponse>> UpdateAsync(UserDetailUpdate Model)
+		//{
+		//	Collection = await UnitOfWork.UserDetail.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+		//	UserDetail UserDetail = Collection.SingleOrDefault()!;
+		//	UserDetail.Name = Model.Name;
+		//	await UnitOfWork.UserDetail.UpdateAsync(UserDetail);
+		//	Success = await UnitOfWork.SaveChangesAsync();
 
-			return new ServiceResponse<UserDetailResponse>()
-			{
-				Success = Success,
-				ResponseData = Mapper.Map<UserDetailResponse>(UserDetail)
-			};
-		}
+		//	return new ServiceResponse<UserDetailResponse>()
+		//	{
+		//		Success = Success,
+		//		ResponseData = Mapper.Map<UserDetailResponse>(UserDetail)
+		//	};
+		//}
 
-		public async Task<ServiceResponse<UserDetailResponse>> DeleteAsync(UserDetailDelete Model)
-		{
-			Collection = await UnitOfWork.UserDetail.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
-			UserDetail UserDetail = Collection.SingleOrDefault()!;
-			await UnitOfWork.UserDetail.DeleteAsync(UserDetail);
-			Success = await UnitOfWork.SaveChangesAsync();
+		//public async Task<ServiceResponse<UserDetailResponse>> DeleteAsync(UserDetailDelete Model)
+		//{
+		//	Collection = await UnitOfWork.UserDetail.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+		//	UserDetail UserDetail = Collection.SingleOrDefault()!;
+		//	await UnitOfWork.UserDetail.DeleteAsync(UserDetail);
+		//	Success = await UnitOfWork.SaveChangesAsync();
 
-			return new ServiceResponse<UserDetailResponse>()
-			{
-				Success = Success,
-				ResponseData = Mapper.Map<UserDetailResponse>(UserDetail)
-			};
-		}
+		//	return new ServiceResponse<UserDetailResponse>()
+		//	{
+		//		Success = Success,
+		//		ResponseData = Mapper.Map<UserDetailResponse>(UserDetail)
+		//	};
+		//}
 
-		public async Task<ServiceResponse<UserDetailResponse>> SelectAsync(UserDetailSelect Model)
-		{
-			return new ServiceResponse<UserDetailResponse>()
-			{
-				ResponseDataSource = Mapper.Map<List<UserDetailResponse>>
-				(await UnitOfWork.UserDetail.SelectAsync(x => x.IsActive == true))
-			};
-		}
+		//public async Task<ServiceResponse<UserDetailResponse>> SelectAsync(UserDetailSelect Model)
+		//{
+		//	return new ServiceResponse<UserDetailResponse>()
+		//	{
+		//		ResponseDataSource = Mapper.Map<List<UserDetailResponse>>
+		//		(await UnitOfWork.UserDetail.SelectAsync(x => x.IsActive == true))
+		//	};
+		//}
 
-		public async Task<ServiceResponse<UserDetailResponse>> SelectSingleAsync(UserDetailSelectSingle Model)
-		{
-			return new ServiceResponse<UserDetailResponse>()
-			{
-				ResponseDataSource = Mapper.Map<List<UserDetailResponse>>
-				(await UnitOfWork.UserDetail.SelectAsync(x => x.Id == Model.Id && x.IsActive == true))
-			};
-		}
+		//public async Task<ServiceResponse<UserDetailResponse>> SelectSingleAsync(UserDetailSelectSingle Model)
+		//{
+		//	return new ServiceResponse<UserDetailResponse>()
+		//	{
+		//		ResponseDataSource = Mapper.Map<List<UserDetailResponse>>
+		//		(await UnitOfWork.UserDetail.SelectAsync(x => x.Id == Model.Id && x.IsActive == true))
+		//	};
+		//}
 	}
 }

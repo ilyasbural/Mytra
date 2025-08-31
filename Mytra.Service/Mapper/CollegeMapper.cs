@@ -9,7 +9,6 @@
 			CreateMap<Common.CollegeDelete, Core.College>().ReverseMap();
 			CreateMap<Common.CollegeSelect, Core.College>().ReverseMap();
 			CreateMap<Common.CollegeSelectSingle, Core.College>().ReverseMap();
-			CreateMap<Common.CollegeResponse, Core.College>().ReverseMap();
 		}
 	}
 }

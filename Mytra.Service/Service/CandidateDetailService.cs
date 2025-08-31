@@ -18,70 +18,70 @@
 			Validator = validator;
 		}
 
-		public async Task<ServiceResponse<CandidateDetailResponse>> InsertAsync(CandidateDetailInsert Model)
-		{
-			Data = Mapper.Map<CandidateDetail>(Model);
-			Data.Id = Guid.NewGuid();
-			Data.RegisterDate = DateTime.Now;
-			Data.UpdateDate = DateTime.Now;
-			Data.IsActive = true;
+		//public async Task<ServiceResponse<CandidateDetailResponse>> InsertAsync(CandidateDetailInsert Model)
+		//{
+		//	Data = Mapper.Map<CandidateDetail>(Model);
+		//	Data.Id = Guid.NewGuid();
+		//	Data.RegisterDate = DateTime.Now;
+		//	Data.UpdateDate = DateTime.Now;
+		//	Data.IsActive = true;
 
-			Validator.ValidateAndThrow<CandidateDetail>(Data);
-			await UnitOfWork.CandidateDetail.InsertAsync(Data);
-			Success = await UnitOfWork.SaveChangesAsync();
+		//	Validator.ValidateAndThrow<CandidateDetail>(Data);
+		//	await UnitOfWork.CandidateDetail.InsertAsync(Data);
+		//	Success = await UnitOfWork.SaveChangesAsync();
 
-			return new ServiceResponse<CandidateDetailResponse>()
-			{
-				Success = Success,
-				ResponseData = Mapper.Map<CandidateDetailResponse>(Data)
-			};
-		}
+		//	return new ServiceResponse<CandidateDetailResponse>()
+		//	{
+		//		Success = Success,
+		//		ResponseData = Mapper.Map<CandidateDetailResponse>(Data)
+		//	};
+		//}
 
-		public async Task<ServiceResponse<CandidateDetailResponse>> UpdateAsync(CandidateDetailUpdate Model)
-		{
-			Collection = await UnitOfWork.CandidateDetail.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
-			CandidateDetail CandidateDetail = Collection.SingleOrDefault()!;
-			CandidateDetail.Name = Model.Name;
-			await UnitOfWork.CandidateDetail.UpdateAsync(CandidateDetail);
-			Success = await UnitOfWork.SaveChangesAsync();
+		//public async Task<ServiceResponse<CandidateDetailResponse>> UpdateAsync(CandidateDetailUpdate Model)
+		//{
+		//	Collection = await UnitOfWork.CandidateDetail.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+		//	CandidateDetail CandidateDetail = Collection.SingleOrDefault()!;
+		//	CandidateDetail.Name = Model.Name;
+		//	await UnitOfWork.CandidateDetail.UpdateAsync(CandidateDetail);
+		//	Success = await UnitOfWork.SaveChangesAsync();
 
-			return new ServiceResponse<CandidateDetailResponse>()
-			{
-				Success = Success,
-				ResponseData = Mapper.Map<CandidateDetailResponse>(CandidateDetail)
-			};
-		}
+		//	return new ServiceResponse<CandidateDetailResponse>()
+		//	{
+		//		Success = Success,
+		//		ResponseData = Mapper.Map<CandidateDetailResponse>(CandidateDetail)
+		//	};
+		//}
 
-		public async Task<ServiceResponse<CandidateDetailResponse>> DeleteAsync(CandidateDetailDelete Model)
-		{
-			Collection = await UnitOfWork.CandidateDetail.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
-			CandidateDetail CandidateDetail = Collection.SingleOrDefault()!;
-			await UnitOfWork.CandidateDetail.DeleteAsync(CandidateDetail);
-			Success = await UnitOfWork.SaveChangesAsync();
+		//public async Task<ServiceResponse<CandidateDetailResponse>> DeleteAsync(CandidateDetailDelete Model)
+		//{
+		//	Collection = await UnitOfWork.CandidateDetail.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+		//	CandidateDetail CandidateDetail = Collection.SingleOrDefault()!;
+		//	await UnitOfWork.CandidateDetail.DeleteAsync(CandidateDetail);
+		//	Success = await UnitOfWork.SaveChangesAsync();
 
-			return new ServiceResponse<CandidateDetailResponse>()
-			{
-				Success = Success,
-				ResponseData = Mapper.Map<CandidateDetailResponse>(CandidateDetail)
-			};
-		}
+		//	return new ServiceResponse<CandidateDetailResponse>()
+		//	{
+		//		Success = Success,
+		//		ResponseData = Mapper.Map<CandidateDetailResponse>(CandidateDetail)
+		//	};
+		//}
 
-		public async Task<ServiceResponse<CandidateDetailResponse>> SelectAsync(CandidateDetailSelect Model)
-		{
-			return new ServiceResponse<CandidateDetailResponse>()
-			{
-				ResponseDataSource = Mapper.Map<List<CandidateDetailResponse>>
-				(await UnitOfWork.CandidateDetail.SelectAsync(x => x.IsActive == true))
-			};
-		}
+		//public async Task<ServiceResponse<CandidateDetailResponse>> SelectAsync(CandidateDetailSelect Model)
+		//{
+		//	return new ServiceResponse<CandidateDetailResponse>()
+		//	{
+		//		ResponseDataSource = Mapper.Map<List<CandidateDetailResponse>>
+		//		(await UnitOfWork.CandidateDetail.SelectAsync(x => x.IsActive == true))
+		//	};
+		//}
 
-		public async Task<ServiceResponse<CandidateDetailResponse>> SelectSingleAsync(CandidateDetailSelectSingle Model)
-		{
-			return new ServiceResponse<CandidateDetailResponse>()
-			{
-				ResponseDataSource = Mapper.Map<List<CandidateDetailResponse>>
-				(await UnitOfWork.CandidateDetail.SelectAsync(x => x.Id == Model.Id && x.IsActive == true))
-			};
-		}
+		//public async Task<ServiceResponse<CandidateDetailResponse>> SelectSingleAsync(CandidateDetailSelectSingle Model)
+		//{
+		//	return new ServiceResponse<CandidateDetailResponse>()
+		//	{
+		//		ResponseDataSource = Mapper.Map<List<CandidateDetailResponse>>
+		//		(await UnitOfWork.CandidateDetail.SelectAsync(x => x.Id == Model.Id && x.IsActive == true))
+		//	};
+		//}
 	}
 }

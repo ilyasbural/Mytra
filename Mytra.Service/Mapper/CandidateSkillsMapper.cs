@@ -9,7 +9,6 @@
 			CreateMap<Common.CandidateSkillsDelete, Core.CandidateSkills>().ReverseMap();
 			CreateMap<Common.CandidateSkillsSelect, Core.CandidateSkills>().ReverseMap();
 			CreateMap<Common.CandidateSkillsSelectSingle, Core.CandidateSkills>().ReverseMap();
-			CreateMap<Common.CandidateSkillsResponse, Core.CandidateSkills>().ReverseMap();
 		}
 	}
 }

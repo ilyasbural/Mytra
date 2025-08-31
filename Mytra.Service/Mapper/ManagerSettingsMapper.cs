@@ -9,7 +9,6 @@
 			CreateMap<Common.ManagerSettingsDelete, Core.ManagerSettings>().ReverseMap();
 			CreateMap<Common.ManagerSettingsSelect, Core.ManagerSettings>().ReverseMap();
 			CreateMap<Common.ManagerSettingsSelectSingle, Core.ManagerSettings>().ReverseMap();
-			CreateMap<Common.ManagerSettingsResponse, Core.ManagerSettings>().ReverseMap();
 		}
 	}
 }

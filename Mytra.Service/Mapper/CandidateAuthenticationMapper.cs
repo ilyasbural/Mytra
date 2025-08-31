@@ -9,7 +9,6 @@
 			CreateMap<Common.CandidateAuthenticationDelete, Core.CandidateAuthentication>().ReverseMap();
 			CreateMap<Common.CandidateAuthenticationSelect, Core.CandidateAuthentication>().ReverseMap();
 			CreateMap<Common.CandidateAuthenticationSelectSingle, Core.CandidateAuthentication>().ReverseMap();
-			CreateMap<Common.CandidateAuthenticationResponse, Core.CandidateAuthentication>().ReverseMap();
 		}
 	}
 }

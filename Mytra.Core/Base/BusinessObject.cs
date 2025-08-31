@@ -4,7 +4,7 @@
     {
         protected T Data { get; set; } = default!;
         protected List<T> Collection { get; set; } = null!;
-        protected int Success { get; set; }
+        protected bool Success { get; set; }
 
         public BusinessObject()
         {

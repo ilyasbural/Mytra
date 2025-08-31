@@ -9,7 +9,6 @@
 			CreateMap<Common.ManagerDelete, Core.Manager>().ReverseMap();
 			CreateMap<Common.ManagerSelect, Core.Manager>().ReverseMap();
 			CreateMap<Common.ManagerSelectSingle, Core.Manager>().ReverseMap();
-			CreateMap<Common.ManagerResponse, Core.Manager>().ReverseMap();
 		}
 	}
 }

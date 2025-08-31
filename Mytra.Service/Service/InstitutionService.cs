@@ -18,70 +18,70 @@
 			Validator = validator;
 		}
 
-		public async Task<ServiceResponse<InstitutionResponse>> InsertAsync(InstitutionInsert Model)
-		{
-			Data = Mapper.Map<Institution>(Model);
-			Data.Id = Guid.NewGuid();
-			Data.RegisterDate = DateTime.Now;
-			Data.UpdateDate = DateTime.Now;
-			Data.IsActive = true;
+		//public async Task<ServiceResponse<InstitutionResponse>> InsertAsync(InstitutionInsert Model)
+		//{
+		//	Data = Mapper.Map<Institution>(Model);
+		//	Data.Id = Guid.NewGuid();
+		//	Data.RegisterDate = DateTime.Now;
+		//	Data.UpdateDate = DateTime.Now;
+		//	Data.IsActive = true;
 
-			Validator.ValidateAndThrow<Institution>(Data);
-			await UnitOfWork.Institution.InsertAsync(Data);
-			Success = await UnitOfWork.SaveChangesAsync();
+		//	Validator.ValidateAndThrow<Institution>(Data);
+		//	await UnitOfWork.Institution.InsertAsync(Data);
+		//	Success = await UnitOfWork.SaveChangesAsync();
 
-			return new ServiceResponse<InstitutionResponse>
-			{
-				Success = Success,
-				ResponseData = Mapper.Map<InstitutionResponse>(Data)
-			};
-		}
+		//	return new ServiceResponse<InstitutionResponse>
+		//	{
+		//		Success = Success,
+		//		ResponseData = Mapper.Map<InstitutionResponse>(Data)
+		//	};
+		//}
 
-		public async Task<ServiceResponse<InstitutionResponse>> UpdateAsync(InstitutionUpdate Model)
-		{
-			Collection = await UnitOfWork.Institution.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
-			Institution Institution = Collection.SingleOrDefault()!;
-			Institution.Name = Model.Name;
-			await UnitOfWork.Institution.UpdateAsync(Institution);
-			Success = await UnitOfWork.SaveChangesAsync();
+		//public async Task<ServiceResponse<InstitutionResponse>> UpdateAsync(InstitutionUpdate Model)
+		//{
+		//	Collection = await UnitOfWork.Institution.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+		//	Institution Institution = Collection.SingleOrDefault()!;
+		//	Institution.Name = Model.Name;
+		//	await UnitOfWork.Institution.UpdateAsync(Institution);
+		//	Success = await UnitOfWork.SaveChangesAsync();
 
-			return new ServiceResponse<InstitutionResponse>
-			{
-				Success = Success,
-				ResponseData = Mapper.Map<InstitutionResponse>(Institution)
-			};
-		}
+		//	return new ServiceResponse<InstitutionResponse>
+		//	{
+		//		Success = Success,
+		//		ResponseData = Mapper.Map<InstitutionResponse>(Institution)
+		//	};
+		//}
 
-		public async Task<ServiceResponse<InstitutionResponse>> DeleteAsync(InstitutionDelete Model)
-		{
-			Collection = await UnitOfWork.Institution.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
-			Institution Institution = Collection.SingleOrDefault()!;
-			await UnitOfWork.Institution.DeleteAsync(Institution);
-			Success = await UnitOfWork.SaveChangesAsync();
+		//public async Task<ServiceResponse<InstitutionResponse>> DeleteAsync(InstitutionDelete Model)
+		//{
+		//	Collection = await UnitOfWork.Institution.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+		//	Institution Institution = Collection.SingleOrDefault()!;
+		//	await UnitOfWork.Institution.DeleteAsync(Institution);
+		//	Success = await UnitOfWork.SaveChangesAsync();
 
-			return new ServiceResponse<InstitutionResponse>
-			{
-				Success = Success,
-				ResponseData = Mapper.Map<InstitutionResponse>(Institution)
-			};
-		}
+		//	return new ServiceResponse<InstitutionResponse>
+		//	{
+		//		Success = Success,
+		//		ResponseData = Mapper.Map<InstitutionResponse>(Institution)
+		//	};
+		//}
 
-		public async Task<ServiceResponse<InstitutionResponse>> SelectAsync(InstitutionSelect Model)
-		{
-			return new ServiceResponse<InstitutionResponse>
-			{
-				ResponseDataSource = Mapper.Map<List<InstitutionResponse>>
-				(await UnitOfWork.Institution.SelectAsync(x => x.IsActive == true))
-			};
-		}
+		//public async Task<ServiceResponse<InstitutionResponse>> SelectAsync(InstitutionSelect Model)
+		//{
+		//	return new ServiceResponse<InstitutionResponse>
+		//	{
+		//		ResponseDataSource = Mapper.Map<List<InstitutionResponse>>
+		//		(await UnitOfWork.Institution.SelectAsync(x => x.IsActive == true))
+		//	};
+		//}
 
-		public async Task<ServiceResponse<InstitutionResponse>> SelectSingleAsync(InstitutionSelectSingle Model)
-		{
-			return new ServiceResponse<InstitutionResponse>
-			{
-				ResponseDataSource = Mapper.Map<List<InstitutionResponse>>
-				(await UnitOfWork.Institution.SelectAsync(x => x.Id == Model.Id && x.IsActive == true))
-			};
-		}
+		//public async Task<ServiceResponse<InstitutionResponse>> SelectSingleAsync(InstitutionSelectSingle Model)
+		//{
+		//	return new ServiceResponse<InstitutionResponse>
+		//	{
+		//		ResponseDataSource = Mapper.Map<List<InstitutionResponse>>
+		//		(await UnitOfWork.Institution.SelectAsync(x => x.Id == Model.Id && x.IsActive == true))
+		//	};
+		//}
 	}
 }

@@ -9,7 +9,6 @@
 			CreateMap<Common.InstitutionDelete, Core.Institution>().ReverseMap();
 			CreateMap<Common.InstitutionSelect, Core.Institution>().ReverseMap();
 			CreateMap<Common.InstitutionSelectSingle, Core.Institution>().ReverseMap();
-			CreateMap<Common.InstitutionResponse, Core.Institution>().ReverseMap();
 		}
 	}
 }

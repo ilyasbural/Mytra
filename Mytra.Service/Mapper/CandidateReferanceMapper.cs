@@ -9,7 +9,6 @@
 			CreateMap<Common.CandidateReferanceDelete, Core.CandidateReferance>().ReverseMap();
 			CreateMap<Common.CandidateReferanceSelect, Core.CandidateReferance>().ReverseMap();
 			CreateMap<Common.CandidateReferanceSelectSingle, Core.CandidateReferance>().ReverseMap();
-			CreateMap<Common.CandidateReferanceResponse, Core.CandidateReferance>().ReverseMap();
 		}
 	}
 }

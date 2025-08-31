@@ -4,7 +4,6 @@
 	using Common;
 	using Core;
 	using FluentValidation;
-	using static System.Runtime.InteropServices.JavaScript.JSType;
 
 	public class AuthenticationService : IAuthenticationService
 	{
@@ -17,12 +16,12 @@
 			UnitOfWork = unitOfWork;
 		}
 
-		public async Task<ServiceResponse<AuthenticationResponse>> AuthenticationAsync(Authentication Model)
-		{
-			return new ServiceResponse<AuthenticationResponse>()
-			{
+		//public async Task<ServiceResponse<AuthenticationResponse>> AuthenticationAsync(Authentication Model)
+		//{
+		//	return new ServiceResponse<AuthenticationResponse>()
+		//	{
 				
-			};
-		}
+		//	};
+		//}
 	}
 }

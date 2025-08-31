@@ -18,70 +18,70 @@ namespace Mytra.Service
 			Validator = validator;
 		}
 
-		public async Task<ServiceResponse<UserResponse>> InsertAsync(UserInsert Model)
-		{
-			Data = Mapper.Map<User>(Model);
-			Data.Id = Guid.NewGuid();
-			Data.RegisterDate = DateTime.Now;
-			Data.UpdateDate = DateTime.Now;
-			Data.IsActive = true;
+		//public async Task<ServiceResponse<UserResponse>> InsertAsync(UserInsert Model)
+		//{
+		//	Data = Mapper.Map<User>(Model);
+		//	Data.Id = Guid.NewGuid();
+		//	Data.RegisterDate = DateTime.Now;
+		//	Data.UpdateDate = DateTime.Now;
+		//	Data.IsActive = true;
 
-			Validator.ValidateAndThrow<User>(Data);
-			await UnitOfWork.User.InsertAsync(Data);
-			Success = await UnitOfWork.SaveChangesAsync();
+		//	Validator.ValidateAndThrow<User>(Data);
+		//	await UnitOfWork.User.InsertAsync(Data);
+		//	Success = await UnitOfWork.SaveChangesAsync();
 
-			return new ServiceResponse<UserResponse>()
-			{
-				Success = Success,
-				ResponseData = Mapper.Map<UserResponse>(Data)
-			};
-		}
+		//	return new ServiceResponse<UserResponse>()
+		//	{
+		//		Success = Success,
+		//		ResponseData = Mapper.Map<UserResponse>(Data)
+		//	};
+		//}
 
-		public async Task<ServiceResponse<UserResponse>> UpdateAsync(UserUpdate Model)
-		{
-			Collection = await UnitOfWork.User.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
-			User User = Collection.SingleOrDefault()!;
-			User.Name = Model.Name;
-			await UnitOfWork.User.UpdateAsync(User);
-			Success = await UnitOfWork.SaveChangesAsync();
+		//public async Task<ServiceResponse<UserResponse>> UpdateAsync(UserUpdate Model)
+		//{
+		//	Collection = await UnitOfWork.User.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+		//	User User = Collection.SingleOrDefault()!;
+		//	User.Name = Model.Name;
+		//	await UnitOfWork.User.UpdateAsync(User);
+		//	Success = await UnitOfWork.SaveChangesAsync();
 
-			return new ServiceResponse<UserResponse>()
-			{
-				Success = Success,
-				ResponseData = Mapper.Map<UserResponse>(User)
-			};
-		}
+		//	return new ServiceResponse<UserResponse>()
+		//	{
+		//		Success = Success,
+		//		ResponseData = Mapper.Map<UserResponse>(User)
+		//	};
+		//}
 
-		public async Task<ServiceResponse<UserResponse>> DeleteAsync(UserDelete Model)
-		{
-			Collection = await UnitOfWork.User.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
-			User User = Collection.SingleOrDefault()!;
-			await UnitOfWork.User.DeleteAsync(User);
-			Success = await UnitOfWork.SaveChangesAsync();
+		//public async Task<ServiceResponse<UserResponse>> DeleteAsync(UserDelete Model)
+		//{
+		//	Collection = await UnitOfWork.User.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+		//	User User = Collection.SingleOrDefault()!;
+		//	await UnitOfWork.User.DeleteAsync(User);
+		//	Success = await UnitOfWork.SaveChangesAsync();
 
-			return new ServiceResponse<UserResponse>()
-			{
-				Success = Success,
-				ResponseData = Mapper.Map<UserResponse>(User)
-			};
-		}
+		//	return new ServiceResponse<UserResponse>()
+		//	{
+		//		Success = Success,
+		//		ResponseData = Mapper.Map<UserResponse>(User)
+		//	};
+		//}
 
-		public async Task<ServiceResponse<UserResponse>> SelectAsync(UserSelect Model)
-		{
-			return new ServiceResponse<UserResponse>()
-			{
-				ResponseDataSource = Mapper.Map<List<UserResponse>>
-				(await UnitOfWork.User.SelectAsync(x => x.IsActive == true))
-			};
-		}
+		//public async Task<ServiceResponse<UserResponse>> SelectAsync(UserSelect Model)
+		//{
+		//	return new ServiceResponse<UserResponse>()
+		//	{
+		//		ResponseDataSource = Mapper.Map<List<UserResponse>>
+		//		(await UnitOfWork.User.SelectAsync(x => x.IsActive == true))
+		//	};
+		//}
 
-		public async Task<ServiceResponse<UserResponse>> SelectSingleAsync(UserSelectSingle Model)
-		{
-			return new ServiceResponse<UserResponse>()
-			{
-				ResponseDataSource = Mapper.Map<List<UserResponse>>
-				(await UnitOfWork.User.SelectAsync(x => x.Id == Model.Id && x.IsActive == true))
-			};
-		}
+		//public async Task<ServiceResponse<UserResponse>> SelectSingleAsync(UserSelectSingle Model)
+		//{
+		//	return new ServiceResponse<UserResponse>()
+		//	{
+		//		ResponseDataSource = Mapper.Map<List<UserResponse>>
+		//		(await UnitOfWork.User.SelectAsync(x => x.Id == Model.Id && x.IsActive == true))
+		//	};
+		//}
 	}
 }

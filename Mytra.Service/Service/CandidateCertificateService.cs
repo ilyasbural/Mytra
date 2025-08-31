@@ -18,70 +18,70 @@
 			Validator = validator;
 		}
 
-		public async Task<ServiceResponse<CandidateCertificateResponse>> InsertAsync(CandidateCertificateInsert Model)
-		{
-			Data = Mapper.Map<CandidateCertificate>(Model);
-			Data.Id = Guid.NewGuid();
-			Data.RegisterDate = DateTime.Now;
-			Data.UpdateDate = DateTime.Now;
-			Data.IsActive = true;
+		//public async Task<ServiceResponse<CandidateCertificateResponse>> InsertAsync(CandidateCertificateInsert Model)
+		//{
+		//	Data = Mapper.Map<CandidateCertificate>(Model);
+		//	Data.Id = Guid.NewGuid();
+		//	Data.RegisterDate = DateTime.Now;
+		//	Data.UpdateDate = DateTime.Now;
+		//	Data.IsActive = true;
 
-			Validator.ValidateAndThrow<CandidateCertificate>(Data);
-			await UnitOfWork.CandidateCertificate.InsertAsync(Data);
-			Success = await UnitOfWork.SaveChangesAsync();
+		//	Validator.ValidateAndThrow<CandidateCertificate>(Data);
+		//	await UnitOfWork.CandidateCertificate.InsertAsync(Data);
+		//	Success = await UnitOfWork.SaveChangesAsync();
 
-			return new ServiceResponse<CandidateCertificateResponse>()
-			{
-				Success = Success,
-				ResponseData = Mapper.Map<CandidateCertificateResponse>(Data),
-			};
-		}
+		//	return new ServiceResponse<CandidateCertificateResponse>()
+		//	{
+		//		Success = Success,
+		//		ResponseData = Mapper.Map<CandidateCertificateResponse>(Data),
+		//	};
+		//}
 
-		public async Task<ServiceResponse<CandidateCertificateResponse>> UpdateAsync(CandidateCertificateUpdate Model)
-		{
-			Collection = await UnitOfWork.CandidateCertificate.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
-			CandidateCertificate CandidateCertificate = Collection.SingleOrDefault()!;
-			CandidateCertificate.Name = Model.Name;
-			await UnitOfWork.CandidateCertificate.UpdateAsync(CandidateCertificate);
-			Success = await UnitOfWork.SaveChangesAsync();
+		//public async Task<ServiceResponse<CandidateCertificateResponse>> UpdateAsync(CandidateCertificateUpdate Model)
+		//{
+		//	Collection = await UnitOfWork.CandidateCertificate.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+		//	CandidateCertificate CandidateCertificate = Collection.SingleOrDefault()!;
+		//	CandidateCertificate.Name = Model.Name;
+		//	await UnitOfWork.CandidateCertificate.UpdateAsync(CandidateCertificate);
+		//	Success = await UnitOfWork.SaveChangesAsync();
 
-			return new ServiceResponse<CandidateCertificateResponse>()
-			{
-				Success = Success,
-				ResponseData = Mapper.Map<CandidateCertificateResponse>(CandidateCertificate)
-			};
-		}
+		//	return new ServiceResponse<CandidateCertificateResponse>()
+		//	{
+		//		Success = Success,
+		//		ResponseData = Mapper.Map<CandidateCertificateResponse>(CandidateCertificate)
+		//	};
+		//}
 
-		public async Task<ServiceResponse<CandidateCertificateResponse>> DeleteAsync(CandidateCertificateDelete Model)
-		{
-			Collection = await UnitOfWork.CandidateCertificate.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
-			CandidateCertificate CandidateCertificate = Collection.SingleOrDefault()!;
-			await UnitOfWork.CandidateCertificate.DeleteAsync(CandidateCertificate);
-			Success = await UnitOfWork.SaveChangesAsync();
+		//public async Task<ServiceResponse<CandidateCertificateResponse>> DeleteAsync(CandidateCertificateDelete Model)
+		//{
+		//	Collection = await UnitOfWork.CandidateCertificate.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+		//	CandidateCertificate CandidateCertificate = Collection.SingleOrDefault()!;
+		//	await UnitOfWork.CandidateCertificate.DeleteAsync(CandidateCertificate);
+		//	Success = await UnitOfWork.SaveChangesAsync();
 
-			return new ServiceResponse<CandidateCertificateResponse>()
-			{
-				Success = Success,
-				ResponseData = Mapper.Map<CandidateCertificateResponse>(CandidateCertificate)
-			};
-		}
+		//	return new ServiceResponse<CandidateCertificateResponse>()
+		//	{
+		//		Success = Success,
+		//		ResponseData = Mapper.Map<CandidateCertificateResponse>(CandidateCertificate)
+		//	};
+		//}
 
-		public async Task<ServiceResponse<CandidateCertificateResponse>> SelectAsync(CandidateCertificateSelect Model)
-		{
-			return new ServiceResponse<CandidateCertificateResponse>()
-			{
-				ResponseDataSource = Mapper.Map<List<CandidateCertificateResponse>>
-				(await UnitOfWork.CandidateCertificate.SelectAsync(x => x.IsActive == true))
-			};
-		}
+		//public async Task<ServiceResponse<CandidateCertificateResponse>> SelectAsync(CandidateCertificateSelect Model)
+		//{
+		//	return new ServiceResponse<CandidateCertificateResponse>()
+		//	{
+		//		ResponseDataSource = Mapper.Map<List<CandidateCertificateResponse>>
+		//		(await UnitOfWork.CandidateCertificate.SelectAsync(x => x.IsActive == true))
+		//	};
+		//}
 
-		public async Task<ServiceResponse<CandidateCertificateResponse>> SelectSingleAsync(CandidateCertificateSelectSingle Model)
-		{
-			return new ServiceResponse<CandidateCertificateResponse>()
-			{
-				ResponseDataSource = Mapper.Map<List<CandidateCertificateResponse>>
-				(await UnitOfWork.CandidateCertificate.SelectAsync(x => x.Id == Model.Id && x.IsActive == true))
-			};
-		}
+		//public async Task<ServiceResponse<CandidateCertificateResponse>> SelectSingleAsync(CandidateCertificateSelectSingle Model)
+		//{
+		//	return new ServiceResponse<CandidateCertificateResponse>()
+		//	{
+		//		ResponseDataSource = Mapper.Map<List<CandidateCertificateResponse>>
+		//		(await UnitOfWork.CandidateCertificate.SelectAsync(x => x.Id == Model.Id && x.IsActive == true))
+		//	};
+		//}
 	}
 }

@@ -9,7 +9,6 @@
 			CreateMap<Common.CandidateDetailDelete, Core.CandidateDetail>().ReverseMap();
 			CreateMap<Common.CandidateDetailSelect, Core.CandidateDetail>().ReverseMap();
 			CreateMap<Common.CandidateDetailSelectSingle, Core.CandidateDetail>().ReverseMap();
-			CreateMap<Common.CandidateDetailResponse, Core.CandidateDetail>().ReverseMap();
 		}
 	}
 }

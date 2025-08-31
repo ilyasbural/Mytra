@@ -18,70 +18,70 @@
 			Validator = validator;
 		}
 
-		public async Task<ServiceResponse<CandidateReferanceResponse>> InsertAsync(CandidateReferanceInsert Model)
-		{
-			Data = Mapper.Map<CandidateReferance>(Model);
-			Data.Id = Guid.NewGuid();
-			Data.RegisterDate = DateTime.Now;
-			Data.UpdateDate = DateTime.Now;
-			Data.IsActive = true;
+		//public async Task<ServiceResponse<CandidateReferanceResponse>> InsertAsync(CandidateReferanceInsert Model)
+		//{
+		//	Data = Mapper.Map<CandidateReferance>(Model);
+		//	Data.Id = Guid.NewGuid();
+		//	Data.RegisterDate = DateTime.Now;
+		//	Data.UpdateDate = DateTime.Now;
+		//	Data.IsActive = true;
 
-			Validator.ValidateAndThrow<CandidateReferance>(Data);
-			await UnitOfWork.CandidateReferance.InsertAsync(Data);
-			Success = await UnitOfWork.SaveChangesAsync();
+		//	Validator.ValidateAndThrow<CandidateReferance>(Data);
+		//	await UnitOfWork.CandidateReferance.InsertAsync(Data);
+		//	Success = await UnitOfWork.SaveChangesAsync();
 
-			return new ServiceResponse<CandidateReferanceResponse>()
-			{
-				Success = Success,
-				ResponseData = Mapper.Map<CandidateReferanceResponse>(Data)
-			};
-		}
+		//	return new ServiceResponse<CandidateReferanceResponse>()
+		//	{
+		//		Success = Success,
+		//		ResponseData = Mapper.Map<CandidateReferanceResponse>(Data)
+		//	};
+		//}
 
-		public async Task<ServiceResponse<CandidateReferanceResponse>> UpdateAsync(CandidateReferanceUpdate Model)
-		{
-			Collection = await UnitOfWork.CandidateReferance.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
-			CandidateReferance CandidateReferance = Collection.SingleOrDefault()!;
-			CandidateReferance.Name = Model.Name;
-			await UnitOfWork.CandidateReferance.UpdateAsync(CandidateReferance);
-			Success = await UnitOfWork.SaveChangesAsync();
+		//public async Task<ServiceResponse<CandidateReferanceResponse>> UpdateAsync(CandidateReferanceUpdate Model)
+		//{
+		//	Collection = await UnitOfWork.CandidateReferance.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+		//	CandidateReferance CandidateReferance = Collection.SingleOrDefault()!;
+		//	CandidateReferance.Name = Model.Name;
+		//	await UnitOfWork.CandidateReferance.UpdateAsync(CandidateReferance);
+		//	Success = await UnitOfWork.SaveChangesAsync();
 
-			return new ServiceResponse<CandidateReferanceResponse>()
-			{
-				Success = Success,
-				ResponseData = Mapper.Map<CandidateReferanceResponse>(CandidateReferance)
-			};
-		}
+		//	return new ServiceResponse<CandidateReferanceResponse>()
+		//	{
+		//		Success = Success,
+		//		ResponseData = Mapper.Map<CandidateReferanceResponse>(CandidateReferance)
+		//	};
+		//}
 
-		public async Task<ServiceResponse<CandidateReferanceResponse>> DeleteAsync(CandidateReferanceDelete Model)
-		{
-			Collection = await UnitOfWork.CandidateReferance.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
-			CandidateReferance CandidateReferance = Collection.SingleOrDefault()!;
-			await UnitOfWork.CandidateReferance.DeleteAsync(CandidateReferance);
-			Success = await UnitOfWork.SaveChangesAsync();
+		//public async Task<ServiceResponse<CandidateReferanceResponse>> DeleteAsync(CandidateReferanceDelete Model)
+		//{
+		//	Collection = await UnitOfWork.CandidateReferance.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+		//	CandidateReferance CandidateReferance = Collection.SingleOrDefault()!;
+		//	await UnitOfWork.CandidateReferance.DeleteAsync(CandidateReferance);
+		//	Success = await UnitOfWork.SaveChangesAsync();
 
-			return new ServiceResponse<CandidateReferanceResponse>()
-			{
-				Success = Success,
-				ResponseData = Mapper.Map<CandidateReferanceResponse>(CandidateReferance)
-			};
-		}
+		//	return new ServiceResponse<CandidateReferanceResponse>()
+		//	{
+		//		Success = Success,
+		//		ResponseData = Mapper.Map<CandidateReferanceResponse>(CandidateReferance)
+		//	};
+		//}
 
-		public async Task<ServiceResponse<CandidateReferanceResponse>> SelectAsync(CandidateReferanceSelect Model)
-		{
-			return new ServiceResponse<CandidateReferanceResponse>()
-			{
-				ResponseDataSource = Mapper.Map<List<CandidateReferanceResponse>>
-				(await UnitOfWork.CandidateReferance.SelectAsync(x => x.IsActive == true))
-			};
-		}
+		//public async Task<ServiceResponse<CandidateReferanceResponse>> SelectAsync(CandidateReferanceSelect Model)
+		//{
+		//	return new ServiceResponse<CandidateReferanceResponse>()
+		//	{
+		//		ResponseDataSource = Mapper.Map<List<CandidateReferanceResponse>>
+		//		(await UnitOfWork.CandidateReferance.SelectAsync(x => x.IsActive == true))
+		//	};
+		//}
 
-		public async Task<ServiceResponse<CandidateReferanceResponse>> SelectSingleAsync(CandidateReferanceSelectSingle Model)
-		{
-			return new ServiceResponse<CandidateReferanceResponse>()
-			{
-				ResponseDataSource = Mapper.Map<List<CandidateReferanceResponse>>
-				(await UnitOfWork.CandidateReferance.SelectAsync(x => x.Id == Model.Id && x.IsActive == true))
-			};
-		}
+		//public async Task<ServiceResponse<CandidateReferanceResponse>> SelectSingleAsync(CandidateReferanceSelectSingle Model)
+		//{
+		//	return new ServiceResponse<CandidateReferanceResponse>()
+		//	{
+		//		ResponseDataSource = Mapper.Map<List<CandidateReferanceResponse>>
+		//		(await UnitOfWork.CandidateReferance.SelectAsync(x => x.Id == Model.Id && x.IsActive == true))
+		//	};
+		//}
 	}
 }

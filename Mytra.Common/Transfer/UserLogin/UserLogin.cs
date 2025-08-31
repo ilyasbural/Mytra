@@ -1,6 +1,7 @@
 ﻿namespace Mytra.Common
 {
-	public class Authentication
+	public class UserLogin
 	{
+
 	}
 }

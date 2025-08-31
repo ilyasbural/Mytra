@@ -8,70 +8,70 @@
 	[ApiController]
     public class CollegeController : ControllerBase
     {
-		readonly ICollegeService Service;
-		public CollegeController(ICollegeService service) { Service = service; }
+		//readonly ICollegeService Service;
+		//public CollegeController(ICollegeService service) { Service = service; }
 
-		[HttpPost]
-		[Route("api/college")]
-		[Produces(typeof(ServiceResponse<CollegeResponse>))]
-		public async Task<ServiceResponse<CollegeResponse>> Create([FromBody] CollegeInsert Model)
-		{
-			ServiceResponse<CollegeResponse> Response = await Service.InsertAsync(Model);
-			return new ServiceResponse<CollegeResponse>
-			{
-				Success = Response.Success,
-				ResponseData = Response.ResponseData
-			};
-		}
+		//[HttpPost]
+		//[Route("api/college")]
+		//[Produces(typeof(ServiceResponse<CollegeResponse>))]
+		//public async Task<ServiceResponse<CollegeResponse>> Create([FromBody] CollegeInsert Model)
+		//{
+		//	ServiceResponse<CollegeResponse> Response = await Service.InsertAsync(Model);
+		//	return new ServiceResponse<CollegeResponse>
+		//	{
+		//		Success = Response.Success,
+		//		ResponseData = Response.ResponseData
+		//	};
+		//}
 
-		[HttpPut]
-		[Route("api/college")]
-		[Produces(typeof(ServiceResponse<CollegeResponse>))]
-		public async Task<ServiceResponse<CollegeResponse>> Update([FromBody] CollegeUpdate Model)
-		{
-			ServiceResponse<CollegeResponse> Response = await Service.UpdateAsync(Model);
-			return new ServiceResponse<CollegeResponse>
-			{
-				Success = Response.Success,
-				ResponseData = Response.ResponseData
-			};
-		}
+		//[HttpPut]
+		//[Route("api/college")]
+		//[Produces(typeof(ServiceResponse<CollegeResponse>))]
+		//public async Task<ServiceResponse<CollegeResponse>> Update([FromBody] CollegeUpdate Model)
+		//{
+		//	ServiceResponse<CollegeResponse> Response = await Service.UpdateAsync(Model);
+		//	return new ServiceResponse<CollegeResponse>
+		//	{
+		//		Success = Response.Success,
+		//		ResponseData = Response.ResponseData
+		//	};
+		//}
 
-		[HttpDelete]
-		[Route("api/college")]
-		[Produces(typeof(ServiceResponse<CollegeResponse>))]
-		public async Task<ServiceResponse<CollegeResponse>> Delete([FromBody] CollegeDelete Model)
-		{
-			ServiceResponse<CollegeResponse> Response = await Service.DeleteAsync(Model);
-			return new ServiceResponse<CollegeResponse>
-			{
-				Success = Response.Success,
-				ResponseData = Response.ResponseData
-			};
-		}
+		//[HttpDelete]
+		//[Route("api/college")]
+		//[Produces(typeof(ServiceResponse<CollegeResponse>))]
+		//public async Task<ServiceResponse<CollegeResponse>> Delete([FromBody] CollegeDelete Model)
+		//{
+		//	ServiceResponse<CollegeResponse> Response = await Service.DeleteAsync(Model);
+		//	return new ServiceResponse<CollegeResponse>
+		//	{
+		//		Success = Response.Success,
+		//		ResponseData = Response.ResponseData
+		//	};
+		//}
 
-		[HttpGet]
-		[Route("api/college")]
-		[Produces(typeof(ServiceResponse<CollegeResponse>))]
-		public async Task<ServiceResponse<CollegeResponse>> Get([FromQuery] CollegeSelect Model)
-		{
-			ServiceResponse<CollegeResponse> Response = await Service.SelectAsync(Model);
-			return new ServiceResponse<CollegeResponse>
-			{
-				ResponseDataSource = Response.ResponseDataSource
-			};
-		}
+		//[HttpGet]
+		//[Route("api/college")]
+		//[Produces(typeof(ServiceResponse<CollegeResponse>))]
+		//public async Task<ServiceResponse<CollegeResponse>> Get([FromQuery] CollegeSelect Model)
+		//{
+		//	ServiceResponse<CollegeResponse> Response = await Service.SelectAsync(Model);
+		//	return new ServiceResponse<CollegeResponse>
+		//	{
+		//		ResponseDataSource = Response.ResponseDataSource
+		//	};
+		//}
 
-		[HttpGet]
-		[Route("api/collegesingle")]
-		[Produces(typeof(ServiceResponse<CollegeResponse>))]
-		public async Task<ServiceResponse<CollegeResponse>> GetSingle([FromQuery] CollegeSelectSingle Model)
-		{
-			ServiceResponse<CollegeResponse> Response = await Service.SelectSingleAsync(Model);
-			return new ServiceResponse<CollegeResponse>
-			{
-				ResponseDataSource = Response.ResponseDataSource
-			};
-		}
+		//[HttpGet]
+		//[Route("api/collegesingle")]
+		//[Produces(typeof(ServiceResponse<CollegeResponse>))]
+		//public async Task<ServiceResponse<CollegeResponse>> GetSingle([FromQuery] CollegeSelectSingle Model)
+		//{
+		//	ServiceResponse<CollegeResponse> Response = await Service.SelectSingleAsync(Model);
+		//	return new ServiceResponse<CollegeResponse>
+		//	{
+		//		ResponseDataSource = Response.ResponseDataSource
+		//	};
+		//}
 	}
 }
