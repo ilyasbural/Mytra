@@ -1,4 +1,4 @@
-namespace Mytra.Service
+﻿namespace Mytra.Service
 {
 	using Core;
 	using Common;
@@ -18,24 +18,37 @@ namespace Mytra.Service
 			Validator = validator;
 		}
 
-		//public async Task<ServiceResponse<CandidateAuthenticationResponse>> InsertAsync(CandidateAuthenticationInsert Model)
-		//{
-		//	Data = Mapper.Map<CandidateAuthentication>(Model);
-		//	Data.Id = Guid.NewGuid();
-		//	Data.RegisterDate = DateTime.Now;
-		//	Data.UpdateDate = DateTime.Now;
-		//	Data.IsActive = true;
+		public async Task<DataService<CandidateAuthentication>> InsertAsync(CandidateAuthenticationInsert Model)
+		{
+			try
+			{
+				Data = Mapper.Map<CandidateAuthentication>(Model);
+				Data.Id = Guid.NewGuid();
+				Data.RegisterDate = DateTime.Now;
+				Data.UpdateDate = DateTime.Now;
+				Data.IsActive = true;
 
-		//	Validator.ValidateAndThrow<CandidateAuthentication>(Data);
-		//	await UnitOfWork.CandidateAuthentication.InsertAsync(Data);
-		//	Success = await UnitOfWork.SaveChangesAsync();
+				var validationResult = await Validator.ValidateAsync(Data);
+				if (!validationResult.IsValid)
+				{
+					return DataService<CandidateAuthentication>.FailureResult(
+						validationResult.Errors.Select(e => e.ErrorMessage).ToList(),
+						"Validasyon hatası");
+				}
 
-		//	return new ServiceResponse<CandidateAuthenticationResponse>
-		//	{
-		//		Success = Success,
-		//		ResponseData = Mapper.Map<CandidateAuthenticationResponse>(Data)
-		//	};
-		//}
+				await UnitOfWork.CandidateAuthentication.InsertAsync(Data);
+				var affectedRows = await UnitOfWork.SaveChangesAsync();
+				var success = affectedRows > 0;
+
+				return success
+					? DataService<CandidateAuthentication>.SuccessResult(Data, "Record has been success")
+					: DataService<CandidateAuthentication>.FailureResult("fail");
+			}
+			catch (Exception ex)
+			{
+				return DataService<CandidateAuthentication>.FailureResult(ex.Message, "some error");
+			}
+		}
 
 		//public async Task<ServiceResponse<CandidateAuthenticationResponse>> UpdateAsync(CandidateAuthenticationUpdate Model)
 		//{

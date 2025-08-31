@@ -2,7 +2,7 @@
 {
     public interface ICandidateAuthenticationService
     {
-		//Task<Common.ServiceResponse<Common.CandidateAuthenticationResponse>> InsertAsync(Common.CandidateAuthenticationInsert Model);
+		Task<Common.DataService<CandidateAuthentication>> InsertAsync(Common.CandidateAuthenticationInsert Model);
 		//Task<Common.ServiceResponse<Common.CandidateAuthenticationResponse>> UpdateAsync(Common.CandidateAuthenticationUpdate Model);
 		//Task<Common.ServiceResponse<Common.CandidateAuthenticationResponse>> DeleteAsync(Common.CandidateAuthenticationDelete Model);
 		//Task<Common.ServiceResponse<Common.CandidateAuthenticationResponse>> SelectAsync(Common.CandidateAuthenticationSelect Model);

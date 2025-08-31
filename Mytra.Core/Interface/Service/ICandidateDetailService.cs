@@ -2,7 +2,7 @@
 {
     public interface ICandidateDetailService
     {
-		//Task<Common.ServiceResponse<Common.CandidateDetailResponse>> InsertAsync(Common.CandidateDetailInsert Model);
+		Task<Common.DataService<CandidateDetail>> InsertAsync(Common.CandidateDetailInsert Model);
 		//Task<Common.ServiceResponse<Common.CandidateDetailResponse>> UpdateAsync(Common.CandidateDetailUpdate Model);
 		//Task<Common.ServiceResponse<Common.CandidateDetailResponse>> DeleteAsync(Common.CandidateDetailDelete Model);
 		//Task<Common.ServiceResponse<Common.CandidateDetailResponse>> SelectAsync(Common.CandidateDetailSelect Model);

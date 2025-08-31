@@ -18,24 +18,37 @@
 			Validator = validator;
 		}
 
-		//public async Task<ServiceResponse<CandidatePhotoResponse>> InsertAsync(CandidatePhotoInsert Model)
-		//{
-		//	Data = Mapper.Map<CandidatePhoto>(Model);
-		//	Data.Id = Guid.NewGuid();
-		//	Data.RegisterDate = DateTime.Now;
-		//	Data.UpdateDate = DateTime.Now;
-		//	Data.IsActive = true;
+		public async Task<DataService<CandidatePhoto>> InsertAsync(CandidatePhotoInsert Model)
+		{
+			try
+			{
+				Data = Mapper.Map<CandidatePhoto>(Model);
+				Data.Id = Guid.NewGuid();
+				Data.RegisterDate = DateTime.Now;
+				Data.UpdateDate = DateTime.Now;
+				Data.IsActive = true;
 
-		//	Validator.ValidateAndThrow<CandidatePhoto>(Data);
-		//	await UnitOfWork.CandidatePhoto.InsertAsync(Data);
-		//	Success = await UnitOfWork.SaveChangesAsync();
+				var validationResult = await Validator.ValidateAsync(Data);
+				if (!validationResult.IsValid)
+				{
+					return DataService<CandidatePhoto>.FailureResult(
+						validationResult.Errors.Select(e => e.ErrorMessage).ToList(),
+						"Validasyon hatası");
+				}
 
-		//	return new ServiceResponse<CandidatePhotoResponse>()
-		//	{
-		//		Success = Success,
-		//		ResponseData = Mapper.Map<CandidatePhotoResponse>(Data)
-		//	};
-		//}
+				await UnitOfWork.CandidatePhoto.InsertAsync(Data);
+				var affectedRows = await UnitOfWork.SaveChangesAsync();
+				var success = affectedRows > 0;
+
+				return success
+					? DataService<CandidatePhoto>.SuccessResult(Data, "Record has been success")
+					: DataService<CandidatePhoto>.FailureResult("fail");
+			}
+			catch (Exception ex)
+			{
+				return DataService<CandidatePhoto>.FailureResult(ex.Message, "some error");
+			}
+		}
 
 		//public async Task<ServiceResponse<CandidatePhotoResponse>> UpdateAsync(CandidatePhotoUpdate Model)
 		//{

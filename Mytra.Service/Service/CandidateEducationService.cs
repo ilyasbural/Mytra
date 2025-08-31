@@ -18,6 +18,38 @@
 			Validator = validator;
 		}
 
+		public async Task<DataService<CandidateEducation>> InsertAsync(CandidateEducationInsert Model)
+		{
+			try
+			{
+				Data = Mapper.Map<CandidateEducation>(Model);
+				Data.Id = Guid.NewGuid();
+				Data.RegisterDate = DateTime.Now;
+				Data.UpdateDate = DateTime.Now;
+				Data.IsActive = true;
+
+				var validationResult = await Validator.ValidateAsync(Data);
+				if (!validationResult.IsValid)
+				{
+					return DataService<CandidateEducation>.FailureResult(
+						validationResult.Errors.Select(e => e.ErrorMessage).ToList(),
+						"Validasyon hatası");
+				}
+
+				await UnitOfWork.CandidateEducation.InsertAsync(Data);
+				var affectedRows = await UnitOfWork.SaveChangesAsync();
+				var success = affectedRows > 0;
+
+				return success
+					? DataService<CandidateEducation>.SuccessResult(Data, "Record has been success")
+					: DataService<CandidateEducation>.FailureResult("fail");
+			}
+			catch (Exception ex)
+			{
+				return DataService<CandidateEducation>.FailureResult(ex.Message, "some error");
+			}
+		}
+
 		//public async Task<ServiceResponse<CandidateEducationResponse>> InsertAsync(CandidateEducationInsert Model)
 		//{
 		//	Data = Mapper.Map<CandidateEducation>(Model);
