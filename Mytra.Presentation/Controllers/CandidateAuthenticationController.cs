@@ -7,8 +7,8 @@
 	[ApiController]
     public class CandidateAuthenticationController : ControllerBase
     {
-		//readonly ICandidateAuthenticationService Service;
-		//public CandidateAuthenticationController(ICandidateAuthenticationService service) { Service = service; }
+		readonly ICandidateAuthenticationService Service;
+		public CandidateAuthenticationController(ICandidateAuthenticationService service) { Service = service; }
 
 		//[HttpPost]
 		//[Route("api/candidateauthentication")]
@@ -49,17 +49,14 @@
 		//	};
 		//}
 
-		//[HttpGet]
-		//[Route("api/candidateauthentication")]
-		//[Produces(typeof(ServiceResponse<CandidateAuthenticationResponse>))]
-		//public async Task<ServiceResponse<CandidateAuthenticationResponse>> Get([FromQuery] CandidateAuthenticationSelect Model)
-		//{
-		//	ServiceResponse<CandidateAuthenticationResponse> Response = await Service.SelectAsync(Model);
-		//	return new ServiceResponse<CandidateAuthenticationResponse>
-		//	{
-		//		ResponseDataSource = Response.ResponseDataSource
-		//	};
-		//}
+		[HttpGet]
+		[Route("api/candidateauthentication")]
+		[Produces(typeof(ServiceResponse<CandidateAuthentication>))]
+		public async Task<ServiceResponse<CandidateAuthentication>> Get([FromQuery] CandidateAuthenticationSelect Model)
+		{
+			DataService<CandidateAuthentication> Response = await Service.SelectAsync(Model);
+			return ServiceResponse<CandidateAuthentication>.SuccessResponse(Response.DataList, "candidateauthentications list added");
+		}
 
 		//[HttpGet]
 		//[Route("api/candidateauthenticationsingle")]

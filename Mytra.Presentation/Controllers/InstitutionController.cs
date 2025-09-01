@@ -8,8 +8,8 @@
     [ApiController]
     public class InstitutionController : ControllerBase
     {
-		//readonly IInstitutionService Service;
-		//public InstitutionController(IInstitutionService service) { Service = service; }
+		readonly IInstitutionService Service;
+		public InstitutionController(IInstitutionService service) { Service = service; }
 
 		//[HttpPost]
 		//[Route("api/institution")]
@@ -50,17 +50,14 @@
 		//	};
 		//}
 
-		//[HttpGet]
-		//[Route("api/institution")]
-		//[Produces(typeof(ServiceResponse<InstitutionResponse>))]
-		//public async Task<ServiceResponse<InstitutionResponse>> Get([FromQuery] InstitutionSelect Model)
-		//{
-		//	ServiceResponse<InstitutionResponse> Response = await Service.SelectAsync(Model);
-		//	return new ServiceResponse<InstitutionResponse>
-		//	{
-		//		ResponseDataSource = Response.ResponseDataSource
-		//	};
-		//}
+		[HttpGet]
+		[Route("api/institution")]
+		[Produces(typeof(ServiceResponse<Institution>))]
+		public async Task<ServiceResponse<Institution>> Get([FromQuery] InstitutionSelect Model)
+		{
+			DataService<Institution> Response = await Service.SelectAsync(Model);
+			return ServiceResponse<Institution>.SuccessResponse(Response.DataList, "institution list");
+		}
 
 		//[HttpGet]
 		//[Route("api/institutionsingle")]

@@ -8,8 +8,8 @@
 	[ApiController]
     public class CandidateExperienceController : ControllerBase
     {
-		//readonly ICandidateExperienceService Service;
-		//public CandidateExperienceController(ICandidateExperienceService service) { Service = service; }
+		readonly ICandidateExperienceService Service;
+		public CandidateExperienceController(ICandidateExperienceService service) { Service = service; }
 
 		//[HttpPost]
 		//[Route("api/candidateexperience")]
@@ -50,17 +50,14 @@
 		//	};
 		//}
 
-		//[HttpGet]
-		//[Route("api/candidateexperience")]
-		//[Produces(typeof(ServiceResponse<CandidateExperienceResponse>))]
-		//public async Task<ServiceResponse<CandidateExperienceResponse>> Get([FromQuery] CandidateExperienceSelect Model)
-		//{
-		//	ServiceResponse<CandidateExperienceResponse> Response = await Service.SelectAsync(Model);
-		//	return new ServiceResponse<CandidateExperienceResponse>
-		//	{
-		//		ResponseDataSource = Response.ResponseDataSource
-		//	};
-		//}
+		[HttpGet]
+		[Route("api/candidateexperience")]
+		[Produces(typeof(ServiceResponse<CandidateExperience>))]
+		public async Task<ServiceResponse<CandidateExperience>> Get([FromQuery] CandidateExperienceSelect Model)
+		{
+			DataService<CandidateExperience> Response = await Service.SelectAsync(Model);
+			return ServiceResponse<CandidateExperience>.SuccessResponse(Response.DataList, "candidateexperience list");
+		}
 
 		//[HttpGet]
 		//[Route("api/candidateexperiencesingle")]

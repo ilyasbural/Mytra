@@ -7,8 +7,8 @@
 	[ApiController]
 	public class UserAuthenticationController : ControllerBase
 	{
-		//readonly IUserAuthenticationService Service;
-		//public UserAuthenticationController(IUserAuthenticationService service) { Service = service; }
+		readonly IUserAuthenticationService Service;
+		public UserAuthenticationController(IUserAuthenticationService service) { Service = service; }
 
 		//[HttpPost]
 		//[Route("api/userauthentication")]
@@ -49,17 +49,14 @@
 		//	};
 		//}
 
-		//[HttpGet]
-		//[Route("api/userauthentication")]
-		//[Produces(typeof(ServiceResponse<UserAuthenticationResponse>))]
-		//public async Task<ServiceResponse<UserAuthenticationResponse>> Get([FromQuery] UserAuthenticationSelect Model)
-		//{
-		//	ServiceResponse<UserAuthenticationResponse> Response = await Service.SelectAsync(Model);
-		//	return new ServiceResponse<UserAuthenticationResponse>
-		//	{
-		//		ResponseDataSource = Response.ResponseDataSource
-		//	};
-		//}
+		[HttpGet]
+		[Route("api/userauthentication")]
+		[Produces(typeof(ServiceResponse<UserAuthentication>))]
+		public async Task<ServiceResponse<UserAuthentication>> Get([FromQuery] UserAuthenticationSelect Model)
+		{
+			DataService<UserAuthentication> Response = await Service.SelectAsync(Model);
+			return ServiceResponse<UserAuthentication>.SuccessResponse(Response.DataList, "userauthentications list added");
+		}
 
 		//[HttpGet]
 		//[Route("api/userauthenticationsingle")]

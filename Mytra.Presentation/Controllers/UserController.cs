@@ -8,8 +8,8 @@
 	[ApiController]
 	public class UserController : ControllerBase
 	{
-		//readonly IUserService Service;
-		//public UserController(IUserService service) { Service = service; }
+		readonly IUserService Service;
+		public UserController(IUserService service) { Service = service; }
 
 		//[HttpPost]
 		//[Route("api/user")]
@@ -50,17 +50,14 @@
 		//	};
 		//}
 
-		//[HttpGet]
-		//[Route("api/user")]
-		//[Produces(typeof(ServiceResponse<UserResponse>))]
-		//public async Task<ServiceResponse<UserResponse>> Get([FromQuery] UserSelect Model)
-		//{
-		//	ServiceResponse<UserResponse> Response = await Service.SelectAsync(Model);
-		//	return new ServiceResponse<UserResponse>
-		//	{
-		//		ResponseDataSource = Response.ResponseDataSource
-		//	};
-		//}
+		[HttpGet]
+		[Route("api/user")]
+		[Produces(typeof(ServiceResponse<User>))]
+		public async Task<ServiceResponse<User>> Get([FromQuery] UserSelect Model)
+		{
+			DataService<User> Response = await Service.SelectAsync(Model);
+			return ServiceResponse<User>.SuccessResponse(Response.DataList, "users list added");
+		}
 
 		//[HttpGet]
 		//[Route("api/usersingle")]

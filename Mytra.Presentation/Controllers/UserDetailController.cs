@@ -8,8 +8,8 @@
 	[ApiController]
 	public class UserDetailController : ControllerBase
 	{
-		//readonly IUserDetailService Service;
-		//public UserDetailController(IUserDetailService service) { Service = service; }
+		readonly IUserDetailService Service;
+		public UserDetailController(IUserDetailService service) { Service = service; }
 
 		//[HttpPost]
 		//[Route("api/userdetail")]
@@ -50,17 +50,14 @@
 		//	};
 		//}
 
-		//[HttpGet]
-		//[Route("api/userdetail")]
-		//[Produces(typeof(ServiceResponse<UserDetailResponse>))]
-		//public async Task<ServiceResponse<UserDetailResponse>> Get([FromQuery] UserDetailSelect Model)
-		//{
-		//	ServiceResponse<UserDetailResponse> Response = await Service.SelectAsync(Model);
-		//	return new ServiceResponse<UserDetailResponse>
-		//	{
-		//		ResponseDataSource = Response.ResponseDataSource
-		//	};
-		//}
+		[HttpGet]
+		[Route("api/userdetail")]
+		[Produces(typeof(ServiceResponse<UserDetail>))]
+		public async Task<ServiceResponse<UserDetail>> Get([FromQuery] UserDetailSelect Model)
+		{
+			DataService<UserDetail> Response = await Service.SelectAsync(Model);
+			return ServiceResponse<UserDetail>.SuccessResponse(Response.DataList, "userdetails list added");
+		}
 
 		//[HttpGet]
 		//[Route("api/userdetailsingle")]

@@ -8,8 +8,8 @@
     [ApiController]
     public class CandidateSettingsController : ControllerBase
     {
-		//readonly ICandidateSettingsService Service;
-		//public CandidateSettingsController(ICandidateSettingsService service) { Service = service; }
+		readonly ICandidateSettingsService Service;
+		public CandidateSettingsController(ICandidateSettingsService service) { Service = service; }
 
 		//[HttpPost]
 		//[Route("api/candidatesettings")]
@@ -50,17 +50,14 @@
 		//	};
 		//}
 
-		//[HttpGet]
-		//[Route("api/candidatesettings")]
-		//[Produces(typeof(ServiceResponse<CandidateSettingsResponse>))]
-		//public async Task<ServiceResponse<CandidateSettingsResponse>> Get([FromQuery] CandidateSettingsSelect Model)
-		//{
-		//	ServiceResponse<CandidateSettingsResponse> Response = await Service.SelectAsync(Model);
-		//	return new ServiceResponse<CandidateSettingsResponse>
-		//	{
-		//		ResponseDataSource = Response.ResponseDataSource
-		//	};
-		//}
+		[HttpGet]
+		[Route("api/candidatesettings")]
+		[Produces(typeof(ServiceResponse<CandidateSettings>))]
+		public async Task<ServiceResponse<CandidateSettings>> Get([FromQuery] CandidateSettingsSelect Model)
+		{
+			DataService<CandidateSettings> Response = await Service.SelectAsync(Model);
+			return ServiceResponse<CandidateSettings>.SuccessResponse(Response.DataList, "candidatesettings list");
+		}
 
 		//[HttpGet]
 		//[Route("api/candidatesettingssingle")]

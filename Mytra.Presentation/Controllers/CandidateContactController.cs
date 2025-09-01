@@ -8,8 +8,8 @@
 	[ApiController]
     public class CandidateContactController : ControllerBase
     {
-		//readonly ICandidateContactService Service;
-		//public CandidateContactController(ICandidateContactService service) { Service = service; }
+		readonly ICandidateContactService Service;
+		public CandidateContactController(ICandidateContactService service) { Service = service; }
 
 		//[HttpPost]
 		//[Route("api/candidatecontact")]
@@ -50,17 +50,14 @@
 		//	};
 		//}
 
-		//[HttpGet]
-		//[Route("api/candidatecontact")]
-		//[Produces(typeof(ServiceResponse<CandidateContactResponse>))]
-		//public async Task<ServiceResponse<CandidateContactResponse>> Get([FromQuery] CandidateContactSelect Model)
-		//{
-		//	ServiceResponse<CandidateContactResponse> Response = await Service.SelectAsync(Model);
-		//	return new ServiceResponse<CandidateContactResponse>
-		//	{
-		//		ResponseDataSource = Response.ResponseDataSource
-		//	};
-		//}
+		[HttpGet]
+		[Route("api/candidatecontact")]
+		[Produces(typeof(ServiceResponse<CandidateContact>))]
+		public async Task<ServiceResponse<CandidateContact>> Get([FromQuery] CandidateContactSelect Model)
+		{
+			DataService<CandidateContact> Response = await Service.SelectAsync(Model);
+			return ServiceResponse<CandidateContact>.SuccessResponse(Response.DataList, "managerdetail list");
+		}
 
 		//[HttpGet]
 		//[Route("api/candidatecontactsingle")]

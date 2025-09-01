@@ -8,8 +8,8 @@
     [ApiController]
     public class CandidateReferanceController : ControllerBase
     {
-		//readonly ICandidateReferanceService Service;
-		//public CandidateReferanceController(ICandidateReferanceService service) { Service = service; }
+		readonly ICandidateReferanceService Service;
+		public CandidateReferanceController(ICandidateReferanceService service) { Service = service; }
 
 		//[HttpPost]
 		//[Route("api/candidatereferance")]
@@ -50,17 +50,14 @@
 		//	};
 		//}
 
-		//[HttpGet]
-		//[Route("api/candidatereferance")]
-		//[Produces(typeof(ServiceResponse<CandidateReferanceResponse>))]
-		//public async Task<ServiceResponse<CandidateReferanceResponse>> Get([FromQuery] CandidateReferanceSelect Model)
-		//{
-		//	ServiceResponse<CandidateReferanceResponse> Response = await Service.SelectAsync(Model);
-		//	return new ServiceResponse<CandidateReferanceResponse>
-		//	{
-		//		ResponseDataSource = Response.ResponseDataSource
-		//	};
-		//}
+		[HttpGet]
+		[Route("api/candidatereferance")]
+		[Produces(typeof(ServiceResponse<CandidateReferance>))]
+		public async Task<ServiceResponse<CandidateReferance>> Get([FromQuery] CandidateReferanceSelect Model)
+		{
+			DataService<CandidateReferance> Response = await Service.SelectAsync(Model);
+			return ServiceResponse<CandidateReferance>.SuccessResponse(Response.DataList, "candidatereferance list");
+		}
 
 		//[HttpGet]
 		//[Route("api/candidatereferancesingle")]

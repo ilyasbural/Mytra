@@ -8,8 +8,8 @@
     [ApiController]
     public class JobPostingVisitController : ControllerBase
     {
-		//readonly IJobPostingVisitService Service;
-		//public JobPostingVisitController(IJobPostingVisitService service) { Service = service; }
+		readonly IJobPostingVisitService Service;
+		public JobPostingVisitController(IJobPostingVisitService service) { Service = service; }
 
 		//[HttpPost]
 		//[Route("api/jobpostingvisit")]
@@ -50,17 +50,14 @@
 		//	};
 		//}
 
-		//[HttpGet]
-		//[Route("api/jobpostingvisit")]
-		//[Produces(typeof(ServiceResponse<JobPostingVisitResponse>))]
-		//public async Task<ServiceResponse<JobPostingVisitResponse>> Get([FromQuery] JobPostingVisitSelect Model)
-		//{
-		//	ServiceResponse<JobPostingVisitResponse> Response = await Service.SelectAsync(Model);
-		//	return new ServiceResponse<JobPostingVisitResponse>
-		//	{
-		//		ResponseDataSource = Response.ResponseDataSource
-		//	};
-		//}
+		[HttpGet]
+		[Route("api/jobpostingvisit")]
+		[Produces(typeof(ServiceResponse<JobPostingVisit>))]
+		public async Task<ServiceResponse<JobPostingVisit>> Get([FromQuery] JobPostingVisitSelect Model)
+		{
+			DataService<JobPostingVisit> Response = await Service.SelectAsync(Model);
+			return ServiceResponse<JobPostingVisit>.SuccessResponse(Response.DataList, "jobpostingvisit list");
+		}
 
 		//[HttpGet]
 		//[Route("api/jobpostingvisitsingle")]

@@ -7,8 +7,8 @@
 	[ApiController]
 	public class ManagerAuthenticationController : ControllerBase
 	{
-		//readonly IManagerAuthenticationService Service;
-		//public ManagerAuthenticationController(IManagerAuthenticationService service) { Service = service; }
+		readonly IManagerAuthenticationService Service;
+		public ManagerAuthenticationController(IManagerAuthenticationService service) { Service = service; }
 
 		//[HttpPost]
 		//[Route("api/managerauthentication")]
@@ -49,17 +49,14 @@
 		//	};
 		//}
 
-		//[HttpGet]
-		//[Route("api/managerauthentication")]
-		//[Produces(typeof(ServiceResponse<ManagerAuthenticationResponse>))]
-		//public async Task<ServiceResponse<ManagerAuthenticationResponse>> Get([FromQuery] ManagerAuthenticationSelect Model)
-		//{
-		//	ServiceResponse<ManagerAuthenticationResponse> Response = await Service.SelectAsync(Model);
-		//	return new ServiceResponse<ManagerAuthenticationResponse>
-		//	{
-		//		ResponseDataSource = Response.ResponseDataSource
-		//	};
-		//}
+		[HttpGet]
+		[Route("api/managerauthentication")]
+		[Produces(typeof(ServiceResponse<ManagerAuthentication>))]
+		public async Task<ServiceResponse<ManagerAuthentication>> Get([FromQuery] ManagerAuthenticationSelect Model)
+		{
+			DataService<ManagerAuthentication> Response = await Service.SelectAsync(Model);
+			return ServiceResponse<ManagerAuthentication>.SuccessResponse(Response.DataList, "managerauthentication list");
+		}
 
 		//[HttpGet]
 		//[Route("api/managerauthenticationsingle")]

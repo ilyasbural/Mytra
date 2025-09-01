@@ -8,8 +8,8 @@
     [ApiController]
     public class CandidateLanguageController : ControllerBase
     {
-		//readonly ICandidateLanguageService Service;
-		//public CandidateLanguageController(ICandidateLanguageService service) { Service = service; }
+		readonly ICandidateLanguageService Service;
+		public CandidateLanguageController(ICandidateLanguageService service) { Service = service; }
 
 		//[HttpPost]
 		//[Route("api/candidatelanguage")]
@@ -50,17 +50,14 @@
 		//	};
 		//}
 
-		//[HttpGet]
-		//[Route("api/candidatelanguage")]
-		//[Produces(typeof(ServiceResponse<CandidateLanguageResponse>))]
-		//public async Task<ServiceResponse<CandidateLanguageResponse>> Get([FromQuery] CandidateLanguageSelect Model)
-		//{
-		//	ServiceResponse<CandidateLanguageResponse> Response = await Service.SelectAsync(Model);
-		//	return new ServiceResponse<CandidateLanguageResponse>
-		//	{
-		//		ResponseDataSource = Response.ResponseDataSource
-		//	};
-		//}
+		[HttpGet]
+		[Route("api/candidatelanguage")]
+		[Produces(typeof(ServiceResponse<CandidateLanguage>))]
+		public async Task<ServiceResponse<CandidateLanguage>> Get([FromQuery] CandidateLanguageSelect Model)
+		{
+			DataService<CandidateLanguage> Response = await Service.SelectAsync(Model);
+			return ServiceResponse<CandidateLanguage>.SuccessResponse(Response.DataList, "candidatelanguage list");
+		}
 
 		//[HttpGet]
 		//[Route("api/candidatelanguagesingle")]

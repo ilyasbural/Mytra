@@ -8,8 +8,8 @@
 	[ApiController]
 	public class ManagerSettingsController : ControllerBase
 	{
-		//readonly IManagerSettingsService Service;
-		//public ManagerSettingsController(IManagerSettingsService service) { Service = service; }
+		readonly IManagerSettingsService Service;
+		public ManagerSettingsController(IManagerSettingsService service) { Service = service; }
 
 		//[HttpPost]
 		//[Route("api/managersettings")]
@@ -50,17 +50,14 @@
 		//	};
 		//}
 
-		//[HttpGet]
-		//[Route("api/managersettings")]
-		//[Produces(typeof(ServiceResponse<ManagerSettingsResponse>))]
-		//public async Task<ServiceResponse<ManagerSettingsResponse>> Get([FromQuery] ManagerSettingsSelect Model)
-		//{
-		//	ServiceResponse<ManagerSettingsResponse> Response = await Service.SelectAsync(Model);
-		//	return new ServiceResponse<ManagerSettingsResponse>
-		//	{
-		//		ResponseDataSource = Response.ResponseDataSource
-		//	};
-		//}
+		[HttpGet]
+		[Route("api/managersettings")]
+		[Produces(typeof(ServiceResponse<ManagerSettings>))]
+		public async Task<ServiceResponse<ManagerSettings>> Get([FromQuery] ManagerSettingsSelect Model)
+		{
+			DataService<ManagerSettings> Response = await Service.SelectAsync(Model);
+			return ServiceResponse<ManagerSettings>.SuccessResponse(Response.DataList, "managersettings list added");
+		}
 
 		//[HttpGet]
 		//[Route("api/managersettingssingle")]

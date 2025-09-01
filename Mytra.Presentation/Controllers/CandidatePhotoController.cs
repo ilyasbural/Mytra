@@ -8,8 +8,8 @@
     [ApiController]
     public class CandidatePhotoController : ControllerBase
     {
-		//readonly ICandidatePhotoService Service;
-		//public CandidatePhotoController(ICandidatePhotoService service) { Service = service; }
+		readonly ICandidatePhotoService Service;
+		public CandidatePhotoController(ICandidatePhotoService service) { Service = service; }
 
 		//[HttpPost]
 		//[Route("api/candidatephoto")]
@@ -50,17 +50,14 @@
 		//	};
 		//}
 
-		//[HttpGet]
-		//[Route("api/candidatephoto")]
-		//[Produces(typeof(ServiceResponse<CandidatePhotoResponse>))]
-		//public async Task<ServiceResponse<CandidatePhotoResponse>> Get([FromQuery] CandidatePhotoSelect Model)
-		//{
-		//	ServiceResponse<CandidatePhotoResponse> Response = await Service.SelectAsync(Model);
-		//	return new ServiceResponse<CandidatePhotoResponse>
-		//	{
-		//		ResponseDataSource = Response.ResponseDataSource
-		//	};
-		//}
+		[HttpGet]
+		[Route("api/candidatephoto")]
+		[Produces(typeof(ServiceResponse<CandidatePhoto>))]
+		public async Task<ServiceResponse<CandidatePhoto>> Get([FromQuery] CandidatePhotoSelect Model)
+		{
+			DataService<CandidatePhoto> Response = await Service.SelectAsync(Model);
+			return ServiceResponse<CandidatePhoto>.SuccessResponse(Response.DataList, "candidatephoto list");
+		}
 
 		//[HttpGet]
 		//[Route("api/candidatephotosingle")]

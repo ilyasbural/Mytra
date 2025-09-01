@@ -8,8 +8,8 @@
 	[ApiController]
 	public class UserSettingsController : ControllerBase
 	{
-		//readonly IUserSettingsService Service;
-		//public UserSettingsController(IUserSettingsService service) { Service = service; }
+		readonly IUserSettingsService Service;
+		public UserSettingsController(IUserSettingsService service) { Service = service; }
 
 		//[HttpPost]
 		//[Route("api/usersettings")]
@@ -50,17 +50,14 @@
 		//	};
 		//}
 
-		//[HttpGet]
-		//[Route("api/usersettings")]
-		//[Produces(typeof(ServiceResponse<UserSettingsResponse>))]
-		//public async Task<ServiceResponse<UserSettingsResponse>> Get([FromQuery] UserSettingsSelect Model)
-		//{
-		//	ServiceResponse<UserSettingsResponse> Response = await Service.SelectAsync(Model);
-		//	return new ServiceResponse<UserSettingsResponse>
-		//	{
-		//		ResponseDataSource = Response.ResponseDataSource
-		//	};
-		//}
+		[HttpGet]
+		[Route("api/usersettings")]
+		[Produces(typeof(ServiceResponse<UserSettings>))]
+		public async Task<ServiceResponse<UserSettings>> Get([FromQuery] UserSettingsSelect Model)
+		{
+			DataService<UserSettings> Response = await Service.SelectAsync(Model);
+			return ServiceResponse<UserSettings>.SuccessResponse(Response.DataList, "usersettings list added");
+		}
 
 		//[HttpGet]
 		//[Route("api/usersettingssingle")]

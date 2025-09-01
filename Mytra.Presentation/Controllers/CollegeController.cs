@@ -8,8 +8,8 @@
 	[ApiController]
     public class CollegeController : ControllerBase
     {
-		//readonly ICollegeService Service;
-		//public CollegeController(ICollegeService service) { Service = service; }
+		readonly ICollegeService Service;
+		public CollegeController(ICollegeService service) { Service = service; }
 
 		//[HttpPost]
 		//[Route("api/college")]
@@ -50,17 +50,14 @@
 		//	};
 		//}
 
-		//[HttpGet]
-		//[Route("api/college")]
-		//[Produces(typeof(ServiceResponse<CollegeResponse>))]
-		//public async Task<ServiceResponse<CollegeResponse>> Get([FromQuery] CollegeSelect Model)
-		//{
-		//	ServiceResponse<CollegeResponse> Response = await Service.SelectAsync(Model);
-		//	return new ServiceResponse<CollegeResponse>
-		//	{
-		//		ResponseDataSource = Response.ResponseDataSource
-		//	};
-		//}
+		[HttpGet]
+		[Route("api/college")]
+		[Produces(typeof(ServiceResponse<College>))]
+		public async Task<ServiceResponse<College>> Get([FromQuery] CollegeSelect Model)
+		{
+			DataService<College> Response = await Service.SelectAsync(Model);
+			return ServiceResponse<College>.SuccessResponse(Response.DataList, "college list");
+		}
 
 		//[HttpGet]
 		//[Route("api/collegesingle")]

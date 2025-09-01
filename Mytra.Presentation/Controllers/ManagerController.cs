@@ -8,8 +8,8 @@
 	[ApiController]
 	public class ManagerController : ControllerBase
 	{
-		//readonly IManagerService Service;
-		//public ManagerController(IManagerService service) { Service = service; }
+		readonly IManagerService Service;
+		public ManagerController(IManagerService service) { Service = service; }
 
 		//[HttpPost]
 		//[Route("api/manager")]
@@ -50,17 +50,14 @@
 		//	};
 		//}
 
-		//[HttpGet]
-		//[Route("api/manager")]
-		//[Produces(typeof(ServiceResponse<ManagerResponse>))]
-		//public async Task<ServiceResponse<ManagerResponse>> Get([FromQuery] ManagerSelect Model)
-		//{
-		//	ServiceResponse<ManagerResponse> Response = await Service.SelectAsync(Model);
-		//	return new ServiceResponse<ManagerResponse>
-		//	{
-		//		ResponseDataSource = Response.ResponseDataSource
-		//	};
-		//}
+		[HttpGet]
+		[Route("api/manager")]
+		[Produces(typeof(ServiceResponse<Manager>))]
+		public async Task<ServiceResponse<Manager>> Get([FromQuery] ManagerSelect Model)
+		{
+			DataService<Manager> Response = await Service.SelectAsync(Model);
+			return ServiceResponse<Manager>.SuccessResponse(Response.DataList, "manager list");
+		}
 
 		//[HttpGet]
 		//[Route("api/managersingle")]
