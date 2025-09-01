@@ -11,18 +11,16 @@
 		readonly IUserDetailService Service;
 		public UserDetailController(IUserDetailService service) { Service = service; }
 
-		//[HttpPost]
-		//[Route("api/userdetail")]
-		//[Produces(typeof(ServiceResponse<UserDetailResponse>))]
-		//public async Task<ServiceResponse<UserDetailResponse>> Create([FromBody] UserDetailInsert Model)
-		//{
-		//	ServiceResponse<UserDetailResponse> Response = await Service.InsertAsync(Model);
-		//	return new ServiceResponse<UserDetailResponse>
-		//	{
-		//		Success = Response.Success,
-		//		ResponseData = Response.ResponseData
-		//	};
-		//}
+		[HttpPost]
+		[Route("api/userdetail")]
+		[Produces(typeof(ServiceResponse<UserDetail>))]
+		public async Task<ServiceResponse<UserDetail>> Create([FromBody] UserDetailInsert Model)
+		{
+			DataService<UserDetail> Response = await Service.InsertAsync(Model);
+			if (Response.Errors.Count > 0) return ServiceResponse<UserDetail>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<UserDetail>.FailureResponse("");
+			return ServiceResponse<UserDetail>.SuccessResponse(Response.Data, "");
+		}
 
 		//[HttpPut]
 		//[Route("api/userdetail")]

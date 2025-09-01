@@ -11,18 +11,16 @@
 		readonly IInstitutionService Service;
 		public InstitutionController(IInstitutionService service) { Service = service; }
 
-		//[HttpPost]
-		//[Route("api/institution")]
-		//[Produces(typeof(ServiceResponse<InstitutionResponse>))]
-		//public async Task<ServiceResponse<InstitutionResponse>> Create([FromBody] InstitutionInsert Model)
-		//{
-		//	ServiceResponse<InstitutionResponse> Response = await Service.InsertAsync(Model);
-		//	return new ServiceResponse<InstitutionResponse>
-		//	{
-		//		Success = Response.Success,
-		//		ResponseData = Response.ResponseData
-		//	};
-		//}
+		[HttpPost]
+		[Route("api/institution")]
+		[Produces(typeof(ServiceResponse<Institution>))]
+		public async Task<ServiceResponse<Institution>> Create([FromBody] InstitutionInsert Model)
+		{
+			DataService<Institution> Response = await Service.InsertAsync(Model);
+			if (Response.Errors.Count > 0) return ServiceResponse<Institution>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<Institution>.FailureResponse("");
+			return ServiceResponse<Institution>.SuccessResponse(Response.Data, "");
+		}
 
 		//[HttpPut]
 		//[Route("api/institution")]

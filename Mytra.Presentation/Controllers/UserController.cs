@@ -11,18 +11,16 @@
 		readonly IUserService Service;
 		public UserController(IUserService service) { Service = service; }
 
-		//[HttpPost]
-		//[Route("api/user")]
-		//[Produces(typeof(ServiceResponse<UserResponse>))]
-		//public async Task<ServiceResponse<UserResponse>> Create([FromBody] UserInsert Model)
-		//{
-		//	ServiceResponse<UserResponse> Response = await Service.InsertAsync(Model);
-		//	return new ServiceResponse<UserResponse>
-		//	{
-		//		Success = Response.Success,
-		//		ResponseData = Response.ResponseData
-		//	};
-		//}
+		[HttpPost]
+		[Route("api/user")]
+		[Produces(typeof(ServiceResponse<User>))]
+		public async Task<ServiceResponse<User>> Create([FromBody] UserInsert Model)
+		{
+			DataService<User> Response = await Service.InsertAsync(Model);
+			if (Response.Errors.Count > 0) return ServiceResponse<User>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<User>.FailureResponse("");
+			return ServiceResponse<User>.SuccessResponse(Response.Data, "");
+		}
 
 		//[HttpPut]
 		//[Route("api/user")]

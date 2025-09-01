@@ -11,18 +11,16 @@
 		readonly ICandidateSettingsService Service;
 		public CandidateSettingsController(ICandidateSettingsService service) { Service = service; }
 
-		//[HttpPost]
-		//[Route("api/candidatesettings")]
-		//[Produces(typeof(ServiceResponse<CandidateSettingsResponse>))]
-		//public async Task<ServiceResponse<CandidateSettingsResponse>> Create([FromBody] CandidateSettingsInsert Model)
-		//{
-		//	ServiceResponse<CandidateSettingsResponse> Response = await Service.InsertAsync(Model);
-		//	return new ServiceResponse<CandidateSettingsResponse>
-		//	{
-		//		Success = Response.Success,
-		//		ResponseData = Response.ResponseData
-		//	};
-		//}
+		[HttpPost]
+		[Route("api/candidatesettings")]
+		[Produces(typeof(ServiceResponse<CandidateSettings>))]
+		public async Task<ServiceResponse<CandidateSettings>> Create([FromBody] CandidateSettingsInsert Model)
+		{
+			DataService<CandidateSettings> Response = await Service.InsertAsync(Model);
+			if (Response.Errors.Count > 0) return ServiceResponse<CandidateSettings>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<CandidateSettings>.FailureResponse("");
+			return ServiceResponse<CandidateSettings>.SuccessResponse(Response.Data, "");
+		}
 
 		//[HttpPut]
 		//[Route("api/candidatesettings")]

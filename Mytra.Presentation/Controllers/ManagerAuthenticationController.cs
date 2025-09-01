@@ -10,18 +10,16 @@
 		readonly IManagerAuthenticationService Service;
 		public ManagerAuthenticationController(IManagerAuthenticationService service) { Service = service; }
 
-		//[HttpPost]
-		//[Route("api/managerauthentication")]
-		//[Produces(typeof(ServiceResponse<ManagerAuthenticationResponse>))]
-		//public async Task<ServiceResponse<ManagerAuthenticationResponse>> Create([FromBody] ManagerAuthenticationInsert Model)
-		//{
-		//	ServiceResponse<ManagerAuthenticationResponse> Response = await Service.InsertAsync(Model);
-		//	return new ServiceResponse<ManagerAuthenticationResponse>
-		//	{
-		//		Success = Response.Success,
-		//		ResponseData = Response.ResponseData
-		//	};
-		//}
+		[HttpPost]
+		[Route("api/managerauthentication")]
+		[Produces(typeof(ServiceResponse<ManagerAuthentication>))]
+		public async Task<ServiceResponse<ManagerAuthentication>> Create([FromBody] ManagerAuthenticationInsert Model)
+		{
+			DataService<ManagerAuthentication> Response = await Service.InsertAsync(Model);
+			if (Response.Errors.Count > 0) return ServiceResponse<ManagerAuthentication>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<ManagerAuthentication>.FailureResponse("");
+			return ServiceResponse<ManagerAuthentication>.SuccessResponse(Response.Data, "");
+		}
 
 		//[HttpPut]
 		//[Route("api/managerauthentication")]

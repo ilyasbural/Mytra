@@ -11,18 +11,16 @@
 		readonly ICandidateCertificateService Service;
 		public CandidateCertificateController(ICandidateCertificateService service) { Service = service; }
 
-		//[HttpPost]
-		//[Route("api/candidatecertificate")]
-		//[Produces(typeof(ServiceResponse<CandidateCertificateResponse>))]
-		//public async Task<ServiceResponse<CandidateCertificateResponse>> Create([FromBody] CandidateCertificateInsert Model)
-		//{
-		//	ServiceResponse<CandidateCertificateResponse> Response = await Service.InsertAsync(Model);
-		//	return new ServiceResponse<CandidateCertificateResponse>
-		//	{
-		//		Success = Response.Success,
-		//		ResponseData = Response.ResponseData
-		//	};
-		//}
+		[HttpPost]
+		[Route("api/candidatecertificate")]
+		[Produces(typeof(ServiceResponse<CandidateCertificate>))]
+		public async Task<ServiceResponse<CandidateCertificate>> Create([FromBody] CandidateCertificateInsert Model)
+		{
+			DataService<CandidateCertificate> Response = await Service.InsertAsync(Model);
+			if (Response.Errors.Count > 0) return ServiceResponse<CandidateCertificate>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<CandidateCertificate>.FailureResponse("");
+			return ServiceResponse<CandidateCertificate>.SuccessResponse(Response.Data, "");
+		}
 
 		//[HttpPut]
 		//[Route("api/candidatecertificate")]

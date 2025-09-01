@@ -11,18 +11,16 @@
 		readonly ICollegeService Service;
 		public CollegeController(ICollegeService service) { Service = service; }
 
-		//[HttpPost]
-		//[Route("api/college")]
-		//[Produces(typeof(ServiceResponse<CollegeResponse>))]
-		//public async Task<ServiceResponse<CollegeResponse>> Create([FromBody] CollegeInsert Model)
-		//{
-		//	ServiceResponse<CollegeResponse> Response = await Service.InsertAsync(Model);
-		//	return new ServiceResponse<CollegeResponse>
-		//	{
-		//		Success = Response.Success,
-		//		ResponseData = Response.ResponseData
-		//	};
-		//}
+		[HttpPost]
+		[Route("api/college")]
+		[Produces(typeof(ServiceResponse<College>))]
+		public async Task<ServiceResponse<College>> Create([FromBody] CollegeInsert Model)
+		{
+			DataService<College> Response = await Service.InsertAsync(Model);
+			if (Response.Errors.Count > 0) return ServiceResponse<College>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<College>.FailureResponse("");
+			return ServiceResponse<College>.SuccessResponse(Response.Data, "");
+		}
 
 		//[HttpPut]
 		//[Route("api/college")]

@@ -10,18 +10,16 @@
 		readonly ICandidateAuthenticationService Service;
 		public CandidateAuthenticationController(ICandidateAuthenticationService service) { Service = service; }
 
-		//[HttpPost]
-		//[Route("api/candidateauthentication")]
-		//[Produces(typeof(ServiceResponse<CandidateAuthenticationResponse>))]
-		//public async Task<ServiceResponse<CandidateAuthenticationResponse>> Create([FromBody] CandidateAuthenticationInsert Model)
-		//{
-		//	ServiceResponse<CandidateAuthenticationResponse> Response = await Service.InsertAsync(Model);
-		//	return new ServiceResponse<CandidateAuthenticationResponse>
-		//	{
-		//		Success = Response.Success,
-		//		ResponseData = Response.ResponseData
-		//	};
-		//}
+		[HttpPost]
+		[Route("api/candidateauthentication")]
+		[Produces(typeof(ServiceResponse<CandidateAuthentication>))]
+		public async Task<ServiceResponse<CandidateAuthentication>> Create([FromBody] CandidateAuthenticationInsert Model)
+		{
+			DataService<CandidateAuthentication> Response = await Service.InsertAsync(Model);
+			if (Response.Errors.Count > 0) return ServiceResponse<CandidateAuthentication>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<CandidateAuthentication>.FailureResponse("");
+			return ServiceResponse<CandidateAuthentication>.SuccessResponse(Response.Data, "");
+		}
 
 		//[HttpPut]
 		//[Route("api/candidateauthentication")]

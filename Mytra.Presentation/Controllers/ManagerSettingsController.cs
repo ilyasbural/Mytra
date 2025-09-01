@@ -11,18 +11,16 @@
 		readonly IManagerSettingsService Service;
 		public ManagerSettingsController(IManagerSettingsService service) { Service = service; }
 
-		//[HttpPost]
-		//[Route("api/managersettings")]
-		//[Produces(typeof(ServiceResponse<ManagerSettingsResponse>))]
-		//public async Task<ServiceResponse<ManagerSettingsResponse>> Create([FromBody] ManagerSettingsInsert Model)
-		//{
-		//	ServiceResponse<ManagerSettingsResponse> Response = await Service.InsertAsync(Model);
-		//	return new ServiceResponse<ManagerSettingsResponse>
-		//	{
-		//		Success = Response.Success,
-		//		ResponseData = Response.ResponseData
-		//	};
-		//}
+		[HttpPost]
+		[Route("api/managersettings")]
+		[Produces(typeof(ServiceResponse<ManagerSettings>))]
+		public async Task<ServiceResponse<ManagerSettings>> Create([FromBody] ManagerSettingsInsert Model)
+		{
+			DataService<ManagerSettings> Response = await Service.InsertAsync(Model);
+			if (Response.Errors.Count > 0) return ServiceResponse<ManagerSettings>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<ManagerSettings>.FailureResponse("");
+			return ServiceResponse<ManagerSettings>.SuccessResponse(Response.Data, "");
+		}
 
 		//[HttpPut]
 		//[Route("api/managersettings")]

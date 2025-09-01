@@ -11,18 +11,16 @@
 		readonly ICandidateContactService Service;
 		public CandidateContactController(ICandidateContactService service) { Service = service; }
 
-		//[HttpPost]
-		//[Route("api/candidatecontact")]
-		//[Produces(typeof(ServiceResponse<CandidateContactResponse>))]
-		//public async Task<ServiceResponse<CandidateContactResponse>> Create([FromBody] CandidateContactInsert Model)
-		//{
-		//	ServiceResponse<CandidateContactResponse> Response = await Service.InsertAsync(Model);
-		//	return new ServiceResponse<CandidateContactResponse>
-		//	{
-		//		Success = Response.Success,
-		//		ResponseData = Response.ResponseData
-		//	};
-		//}
+		[HttpPost]
+		[Route("api/candidatecontact")]
+		[Produces(typeof(ServiceResponse<CandidateContact>))]
+		public async Task<ServiceResponse<CandidateContact>> Create([FromBody] CandidateContactInsert Model)
+		{
+			DataService<CandidateContact> Response = await Service.InsertAsync(Model);
+			if (Response.Errors.Count > 0) return ServiceResponse<CandidateContact>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<CandidateContact>.FailureResponse("");
+			return ServiceResponse<CandidateContact>.SuccessResponse(Response.Data, "");
+		}
 
 		//[HttpPut]
 		//[Route("api/candidatecontact")]

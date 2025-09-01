@@ -11,18 +11,16 @@
 		readonly IManagerDetailService Service;
 		public ManagerDetailController(IManagerDetailService service) { Service = service; }
 
-		//[HttpPost]
-		//[Route("api/managerdetail")]
-		//[Produces(typeof(ServiceResponse<ManagerDetailResponse>))]
-		//public async Task<ServiceResponse<ManagerDetailResponse>> Create([FromBody] ManagerDetailInsert Model)
-		//{
-		//	ServiceResponse<ManagerDetailResponse> Response = await Service.InsertAsync(Model);
-		//	return new ServiceResponse<ManagerDetailResponse>
-		//	{
-		//		Success = Response.Success,
-		//		ResponseData = Response.ResponseData
-		//	};
-		//}
+		[HttpPost]
+		[Route("api/managerdetail")]
+		[Produces(typeof(ServiceResponse<ManagerDetail>))]
+		public async Task<ServiceResponse<ManagerDetail>> Create([FromBody] ManagerDetailInsert Model)
+		{
+			DataService<ManagerDetail> Response = await Service.InsertAsync(Model);
+			if (Response.Errors.Count > 0) return ServiceResponse<ManagerDetail>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<ManagerDetail>.FailureResponse("");
+			return ServiceResponse<ManagerDetail>.SuccessResponse(Response.Data, "");
+		}
 
 		//[HttpPut]
 		//[Route("api/managerdetail")]

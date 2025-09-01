@@ -11,18 +11,16 @@
 		readonly ICandidateSkillsService Service;
 		public CandidateSkillsController(ICandidateSkillsService service) { Service = service; }
 
-		//[HttpPost]
-		//[Route("api/candidateskills")]
-		//[Produces(typeof(ServiceResponse<CandidateSkillsResponse>))]
-		//public async Task<ServiceResponse<CandidateSkillsResponse>> Create([FromBody] CandidateSkillsInsert Model)
-		//{
-		//	ServiceResponse<CandidateSkillsResponse> Response = await Service.InsertAsync(Model);
-		//	return new ServiceResponse<CandidateSkillsResponse>
-		//	{
-		//		Success = Response.Success,
-		//		ResponseData = Response.ResponseData
-		//	};
-		//}
+		[HttpPost]
+		[Route("api/candidateskills")]
+		[Produces(typeof(ServiceResponse<CandidateSkills>))]
+		public async Task<ServiceResponse<CandidateSkills>> Create([FromBody] CandidateSkillsInsert Model)
+		{
+			DataService<CandidateSkills> Response = await Service.InsertAsync(Model);
+			if (Response.Errors.Count > 0) return ServiceResponse<CandidateSkills>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<CandidateSkills>.FailureResponse("");
+			return ServiceResponse<CandidateSkills>.SuccessResponse(Response.Data, "");
+		}
 
 		//[HttpPut]
 		//[Route("api/candidateskills")]

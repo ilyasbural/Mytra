@@ -11,18 +11,16 @@
 		readonly IJobPostingDetailService Service;
 		public JobPostingDetailController(IJobPostingDetailService service) { Service = service; }
 
-		//[HttpPost]
-		//[Route("api/jobpostingdetail")]
-		//[Produces(typeof(ServiceResponse<JobPostingDetailResponse>))]
-		//public async Task<ServiceResponse<JobPostingDetailResponse>> Create([FromBody] JobPostingDetailInsert Model)
-		//{
-		//	ServiceResponse<JobPostingDetailResponse> Response = await Service.InsertAsync(Model);
-		//	return new ServiceResponse<JobPostingDetailResponse>
-		//	{
-		//		Success = Response.Success,
-		//		ResponseData = Response.ResponseData
-		//	};
-		//}
+		[HttpPost]
+		[Route("api/jobpostingdetail")]
+		[Produces(typeof(ServiceResponse<JobPostingDetail>))]
+		public async Task<ServiceResponse<JobPostingDetail>> Create([FromBody] JobPostingDetailInsert Model)
+		{
+			DataService<JobPostingDetail> Response = await Service.InsertAsync(Model);
+			if (Response.Errors.Count > 0) return ServiceResponse<JobPostingDetail>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<JobPostingDetail>.FailureResponse("");
+			return ServiceResponse<JobPostingDetail>.SuccessResponse(Response.Data, "");
+		}
 
 		//[HttpPut]
 		//[Route("api/jobpostingdetail")]

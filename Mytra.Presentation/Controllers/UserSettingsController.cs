@@ -11,44 +11,38 @@
 		readonly IUserSettingsService Service;
 		public UserSettingsController(IUserSettingsService service) { Service = service; }
 
-		//[HttpPost]
-		//[Route("api/usersettings")]
-		//[Produces(typeof(ServiceResponse<UserSettingsResponse>))]
-		//public async Task<ServiceResponse<UserSettingsResponse>> Create([FromBody] UserSettingsInsert Model)
-		//{
-		//	ServiceResponse<UserSettingsResponse> Response = await Service.InsertAsync(Model);
-		//	return new ServiceResponse<UserSettingsResponse>
-		//	{
-		//		Success = Response.Success,
-		//		ResponseData = Response.ResponseData
-		//	};
-		//}
+		[HttpPost]
+		[Route("api/usersettings")]
+		[Produces(typeof(ServiceResponse<UserSettings>))]
+		public async Task<ServiceResponse<UserSettings>> Create([FromBody] UserSettingsInsert Model)
+		{
+			DataService<UserSettings> Response = await Service.InsertAsync(Model);
+			if (Response.Errors.Count > 0) return ServiceResponse<UserSettings>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<UserSettings>.FailureResponse("");
+			return ServiceResponse<UserSettings>.SuccessResponse(Response.Data, "");
+		}
 
-		//[HttpPut]
-		//[Route("api/usersettings")]
-		//[Produces(typeof(ServiceResponse<UserSettingsResponse>))]
-		//public async Task<ServiceResponse<UserSettingsResponse>> Update([FromBody] UserSettingsUpdate Model)
-		//{
-		//	ServiceResponse<UserSettingsResponse> Response = await Service.UpdateAsync(Model);
-		//	return new ServiceResponse<UserSettingsResponse>
-		//	{
-		//		Success = Response.Success,
-		//		ResponseData = Response.ResponseData
-		//	};
-		//}
+		[HttpPut]
+		[Route("api/usersettings")]
+		[Produces(typeof(ServiceResponse<UserSettings>))]
+		public async Task<ServiceResponse<UserSettings>> Update([FromBody] UserSettingsUpdate Model)
+		{
+			DataService<UserSettings> Response = await Service.UpdateAsync(Model);
+			if (Response.Errors.Count > 0) return ServiceResponse<UserSettings>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<UserSettings>.FailureResponse("");
+			return ServiceResponse<UserSettings>.SuccessResponse(Response.Data, "");
+		}
 
-		//[HttpDelete]
-		//[Route("api/usersettings")]
-		//[Produces(typeof(ServiceResponse<UserSettingsResponse>))]
-		//public async Task<ServiceResponse<UserSettingsResponse>> Delete([FromBody] UserSettingsDelete Model)
-		//{
-		//	ServiceResponse<UserSettingsResponse> Response = await Service.DeleteAsync(Model);
-		//	return new ServiceResponse<UserSettingsResponse>
-		//	{
-		//		Success = Response.Success,
-		//		ResponseData = Response.ResponseData
-		//	};
-		//}
+		[HttpDelete]
+		[Route("api/usersettings")]
+		[Produces(typeof(ServiceResponse<UserSettings>))]
+		public async Task<ServiceResponse<UserSettings>> Delete([FromBody] UserSettingsDelete Model)
+		{
+			DataService<UserSettings> Response = await Service.DeleteAsync(Model);
+			if (Response.Errors.Count > 0) return ServiceResponse<UserSettings>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<UserSettings>.FailureResponse("");
+			return ServiceResponse<UserSettings>.SuccessResponse(Response.Data, "");
+		}
 
 		[HttpGet]
 		[Route("api/usersettings")]
@@ -59,16 +53,13 @@
 			return ServiceResponse<UserSettings>.SuccessResponse(Response.DataList, "usersettings list added");
 		}
 
-		//[HttpGet]
-		//[Route("api/usersettingssingle")]
-		//[Produces(typeof(ServiceResponse<UserSettingsResponse>))]
-		//public async Task<ServiceResponse<UserSettingsResponse>> GetSingle([FromQuery] UserSettingsSelectSingle Model)
-		//{
-		//	ServiceResponse<UserSettingsResponse> Response = await Service.SelectSingleAsync(Model);
-		//	return new ServiceResponse<UserSettingsResponse>
-		//	{
-		//		ResponseDataSource = Response.ResponseDataSource
-		//	};
-		//}
+		[HttpGet]
+		[Route("api/usersettingssingle")]
+		[Produces(typeof(ServiceResponse<UserSettings>))]
+		public async Task<ServiceResponse<UserSettings>> GetSingle([FromQuery] UserSettingsSelectSingle Model)
+		{
+			DataService<UserSettings> Response = await Service.SelectSingleAsync(Model);
+			return ServiceResponse<UserSettings>.SuccessResponse(Response.Data, "");
+		}
 	}
 }

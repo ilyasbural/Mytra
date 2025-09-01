@@ -11,18 +11,16 @@
 		readonly IManagerService Service;
 		public ManagerController(IManagerService service) { Service = service; }
 
-		//[HttpPost]
-		//[Route("api/manager")]
-		//[Produces(typeof(ServiceResponse<ManagerResponse>))]
-		//public async Task<ServiceResponse<ManagerResponse>> Create([FromBody] ManagerInsert Model)
-		//{
-		//	ServiceResponse<ManagerResponse> Response = await Service.InsertAsync(Model);
-		//	return new ServiceResponse<ManagerResponse>
-		//	{
-		//		Success = Response.Success,
-		//		ResponseData = Response.ResponseData
-		//	};
-		//}
+		[HttpPost]
+		[Route("api/manager")]
+		[Produces(typeof(ServiceResponse<Manager>))]
+		public async Task<ServiceResponse<Manager>> Create([FromBody] ManagerInsert Model)
+		{
+			DataService<Manager> Response = await Service.InsertAsync(Model);
+			if (Response.Errors.Count > 0) return ServiceResponse<Manager>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<Manager>.FailureResponse("");
+			return ServiceResponse<Manager>.SuccessResponse(Response.Data, "");
+		}
 
 		//[HttpPut]
 		//[Route("api/manager")]

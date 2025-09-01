@@ -10,18 +10,16 @@
 		readonly IUserAuthenticationService Service;
 		public UserAuthenticationController(IUserAuthenticationService service) { Service = service; }
 
-		//[HttpPost]
-		//[Route("api/userauthentication")]
-		//[Produces(typeof(ServiceResponse<UserAuthenticationResponse>))]
-		//public async Task<ServiceResponse<UserAuthenticationResponse>> Create([FromBody] UserAuthenticationInsert Model)
-		//{
-		//	ServiceResponse<UserAuthenticationResponse> Response = await Service.InsertAsync(Model);
-		//	return new ServiceResponse<UserAuthenticationResponse>
-		//	{
-		//		Success = Response.Success,
-		//		ResponseData = Response.ResponseData
-		//	};
-		//}
+		[HttpPost]
+		[Route("api/userauthentication")]
+		[Produces(typeof(ServiceResponse<UserAuthentication>))]
+		public async Task<ServiceResponse<UserAuthentication>> Create([FromBody] UserAuthenticationInsert Model)
+		{
+			DataService<UserAuthentication> Response = await Service.InsertAsync(Model);
+			if (Response.Errors.Count > 0) return ServiceResponse<UserAuthentication>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<UserAuthentication>.FailureResponse("");
+			return ServiceResponse<UserAuthentication>.SuccessResponse(Response.Data, "");
+		}
 
 		//[HttpPut]
 		//[Route("api/userauthentication")]

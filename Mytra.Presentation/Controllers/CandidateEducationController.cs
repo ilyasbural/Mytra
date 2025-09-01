@@ -11,18 +11,16 @@
 		readonly ICandidateEducationService Service;
 		public CandidateEducationController(ICandidateEducationService service) { Service = service; }
 
-		//[HttpPost]
-		//[Route("api/candidateeducation")]
-		//[Produces(typeof(ServiceResponse<CandidateEducationResponse>))]
-		//public async Task<ServiceResponse<CandidateEducationResponse>> Create([FromBody] CandidateEducationInsert Model)
-		//{
-		//	ServiceResponse<CandidateEducationResponse> Response = await Service.InsertAsync(Model);
-		//	return new ServiceResponse<CandidateEducationResponse>
-		//	{
-		//		Success = Response.Success,
-		//		ResponseData = Response.ResponseData
-		//	};
-		//}
+		[HttpPost]
+		[Route("api/candidateeducation")]
+		[Produces(typeof(ServiceResponse<CandidateEducation>))]
+		public async Task<ServiceResponse<CandidateEducation>> Create([FromBody] CandidateEducationInsert Model)
+		{
+			DataService<CandidateEducation> Response = await Service.InsertAsync(Model);
+			if (Response.Errors.Count > 0) return ServiceResponse<CandidateEducation>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<CandidateEducation>.FailureResponse("");
+			return ServiceResponse<CandidateEducation>.SuccessResponse(Response.Data, "");
+		}
 
 		//[HttpPut]
 		//[Route("api/candidateeducation")]

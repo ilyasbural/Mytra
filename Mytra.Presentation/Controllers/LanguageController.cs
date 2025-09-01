@@ -11,18 +11,16 @@
 		readonly ILanguageService Service;
 		public LanguageController(ILanguageService service) { Service = service; }
 
-		//[HttpPost]
-		//[Route("api/language")]
-		//[Produces(typeof(ServiceResponse<LanguageResponse>))]
-		//public async Task<ServiceResponse<LanguageResponse>> Create([FromBody] LanguageInsert Model)
-		//{
-		//	ServiceResponse<LanguageResponse> Response = await Service.InsertAsync(Model);
-		//	return new ServiceResponse<LanguageResponse>
-		//	{
-		//		Success = Response.Success,
-		//		ResponseData = Response.ResponseData
-		//	};
-		//}
+		[HttpPost]
+		[Route("api/language")]
+		[Produces(typeof(ServiceResponse<Language>))]
+		public async Task<ServiceResponse<Language>> Create([FromBody] LanguageInsert Model)
+		{
+			DataService<Language> Response = await Service.InsertAsync(Model);
+			if (Response.Errors.Count > 0) return ServiceResponse<Language>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<Language>.FailureResponse("");
+			return ServiceResponse<Language>.SuccessResponse(Response.Data, "");
+		}
 
 		//[HttpPut]
 		//[Route("api/language")]

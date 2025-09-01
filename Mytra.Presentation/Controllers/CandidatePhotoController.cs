@@ -11,18 +11,16 @@
 		readonly ICandidatePhotoService Service;
 		public CandidatePhotoController(ICandidatePhotoService service) { Service = service; }
 
-		//[HttpPost]
-		//[Route("api/candidatephoto")]
-		//[Produces(typeof(ServiceResponse<CandidatePhotoResponse>))]
-		//public async Task<ServiceResponse<CandidatePhotoResponse>> Create([FromBody] CandidatePhotoInsert Model)
-		//{
-		//	ServiceResponse<CandidatePhotoResponse> Response = await Service.InsertAsync(Model);
-		//	return new ServiceResponse<CandidatePhotoResponse>
-		//	{
-		//		Success = Response.Success,
-		//		ResponseData = Response.ResponseData
-		//	};
-		//}
+		[HttpPost]
+		[Route("api/candidatephoto")]
+		[Produces(typeof(ServiceResponse<CandidatePhoto>))]
+		public async Task<ServiceResponse<CandidatePhoto>> Create([FromBody] CandidatePhotoInsert Model)
+		{
+			DataService<CandidatePhoto> Response = await Service.InsertAsync(Model);
+			if (Response.Errors.Count > 0) return ServiceResponse<CandidatePhoto>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<CandidatePhoto>.FailureResponse("");
+			return ServiceResponse<CandidatePhoto>.SuccessResponse(Response.Data, "");
+		}
 
 		//[HttpPut]
 		//[Route("api/candidatephoto")]

@@ -11,18 +11,16 @@
 		readonly ICandidateReferanceService Service;
 		public CandidateReferanceController(ICandidateReferanceService service) { Service = service; }
 
-		//[HttpPost]
-		//[Route("api/candidatereferance")]
-		//[Produces(typeof(ServiceResponse<CandidateReferanceResponse>))]
-		//public async Task<ServiceResponse<CandidateReferanceResponse>> Create([FromBody] CandidateReferanceInsert Model)
-		//{
-		//	ServiceResponse<CandidateReferanceResponse> Response = await Service.InsertAsync(Model);
-		//	return new ServiceResponse<CandidateReferanceResponse>
-		//	{
-		//		Success = Response.Success,
-		//		ResponseData = Response.ResponseData
-		//	};
-		//}
+		[HttpPost]
+		[Route("api/candidatereferance")]
+		[Produces(typeof(ServiceResponse<CandidateReferance>))]
+		public async Task<ServiceResponse<CandidateReferance>> Create([FromBody] CandidateReferanceInsert Model)
+		{
+			DataService<CandidateReferance> Response = await Service.InsertAsync(Model);
+			if (Response.Errors.Count > 0) return ServiceResponse<CandidateReferance>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<CandidateReferance>.FailureResponse("");
+			return ServiceResponse<CandidateReferance>.SuccessResponse(Response.Data, "");
+		}
 
 		//[HttpPut]
 		//[Route("api/candidatereferance")]

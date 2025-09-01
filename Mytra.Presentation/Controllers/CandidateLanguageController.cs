@@ -11,18 +11,16 @@
 		readonly ICandidateLanguageService Service;
 		public CandidateLanguageController(ICandidateLanguageService service) { Service = service; }
 
-		//[HttpPost]
-		//[Route("api/candidatelanguage")]
-		//[Produces(typeof(ServiceResponse<CandidateLanguageResponse>))]
-		//public async Task<ServiceResponse<CandidateLanguageResponse>> Create([FromBody] CandidateLanguageInsert Model)
-		//{
-		//	ServiceResponse<CandidateLanguageResponse> Response = await Service.InsertAsync(Model);
-		//	return new ServiceResponse<CandidateLanguageResponse>
-		//	{
-		//		Success = Response.Success,
-		//		ResponseData = Response.ResponseData
-		//	};
-		//}
+		[HttpPost]
+		[Route("api/candidatelanguage")]
+		[Produces(typeof(ServiceResponse<CandidateLanguage>))]
+		public async Task<ServiceResponse<CandidateLanguage>> Create([FromBody] CandidateLanguageInsert Model)
+		{
+			DataService<CandidateLanguage> Response = await Service.InsertAsync(Model);
+			if (Response.Errors.Count > 0) return ServiceResponse<CandidateLanguage>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<CandidateLanguage>.FailureResponse("");
+			return ServiceResponse<CandidateLanguage>.SuccessResponse(Response.Data, "");
+		}
 
 		//[HttpPut]
 		//[Route("api/candidatelanguage")]

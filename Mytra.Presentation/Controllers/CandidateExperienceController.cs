@@ -11,18 +11,16 @@
 		readonly ICandidateExperienceService Service;
 		public CandidateExperienceController(ICandidateExperienceService service) { Service = service; }
 
-		//[HttpPost]
-		//[Route("api/candidateexperience")]
-		//[Produces(typeof(ServiceResponse<CandidateExperienceResponse>))]
-		//public async Task<ServiceResponse<CandidateExperienceResponse>> Create([FromBody] CandidateExperienceInsert Model)
-		//{
-		//	ServiceResponse<CandidateExperienceResponse> Response = await Service.InsertAsync(Model);
-		//	return new ServiceResponse<CandidateExperienceResponse>
-		//	{
-		//		Success = Response.Success,
-		//		ResponseData = Response.ResponseData
-		//	};
-		//}
+		[HttpPost]
+		[Route("api/candidateexperience")]
+		[Produces(typeof(ServiceResponse<CandidateExperience>))]
+		public async Task<ServiceResponse<CandidateExperience>> Create([FromBody] CandidateExperienceInsert Model)
+		{
+			DataService<CandidateExperience> Response = await Service.InsertAsync(Model);
+			if (Response.Errors.Count > 0) return ServiceResponse<CandidateExperience>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<CandidateExperience>.FailureResponse("");
+			return ServiceResponse<CandidateExperience>.SuccessResponse(Response.Data, "");
+		}
 
 		//[HttpPut]
 		//[Route("api/candidateexperience")]
