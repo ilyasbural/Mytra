@@ -50,7 +50,7 @@
 		public async Task<ServiceResponse<UserSettings>> Get([FromQuery] UserSettingsSelect Model)
 		{
 			DataService<UserSettings> Response = await Service.SelectAsync(Model);
-			return ServiceResponse<UserSettings>.SuccessResponse(Response.DataList, "usersettings list added");
+			return ServiceResponse<UserSettings>.SuccessResponse(Response.DataList, "");
 		}
 
 		[HttpGet]

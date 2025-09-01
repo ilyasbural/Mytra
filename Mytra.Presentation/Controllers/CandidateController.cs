@@ -1,12 +1,11 @@
 ﻿namespace Mytra.Presentation.Controllers
 {
-	using Azure;
-	using Common;
 	using Core;
-	using Microsoft.AspNetCore.Authorization;
+	using Common;
 	using Microsoft.AspNetCore.Mvc;
+	using Microsoft.AspNetCore.Authorization;
 
-    [ApiController]
+	[ApiController]
     public class CandidateController : ControllerBase
     {
 		readonly ICandidateService Service;
@@ -18,9 +17,9 @@
 		public async Task<ServiceResponse<Candidate>> Create([FromBody] CandidateInsert Model)
 		{
 			DataService<Candidate> Response = await Service.InsertAsync(Model);		
-			if (Response.Errors.Count > 0) return ServiceResponse<Candidate>.FailureResponse(Response.Errors, "Validasyon hatası");
-			if (!Response.Success) return ServiceResponse<Candidate>.FailureResponse("Aday kaydedilemedi");
-			return ServiceResponse<Candidate>.SuccessResponse(Response.Data, "Aday kaydedildi");
+			if (Response.Errors.Count > 0) return ServiceResponse<Candidate>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<Candidate>.FailureResponse("");
+			return ServiceResponse<Candidate>.SuccessResponse(Response.Data, "");
 		}
 
 		[HttpPut]
@@ -29,9 +28,9 @@
 		public async Task<ServiceResponse<Candidate>> Update([FromBody] CandidateUpdate Model)
 		{
 			DataService<Candidate> Response = await Service.UpdateAsync(Model);
-			if (Response.Errors.Count > 0) return ServiceResponse<Candidate>.FailureResponse(Response.Errors, "Validasyon hatası");
-			if (!Response.Success) return ServiceResponse<Candidate>.FailureResponse("Aday güncellenemedi");
-			return ServiceResponse<Candidate>.SuccessResponse(Response.Data, "Aday güncellendi");
+			if (Response.Errors.Count > 0) return ServiceResponse<Candidate>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<Candidate>.FailureResponse("");
+			return ServiceResponse<Candidate>.SuccessResponse(Response.Data, "");
 		}
 
 		[HttpDelete]
@@ -40,9 +39,9 @@
 		public async Task<ServiceResponse<Candidate>> Delete([FromBody] CandidateDelete Model)
 		{
 			DataService<Candidate> Response = await Service.DeleteAsync(Model);
-			if (Response.Errors.Count > 0) return ServiceResponse<Candidate>.FailureResponse(Response.Errors, "Validasyon hatası");
-			if (!Response.Success) return ServiceResponse<Candidate>.FailureResponse("Aday silinemedi");
-			return ServiceResponse<Candidate>.SuccessResponse(Response.Data, "Aday silindi");
+			if (Response.Errors.Count > 0) return ServiceResponse<Candidate>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<Candidate>.FailureResponse("");
+			return ServiceResponse<Candidate>.SuccessResponse(Response.Data, "");
 		}
 
 		[HttpGet]
@@ -51,7 +50,7 @@
 		public async Task<ServiceResponse<Candidate>> Get([FromQuery] CandidateSelect Model)
 		{
 			DataService<Candidate> Response = await Service.SelectAsync(Model);
-			return ServiceResponse<Candidate>.SuccessResponse(Response.DataList, "Aday listesi eklendi");
+			return ServiceResponse<Candidate>.SuccessResponse(Response.DataList, "");
 		}
 
 		[HttpGet]
@@ -60,7 +59,7 @@
 		public async Task<ServiceResponse<Candidate>> GetSingle([FromQuery] CandidateSelectSingle Model)
 		{
 			DataService<Candidate> Response = await Service.SelectSingleAsync(Model);
-			return ServiceResponse<Candidate>.SuccessResponse(Response.Data, "Aday getirildi");
+			return ServiceResponse<Candidate>.SuccessResponse(Response.Data, "");
 		}
 	}
 }

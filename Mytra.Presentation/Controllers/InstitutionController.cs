@@ -22,31 +22,27 @@
 			return ServiceResponse<Institution>.SuccessResponse(Response.Data, "");
 		}
 
-		//[HttpPut]
-		//[Route("api/institution")]
-		//[Produces(typeof(ServiceResponse<InstitutionResponse>))]
-		//public async Task<ServiceResponse<InstitutionResponse>> Update([FromBody] InstitutionUpdate Model)
-		//{
-		//	ServiceResponse<InstitutionResponse> Response = await Service.UpdateAsync(Model);
-		//	return new ServiceResponse<InstitutionResponse>
-		//	{
-		//		Success = Response.Success,
-		//		ResponseData = Response.ResponseData
-		//	};
-		//}
+		[HttpPut]
+		[Route("api/institution")]
+		[Produces(typeof(ServiceResponse<Institution>))]
+		public async Task<ServiceResponse<Institution>> Update([FromBody] InstitutionUpdate Model)
+		{
+			DataService<Institution> Response = await Service.UpdateAsync(Model);
+			if (Response.Errors.Count > 0) return ServiceResponse<Institution>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<Institution>.FailureResponse("");
+			return ServiceResponse<Institution>.SuccessResponse(Response.Data, "");
+		}
 
-		//[HttpDelete]
-		//[Route("api/institution")]
-		//[Produces(typeof(ServiceResponse<InstitutionResponse>))]
-		//public async Task<ServiceResponse<InstitutionResponse>> Delete([FromBody] InstitutionDelete Model)
-		//{
-		//	ServiceResponse<InstitutionResponse> Response = await Service.DeleteAsync(Model);
-		//	return new ServiceResponse<InstitutionResponse>
-		//	{
-		//		Success = Response.Success,
-		//		ResponseData = Response.ResponseData
-		//	};
-		//}
+		[HttpDelete]
+		[Route("api/institution")]
+		[Produces(typeof(ServiceResponse<Institution>))]
+		public async Task<ServiceResponse<Institution>> Delete([FromBody] InstitutionDelete Model)
+		{
+			DataService<Institution> Response = await Service.DeleteAsync(Model);
+			if (Response.Errors.Count > 0) return ServiceResponse<Institution>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<Institution>.FailureResponse("");
+			return ServiceResponse<Institution>.SuccessResponse(Response.Data, "");
+		}
 
 		[HttpGet]
 		[Route("api/institution")]
@@ -54,19 +50,16 @@
 		public async Task<ServiceResponse<Institution>> Get([FromQuery] InstitutionSelect Model)
 		{
 			DataService<Institution> Response = await Service.SelectAsync(Model);
-			return ServiceResponse<Institution>.SuccessResponse(Response.DataList, "institution list");
+			return ServiceResponse<Institution>.SuccessResponse(Response.DataList, "");
 		}
 
-		//[HttpGet]
-		//[Route("api/institutionsingle")]
-		//[Produces(typeof(ServiceResponse<InstitutionResponse>))]
-		//public async Task<ServiceResponse<InstitutionResponse>> GetSingle([FromQuery] InstitutionSelectSingle Model)
-		//{
-		//	ServiceResponse<InstitutionResponse> Response = await Service.SelectSingleAsync(Model);
-		//	return new ServiceResponse<InstitutionResponse>
-		//	{
-		//		ResponseDataSource = Response.ResponseDataSource
-		//	};
-		//}
+		[HttpGet]
+		[Route("api/institutionsingle")]
+		[Produces(typeof(ServiceResponse<Institution>))]
+		public async Task<ServiceResponse<Institution>> GetSingle([FromQuery] InstitutionSelectSingle Model)
+		{
+			DataService<Institution> Response = await Service.SelectSingleAsync(Model);
+			return ServiceResponse<Institution>.SuccessResponse(Response.Data, "");
+		}
 	}
 }

@@ -22,31 +22,27 @@
 			return ServiceResponse<CandidateReferance>.SuccessResponse(Response.Data, "");
 		}
 
-		//[HttpPut]
-		//[Route("api/candidatereferance")]
-		//[Produces(typeof(ServiceResponse<CandidateReferanceResponse>))]
-		//public async Task<ServiceResponse<CandidateReferanceResponse>> Update([FromBody] CandidateReferanceUpdate Model)
-		//{
-		//	ServiceResponse<CandidateReferanceResponse> Response = await Service.UpdateAsync(Model);
-		//	return new ServiceResponse<CandidateReferanceResponse>
-		//	{
-		//		Success = Response.Success,
-		//		ResponseData = Response.ResponseData
-		//	};
-		//}
+		[HttpPut]
+		[Route("api/candidatereferance")]
+		[Produces(typeof(ServiceResponse<CandidateReferance>))]
+		public async Task<ServiceResponse<CandidateReferance>> Update([FromBody] CandidateReferanceUpdate Model)
+		{
+			DataService<CandidateReferance> Response = await Service.UpdateAsync(Model);
+			if (Response.Errors.Count > 0) return ServiceResponse<CandidateReferance>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<CandidateReferance>.FailureResponse("");
+			return ServiceResponse<CandidateReferance>.SuccessResponse(Response.Data, "");
+		}
 
-		//[HttpDelete]
-		//[Route("api/candidatereferance")]
-		//[Produces(typeof(ServiceResponse<CandidateReferanceResponse>))]
-		//public async Task<ServiceResponse<CandidateReferanceResponse>> Delete([FromBody] CandidateReferanceDelete Model)
-		//{
-		//	ServiceResponse<CandidateReferanceResponse> Response = await Service.DeleteAsync(Model);
-		//	return new ServiceResponse<CandidateReferanceResponse>
-		//	{
-		//		Success = Response.Success,
-		//		ResponseData = Response.ResponseData
-		//	};
-		//}
+		[HttpDelete]
+		[Route("api/candidatereferance")]
+		[Produces(typeof(ServiceResponse<CandidateReferance>))]
+		public async Task<ServiceResponse<CandidateReferance>> Delete([FromBody] CandidateReferanceDelete Model)
+		{
+			DataService<CandidateReferance> Response = await Service.DeleteAsync(Model);
+			if (Response.Errors.Count > 0) return ServiceResponse<CandidateReferance>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<CandidateReferance>.FailureResponse("");
+			return ServiceResponse<CandidateReferance>.SuccessResponse(Response.Data, "");
+		}
 
 		[HttpGet]
 		[Route("api/candidatereferance")]
@@ -54,19 +50,16 @@
 		public async Task<ServiceResponse<CandidateReferance>> Get([FromQuery] CandidateReferanceSelect Model)
 		{
 			DataService<CandidateReferance> Response = await Service.SelectAsync(Model);
-			return ServiceResponse<CandidateReferance>.SuccessResponse(Response.DataList, "candidatereferance list");
+			return ServiceResponse<CandidateReferance>.SuccessResponse(Response.DataList, "");
 		}
 
-		//[HttpGet]
-		//[Route("api/candidatereferancesingle")]
-		//[Produces(typeof(ServiceResponse<CandidateReferanceResponse>))]
-		//public async Task<ServiceResponse<CandidateReferanceResponse>> GetSingle([FromQuery] CandidateReferanceSelectSingle Model)
-		//{
-		//	ServiceResponse<CandidateReferanceResponse> Response = await Service.SelectSingleAsync(Model);
-		//	return new ServiceResponse<CandidateReferanceResponse>
-		//	{
-		//		ResponseDataSource = Response.ResponseDataSource
-		//	};
-		//}
+		[HttpGet]
+		[Route("api/candidatereferancesingle")]
+		[Produces(typeof(ServiceResponse<CandidateReferance>))]
+		public async Task<ServiceResponse<CandidateReferance>> GetSingle([FromQuery] CandidateReferanceSelectSingle Model)
+		{
+			DataService<CandidateReferance> Response = await Service.SelectSingleAsync(Model);
+			return ServiceResponse<CandidateReferance>.SuccessResponse(Response.Data, "");
+		}
 	}
 }

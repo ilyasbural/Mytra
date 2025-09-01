@@ -22,31 +22,27 @@
 			return ServiceResponse<CandidateContact>.SuccessResponse(Response.Data, "");
 		}
 
-		//[HttpPut]
-		//[Route("api/candidatecontact")]
-		//[Produces(typeof(ServiceResponse<CandidateContactResponse>))]
-		//public async Task<ServiceResponse<CandidateContactResponse>> Update([FromBody] CandidateContactUpdate Model)
-		//{
-		//	ServiceResponse<CandidateContactResponse> Response = await Service.UpdateAsync(Model);
-		//	return new ServiceResponse<CandidateContactResponse>
-		//	{
-		//		Success = Response.Success,
-		//		ResponseData = Response.ResponseData
-		//	};
-		//}
+		[HttpPut]
+		[Route("api/candidatecontact")]
+		[Produces(typeof(ServiceResponse<CandidateContact>))]
+		public async Task<ServiceResponse<CandidateContact>> Update([FromBody] CandidateContactUpdate Model)
+		{
+			DataService<CandidateContact> Response = await Service.UpdateAsync(Model);
+			if (Response.Errors.Count > 0) return ServiceResponse<CandidateContact>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<CandidateContact>.FailureResponse("");
+			return ServiceResponse<CandidateContact>.SuccessResponse(Response.Data, "");
+		}
 
-		//[HttpDelete]
-		//[Route("api/candidatecontact")]
-		//[Produces(typeof(ServiceResponse<CandidateContactResponse>))]
-		//public async Task<ServiceResponse<CandidateContactResponse>> Delete([FromBody] CandidateContactDelete Model)
-		//{
-		//	ServiceResponse<CandidateContactResponse> Response = await Service.DeleteAsync(Model);
-		//	return new ServiceResponse<CandidateContactResponse>
-		//	{
-		//		Success = Response.Success,
-		//		ResponseData = Response.ResponseData
-		//	};
-		//}
+		[HttpDelete]
+		[Route("api/candidatecontact")]
+		[Produces(typeof(ServiceResponse<CandidateContact>))]
+		public async Task<ServiceResponse<CandidateContact>> Delete([FromBody] CandidateContactDelete Model)
+		{
+			DataService<CandidateContact> Response = await Service.DeleteAsync(Model);
+			if (Response.Errors.Count > 0) return ServiceResponse<CandidateContact>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<CandidateContact>.FailureResponse("");
+			return ServiceResponse<CandidateContact>.SuccessResponse(Response.Data, "");
+		}
 
 		[HttpGet]
 		[Route("api/candidatecontact")]
@@ -54,19 +50,16 @@
 		public async Task<ServiceResponse<CandidateContact>> Get([FromQuery] CandidateContactSelect Model)
 		{
 			DataService<CandidateContact> Response = await Service.SelectAsync(Model);
-			return ServiceResponse<CandidateContact>.SuccessResponse(Response.DataList, "managerdetail list");
+			return ServiceResponse<CandidateContact>.SuccessResponse(Response.DataList, "");
 		}
 
-		//[HttpGet]
-		//[Route("api/candidatecontactsingle")]
-		//[Produces(typeof(ServiceResponse<CandidateContactResponse>))]
-		//public async Task<ServiceResponse<CandidateContactResponse>> GetSingle([FromQuery] CandidateContactSelectSingle Model)
-		//{
-		//	ServiceResponse<CandidateContactResponse> Response = await Service.SelectSingleAsync(Model);
-		//	return new ServiceResponse<CandidateContactResponse>
-		//	{
-		//		ResponseDataSource = Response.ResponseDataSource
-		//	};
-		//}
+		[HttpGet]
+		[Route("api/candidatecontactsingle")]
+		[Produces(typeof(ServiceResponse<CandidateContact>))]
+		public async Task<ServiceResponse<CandidateContact>> GetSingle([FromQuery] CandidateContactSelectSingle Model)
+		{
+			DataService<CandidateContact> Response = await Service.SelectSingleAsync(Model);
+			return ServiceResponse<CandidateContact>.SuccessResponse(Response.Data, "");
+		}
 	}
 }

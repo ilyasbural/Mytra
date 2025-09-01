@@ -22,31 +22,27 @@
 			return ServiceResponse<Manager>.SuccessResponse(Response.Data, "");
 		}
 
-		//[HttpPut]
-		//[Route("api/manager")]
-		//[Produces(typeof(ServiceResponse<ManagerResponse>))]
-		//public async Task<ServiceResponse<ManagerResponse>> Update([FromBody] ManagerUpdate Model)
-		//{
-		//	ServiceResponse<ManagerResponse> Response = await Service.UpdateAsync(Model);
-		//	return new ServiceResponse<ManagerResponse>
-		//	{
-		//		Success = Response.Success,
-		//		ResponseData = Response.ResponseData
-		//	};
-		//}
+		[HttpPut]
+		[Route("api/manager")]
+		[Produces(typeof(ServiceResponse<Manager>))]
+		public async Task<ServiceResponse<Manager>> Update([FromBody] ManagerUpdate Model)
+		{
+			DataService<Manager> Response = await Service.UpdateAsync(Model);
+			if (Response.Errors.Count > 0) return ServiceResponse<Manager>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<Manager>.FailureResponse("");
+			return ServiceResponse<Manager>.SuccessResponse(Response.Data, "");
+		}
 
-		//[HttpDelete]
-		//[Route("api/manager")]
-		//[Produces(typeof(ServiceResponse<ManagerResponse>))]
-		//public async Task<ServiceResponse<ManagerResponse>> Delete([FromBody] ManagerDelete Model)
-		//{
-		//	ServiceResponse<ManagerResponse> Response = await Service.DeleteAsync(Model);
-		//	return new ServiceResponse<ManagerResponse>
-		//	{
-		//		Success = Response.Success,
-		//		ResponseData = Response.ResponseData
-		//	};
-		//}
+		[HttpDelete]
+		[Route("api/manager")]
+		[Produces(typeof(ServiceResponse<Manager>))]
+		public async Task<ServiceResponse<Manager>> Delete([FromBody] ManagerDelete Model)
+		{
+			DataService<Manager> Response = await Service.DeleteAsync(Model);
+			if (Response.Errors.Count > 0) return ServiceResponse<Manager>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<Manager>.FailureResponse("");
+			return ServiceResponse<Manager>.SuccessResponse(Response.Data, "");
+		}
 
 		[HttpGet]
 		[Route("api/manager")]
@@ -54,19 +50,16 @@
 		public async Task<ServiceResponse<Manager>> Get([FromQuery] ManagerSelect Model)
 		{
 			DataService<Manager> Response = await Service.SelectAsync(Model);
-			return ServiceResponse<Manager>.SuccessResponse(Response.DataList, "manager list");
+			return ServiceResponse<Manager>.SuccessResponse(Response.DataList, "");
 		}
 
-		//[HttpGet]
-		//[Route("api/managersingle")]
-		//[Produces(typeof(ServiceResponse<ManagerResponse>))]
-		//public async Task<ServiceResponse<ManagerResponse>> GetSingle([FromQuery] ManagerSelectSingle Model)
-		//{
-		//	ServiceResponse<ManagerResponse> Response = await Service.SelectSingleAsync(Model);
-		//	return new ServiceResponse<ManagerResponse>
-		//	{
-		//		ResponseDataSource = Response.ResponseDataSource
-		//	};
-		//}
+		[HttpGet]
+		[Route("api/managersingle")]
+		[Produces(typeof(ServiceResponse<Manager>))]
+		public async Task<ServiceResponse<Manager>> GetSingle([FromQuery] ManagerSelectSingle Model)
+		{
+			DataService<Manager> Response = await Service.SelectSingleAsync(Model);
+			return ServiceResponse<Manager>.SuccessResponse(Response.Data, "");
+		}
 	}
 }

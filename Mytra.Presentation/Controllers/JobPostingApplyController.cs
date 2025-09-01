@@ -22,31 +22,27 @@
 			return ServiceResponse<JobPostingApply>.SuccessResponse(Response.Data, "");
 		}
 
-		//[HttpPut]
-		//[Route("api/jobpostingapply")]
-		//[Produces(typeof(ServiceResponse<JobPostingApplyResponse>))]
-		//public async Task<ServiceResponse<JobPostingApplyResponse>> Update([FromBody] JobPostingApplyUpdate Model)
-		//{
-		//	ServiceResponse<JobPostingApplyResponse> Response = await Service.UpdateAsync(Model);
-		//	return new ServiceResponse<JobPostingApplyResponse>
-		//	{
-		//		Success = Response.Success,
-		//		ResponseData = Response.ResponseData
-		//	};
-		//}
+		[HttpPut]
+		[Route("api/jobpostingapply")]
+		[Produces(typeof(ServiceResponse<JobPostingApply>))]
+		public async Task<ServiceResponse<JobPostingApply>> Update([FromBody] JobPostingApplyUpdate Model)
+		{
+			DataService<JobPostingApply> Response = await Service.UpdateAsync(Model);
+			if (Response.Errors.Count > 0) return ServiceResponse<JobPostingApply>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<JobPostingApply>.FailureResponse("");
+			return ServiceResponse<JobPostingApply>.SuccessResponse(Response.Data, "");
+		}
 
-		//[HttpDelete]
-		//[Route("api/jobpostingapply")]
-		//[Produces(typeof(ServiceResponse<JobPostingApplyResponse>))]
-		//public async Task<ServiceResponse<JobPostingApplyResponse>> Delete([FromBody] JobPostingApplyDelete Model)
-		//{
-		//	ServiceResponse<JobPostingApplyResponse> Response = await Service.DeleteAsync(Model);
-		//	return new ServiceResponse<JobPostingApplyResponse>
-		//	{
-		//		Success = Response.Success,
-		//		ResponseData = Response.ResponseData
-		//	};
-		//}
+		[HttpDelete]
+		[Route("api/jobpostingapply")]
+		[Produces(typeof(ServiceResponse<JobPostingApply>))]
+		public async Task<ServiceResponse<JobPostingApply>> Delete([FromBody] JobPostingApplyDelete Model)
+		{
+			DataService<JobPostingApply> Response = await Service.DeleteAsync(Model);
+			if (Response.Errors.Count > 0) return ServiceResponse<JobPostingApply>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<JobPostingApply>.FailureResponse("");
+			return ServiceResponse<JobPostingApply>.SuccessResponse(Response.Data, "");
+		}
 
 		[HttpGet]
 		[Route("api/jobpostingapply")]
@@ -54,19 +50,16 @@
 		public async Task<ServiceResponse<JobPostingApply>> Get([FromQuery] JobPostingApplySelect Model)
 		{
 			DataService<JobPostingApply> Response = await Service.SelectAsync(Model);
-			return ServiceResponse<JobPostingApply>.SuccessResponse(Response.DataList, "jobpostingapply list");
+			return ServiceResponse<JobPostingApply>.SuccessResponse(Response.DataList, "");
 		}
 
-		//[HttpGet]
-		//[Route("api/jobpostingapplysingle")]
-		//[Produces(typeof(ServiceResponse<JobPostingApplyResponse>))]
-		//public async Task<ServiceResponse<JobPostingApplyResponse>> GetSingle([FromQuery] JobPostingApplySelectSingle Model)
-		//{
-		//	ServiceResponse<JobPostingApplyResponse> Response = await Service.SelectSingleAsync(Model);
-		//	return new ServiceResponse<JobPostingApplyResponse>
-		//	{
-		//		ResponseDataSource = Response.ResponseDataSource
-		//	};
-		//}
+		[HttpGet]
+		[Route("api/jobpostingapplysingle")]
+		[Produces(typeof(ServiceResponse<JobPostingApply>))]
+		public async Task<ServiceResponse<JobPostingApply>> GetSingle([FromQuery] JobPostingApplySelectSingle Model)
+		{
+			DataService<JobPostingApply> Response = await Service.SelectSingleAsync(Model);
+			return ServiceResponse<JobPostingApply>.SuccessResponse(Response.Data, "");
+		}
 	}
 }

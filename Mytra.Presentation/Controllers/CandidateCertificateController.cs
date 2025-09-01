@@ -22,31 +22,27 @@
 			return ServiceResponse<CandidateCertificate>.SuccessResponse(Response.Data, "");
 		}
 
-		//[HttpPut]
-		//[Route("api/candidatecertificate")]
-		//[Produces(typeof(ServiceResponse<CandidateCertificateResponse>))]
-		//public async Task<ServiceResponse<CandidateCertificateResponse>> Update([FromBody] CandidateCertificateUpdate Model)
-		//{
-		//	ServiceResponse<CandidateCertificateResponse> Response = await Service.UpdateAsync(Model);
-		//	return new ServiceResponse<CandidateCertificateResponse>
-		//	{
-		//		Success = Response.Success,
-		//		ResponseData = Response.ResponseData
-		//	};
-		//}
+		[HttpPut]
+		[Route("api/candidatecertificate")]
+		[Produces(typeof(ServiceResponse<CandidateCertificate>))]
+		public async Task<ServiceResponse<CandidateCertificate>> Update([FromBody] CandidateCertificateUpdate Model)
+		{
+			DataService<CandidateCertificate> Response = await Service.UpdateAsync(Model);
+			if (Response.Errors.Count > 0) return ServiceResponse<CandidateCertificate>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<CandidateCertificate>.FailureResponse("");
+			return ServiceResponse<CandidateCertificate>.SuccessResponse(Response.Data, "");
+		}
 
-		//[HttpDelete]
-		//[Route("api/candidatecertificate")]
-		//[Produces(typeof(ServiceResponse<CandidateCertificateResponse>))]
-		//public async Task<ServiceResponse<CandidateCertificateResponse>> Delete([FromBody] CandidateCertificateDelete Model)
-		//{
-		//	ServiceResponse<CandidateCertificateResponse> Response = await Service.DeleteAsync(Model);
-		//	return new ServiceResponse<CandidateCertificateResponse>
-		//	{
-		//		Success = Response.Success,
-		//		ResponseData = Response.ResponseData
-		//	};
-		//}
+		[HttpDelete]
+		[Route("api/candidatecertificate")]
+		[Produces(typeof(ServiceResponse<CandidateCertificate>))]
+		public async Task<ServiceResponse<CandidateCertificate>> Delete([FromBody] CandidateCertificateDelete Model)
+		{
+			DataService<CandidateCertificate> Response = await Service.DeleteAsync(Model);
+			if (Response.Errors.Count > 0) return ServiceResponse<CandidateCertificate>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<CandidateCertificate>.FailureResponse("");
+			return ServiceResponse<CandidateCertificate>.SuccessResponse(Response.Data, "");
+		}
 
 		[HttpGet]
 		[Route("api/candidatecertificate")]
@@ -57,16 +53,13 @@
 			return ServiceResponse<CandidateCertificate>.SuccessResponse(Response.DataList, "candidatecertificates list added");
 		}
 
-		//[HttpGet]
-		//[Route("api/candidatecertificatesingle")]
-		//[Produces(typeof(ServiceResponse<CandidateCertificateResponse>))]
-		//public async Task<ServiceResponse<CandidateCertificateResponse>> GetSingle([FromQuery] CandidateCertificateSelectSingle Model)
-		//{
-		//	ServiceResponse<CandidateCertificateResponse> Response = await Service.SelectSingleAsync(Model);
-		//	return new ServiceResponse<CandidateCertificateResponse>
-		//	{
-		//		ResponseDataSource = Response.ResponseDataSource
-		//	};
-		//}
+		[HttpGet]
+		[Route("api/candidatecertificatesingle")]
+		[Produces(typeof(ServiceResponse<CandidateCertificate>))]
+		public async Task<ServiceResponse<CandidateCertificate>> GetSingle([FromQuery] CandidateCertificateSelectSingle Model)
+		{
+			DataService<CandidateCertificate> Response = await Service.SelectSingleAsync(Model);
+			return ServiceResponse<CandidateCertificate>.SuccessResponse(Response.Data, "");
+		}
 	}
 }

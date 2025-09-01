@@ -22,31 +22,27 @@
 			return ServiceResponse<UserDetail>.SuccessResponse(Response.Data, "");
 		}
 
-		//[HttpPut]
-		//[Route("api/userdetail")]
-		//[Produces(typeof(ServiceResponse<UserDetailResponse>))]
-		//public async Task<ServiceResponse<UserDetailResponse>> Update([FromBody] UserDetailUpdate Model)
-		//{
-		//	ServiceResponse<UserDetailResponse> Response = await Service.UpdateAsync(Model);
-		//	return new ServiceResponse<UserDetailResponse>
-		//	{
-		//		Success = Response.Success,
-		//		ResponseData = Response.ResponseData
-		//	};
-		//}
+		[HttpPut]
+		[Route("api/userdetail")]
+		[Produces(typeof(ServiceResponse<UserDetail>))]
+		public async Task<ServiceResponse<UserDetail>> Update([FromBody] UserDetailUpdate Model)
+		{
+			DataService<UserDetail> Response = await Service.UpdateAsync(Model);
+			if (Response.Errors.Count > 0) return ServiceResponse<UserDetail>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<UserDetail>.FailureResponse("");
+			return ServiceResponse<UserDetail>.SuccessResponse(Response.Data, "");
+		}
 
-		//[HttpDelete]
-		//[Route("api/userdetail")]
-		//[Produces(typeof(ServiceResponse<UserDetailResponse>))]
-		//public async Task<ServiceResponse<UserDetailResponse>> Delete([FromBody] UserDetailDelete Model)
-		//{
-		//	ServiceResponse<UserDetailResponse> Response = await Service.DeleteAsync(Model);
-		//	return new ServiceResponse<UserDetailResponse>
-		//	{
-		//		Success = Response.Success,
-		//		ResponseData = Response.ResponseData
-		//	};
-		//}
+		[HttpDelete]
+		[Route("api/userdetail")]
+		[Produces(typeof(ServiceResponse<UserDetail>))]
+		public async Task<ServiceResponse<UserDetail>> Delete([FromBody] UserDetailDelete Model)
+		{
+			DataService<UserDetail> Response = await Service.DeleteAsync(Model);
+			if (Response.Errors.Count > 0) return ServiceResponse<UserDetail>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<UserDetail>.FailureResponse("");
+			return ServiceResponse<UserDetail>.SuccessResponse(Response.Data, "");
+		}
 
 		[HttpGet]
 		[Route("api/userdetail")]
@@ -54,19 +50,16 @@
 		public async Task<ServiceResponse<UserDetail>> Get([FromQuery] UserDetailSelect Model)
 		{
 			DataService<UserDetail> Response = await Service.SelectAsync(Model);
-			return ServiceResponse<UserDetail>.SuccessResponse(Response.DataList, "userdetails list added");
+			return ServiceResponse<UserDetail>.SuccessResponse(Response.DataList, "");
 		}
 
-		//[HttpGet]
-		//[Route("api/userdetailsingle")]
-		//[Produces(typeof(ServiceResponse<UserDetailResponse>))]
-		//public async Task<ServiceResponse<UserDetailResponse>> GetSingle([FromQuery] UserDetailSelectSingle Model)
-		//{
-		//	ServiceResponse<UserDetailResponse> Response = await Service.SelectSingleAsync(Model);
-		//	return new ServiceResponse<UserDetailResponse>
-		//	{
-		//		ResponseDataSource = Response.ResponseDataSource
-		//	};
-		//}
+		[HttpGet]
+		[Route("api/userdetailsingle")]
+		[Produces(typeof(ServiceResponse<UserDetail>))]
+		public async Task<ServiceResponse<UserDetail>> GetSingle([FromQuery] UserDetailSelectSingle Model)
+		{
+			DataService<UserDetail> Response = await Service.SelectSingleAsync(Model);
+			return ServiceResponse<UserDetail>.SuccessResponse(Response.Data, "");
+		}
 	}
 }

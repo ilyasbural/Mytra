@@ -21,31 +21,27 @@
 			return ServiceResponse<UserAuthentication>.SuccessResponse(Response.Data, "");
 		}
 
-		//[HttpPut]
-		//[Route("api/userauthentication")]
-		//[Produces(typeof(ServiceResponse<UserAuthenticationResponse>))]
-		//public async Task<ServiceResponse<UserAuthenticationResponse>> Update([FromBody] UserAuthenticationUpdate Model)
-		//{
-		//	ServiceResponse<UserAuthenticationResponse> Response = await Service.UpdateAsync(Model);
-		//	return new ServiceResponse<UserAuthenticationResponse>
-		//	{
-		//		Success = Response.Success,
-		//		ResponseData = Response.ResponseData
-		//	};
-		//}
+		[HttpPut]
+		[Route("api/userauthentication")]
+		[Produces(typeof(ServiceResponse<UserAuthentication>))]
+		public async Task<ServiceResponse<UserAuthentication>> Update([FromBody] UserAuthenticationUpdate Model)
+		{
+			DataService<UserAuthentication> Response = await Service.UpdateAsync(Model);
+			if (Response.Errors.Count > 0) return ServiceResponse<UserAuthentication>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<UserAuthentication>.FailureResponse("");
+			return ServiceResponse<UserAuthentication>.SuccessResponse(Response.Data, "");
+		}
 
-		//[HttpDelete]
-		//[Route("api/userauthentication")]
-		//[Produces(typeof(ServiceResponse<UserAuthenticationResponse>))]
-		//public async Task<ServiceResponse<UserAuthenticationResponse>> Delete([FromBody] UserAuthenticationDelete Model)
-		//{
-		//	ServiceResponse<UserAuthenticationResponse> Response = await Service.DeleteAsync(Model);
-		//	return new ServiceResponse<UserAuthenticationResponse>
-		//	{
-		//		Success = Response.Success,
-		//		ResponseData = Response.ResponseData
-		//	};
-		//}
+		[HttpDelete]
+		[Route("api/userauthentication")]
+		[Produces(typeof(ServiceResponse<UserAuthentication>))]
+		public async Task<ServiceResponse<UserAuthentication>> Delete([FromBody] UserAuthenticationDelete Model)
+		{
+			DataService<UserAuthentication> Response = await Service.DeleteAsync(Model);
+			if (Response.Errors.Count > 0) return ServiceResponse<UserAuthentication>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<UserAuthentication>.FailureResponse("");
+			return ServiceResponse<UserAuthentication>.SuccessResponse(Response.Data, "");
+		}
 
 		[HttpGet]
 		[Route("api/userauthentication")]
@@ -53,19 +49,16 @@
 		public async Task<ServiceResponse<UserAuthentication>> Get([FromQuery] UserAuthenticationSelect Model)
 		{
 			DataService<UserAuthentication> Response = await Service.SelectAsync(Model);
-			return ServiceResponse<UserAuthentication>.SuccessResponse(Response.DataList, "userauthentications list added");
+			return ServiceResponse<UserAuthentication>.SuccessResponse(Response.DataList, "");
 		}
 
-		//[HttpGet]
-		//[Route("api/userauthenticationsingle")]
-		//[Produces(typeof(ServiceResponse<UserAuthenticationResponse>))]
-		//public async Task<ServiceResponse<UserAuthenticationResponse>> GetSingle([FromQuery] UserAuthenticationSelectSingle Model)
-		//{
-		//	ServiceResponse<UserAuthenticationResponse> Response = await Service.SelectSingleAsync(Model);
-		//	return new ServiceResponse<UserAuthenticationResponse>
-		//	{
-		//		ResponseDataSource = Response.ResponseDataSource
-		//	};
-		//}
+		[HttpGet]
+		[Route("api/userauthenticationsingle")]
+		[Produces(typeof(ServiceResponse<UserAuthentication>))]
+		public async Task<ServiceResponse<UserAuthentication>> GetSingle([FromQuery] UserAuthenticationSelectSingle Model)
+		{
+			DataService<UserAuthentication> Response = await Service.SelectSingleAsync(Model);
+			return ServiceResponse<UserAuthentication>.SuccessResponse(Response.Data, "");
+		}
 	}
 }

@@ -22,31 +22,27 @@
 			return ServiceResponse<Language>.SuccessResponse(Response.Data, "");
 		}
 
-		//[HttpPut]
-		//[Route("api/language")]
-		//[Produces(typeof(ServiceResponse<LanguageResponse>))]
-		//public async Task<ServiceResponse<LanguageResponse>> Update([FromBody] LanguageUpdate Model)
-		//{
-		//	ServiceResponse<LanguageResponse> Response = await Service.UpdateAsync(Model);
-		//	return new ServiceResponse<LanguageResponse>
-		//	{
-		//		Success = Response.Success,
-		//		ResponseData = Response.ResponseData
-		//	};
-		//}
+		[HttpPut]
+		[Route("api/language")]
+		[Produces(typeof(ServiceResponse<Language>))]
+		public async Task<ServiceResponse<Language>> Update([FromBody] LanguageUpdate Model)
+		{
+			DataService<Language> Response = await Service.UpdateAsync(Model);
+			if (Response.Errors.Count > 0) return ServiceResponse<Language>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<Language>.FailureResponse("");
+			return ServiceResponse<Language>.SuccessResponse(Response.Data, "");
+		}
 
-		//[HttpDelete]
-		//[Route("api/language")]
-		//[Produces(typeof(ServiceResponse<LanguageResponse>))]
-		//public async Task<ServiceResponse<LanguageResponse>> Delete([FromBody] LanguageDelete Model)
-		//{
-		//	ServiceResponse<LanguageResponse> Response = await Service.DeleteAsync(Model);
-		//	return new ServiceResponse<LanguageResponse>
-		//	{
-		//		Success = Response.Success,
-		//		ResponseData = Response.ResponseData
-		//	};
-		//}
+		[HttpDelete]
+		[Route("api/language")]
+		[Produces(typeof(ServiceResponse<Language>))]
+		public async Task<ServiceResponse<Language>> Delete([FromBody] LanguageDelete Model)
+		{
+			DataService<Language> Response = await Service.DeleteAsync(Model);
+			if (Response.Errors.Count > 0) return ServiceResponse<Language>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<Language>.FailureResponse("");
+			return ServiceResponse<Language>.SuccessResponse(Response.Data, "");
+		}
 
 		[HttpGet]
 		[Route("api/language")]
@@ -54,19 +50,16 @@
 		public async Task<ServiceResponse<Language>> Get([FromQuery] LanguageSelect Model)
 		{
 			DataService<Language> Response = await Service.SelectAsync(Model);
-			return ServiceResponse<Language>.SuccessResponse(Response.DataList, "language list");
+			return ServiceResponse<Language>.SuccessResponse(Response.DataList, "");
 		}
 
-		//[HttpGet]
-		//[Route("api/languagesingle")]
-		//[Produces(typeof(ServiceResponse<LanguageResponse>))]
-		//public async Task<ServiceResponse<LanguageResponse>> GetSingle([FromQuery] LanguageSelectSingle Model)
-		//{
-		//	ServiceResponse<LanguageResponse> Response = await Service.SelectSingleAsync(Model);
-		//	return new ServiceResponse<LanguageResponse>
-		//	{
-		//		ResponseDataSource = Response.ResponseDataSource
-		//	};
-		//}
+		[HttpGet]
+		[Route("api/languagesingle")]
+		[Produces(typeof(ServiceResponse<Language>))]
+		public async Task<ServiceResponse<Language>> GetSingle([FromQuery] LanguageSelectSingle Model)
+		{
+			DataService<Language> Response = await Service.SelectSingleAsync(Model);
+			return ServiceResponse<Language>.SuccessResponse(Response.Data, "");
+		}
 	}
 }

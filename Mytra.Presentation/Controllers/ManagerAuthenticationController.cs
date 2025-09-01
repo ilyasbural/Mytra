@@ -21,31 +21,27 @@
 			return ServiceResponse<ManagerAuthentication>.SuccessResponse(Response.Data, "");
 		}
 
-		//[HttpPut]
-		//[Route("api/managerauthentication")]
-		//[Produces(typeof(ServiceResponse<ManagerAuthenticationResponse>))]
-		//public async Task<ServiceResponse<ManagerAuthenticationResponse>> Update([FromBody] ManagerAuthenticationUpdate Model)
-		//{
-		//	ServiceResponse<ManagerAuthenticationResponse> Response = await Service.UpdateAsync(Model);
-		//	return new ServiceResponse<ManagerAuthenticationResponse>
-		//	{
-		//		Success = Response.Success,
-		//		ResponseData = Response.ResponseData
-		//	};
-		//}
+		[HttpPut]
+		[Route("api/managerauthentication")]
+		[Produces(typeof(ServiceResponse<ManagerAuthentication>))]
+		public async Task<ServiceResponse<ManagerAuthentication>> Update([FromBody] ManagerAuthenticationUpdate Model)
+		{
+			DataService<ManagerAuthentication> Response = await Service.UpdateAsync(Model);
+			if (Response.Errors.Count > 0) return ServiceResponse<ManagerAuthentication>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<ManagerAuthentication>.FailureResponse("");
+			return ServiceResponse<ManagerAuthentication>.SuccessResponse(Response.Data, "");
+		}
 
-		//[HttpDelete]
-		//[Route("api/managerauthentication")]
-		//[Produces(typeof(ServiceResponse<ManagerAuthenticationResponse>))]
-		//public async Task<ServiceResponse<ManagerAuthenticationResponse>> Delete([FromBody] ManagerAuthenticationDelete Model)
-		//{
-		//	ServiceResponse<ManagerAuthenticationResponse> Response = await Service.DeleteAsync(Model);
-		//	return new ServiceResponse<ManagerAuthenticationResponse>
-		//	{
-		//		Success = Response.Success,
-		//		ResponseData = Response.ResponseData
-		//	};
-		//}
+		[HttpDelete]
+		[Route("api/managerauthentication")]
+		[Produces(typeof(ServiceResponse<ManagerAuthentication>))]
+		public async Task<ServiceResponse<ManagerAuthentication>> Delete([FromBody] ManagerAuthenticationDelete Model)
+		{
+			DataService<ManagerAuthentication> Response = await Service.DeleteAsync(Model);
+			if (Response.Errors.Count > 0) return ServiceResponse<ManagerAuthentication>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<ManagerAuthentication>.FailureResponse("");
+			return ServiceResponse<ManagerAuthentication>.SuccessResponse(Response.Data, "");
+		}
 
 		[HttpGet]
 		[Route("api/managerauthentication")]
@@ -53,19 +49,16 @@
 		public async Task<ServiceResponse<ManagerAuthentication>> Get([FromQuery] ManagerAuthenticationSelect Model)
 		{
 			DataService<ManagerAuthentication> Response = await Service.SelectAsync(Model);
-			return ServiceResponse<ManagerAuthentication>.SuccessResponse(Response.DataList, "managerauthentication list");
+			return ServiceResponse<ManagerAuthentication>.SuccessResponse(Response.DataList, "");
 		}
 
-		//[HttpGet]
-		//[Route("api/managerauthenticationsingle")]
-		//[Produces(typeof(ServiceResponse<ManagerAuthenticationResponse>))]
-		//public async Task<ServiceResponse<ManagerAuthenticationResponse>> GetSingle([FromQuery] ManagerAuthenticationSelectSingle Model)
-		//{
-		//	ServiceResponse<ManagerAuthenticationResponse> Response = await Service.SelectSingleAsync(Model);
-		//	return new ServiceResponse<ManagerAuthenticationResponse>
-		//	{
-		//		ResponseDataSource = Response.ResponseDataSource
-		//	};
-		//}
+		[HttpGet]
+		[Route("api/managerauthenticationsingle")]
+		[Produces(typeof(ServiceResponse<ManagerAuthentication>))]
+		public async Task<ServiceResponse<ManagerAuthentication>> GetSingle([FromQuery] ManagerAuthenticationSelectSingle Model)
+		{
+			DataService<ManagerAuthentication> Response = await Service.SelectSingleAsync(Model);
+			return ServiceResponse<ManagerAuthentication>.SuccessResponse(Response.Data, "");
+		}
 	}
 }
