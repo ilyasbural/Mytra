@@ -18,11 +18,6 @@
 			Validator = validator;
 		}
 
-		public async Task<DataService<CandidateReferance>> DeleteAsync(CandidateReferanceDelete Model)
-		{
-			throw new NotImplementedException();
-		}
-
 		public async Task<DataService<CandidateReferance>> InsertAsync(CandidateReferanceInsert Model)
 		{
 			try
@@ -55,23 +50,12 @@
 			}
 		}
 
-		public async Task<DataService<CandidateReferance>> SelectAsync(CandidateReferanceSelect Model)
-		{
-			throw new NotImplementedException();
-		}
-
-		public async Task<DataService<CandidateReferance>> SelectSingleAsync(CandidateReferanceSelectSingle Model)
-		{
-			throw new NotImplementedException();
-		}
-
 		public async Task<DataService<CandidateReferance>> UpdateAsync(CandidateReferanceUpdate Model)
 		{
 			try
 			{
 				Collection = await UnitOfWork.CandidateReferance.SelectAsync(x => x.Id == Model.Id);
-				if (Collection == null)
-					return DataService<CandidateReferance>.FailureResult("Kayıt bulunamadı");
+				if (Collection == null) return DataService<CandidateReferance>.FailureResult("Kayıt bulunamadı");
 
 				Data = Collection.SingleOrDefault()!;
 				//Data = Mapper.Map(model, Data);
@@ -92,51 +76,51 @@
 			}
 		}
 
-		//public async Task<ServiceResponse<CandidateReferanceResponse>> UpdateAsync(CandidateReferanceUpdate Model)
-		//{
-		//	Collection = await UnitOfWork.CandidateReferance.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
-		//	CandidateReferance CandidateReferance = Collection.SingleOrDefault()!;
-		//	CandidateReferance.Name = Model.Name;
-		//	await UnitOfWork.CandidateReferance.UpdateAsync(CandidateReferance);
-		//	Success = await UnitOfWork.SaveChangesAsync();
+		public async Task<DataService<CandidateReferance>> DeleteAsync(CandidateReferanceDelete Model)
+		{
+			try
+			{
+				Collection = await UnitOfWork.Candidate.SelectAsync(x => x.Id == Model.Id);
+				if (Collection.SingleOrDefault() == null) return DataService<Candidate>.FailureResult("Kayıt bulunamadı");
 
-		//	return new ServiceResponse<CandidateReferanceResponse>()
-		//	{
-		//		Success = Success,
-		//		ResponseData = Mapper.Map<CandidateReferanceResponse>(CandidateReferance)
-		//	};
-		//}
+				var affectedRows = await UnitOfWork.SaveChangesAsync();
+				var success = affectedRows > 0;
 
-		//public async Task<ServiceResponse<CandidateReferanceResponse>> DeleteAsync(CandidateReferanceDelete Model)
-		//{
-		//	Collection = await UnitOfWork.CandidateReferance.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
-		//	CandidateReferance CandidateReferance = Collection.SingleOrDefault()!;
-		//	await UnitOfWork.CandidateReferance.DeleteAsync(CandidateReferance);
-		//	Success = await UnitOfWork.SaveChangesAsync();
+				return Success
+					? DataService<Candidate>.SuccessResult(Collection.SingleOrDefault()!, "Kayıt silindi")
+					: DataService<Candidate>.FailureResult("Kayıt silinemedi");
+			}
+			catch (Exception ex)
+			{
+				return DataService<Candidate>.FailureResult(ex.Message, "Beklenmeyen hata oluştu");
+			}
+		}
 
-		//	return new ServiceResponse<CandidateReferanceResponse>()
-		//	{
-		//		Success = Success,
-		//		ResponseData = Mapper.Map<CandidateReferanceResponse>(CandidateReferance)
-		//	};
-		//}
+		public async Task<DataService<CandidateReferance>> SelectAsync(CandidateReferanceSelect Model)
+		{
+			try
+			{
+				Collection = await UnitOfWork.Candidate.SelectAsync(x => x.IsActive);
+				return DataService<Candidate>.SuccessResult(Collection, "Kayıtlar listelendi");
+			}
+			catch (Exception ex)
+			{
+				return DataService<Candidate>.FailureResult(ex.Message, "Listeleme hatası");
+			}
+		}
 
-		//public async Task<ServiceResponse<CandidateReferanceResponse>> SelectAsync(CandidateReferanceSelect Model)
-		//{
-		//	return new ServiceResponse<CandidateReferanceResponse>()
-		//	{
-		//		ResponseDataSource = Mapper.Map<List<CandidateReferanceResponse>>
-		//		(await UnitOfWork.CandidateReferance.SelectAsync(x => x.IsActive == true))
-		//	};
-		//}
-
-		//public async Task<ServiceResponse<CandidateReferanceResponse>> SelectSingleAsync(CandidateReferanceSelectSingle Model)
-		//{
-		//	return new ServiceResponse<CandidateReferanceResponse>()
-		//	{
-		//		ResponseDataSource = Mapper.Map<List<CandidateReferanceResponse>>
-		//		(await UnitOfWork.CandidateReferance.SelectAsync(x => x.Id == Model.Id && x.IsActive == true))
-		//	};
-		//}
+		public async Task<DataService<CandidateReferance>> SelectSingleAsync(CandidateReferanceSelectSingle Model)
+		{
+			try
+			{
+				Collection = await UnitOfWork.Candidate.SelectAsync(x => x.Id == Model.Id && x.IsActive);
+				if (Collection == null) return DataService<Candidate>.FailureResult("Kayıt bulunamadı");
+				return DataService<Candidate>.SuccessResult(Collection.SingleOrDefault()!, "Kayıt bulundu");
+			}
+			catch (Exception ex)
+			{
+				return DataService<Candidate>.FailureResult(ex.Message, "Sorgu hatası");
+			}
+		}
 	}
 }

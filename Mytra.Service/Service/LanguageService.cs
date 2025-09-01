@@ -18,11 +18,6 @@
 			Validator = validator;
 		}
 
-		public async Task<DataService<Language>> DeleteAsync(LanguageDelete Model)
-		{
-			throw new NotImplementedException();
-		}
-
 		public async Task<DataService<Language>> InsertAsync(LanguageInsert Model)
 		{
 			try
@@ -55,23 +50,12 @@
 			}
 		}
 
-		public async Task<DataService<Language>> SelectAsync(LanguageSelect Model)
-		{
-			throw new NotImplementedException();
-		}
-
-		public async Task<DataService<Language>> SelectSingleAsync(LanguageSelectSingle Model)
-		{
-			throw new NotImplementedException();
-		}
-
 		public async Task<DataService<Language>> UpdateAsync(LanguageUpdate Model)
 		{
 			try
 			{
 				Collection = await UnitOfWork.Language.SelectAsync(x => x.Id == Model.Id);
-				if (Collection == null)
-					return DataService<Language>.FailureResult("Kayıt bulunamadı");
+				if (Collection == null) return DataService<Language>.FailureResult("Kayıt bulunamadı");
 
 				Data = Collection.SingleOrDefault()!;
 				//Data = Mapper.Map(model, Data);
@@ -92,20 +76,52 @@
 			}
 		}
 
-		//public async Task<ServiceResponse<LanguageResponse>> UpdateAsync(LanguageUpdate Model)
-		//{
-		//	Collection = await UnitOfWork.Language.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
-		//	Language Language = Collection.SingleOrDefault()!;
-		//	Language.Name = Model.Name;
-		//	await UnitOfWork.Language.UpdateAsync(Language);
-		//	Success = await UnitOfWork.SaveChangesAsync();
+		public async Task<DataService<Language>> DeleteAsync(LanguageDelete Model)
+		{
+			try
+			{
+				Collection = await UnitOfWork.Candidate.SelectAsync(x => x.Id == Model.Id);
+				if (Collection.SingleOrDefault() == null) return DataService<Candidate>.FailureResult("Kayıt bulunamadı");
 
-		//	return new ServiceResponse<LanguageResponse>
-		//	{
-		//		Success = Success,
-		//		ResponseData = Mapper.Map<LanguageResponse>(Language)
-		//	};
-		//}
+				var affectedRows = await UnitOfWork.SaveChangesAsync();
+				var success = affectedRows > 0;
+
+				return Success
+					? DataService<Candidate>.SuccessResult(Collection.SingleOrDefault()!, "Kayıt silindi")
+					: DataService<Candidate>.FailureResult("Kayıt silinemedi");
+			}
+			catch (Exception ex)
+			{
+				return DataService<Candidate>.FailureResult(ex.Message, "Beklenmeyen hata oluştu");
+			}
+		}
+
+		public async Task<DataService<Language>> SelectAsync(LanguageSelect Model)
+		{
+			try
+			{
+				Collection = await UnitOfWork.Candidate.SelectAsync(x => x.IsActive);
+				return DataService<Candidate>.SuccessResult(Collection, "Kayıtlar listelendi");
+			}
+			catch (Exception ex)
+			{
+				return DataService<Candidate>.FailureResult(ex.Message, "Listeleme hatası");
+			}
+		}
+
+		public async Task<DataService<Language>> SelectSingleAsync(LanguageSelectSingle Model)
+		{
+			try
+			{
+				Collection = await UnitOfWork.Candidate.SelectAsync(x => x.Id == Model.Id && x.IsActive);
+				if (Collection == null) return DataService<Candidate>.FailureResult("Kayıt bulunamadı");
+				return DataService<Candidate>.SuccessResult(Collection.SingleOrDefault()!, "Kayıt bulundu");
+			}
+			catch (Exception ex)
+			{
+				return DataService<Candidate>.FailureResult(ex.Message, "Sorgu hatası");
+			}
+		}
 
 		//public async Task<ServiceResponse<LanguageResponse>> DeleteAsync(LanguageDelete Model)
 		//{

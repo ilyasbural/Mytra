@@ -18,11 +18,6 @@
 			Validator = validator;
 		}
 
-		public async Task<DataService<CandidateCertificate>> DeleteAsync(CandidateCertificateDelete Model)
-		{
-			throw new NotImplementedException();
-		}
-
 		public async Task<DataService<CandidateCertificate>> InsertAsync(CandidateCertificateInsert Model)
 		{
 			try
@@ -55,23 +50,12 @@
 			}
 		}
 
-		public async Task<DataService<CandidateCertificate>> SelectAsync(CandidateCertificateSelect Model)
-		{
-			throw new NotImplementedException();
-		}
-
-		public async Task<DataService<CandidateCertificate>> SelectSingleAsync(CandidateCertificateSelectSingle Model)
-		{
-			throw new NotImplementedException();
-		}
-
 		public async Task<DataService<CandidateCertificate>> UpdateAsync(CandidateCertificateUpdate Model)
 		{
 			try
 			{
 				Collection = await UnitOfWork.CandidateCertificate.SelectAsync(x => x.Id == Model.Id);
-				if (Collection == null)
-					return DataService<CandidateCertificate>.FailureResult("Kayıt bulunamadı");
+				if (Collection == null) return DataService<CandidateCertificate>.FailureResult("Kayıt bulunamadı");
 
 				Data = Collection.SingleOrDefault()!;
 				//Data = Mapper.Map(model, Data);
@@ -92,51 +76,51 @@
 			}
 		}
 
-		//public async Task<ServiceResponse<CandidateCertificateResponse>> UpdateAsync(CandidateCertificateUpdate Model)
-		//{
-		//	Collection = await UnitOfWork.CandidateCertificate.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
-		//	CandidateCertificate CandidateCertificate = Collection.SingleOrDefault()!;
-		//	CandidateCertificate.Name = Model.Name;
-		//	await UnitOfWork.CandidateCertificate.UpdateAsync(CandidateCertificate);
-		//	Success = await UnitOfWork.SaveChangesAsync();
+		public async Task<DataService<CandidateCertificate>> DeleteAsync(CandidateCertificateDelete Model)
+		{
+			try
+			{
+				Collection = await UnitOfWork.Candidate.SelectAsync(x => x.Id == Model.Id);
+				if (Collection.SingleOrDefault() == null) return DataService<Candidate>.FailureResult("Kayıt bulunamadı");
 
-		//	return new ServiceResponse<CandidateCertificateResponse>()
-		//	{
-		//		Success = Success,
-		//		ResponseData = Mapper.Map<CandidateCertificateResponse>(CandidateCertificate)
-		//	};
-		//}
+				var affectedRows = await UnitOfWork.SaveChangesAsync();
+				var success = affectedRows > 0;
 
-		//public async Task<ServiceResponse<CandidateCertificateResponse>> DeleteAsync(CandidateCertificateDelete Model)
-		//{
-		//	Collection = await UnitOfWork.CandidateCertificate.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
-		//	CandidateCertificate CandidateCertificate = Collection.SingleOrDefault()!;
-		//	await UnitOfWork.CandidateCertificate.DeleteAsync(CandidateCertificate);
-		//	Success = await UnitOfWork.SaveChangesAsync();
+				return Success
+					? DataService<Candidate>.SuccessResult(Collection.SingleOrDefault()!, "Kayıt silindi")
+					: DataService<Candidate>.FailureResult("Kayıt silinemedi");
+			}
+			catch (Exception ex)
+			{
+				return DataService<Candidate>.FailureResult(ex.Message, "Beklenmeyen hata oluştu");
+			}
+		}
 
-		//	return new ServiceResponse<CandidateCertificateResponse>()
-		//	{
-		//		Success = Success,
-		//		ResponseData = Mapper.Map<CandidateCertificateResponse>(CandidateCertificate)
-		//	};
-		//}
+		public async Task<DataService<CandidateCertificate>> SelectAsync(CandidateCertificateSelect Model)
+		{
+			try
+			{
+				Collection = await UnitOfWork.Candidate.SelectAsync(x => x.IsActive);
+				return DataService<Candidate>.SuccessResult(Collection, "Kayıtlar listelendi");
+			}
+			catch (Exception ex)
+			{
+				return DataService<Candidate>.FailureResult(ex.Message, "Listeleme hatası");
+			}
+		}
 
-		//public async Task<ServiceResponse<CandidateCertificateResponse>> SelectAsync(CandidateCertificateSelect Model)
-		//{
-		//	return new ServiceResponse<CandidateCertificateResponse>()
-		//	{
-		//		ResponseDataSource = Mapper.Map<List<CandidateCertificateResponse>>
-		//		(await UnitOfWork.CandidateCertificate.SelectAsync(x => x.IsActive == true))
-		//	};
-		//}
-
-		//public async Task<ServiceResponse<CandidateCertificateResponse>> SelectSingleAsync(CandidateCertificateSelectSingle Model)
-		//{
-		//	return new ServiceResponse<CandidateCertificateResponse>()
-		//	{
-		//		ResponseDataSource = Mapper.Map<List<CandidateCertificateResponse>>
-		//		(await UnitOfWork.CandidateCertificate.SelectAsync(x => x.Id == Model.Id && x.IsActive == true))
-		//	};
-		//}
+		public async Task<DataService<CandidateCertificate>> SelectSingleAsync(CandidateCertificateSelectSingle Model)
+		{
+			try
+			{
+				Collection = await UnitOfWork.Candidate.SelectAsync(x => x.Id == Model.Id && x.IsActive);
+				if (Collection == null) return DataService<Candidate>.FailureResult("Kayıt bulunamadı");
+				return DataService<Candidate>.SuccessResult(Collection.SingleOrDefault()!, "Kayıt bulundu");
+			}
+			catch (Exception ex)
+			{
+				return DataService<Candidate>.FailureResult(ex.Message, "Sorgu hatası");
+			}
+		}
 	}
 }

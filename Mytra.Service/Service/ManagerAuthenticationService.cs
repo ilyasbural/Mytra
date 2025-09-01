@@ -18,11 +18,6 @@
 			Validator = validator;
 		}
 
-		public async Task<DataService<ManagerAuthentication>> DeleteAsync(ManagerAuthenticationDelete Model)
-		{
-			throw new NotImplementedException();
-		}
-
 		public async Task<DataService<ManagerAuthentication>> InsertAsync(ManagerAuthenticationInsert Model)
 		{
 			try
@@ -55,23 +50,12 @@
 			}
 		}
 
-		public async Task<DataService<ManagerAuthentication>> SelectAsync(ManagerAuthenticationSelect Model)
-		{
-			throw new NotImplementedException();
-		}
-
-		public async Task<DataService<ManagerAuthentication>> SelectSingleAsync(ManagerAuthenticationSelectSingle Model)
-		{
-			throw new NotImplementedException();
-		}
-
 		public async Task<DataService<ManagerAuthentication>> UpdateAsync(ManagerAuthenticationUpdate Model)
 		{
 			try
 			{
 				Collection = await UnitOfWork.ManagerAuthentication.SelectAsync(x => x.Id == Model.Id);
-				if (Collection == null)
-					return DataService<ManagerAuthentication>.FailureResult("Kayıt bulunamadı");
+				if (Collection == null) return DataService<ManagerAuthentication>.FailureResult("Kayıt bulunamadı");
 
 				Data = Collection.SingleOrDefault()!;
 				//Data = Mapper.Map(model, Data);
@@ -92,20 +76,52 @@
 			}
 		}
 
-		//public async Task<ServiceResponse<ManagerAuthenticationResponse>> UpdateAsync(ManagerAuthenticationUpdate Model)
-		//{
-		//	Collection = await UnitOfWork.ManagerAuthentication.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
-		//	ManagerAuthentication ManagerAuthentication = Collection.SingleOrDefault()!;
-		//	ManagerAuthentication.Name = Model.Name;
-		//	await UnitOfWork.ManagerAuthentication.UpdateAsync(ManagerAuthentication);
-		//	Success = await UnitOfWork.SaveChangesAsync();
+		public async Task<DataService<ManagerAuthentication>> DeleteAsync(ManagerAuthenticationDelete Model)
+		{
+			try
+			{
+				Collection = await UnitOfWork.Candidate.SelectAsync(x => x.Id == Model.Id);
+				if (Collection.SingleOrDefault() == null) return DataService<Candidate>.FailureResult("Kayıt bulunamadı");
 
-		//	return new ServiceResponse<ManagerAuthenticationResponse>()
-		//	{
-		//		Success = Success,
-		//		ResponseData = Mapper.Map<ManagerAuthenticationResponse>(ManagerAuthentication)
-		//	};
-		//}
+				var affectedRows = await UnitOfWork.SaveChangesAsync();
+				var success = affectedRows > 0;
+
+				return Success
+					? DataService<Candidate>.SuccessResult(Collection.SingleOrDefault()!, "Kayıt silindi")
+					: DataService<Candidate>.FailureResult("Kayıt silinemedi");
+			}
+			catch (Exception ex)
+			{
+				return DataService<Candidate>.FailureResult(ex.Message, "Beklenmeyen hata oluştu");
+			}
+		}
+
+		public async Task<DataService<ManagerAuthentication>> SelectAsync(ManagerAuthenticationSelect Model)
+		{
+			try
+			{
+				Collection = await UnitOfWork.Candidate.SelectAsync(x => x.IsActive);
+				return DataService<Candidate>.SuccessResult(Collection, "Kayıtlar listelendi");
+			}
+			catch (Exception ex)
+			{
+				return DataService<Candidate>.FailureResult(ex.Message, "Listeleme hatası");
+			}
+		}
+
+		public async Task<DataService<ManagerAuthentication>> SelectSingleAsync(ManagerAuthenticationSelectSingle Model)
+		{
+			try
+			{
+				Collection = await UnitOfWork.Candidate.SelectAsync(x => x.Id == Model.Id && x.IsActive);
+				if (Collection == null) return DataService<Candidate>.FailureResult("Kayıt bulunamadı");
+				return DataService<Candidate>.SuccessResult(Collection.SingleOrDefault()!, "Kayıt bulundu");
+			}
+			catch (Exception ex)
+			{
+				return DataService<Candidate>.FailureResult(ex.Message, "Sorgu hatası");
+			}
+		}
 
 		//public async Task<ServiceResponse<ManagerAuthenticationResponse>> DeleteAsync(ManagerAuthenticationDelete Model)
 		//{

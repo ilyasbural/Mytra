@@ -18,11 +18,6 @@
 			Validator = validator;
 		}
 
-		public async Task<DataService<JobPostingVisit>> DeleteAsync(JobPostingVisitDelete Model)
-		{
-			throw new NotImplementedException();
-		}
-
 		public async Task<DataService<JobPostingVisit>> InsertAsync(JobPostingVisitInsert Model)
 		{
 			try
@@ -55,23 +50,12 @@
 			}
 		}
 
-		public async Task<DataService<JobPostingVisit>> SelectAsync(JobPostingVisitSelect Model)
-		{
-			throw new NotImplementedException();
-		}
-
-		public async Task<DataService<JobPostingVisit>> SelectSingleAsync(JobPostingVisitSelectSingle Model)
-		{
-			throw new NotImplementedException();
-		}
-
 		public async Task<DataService<JobPostingVisit>> UpdateAsync(JobPostingVisitUpdate Model)
 		{
 			try
 			{
 				Collection = await UnitOfWork.JobPostingVisit.SelectAsync(x => x.Id == Model.Id);
-				if (Collection == null)
-					return DataService<JobPostingVisit>.FailureResult("Kayıt bulunamadı");
+				if (Collection == null) return DataService<JobPostingVisit>.FailureResult("Kayıt bulunamadı");
 
 				Data = Collection.SingleOrDefault()!;
 				//Data = Mapper.Map(model, Data);
@@ -92,20 +76,53 @@
 			}
 		}
 
-		//public async Task<ServiceResponse<JobPostingVisitResponse>> UpdateAsync(JobPostingVisitUpdate Model)
-		//{
-		//	Collection = await UnitOfWork.JobPostingVisit.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
-		//	JobPostingVisit JobPostingVisit = Collection.SingleOrDefault()!;
-		//	JobPostingVisit.Name = Model.Name;
-		//	await UnitOfWork.JobPostingVisit.UpdateAsync(JobPostingVisit);
-		//	Success = await UnitOfWork.SaveChangesAsync();
+		public async Task<DataService<JobPostingVisit>> DeleteAsync(JobPostingVisitDelete Model)
+		{
+			try
+			{
+				Collection = await UnitOfWork.Candidate.SelectAsync(x => x.Id == Model.Id);
+				if (Collection.SingleOrDefault() == null) return DataService<Candidate>.FailureResult("Kayıt bulunamadı");
 
-		//	return new ServiceResponse<JobPostingVisitResponse>
-		//	{
-		//		Success = Success,
-		//		ResponseData = Mapper.Map<JobPostingVisitResponse>(JobPostingVisit)
-		//	};
-		//}
+				var affectedRows = await UnitOfWork.SaveChangesAsync();
+				var success = affectedRows > 0;
+
+				return Success
+					? DataService<Candidate>.SuccessResult(Collection.SingleOrDefault()!, "Kayıt silindi")
+					: DataService<Candidate>.FailureResult("Kayıt silinemedi");
+			}
+			catch (Exception ex)
+			{
+				return DataService<Candidate>.FailureResult(ex.Message, "Beklenmeyen hata oluştu");
+			}
+		}
+
+		public async Task<DataService<JobPostingVisit>> SelectAsync(JobPostingVisitSelect Model)
+		{
+			try
+			{
+				Collection = await UnitOfWork.Candidate.SelectAsync(x => x.IsActive);
+				return DataService<Candidate>.SuccessResult(Collection, "Kayıtlar listelendi");
+			}
+			catch (Exception ex)
+			{
+				return DataService<Candidate>.FailureResult(ex.Message, "Listeleme hatası");
+			}
+		}
+
+		public async Task<DataService<JobPostingVisit>> SelectSingleAsync(JobPostingVisitSelectSingle Model)
+		{
+			try
+			{
+				Collection = await UnitOfWork.Candidate.SelectAsync(x => x.Id == Model.Id && x.IsActive);
+				if (Collection == null) return DataService<Candidate>.FailureResult("Kayıt bulunamadı");
+				return DataService<Candidate>.SuccessResult(Collection.SingleOrDefault()!, "Kayıt bulundu");
+			}
+			catch (Exception ex)
+			{
+				return DataService<Candidate>.FailureResult(ex.Message, "Sorgu hatası");
+			}
+			throw new NotImplementedException();
+		}
 
 		//public async Task<ServiceResponse<JobPostingVisitResponse>> DeleteAsync(JobPostingVisitDelete Model)
 		//{

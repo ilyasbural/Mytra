@@ -18,11 +18,6 @@
 			Validator = validator;
 		}
 
-		public async Task<DataService<CandidateContact>> DeleteAsync(CandidateContactDelete Model)
-		{
-			throw new NotImplementedException();
-		}
-
 		public async Task<DataService<CandidateContact>> InsertAsync(CandidateContactInsert Model)
 		{
 			try
@@ -55,23 +50,12 @@
 			}
 		}
 
-		public async Task<DataService<CandidateContact>> SelectAsync(CandidateContactSelect Model)
-		{
-			throw new NotImplementedException();
-		}
-
-		public async Task<DataService<CandidateContact>> SelectSingleAsync(CandidateContactSelectSingle Model)
-		{
-			throw new NotImplementedException();
-		}
-
 		public async Task<DataService<CandidateContact>> UpdateAsync(CandidateContactUpdate Model)
 		{
 			try
 			{
 				Collection = await UnitOfWork.CandidateContact.SelectAsync(x => x.Id == Model.Id);
-				if (Collection == null)
-					return DataService<CandidateContact>.FailureResult("Kayıt bulunamadı");
+				if (Collection == null) return DataService<CandidateContact>.FailureResult("Kayıt bulunamadı");
 
 				Data = Collection.SingleOrDefault()!;
 				//Data = Mapper.Map(model, Data);
@@ -92,51 +76,51 @@
 			}
 		}
 
-		//public async Task<ServiceResponse<CandidateContactResponse>> UpdateAsync(CandidateContactUpdate Model)
-		//{
-		//	Collection = await UnitOfWork.CandidateContact.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
-		//	CandidateContact CandidateContact = Collection.SingleOrDefault()!;
-		//	CandidateContact.Name = Model.Name;
-		//	await UnitOfWork.CandidateContact.UpdateAsync(CandidateContact);
-		//	Success = await UnitOfWork.SaveChangesAsync();
+		public async Task<DataService<CandidateContact>> DeleteAsync(CandidateContactDelete Model)
+		{
+			try
+			{
+				Collection = await UnitOfWork.Candidate.SelectAsync(x => x.Id == Model.Id);
+				if (Collection.SingleOrDefault() == null) return DataService<Candidate>.FailureResult("Kayıt bulunamadı");
 
-		//	return new ServiceResponse<CandidateContactResponse>()
-		//	{
-		//		Success = Success,
-		//		ResponseData = Mapper.Map<CandidateContactResponse>(CandidateContact)
-		//	};
-		//}
+				var affectedRows = await UnitOfWork.SaveChangesAsync();
+				var success = affectedRows > 0;
 
-		//public async Task<ServiceResponse<CandidateContactResponse>> DeleteAsync(CandidateContactDelete Model)
-		//{
-		//	Collection = await UnitOfWork.CandidateContact.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
-		//	CandidateContact CandidateContact = Collection.SingleOrDefault()!;
-		//	await UnitOfWork.CandidateContact.DeleteAsync(CandidateContact);
-		//	Success = await UnitOfWork.SaveChangesAsync();
+				return Success
+					? DataService<Candidate>.SuccessResult(Collection.SingleOrDefault()!, "Kayıt silindi")
+					: DataService<Candidate>.FailureResult("Kayıt silinemedi");
+			}
+			catch (Exception ex)
+			{
+				return DataService<Candidate>.FailureResult(ex.Message, "Beklenmeyen hata oluştu");
+			}
+		}
 
-		//	return new ServiceResponse<CandidateContactResponse>()
-		//	{
-		//		Success = Success,
-		//		ResponseData = Mapper.Map<CandidateContactResponse>(CandidateContact)
-		//	};
-		//}
+		public async Task<DataService<CandidateContact>> SelectAsync(CandidateContactSelect Model)
+		{
+			try
+			{
+				Collection = await UnitOfWork.Candidate.SelectAsync(x => x.IsActive);
+				return DataService<Candidate>.SuccessResult(Collection, "Kayıtlar listelendi");
+			}
+			catch (Exception ex)
+			{
+				return DataService<Candidate>.FailureResult(ex.Message, "Listeleme hatası");
+			}
+		}
 
-		//public async Task<ServiceResponse<CandidateContactResponse>> SelectAsync(CandidateContactSelect Model)
-		//{
-		//	return new ServiceResponse<CandidateContactResponse>()
-		//	{
-		//		ResponseDataSource = Mapper.Map<List<CandidateContactResponse>>
-		//		(await UnitOfWork.CandidateContact.SelectAsync(x => x.IsActive == true))
-		//	};
-		//}
-
-		//public async Task<ServiceResponse<CandidateContactResponse>> SelectSingleAsync(CandidateContactSelectSingle Model)
-		//{
-		//	return new ServiceResponse<CandidateContactResponse>()
-		//	{
-		//		ResponseDataSource = Mapper.Map<List<CandidateContactResponse>>
-		//		(await UnitOfWork.CandidateContact.SelectAsync(x => x.Id == Model.Id && x.IsActive == true))
-		//	};
-		//}
+		public async Task<DataService<CandidateContact>> SelectSingleAsync(CandidateContactSelectSingle Model)
+		{
+			try
+			{
+				Collection = await UnitOfWork.Candidate.SelectAsync(x => x.Id == Model.Id && x.IsActive);
+				if (Collection == null) return DataService<Candidate>.FailureResult("Kayıt bulunamadı");
+				return DataService<Candidate>.SuccessResult(Collection.SingleOrDefault()!, "Kayıt bulundu");
+			}
+			catch (Exception ex)
+			{
+				return DataService<Candidate>.FailureResult(ex.Message, "Sorgu hatası");
+			}
+		}
 	}
 }
