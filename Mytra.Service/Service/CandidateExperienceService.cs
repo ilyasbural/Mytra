@@ -18,7 +18,7 @@
 			Validator = validator;
 		}
 
-		public Task<DataService<CandidateExperience>> DeleteAsync(CandidateExperienceDelete Model)
+		public async Task<DataService<CandidateExperience>> DeleteAsync(CandidateExperienceDelete Model)
 		{
 			throw new NotImplementedException();
 		}
@@ -55,19 +55,41 @@
 			}
 		}
 
-		public Task<DataService<CandidateExperience>> SelectAsync(CandidateExperienceSelect Model)
+		public async Task<DataService<CandidateExperience>> SelectAsync(CandidateExperienceSelect Model)
 		{
 			throw new NotImplementedException();
 		}
 
-		public Task<DataService<CandidateExperience>> SelectSingleAsync(CandidateExperienceSelectSingle Model)
+		public async Task<DataService<CandidateExperience>> SelectSingleAsync(CandidateExperienceSelectSingle Model)
 		{
 			throw new NotImplementedException();
 		}
 
-		public Task<DataService<CandidateExperience>> UpdateAsync(CandidateExperienceUpdate Model)
+		public async Task<DataService<CandidateExperience>> UpdateAsync(CandidateExperienceUpdate Model)
 		{
-			throw new NotImplementedException();
+			try
+			{
+				Collection = await UnitOfWork.CandidateExperience.SelectAsync(x => x.Id == Model.Id);
+				if (Collection == null)
+					return DataService<CandidateExperience>.FailureResult("Kayıt bulunamadı");
+
+				Data = Collection.SingleOrDefault()!;
+				//Data = Mapper.Map(model, Data);
+				Data.Name = Model.Name;
+				Data.UpdateDate = DateTime.Now;
+
+				await UnitOfWork.CandidateExperience.InsertAsync(Data);
+				var affectedRows = await UnitOfWork.SaveChangesAsync();
+				var success = affectedRows > 0;
+
+				return Success
+					? DataService<CandidateExperience>.SuccessResult(Data, "Kayıt güncellendi")
+					: DataService<CandidateExperience>.FailureResult("Kayıt güncellenemedi");
+			}
+			catch (Exception ex)
+			{
+				return DataService<CandidateExperience>.FailureResult(ex.Message, "Beklenmeyen hata oluştu");
+			}
 		}
 
 		//public async Task<ServiceResponse<CandidateExperienceResponse>> UpdateAsync(CandidateExperienceUpdate Model)

@@ -18,7 +18,7 @@
 			Validator = validator;
 		}
 
-		public Task<DataService<College>> DeleteAsync(CollegeDelete Model)
+		public async Task<DataService<College>> DeleteAsync(CollegeDelete Model)
 		{
 			throw new NotImplementedException();
 		}
@@ -55,19 +55,41 @@
 			}
 		}
 
-		public Task<DataService<College>> SelectAsync(CollegeSelect Model)
+		public async Task<DataService<College>> SelectAsync(CollegeSelect Model)
 		{
 			throw new NotImplementedException();
 		}
 
-		public Task<DataService<College>> SelectSingleAsync(CollegeSelectSingle Model)
+		public async Task<DataService<College>> SelectSingleAsync(CollegeSelectSingle Model)
 		{
 			throw new NotImplementedException();
 		}
 
-		public Task<DataService<College>> UpdateAsync(CollegeUpdate Model)
+		public async Task<DataService<College>> UpdateAsync(CollegeUpdate Model)
 		{
-			throw new NotImplementedException();
+			try
+			{
+				Collection = await UnitOfWork.College.SelectAsync(x => x.Id == Model.Id);
+				if (Collection == null)
+					return DataService<College>.FailureResult("Kayıt bulunamadı");
+
+				Data = Collection.SingleOrDefault()!;
+				//Data = Mapper.Map(model, Data);
+				Data.Name = Model.Name;
+				Data.UpdateDate = DateTime.Now;
+
+				await UnitOfWork.College.InsertAsync(Data);
+				var affectedRows = await UnitOfWork.SaveChangesAsync();
+				var success = affectedRows > 0;
+
+				return Success
+					? DataService<College>.SuccessResult(Data, "Kayıt güncellendi")
+					: DataService<College>.FailureResult("Kayıt güncellenemedi");
+			}
+			catch (Exception ex)
+			{
+				return DataService<College>.FailureResult(ex.Message, "Beklenmeyen hata oluştu");
+			}
 		}
 
 		//public async Task<ServiceResponse<CollegeResponse>> UpdateAsync(CollegeUpdate Model)

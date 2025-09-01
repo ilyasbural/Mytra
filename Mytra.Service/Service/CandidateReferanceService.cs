@@ -18,7 +18,7 @@
 			Validator = validator;
 		}
 
-		public Task<DataService<CandidateReferance>> DeleteAsync(CandidateReferanceDelete Model)
+		public async Task<DataService<CandidateReferance>> DeleteAsync(CandidateReferanceDelete Model)
 		{
 			throw new NotImplementedException();
 		}
@@ -55,19 +55,41 @@
 			}
 		}
 
-		public Task<DataService<CandidateReferance>> SelectAsync(CandidateReferanceSelect Model)
+		public async Task<DataService<CandidateReferance>> SelectAsync(CandidateReferanceSelect Model)
 		{
 			throw new NotImplementedException();
 		}
 
-		public Task<DataService<CandidateReferance>> SelectSingleAsync(CandidateReferanceSelectSingle Model)
+		public async Task<DataService<CandidateReferance>> SelectSingleAsync(CandidateReferanceSelectSingle Model)
 		{
 			throw new NotImplementedException();
 		}
 
-		public Task<DataService<CandidateReferance>> UpdateAsync(CandidateReferanceUpdate Model)
+		public async Task<DataService<CandidateReferance>> UpdateAsync(CandidateReferanceUpdate Model)
 		{
-			throw new NotImplementedException();
+			try
+			{
+				Collection = await UnitOfWork.CandidateReferance.SelectAsync(x => x.Id == Model.Id);
+				if (Collection == null)
+					return DataService<CandidateReferance>.FailureResult("Kayıt bulunamadı");
+
+				Data = Collection.SingleOrDefault()!;
+				//Data = Mapper.Map(model, Data);
+				Data.Name = Model.Name;
+				Data.UpdateDate = DateTime.Now;
+
+				await UnitOfWork.CandidateReferance.InsertAsync(Data);
+				var affectedRows = await UnitOfWork.SaveChangesAsync();
+				var success = affectedRows > 0;
+
+				return Success
+					? DataService<CandidateReferance>.SuccessResult(Data, "Kayıt güncellendi")
+					: DataService<CandidateReferance>.FailureResult("Kayıt güncellenemedi");
+			}
+			catch (Exception ex)
+			{
+				return DataService<CandidateReferance>.FailureResult(ex.Message, "Beklenmeyen hata oluştu");
+			}
 		}
 
 		//public async Task<ServiceResponse<CandidateReferanceResponse>> UpdateAsync(CandidateReferanceUpdate Model)

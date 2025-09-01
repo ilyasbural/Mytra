@@ -69,26 +69,26 @@
 		{
 			try
 			{
-				Collection = await UnitOfWork.Candidate.SelectAsync(x => x.Id == Model.Id);
+				Collection = await UnitOfWork.ManagerSettings.SelectAsync(x => x.Id == Model.Id);
 				if (Collection == null)
-					return DataService<Candidate>.FailureResult("Kayıt bulunamadı");
+					return DataService<ManagerSettings>.FailureResult("Kayıt bulunamadı");
 
 				Data = Collection.SingleOrDefault()!;
 				//Data = Mapper.Map(model, Data);
 				Data.Name = Model.Name;
 				Data.UpdateDate = DateTime.Now;
 
-				await UnitOfWork.Candidate.InsertAsync(Data);
+				await UnitOfWork.ManagerSettings.InsertAsync(Data);
 				var affectedRows = await UnitOfWork.SaveChangesAsync();
 				var success = affectedRows > 0;
 
 				return Success
-					? DataService<Candidate>.SuccessResult(Data, "Kayıt güncellendi")
-					: DataService<Candidate>.FailureResult("Kayıt güncellenemedi");
+					? DataService<ManagerSettings>.SuccessResult(Data, "Kayıt güncellendi")
+					: DataService<ManagerSettings>.FailureResult("Kayıt güncellenemedi");
 			}
 			catch (Exception ex)
 			{
-				return DataService<Candidate>.FailureResult(ex.Message, "Beklenmeyen hata oluştu");
+				return DataService<ManagerSettings>.FailureResult(ex.Message, "Beklenmeyen hata oluştu");
 			}
 		}
 

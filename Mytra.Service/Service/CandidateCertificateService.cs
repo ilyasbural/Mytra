@@ -18,7 +18,7 @@
 			Validator = validator;
 		}
 
-		public Task<DataService<CandidateCertificate>> DeleteAsync(CandidateCertificateDelete Model)
+		public async Task<DataService<CandidateCertificate>> DeleteAsync(CandidateCertificateDelete Model)
 		{
 			throw new NotImplementedException();
 		}
@@ -55,19 +55,41 @@
 			}
 		}
 
-		public Task<DataService<CandidateCertificate>> SelectAsync(CandidateCertificateSelect Model)
+		public async Task<DataService<CandidateCertificate>> SelectAsync(CandidateCertificateSelect Model)
 		{
 			throw new NotImplementedException();
 		}
 
-		public Task<DataService<CandidateCertificate>> SelectSingleAsync(CandidateCertificateSelectSingle Model)
+		public async Task<DataService<CandidateCertificate>> SelectSingleAsync(CandidateCertificateSelectSingle Model)
 		{
 			throw new NotImplementedException();
 		}
 
-		public Task<DataService<CandidateCertificate>> UpdateAsync(CandidateCertificateUpdate Model)
+		public async Task<DataService<CandidateCertificate>> UpdateAsync(CandidateCertificateUpdate Model)
 		{
-			throw new NotImplementedException();
+			try
+			{
+				Collection = await UnitOfWork.CandidateCertificate.SelectAsync(x => x.Id == Model.Id);
+				if (Collection == null)
+					return DataService<CandidateCertificate>.FailureResult("Kayıt bulunamadı");
+
+				Data = Collection.SingleOrDefault()!;
+				//Data = Mapper.Map(model, Data);
+				Data.Name = Model.Name;
+				Data.UpdateDate = DateTime.Now;
+
+				await UnitOfWork.CandidateCertificate.InsertAsync(Data);
+				var affectedRows = await UnitOfWork.SaveChangesAsync();
+				var success = affectedRows > 0;
+
+				return Success
+					? DataService<CandidateCertificate>.SuccessResult(Data, "Kayıt güncellendi")
+					: DataService<CandidateCertificate>.FailureResult("Kayıt güncellenemedi");
+			}
+			catch (Exception ex)
+			{
+				return DataService<CandidateCertificate>.FailureResult(ex.Message, "Beklenmeyen hata oluştu");
+			}
 		}
 
 		//public async Task<ServiceResponse<CandidateCertificateResponse>> UpdateAsync(CandidateCertificateUpdate Model)

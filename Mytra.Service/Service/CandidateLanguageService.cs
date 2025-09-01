@@ -18,7 +18,7 @@
 			Validator = validator;
 		}
 
-		public Task<DataService<CandidateLanguage>> DeleteAsync(CandidateLanguageDelete Model)
+		public async Task<DataService<CandidateLanguage>> DeleteAsync(CandidateLanguageDelete Model)
 		{
 			throw new NotImplementedException();
 		}
@@ -55,19 +55,41 @@
 			}
 		}
 
-		public Task<DataService<CandidateLanguage>> SelectAsync(CandidateLanguageSelect Model)
+		public async Task<DataService<CandidateLanguage>> SelectAsync(CandidateLanguageSelect Model)
 		{
 			throw new NotImplementedException();
 		}
 
-		public Task<DataService<CandidateLanguage>> SelectSingleAsync(CandidateLanguageSelectSingle Model)
+		public async Task<DataService<CandidateLanguage>> SelectSingleAsync(CandidateLanguageSelectSingle Model)
 		{
 			throw new NotImplementedException();
 		}
 
-		public Task<DataService<CandidateLanguage>> UpdateAsync(CandidateLanguageUpdate Model)
+		public async Task<DataService<CandidateLanguage>> UpdateAsync(CandidateLanguageUpdate Model)
 		{
-			throw new NotImplementedException();
+			try
+			{
+				Collection = await UnitOfWork.CandidateLanguage.SelectAsync(x => x.Id == Model.Id);
+				if (Collection == null)
+					return DataService<CandidateLanguage>.FailureResult("Kayıt bulunamadı");
+
+				Data = Collection.SingleOrDefault()!;
+				//Data = Mapper.Map(model, Data);
+				Data.Name = Model.Name;
+				Data.UpdateDate = DateTime.Now;
+
+				await UnitOfWork.CandidateLanguage.InsertAsync(Data);
+				var affectedRows = await UnitOfWork.SaveChangesAsync();
+				var success = affectedRows > 0;
+
+				return Success
+					? DataService<CandidateLanguage>.SuccessResult(Data, "Kayıt güncellendi")
+					: DataService<CandidateLanguage>.FailureResult("Kayıt güncellenemedi");
+			}
+			catch (Exception ex)
+			{
+				return DataService<CandidateLanguage>.FailureResult(ex.Message, "Beklenmeyen hata oluştu");
+			}
 		}
 
 		//public async Task<ServiceResponse<CandidateLanguageResponse>> UpdateAsync(CandidateLanguageUpdate Model)
