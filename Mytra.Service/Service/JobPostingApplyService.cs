@@ -80,19 +80,19 @@
 		{
 			try
 			{
-				Collection = await UnitOfWork.Candidate.SelectAsync(x => x.Id == Model.Id);
-				if (Collection.SingleOrDefault() == null) return DataService<Candidate>.FailureResult("Kayıt bulunamadı");
+				Collection = await UnitOfWork.JobPostingApply.SelectAsync(x => x.Id == Model.Id);
+				if (Collection.SingleOrDefault() == null) return DataService<JobPostingApply>.FailureResult("Kayıt bulunamadı");
 
 				var affectedRows = await UnitOfWork.SaveChangesAsync();
 				var success = affectedRows > 0;
 
 				return Success
-					? DataService<Candidate>.SuccessResult(Collection.SingleOrDefault()!, "Kayıt silindi")
-					: DataService<Candidate>.FailureResult("Kayıt silinemedi");
+					? DataService<JobPostingApply>.SuccessResult(Collection.SingleOrDefault()!, "Kayıt silindi")
+					: DataService<JobPostingApply>.FailureResult("Kayıt silinemedi");
 			}
 			catch (Exception ex)
 			{
-				return DataService<Candidate>.FailureResult(ex.Message, "Beklenmeyen hata oluştu");
+				return DataService<JobPostingApply>.FailureResult(ex.Message, "Beklenmeyen hata oluştu");
 			}
 		}
 
@@ -100,12 +100,12 @@
 		{
 			try
 			{
-				Collection = await UnitOfWork.Candidate.SelectAsync(x => x.IsActive);
-				return DataService<Candidate>.SuccessResult(Collection, "Kayıtlar listelendi");
+				Collection = await UnitOfWork.JobPostingApply.SelectAsync(x => x.IsActive);
+				return DataService<JobPostingApply>.SuccessResult(Collection, "Kayıtlar listelendi");
 			}
 			catch (Exception ex)
 			{
-				return DataService<Candidate>.FailureResult(ex.Message, "Listeleme hatası");
+				return DataService<JobPostingApply>.FailureResult(ex.Message, "Listeleme hatası");
 			}
 		}
 
@@ -113,46 +113,14 @@
 		{
 			try
 			{
-				Collection = await UnitOfWork.Candidate.SelectAsync(x => x.Id == Model.Id && x.IsActive);
-				if (Collection == null) return DataService<Candidate>.FailureResult("Kayıt bulunamadı");
-				return DataService<Candidate>.SuccessResult(Collection.SingleOrDefault()!, "Kayıt bulundu");
+				Collection = await UnitOfWork.JobPostingApply.SelectAsync(x => x.Id == Model.Id && x.IsActive);
+				if (Collection == null) return DataService<JobPostingApply>.FailureResult("Kayıt bulunamadı");
+				return DataService<JobPostingApply>.SuccessResult(Collection.SingleOrDefault()!, "Kayıt bulundu");
 			}
 			catch (Exception ex)
 			{
-				return DataService<Candidate>.FailureResult(ex.Message, "Sorgu hatası");
+				return DataService<JobPostingApply>.FailureResult(ex.Message, "Sorgu hatası");
 			}
 		}
-
-		//public async Task<ServiceResponse<JobPostingApplyResponse>> DeleteAsync(JobPostingApplyDelete Model)
-		//{
-		//	Collection = await UnitOfWork.JobPostingApply.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
-		//	JobPostingApply JobPostingApply = Collection.SingleOrDefault()!;
-		//	await UnitOfWork.JobPostingApply.DeleteAsync(JobPostingApply);
-		//	Success = await UnitOfWork.SaveChangesAsync();
-
-		//	return new ServiceResponse<JobPostingApplyResponse>
-		//	{
-		//		Success = Success,
-		//		ResponseData = Mapper.Map<JobPostingApplyResponse>(JobPostingApply)
-		//	};
-		//}
-
-		//public async Task<ServiceResponse<JobPostingApplyResponse>> SelectAsync(JobPostingApplySelect Model)
-		//{
-		//	return new ServiceResponse<JobPostingApplyResponse>
-		//	{
-		//		ResponseDataSource = Mapper.Map<List<JobPostingApplyResponse>>
-		//		(await UnitOfWork.JobPostingApply.SelectAsync(x => x.IsActive == true))
-		//	};
-		//}
-
-		//public async Task<ServiceResponse<JobPostingApplyResponse>> SelectSingleAsync(JobPostingApplySelectSingle Model)
-		//{
-		//	return new ServiceResponse<JobPostingApplyResponse>
-		//	{
-		//		ResponseDataSource = Mapper.Map<List<JobPostingApplyResponse>>
-		//		(await UnitOfWork.JobPostingApply.SelectAsync(x => x.Id == Model.Id && x.IsActive == true))
-		//	};
-		//}
 	}
 }

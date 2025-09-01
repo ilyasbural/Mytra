@@ -80,19 +80,19 @@
 		{
 			try
 			{
-				Collection = await UnitOfWork.Candidate.SelectAsync(x => x.Id == Model.Id);
-				if (Collection.SingleOrDefault() == null) return DataService<Candidate>.FailureResult("Kayıt bulunamadı");
+				Collection = await UnitOfWork.Institution.SelectAsync(x => x.Id == Model.Id);
+				if (Collection.SingleOrDefault() == null) return DataService<Institution>.FailureResult("Kayıt bulunamadı");
 
 				var affectedRows = await UnitOfWork.SaveChangesAsync();
 				var success = affectedRows > 0;
 
 				return Success
-					? DataService<Candidate>.SuccessResult(Collection.SingleOrDefault()!, "Kayıt silindi")
-					: DataService<Candidate>.FailureResult("Kayıt silinemedi");
+					? DataService<Institution>.SuccessResult(Collection.SingleOrDefault()!, "Kayıt silindi")
+					: DataService<Institution>.FailureResult("Kayıt silinemedi");
 			}
 			catch (Exception ex)
 			{
-				return DataService<Candidate>.FailureResult(ex.Message, "Beklenmeyen hata oluştu");
+				return DataService<Institution>.FailureResult(ex.Message, "Beklenmeyen hata oluştu");
 			}
 		}
 
@@ -100,12 +100,12 @@
 		{
 			try
 			{
-				Collection = await UnitOfWork.Candidate.SelectAsync(x => x.IsActive);
-				return DataService<Candidate>.SuccessResult(Collection, "Kayıtlar listelendi");
+				Collection = await UnitOfWork.Institution.SelectAsync(x => x.IsActive);
+				return DataService<Institution>.SuccessResult(Collection, "Kayıtlar listelendi");
 			}
 			catch (Exception ex)
 			{
-				return DataService<Candidate>.FailureResult(ex.Message, "Listeleme hatası");
+				return DataService<Institution>.FailureResult(ex.Message, "Listeleme hatası");
 			}
 		}
 
@@ -113,46 +113,14 @@
 		{
 			try
 			{
-				Collection = await UnitOfWork.Candidate.SelectAsync(x => x.Id == Model.Id && x.IsActive);
-				if (Collection == null) return DataService<Candidate>.FailureResult("Kayıt bulunamadı");
-				return DataService<Candidate>.SuccessResult(Collection.SingleOrDefault()!, "Kayıt bulundu");
+				Collection = await UnitOfWork.Institution.SelectAsync(x => x.Id == Model.Id && x.IsActive);
+				if (Collection == null) return DataService<Institution>.FailureResult("Kayıt bulunamadı");
+				return DataService<Institution>.SuccessResult(Collection.SingleOrDefault()!, "Kayıt bulundu");
 			}
 			catch (Exception ex)
 			{
-				return DataService<Candidate>.FailureResult(ex.Message, "Sorgu hatası");
+				return DataService<Institution>.FailureResult(ex.Message, "Sorgu hatası");
 			}
 		}
-
-		//public async Task<ServiceResponse<InstitutionResponse>> DeleteAsync(InstitutionDelete Model)
-		//{
-		//	Collection = await UnitOfWork.Institution.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
-		//	Institution Institution = Collection.SingleOrDefault()!;
-		//	await UnitOfWork.Institution.DeleteAsync(Institution);
-		//	Success = await UnitOfWork.SaveChangesAsync();
-
-		//	return new ServiceResponse<InstitutionResponse>
-		//	{
-		//		Success = Success,
-		//		ResponseData = Mapper.Map<InstitutionResponse>(Institution)
-		//	};
-		//}
-
-		//public async Task<ServiceResponse<InstitutionResponse>> SelectAsync(InstitutionSelect Model)
-		//{
-		//	return new ServiceResponse<InstitutionResponse>
-		//	{
-		//		ResponseDataSource = Mapper.Map<List<InstitutionResponse>>
-		//		(await UnitOfWork.Institution.SelectAsync(x => x.IsActive == true))
-		//	};
-		//}
-
-		//public async Task<ServiceResponse<InstitutionResponse>> SelectSingleAsync(InstitutionSelectSingle Model)
-		//{
-		//	return new ServiceResponse<InstitutionResponse>
-		//	{
-		//		ResponseDataSource = Mapper.Map<List<InstitutionResponse>>
-		//		(await UnitOfWork.Institution.SelectAsync(x => x.Id == Model.Id && x.IsActive == true))
-		//	};
-		//}
 	}
 }
