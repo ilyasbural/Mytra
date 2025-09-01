@@ -18,11 +18,6 @@
 			Validator = validator;
 		}
 
-		public async Task<DataService<User>> DeleteAsync(UserDelete Model)
-		{
-			throw new NotImplementedException();
-		}
-
 		public async Task<DataService<User>> InsertAsync(UserInsert Model)
 		{
 			try
@@ -55,16 +50,6 @@
 			}
 		}
 
-		public async Task<DataService<User>> SelectAsync(UserSelect Model)
-		{
-			throw new NotImplementedException();
-		}
-
-		public async Task<DataService<User>> SelectSingleAsync(UserSelectSingle Model)
-		{
-			throw new NotImplementedException();
-		}
-
 		public async Task<DataService<User>> UpdateAsync(UserUpdate Model)
 		{
 			try
@@ -92,20 +77,20 @@
 			}
 		}
 
-		//public async Task<ServiceResponse<UserResponse>> UpdateAsync(UserUpdate Model)
-		//{
-		//	Collection = await UnitOfWork.User.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
-		//	User User = Collection.SingleOrDefault()!;
-		//	User.Name = Model.Name;
-		//	await UnitOfWork.User.UpdateAsync(User);
-		//	Success = await UnitOfWork.SaveChangesAsync();
+		public async Task<DataService<User>> DeleteAsync(UserDelete Model)
+		{
+			throw new NotImplementedException();
+		}
 
-		//	return new ServiceResponse<UserResponse>()
-		//	{
-		//		Success = Success,
-		//		ResponseData = Mapper.Map<UserResponse>(User)
-		//	};
-		//}
+		public async Task<DataService<User>> SelectAsync(UserSelect Model)
+		{
+			throw new NotImplementedException();
+		}
+
+		public async Task<DataService<User>> SelectSingleAsync(UserSelectSingle Model)
+		{
+			throw new NotImplementedException();
+		}
 
 		//public async Task<ServiceResponse<UserResponse>> DeleteAsync(UserDelete Model)
 		//{

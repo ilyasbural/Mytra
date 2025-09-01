@@ -55,8 +55,7 @@
 			try
 			{
 				Collection = await UnitOfWork.Candidate.SelectAsync(x => x.Id == Model.Id);
-				if (Collection == null)
-					return DataService<Candidate>.FailureResult("Kayıt bulunamadı");
+				if (Collection == null) return DataService<Candidate>.FailureResult("Kayıt bulunamadı");
 
 				Data = Collection.SingleOrDefault()!;
 				//Data = Mapper.Map(model, Data);
@@ -82,8 +81,7 @@
 			try
 			{
 				Collection = await UnitOfWork.Candidate.SelectAsync(x => x.Id == Model.Id);
-				if (Collection.SingleOrDefault() == null)
-					return DataService<Candidate>.FailureResult("Kayıt bulunamadı");
+				if (Collection.SingleOrDefault() == null) return DataService<Candidate>.FailureResult("Kayıt bulunamadı");
 
 				var affectedRows = await UnitOfWork.SaveChangesAsync();
 				var success = affectedRows > 0;
@@ -116,9 +114,7 @@
 			try
 			{
 				Collection = await UnitOfWork.Candidate.SelectAsync(x => x.Id == Model.Id && x.IsActive);
-				if (Collection == null)
-					return DataService<Candidate>.FailureResult("Kayıt bulunamadı");
-
+				if (Collection == null) return DataService<Candidate>.FailureResult("Kayıt bulunamadı");
 				return DataService<Candidate>.SuccessResult(Collection.SingleOrDefault()!, "Kayıt bulundu");
 			}
 			catch (Exception ex)

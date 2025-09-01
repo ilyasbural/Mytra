@@ -18,11 +18,6 @@
 			Validator = validator;
 		}
 
-		public async Task<DataService<ManagerSettings>> DeleteAsync(ManagerSettingsDelete Model)
-		{
-			throw new NotImplementedException();
-		}
-
 		public async Task<DataService<ManagerSettings>> InsertAsync(ManagerSettingsInsert Model)
 		{
 			try
@@ -55,16 +50,6 @@
 			}
 		}
 
-		public async Task<DataService<ManagerSettings>> SelectAsync(ManagerSettingsSelect Model)
-		{
-			throw new NotImplementedException();
-		}
-
-		public async Task<DataService<ManagerSettings>> SelectSingleAsync(ManagerSettingsSelectSingle Model)
-		{
-			throw new NotImplementedException();
-		}
-
 		public async Task<DataService<ManagerSettings>> UpdateAsync(ManagerSettingsUpdate Model)
 		{
 			try
@@ -92,20 +77,20 @@
 			}
 		}
 
-		//public async Task<ServiceResponse<ManagerSettingsResponse>> UpdateAsync(ManagerSettingsUpdate Model)
-		//{
-		//	Collection = await UnitOfWork.ManagerSettings.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
-		//	ManagerSettings ManagerSettings = Collection.SingleOrDefault()!;
-		//	ManagerSettings.Name = Model.Name;
-		//	await UnitOfWork.ManagerSettings.UpdateAsync(ManagerSettings);
-		//	Success = await UnitOfWork.SaveChangesAsync();
+		public async Task<DataService<ManagerSettings>> DeleteAsync(ManagerSettingsDelete Model)
+		{
+			throw new NotImplementedException();
+		}
 
-		//	return new ServiceResponse<ManagerSettingsResponse>
-		//	{
-		//		Success = Success,
-		//		ResponseData = Mapper.Map<ManagerSettingsResponse>(ManagerSettings)
-		//	};
-		//}
+		public async Task<DataService<ManagerSettings>> SelectAsync(ManagerSettingsSelect Model)
+		{
+			throw new NotImplementedException();
+		}
+
+		public async Task<DataService<ManagerSettings>> SelectSingleAsync(ManagerSettingsSelectSingle Model)
+		{
+			throw new NotImplementedException();
+		}
 
 		//public async Task<ServiceResponse<ManagerSettingsResponse>> DeleteAsync(ManagerSettingsDelete Model)
 		//{

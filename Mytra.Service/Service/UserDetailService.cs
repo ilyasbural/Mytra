@@ -18,11 +18,6 @@
 			Validator = validator;
 		}
 
-		public async Task<DataService<UserDetail>> DeleteAsync(UserDetailDelete Model)
-		{
-			throw new NotImplementedException();
-		}
-
 		public async Task<DataService<UserDetail>> InsertAsync(UserDetailInsert Model)
 		{
 			try
@@ -55,16 +50,6 @@
 			}
 		}
 
-		public async Task<DataService<UserDetail>> SelectAsync(UserDetailSelect Model)
-		{
-			throw new NotImplementedException();
-		}
-
-		public async Task<DataService<UserDetail>> SelectSingleAsync(UserDetailSelectSingle Model)
-		{
-			throw new NotImplementedException();
-		}
-
 		public async Task<DataService<UserDetail>> UpdateAsync(UserDetailUpdate Model)
 		{
 			try
@@ -92,20 +77,20 @@
 			}
 		}
 
-		//public async Task<ServiceResponse<UserDetailResponse>> UpdateAsync(UserDetailUpdate Model)
-		//{
-		//	Collection = await UnitOfWork.UserDetail.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
-		//	UserDetail UserDetail = Collection.SingleOrDefault()!;
-		//	UserDetail.Name = Model.Name;
-		//	await UnitOfWork.UserDetail.UpdateAsync(UserDetail);
-		//	Success = await UnitOfWork.SaveChangesAsync();
+		public async Task<DataService<UserDetail>> DeleteAsync(UserDetailDelete Model)
+		{
+			throw new NotImplementedException();
+		}
 
-		//	return new ServiceResponse<UserDetailResponse>()
-		//	{
-		//		Success = Success,
-		//		ResponseData = Mapper.Map<UserDetailResponse>(UserDetail)
-		//	};
-		//}
+		public async Task<DataService<UserDetail>> SelectAsync(UserDetailSelect Model)
+		{
+			throw new NotImplementedException();
+		}
+
+		public async Task<DataService<UserDetail>> SelectSingleAsync(UserDetailSelectSingle Model)
+		{
+			throw new NotImplementedException();
+		}
 
 		//public async Task<ServiceResponse<UserDetailResponse>> DeleteAsync(UserDetailDelete Model)
 		//{

@@ -18,11 +18,6 @@
 			Validator = validator;
 		}
 
-		public async Task<DataService<Manager>> DeleteAsync(ManagerDelete Model)
-		{
-			throw new NotImplementedException();
-		}
-
 		public async Task<DataService<Manager>> InsertAsync(ManagerInsert Model)
 		{
 			try
@@ -55,23 +50,12 @@
 			}
 		}
 
-		public async Task<DataService<Manager>> SelectAsync(ManagerSelect Model)
-		{
-			throw new NotImplementedException();
-		}
-
-		public async Task<DataService<Manager>> SelectSingleAsync(ManagerSelectSingle Model)
-		{
-			throw new NotImplementedException();
-		}
-
 		public async Task<DataService<Manager>> UpdateAsync(ManagerUpdate Model)
 		{
 			try
 			{
 				Collection = await UnitOfWork.Manager.SelectAsync(x => x.Id == Model.Id);
-				if (Collection == null)
-					return DataService<Manager>.FailureResult("Kayıt bulunamadı");
+				if (Collection == null) return DataService<Manager>.FailureResult("Kayıt bulunamadı");
 
 				Data = Collection.SingleOrDefault()!;
 				//Data = Mapper.Map(model, Data);
@@ -92,20 +76,20 @@
 			}
 		}
 
-		//public async Task<ServiceResponse<ManagerResponse>> UpdateAsync(ManagerUpdate Model)
-		//{
-		//	Collection = await UnitOfWork.Manager.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
-		//	Manager Manager = Collection.SingleOrDefault()!;
-		//	Manager.Name = Model.Name;
-		//	await UnitOfWork.Manager.UpdateAsync(Manager);
-		//	Success = await UnitOfWork.SaveChangesAsync();
+		public async Task<DataService<Manager>> DeleteAsync(ManagerDelete Model)
+		{
+			throw new NotImplementedException();
+		}
 
-		//	return new ServiceResponse<ManagerResponse>()
-		//	{
-		//		Success = Success,
-		//		ResponseData = Mapper.Map<ManagerResponse>(Manager)
-		//	};
-		//}
+		public async Task<DataService<Manager>> SelectAsync(ManagerSelect Model)
+		{
+			throw new NotImplementedException();
+		}
+
+		public async Task<DataService<Manager>> SelectSingleAsync(ManagerSelectSingle Model)
+		{
+			throw new NotImplementedException();
+		}
 
 		//public async Task<ServiceResponse<ManagerResponse>> DeleteAsync(ManagerDelete Model)
 		//{

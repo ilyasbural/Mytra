@@ -18,11 +18,6 @@
 			Validator = validator;
 		}
 
-		public async Task<DataService<CandidateAuthentication>> DeleteAsync(CandidateAuthenticationDelete Model)
-		{
-			throw new NotImplementedException();
-		}
-
 		public async Task<DataService<CandidateAuthentication>> InsertAsync(CandidateAuthenticationInsert Model)
 		{
 			try
@@ -55,16 +50,6 @@
 			}
 		}
 
-		public async Task<DataService<CandidateAuthentication>> SelectAsync(CandidateAuthenticationSelect Model)
-		{
-			throw new NotImplementedException();
-		}
-
-		public async Task<DataService<CandidateAuthentication>> SelectSingleAsync(CandidateAuthenticationSelectSingle Model)
-		{
-			throw new NotImplementedException();
-		}
-
 		public async Task<DataService<CandidateAuthentication>> UpdateAsync(CandidateAuthenticationUpdate Model)
 		{
 			try
@@ -92,19 +77,20 @@
 			}
 		}
 
-		//public async Task<ServiceResponse<CandidateAuthenticationResponse>> DeleteAsync(CandidateAuthenticationDelete Model)
-		//{
-		//	Collection = await UnitOfWork.CandidateAuthentication.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
-		//	CandidateAuthentication CandidateAuthentication = Collection.SingleOrDefault()!;
-		//	await UnitOfWork.CandidateAuthentication.DeleteAsync(CandidateAuthentication);
-		//	Success = await UnitOfWork.SaveChangesAsync();
+		public async Task<DataService<CandidateAuthentication>> DeleteAsync(CandidateAuthenticationDelete Model)
+		{
+			throw new NotImplementedException();
+		}
 
-		//	return new ServiceResponse<CandidateAuthenticationResponse>
-		//	{
-		//		Success = Success,
-		//		ResponseData = Mapper.Map<CandidateAuthenticationResponse>(CandidateAuthentication)
-		//	};
-		//}
+		public async Task<DataService<CandidateAuthentication>> SelectAsync(CandidateAuthenticationSelect Model)
+		{
+			throw new NotImplementedException();
+		}
+
+		public async Task<DataService<CandidateAuthentication>> SelectSingleAsync(CandidateAuthenticationSelectSingle Model)
+		{
+			throw new NotImplementedException();
+		}
 
 		//public async Task<ServiceResponse<CandidateAuthenticationResponse>> SelectAsync(CandidateAuthenticationSelect Model)
 		//{

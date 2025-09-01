@@ -18,11 +18,6 @@
 			Validator = validator;
 		}
 
-		public async Task<DataService<Skills>> DeleteAsync(SkillsDelete Model)
-		{
-			throw new NotImplementedException();
-		}
-
 		public async Task<DataService<Skills>> InsertAsync(SkillsInsert Model)
 		{
 			try
@@ -55,16 +50,6 @@
 			}
 		}
 
-		public async Task<DataService<Skills>> SelectAsync(SkillsSelect Model)
-		{
-			throw new NotImplementedException();
-		}
-
-		public async Task<DataService<Skills>> SelectSingleAsync(SkillsSelectSingle Model)
-		{
-			throw new NotImplementedException();
-		}
-
 		public async Task<DataService<Skills>> UpdateAsync(SkillsUpdate Model)
 		{
 			try
@@ -92,20 +77,22 @@
 			}
 		}
 
-		//public async Task<ServiceResponse<SkillsResponse>> UpdateAsync(SkillsUpdate Model)
-		//{
-		//	Collection = await UnitOfWork.Skills.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
-		//	Skills Skills = Collection.SingleOrDefault()!;
-		//	Skills.Name = Model.Name;
-		//	await UnitOfWork.Skills.UpdateAsync(Skills);
-		//	Success = await UnitOfWork.SaveChangesAsync();
+		public async Task<DataService<Skills>> DeleteAsync(SkillsDelete Model)
+		{
+			throw new NotImplementedException();
+		}
 
-		//	return new ServiceResponse<SkillsResponse>
-		//	{
-		//		Success = Success,
-		//		ResponseData = Mapper.Map<SkillsResponse>(Skills)
-		//	};
-		//}
+		public async Task<DataService<Skills>> SelectAsync(SkillsSelect Model)
+		{
+			throw new NotImplementedException();
+		}
+
+		public async Task<DataService<Skills>> SelectSingleAsync(SkillsSelectSingle Model)
+		{
+			throw new NotImplementedException();
+		}
+
+		
 
 		//public async Task<ServiceResponse<SkillsResponse>> DeleteAsync(SkillsDelete Model)
 		//{

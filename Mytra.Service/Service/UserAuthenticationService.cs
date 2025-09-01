@@ -18,11 +18,6 @@
 			Validator = validator;
 		}
 
-		public async Task<DataService<UserAuthentication>> DeleteAsync(UserAuthenticationDelete Model)
-		{
-			throw new NotImplementedException();
-		}
-
 		public async Task<DataService<UserAuthentication>> InsertAsync(UserAuthenticationInsert Model)
 		{
 			try
@@ -55,16 +50,6 @@
 			}
 		}
 
-		public async Task<DataService<UserAuthentication>> SelectAsync(UserAuthenticationSelect Model)
-		{
-			throw new NotImplementedException();
-		}
-
-		public async Task<DataService<UserAuthentication>> SelectSingleAsync(UserAuthenticationSelectSingle Model)
-		{
-			throw new NotImplementedException();
-		}
-
 		public async Task<DataService<UserAuthentication>> UpdateAsync(UserAuthenticationUpdate Model)
 		{
 			try
@@ -92,20 +77,20 @@
 			}
 		}
 
-		//public async Task<ServiceResponse<UserAuthenticationResponse>> UpdateAsync(UserAuthenticationUpdate Model)
-		//{
-		//	Collection = await UnitOfWork.UserAuthentication.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
-		//	UserAuthentication UserAuthentication = Collection.SingleOrDefault()!;
-		//	UserAuthentication.Name = Model.Name;
-		//	await UnitOfWork.UserAuthentication.UpdateAsync(UserAuthentication);
-		//	Success = await UnitOfWork.SaveChangesAsync();
+		public async Task<DataService<UserAuthentication>> DeleteAsync(UserAuthenticationDelete Model)
+		{
+			throw new NotImplementedException();
+		}
 
-		//	return new ServiceResponse<UserAuthenticationResponse>
-		//	{
-		//		Success = Success,
-		//		ResponseData = Mapper.Map<UserAuthenticationResponse>(UserAuthentication)
-		//	};
-		//}
+		public async Task<DataService<UserAuthentication>> SelectAsync(UserAuthenticationSelect Model)
+		{
+			throw new NotImplementedException();
+		}
+
+		public async Task<DataService<UserAuthentication>> SelectSingleAsync(UserAuthenticationSelectSingle Model)
+		{
+			throw new NotImplementedException();
+		}
 
 		//public async Task<ServiceResponse<UserAuthenticationResponse>> DeleteAsync(UserAuthenticationDelete Model)
 		//{
