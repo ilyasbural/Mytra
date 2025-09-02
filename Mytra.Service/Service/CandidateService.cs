@@ -59,7 +59,7 @@
 
 				Data = Collection.SingleOrDefault()!;
 				//Data = Mapper.Map(model, Data);
-				Data.Name = Model.Name;
+				//Data.Name = Model.Name;
 				Data.UpdateDate = DateTime.Now;
 
 				await UnitOfWork.Candidate.InsertAsync(Data);

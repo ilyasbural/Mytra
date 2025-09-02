@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Mytra.DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class Initlal : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -16,6 +16,8 @@ namespace Mytra.DataAccess.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Email = table.Column<string>(type: "VARCHAR(100)", nullable: false),
+                    Password = table.Column<string>(type: "VARCHAR(100)", nullable: false),
                     RegisterDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     IsActive = table.Column<bool>(type: "BIT", nullable: false)
@@ -26,24 +28,11 @@ namespace Mytra.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CandidateAuthentication",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    RegisterDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
-                    UpdateDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
-                    IsActive = table.Column<bool>(type: "BIT", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CandidateAuthentication", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "CandidateCertificate",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "NVARCHAR(100)", nullable: true),
                     RegisterDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     IsActive = table.Column<bool>(type: "BIT", nullable: false)
@@ -58,6 +47,7 @@ namespace Mytra.DataAccess.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "NVARCHAR(100)", nullable: true),
                     RegisterDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     IsActive = table.Column<bool>(type: "BIT", nullable: false)
@@ -72,6 +62,7 @@ namespace Mytra.DataAccess.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "NVARCHAR(100)", nullable: true),
                     RegisterDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     IsActive = table.Column<bool>(type: "BIT", nullable: false)
@@ -86,6 +77,7 @@ namespace Mytra.DataAccess.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "NVARCHAR(100)", nullable: true),
                     RegisterDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     IsActive = table.Column<bool>(type: "BIT", nullable: false)
@@ -100,6 +92,7 @@ namespace Mytra.DataAccess.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "NVARCHAR(100)", nullable: true),
                     RegisterDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     IsActive = table.Column<bool>(type: "BIT", nullable: false)
@@ -114,6 +107,7 @@ namespace Mytra.DataAccess.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "NVARCHAR(100)", nullable: true),
                     RegisterDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     IsActive = table.Column<bool>(type: "BIT", nullable: false)
@@ -128,6 +122,7 @@ namespace Mytra.DataAccess.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "NVARCHAR(100)", nullable: true),
                     RegisterDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     IsActive = table.Column<bool>(type: "BIT", nullable: false)
@@ -142,6 +137,7 @@ namespace Mytra.DataAccess.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "NVARCHAR(100)", nullable: true),
                     RegisterDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     IsActive = table.Column<bool>(type: "BIT", nullable: false)
@@ -156,6 +152,7 @@ namespace Mytra.DataAccess.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "NVARCHAR(100)", nullable: true),
                     RegisterDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     IsActive = table.Column<bool>(type: "BIT", nullable: false)
@@ -170,6 +167,7 @@ namespace Mytra.DataAccess.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "NVARCHAR(100)", nullable: true),
                     RegisterDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     IsActive = table.Column<bool>(type: "BIT", nullable: false)
@@ -184,6 +182,7 @@ namespace Mytra.DataAccess.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "NVARCHAR(100)", nullable: true),
                     RegisterDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     IsActive = table.Column<bool>(type: "BIT", nullable: false)
@@ -198,6 +197,7 @@ namespace Mytra.DataAccess.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "NVARCHAR(100)", nullable: true),
                     RegisterDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     IsActive = table.Column<bool>(type: "BIT", nullable: false)
@@ -212,6 +212,7 @@ namespace Mytra.DataAccess.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "NVARCHAR(100)", nullable: true),
                     RegisterDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     IsActive = table.Column<bool>(type: "BIT", nullable: false)
@@ -226,6 +227,7 @@ namespace Mytra.DataAccess.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "NVARCHAR(100)", nullable: true),
                     RegisterDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     IsActive = table.Column<bool>(type: "BIT", nullable: false)
@@ -240,6 +242,7 @@ namespace Mytra.DataAccess.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "NVARCHAR(100)", nullable: true),
                     RegisterDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     IsActive = table.Column<bool>(type: "BIT", nullable: false)
@@ -254,6 +257,7 @@ namespace Mytra.DataAccess.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "NVARCHAR(100)", nullable: true),
                     RegisterDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     IsActive = table.Column<bool>(type: "BIT", nullable: false)
@@ -268,6 +272,7 @@ namespace Mytra.DataAccess.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "NVARCHAR(100)", nullable: true),
                     RegisterDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     IsActive = table.Column<bool>(type: "BIT", nullable: false)
@@ -282,6 +287,7 @@ namespace Mytra.DataAccess.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "NVARCHAR(100)", nullable: true),
                     RegisterDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     IsActive = table.Column<bool>(type: "BIT", nullable: false)
@@ -296,6 +302,7 @@ namespace Mytra.DataAccess.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "NVARCHAR(100)", nullable: true),
                     RegisterDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     IsActive = table.Column<bool>(type: "BIT", nullable: false)
@@ -310,6 +317,7 @@ namespace Mytra.DataAccess.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "NVARCHAR(100)", nullable: true),
                     RegisterDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     IsActive = table.Column<bool>(type: "BIT", nullable: false)
@@ -324,6 +332,7 @@ namespace Mytra.DataAccess.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "NVARCHAR(100)", nullable: true),
                     RegisterDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     IsActive = table.Column<bool>(type: "BIT", nullable: false)
@@ -338,6 +347,7 @@ namespace Mytra.DataAccess.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "NVARCHAR(100)", nullable: true),
                     RegisterDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     IsActive = table.Column<bool>(type: "BIT", nullable: false)
@@ -352,6 +362,7 @@ namespace Mytra.DataAccess.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "NVARCHAR(100)", nullable: true),
                     RegisterDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     IsActive = table.Column<bool>(type: "BIT", nullable: false)
@@ -366,6 +377,7 @@ namespace Mytra.DataAccess.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "NVARCHAR(100)", nullable: true),
                     RegisterDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     IsActive = table.Column<bool>(type: "BIT", nullable: false)
@@ -380,6 +392,7 @@ namespace Mytra.DataAccess.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "NVARCHAR(100)", nullable: true),
                     RegisterDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     IsActive = table.Column<bool>(type: "BIT", nullable: false)
@@ -394,6 +407,7 @@ namespace Mytra.DataAccess.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "NVARCHAR(100)", nullable: true),
                     RegisterDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     IsActive = table.Column<bool>(type: "BIT", nullable: false)
@@ -402,14 +416,39 @@ namespace Mytra.DataAccess.Migrations
                 {
                     table.PrimaryKey("PK_UserSettings", x => x.Id);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "CandidateAuthentication",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    RefreshToken = table.Column<string>(type: "VARCHAR(200)", nullable: false),
+                    RefreshTokenExpireTime = table.Column<DateTime>(type: "DATETIME", nullable: false),
+                    RegisterDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
+                    IsActive = table.Column<bool>(type: "BIT", nullable: false),
+                    CandidateId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CandidateAuthentication", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_CandidateAuthentication_Candidate_CandidateId",
+                        column: x => x.CandidateId,
+                        principalTable: "Candidate",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CandidateAuthentication_CandidateId",
+                table: "CandidateAuthentication",
+                column: "CandidateId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Candidate");
-
             migrationBuilder.DropTable(
                 name: "CandidateAuthentication");
 
@@ -490,6 +529,9 @@ namespace Mytra.DataAccess.Migrations
 
             migrationBuilder.DropTable(
                 name: "UserSettings");
+
+            migrationBuilder.DropTable(
+                name: "Candidate");
         }
     }
 }

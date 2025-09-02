@@ -28,7 +28,6 @@
 				new Claim("Id", Response.Data.Id.ToString()),
 				new Claim("Email", Response.Data.Email.ToString()),
 				new Claim("Password", Response.Data.Password.ToString()),
-				new Claim("Name", Response.Data.Name),
 				new Claim("Role", "Candidate")
 			};
 

@@ -2,7 +2,9 @@
 {
 	public class CandidateAuthentication : Base<CandidateAuthentication>, IEntity
 	{
-		public String Name { get; set; } = String.Empty;
+		public Candidate Candidate { get; set; } = new Candidate();
+		public String RefreshToken { get; set; } = String.Empty;
+		public DateTime RefreshTokenExpireTime { get; set; }
 
 		public CandidateAuthentication()
 		{

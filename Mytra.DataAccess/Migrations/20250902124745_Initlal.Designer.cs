@@ -12,8 +12,8 @@ using Mytra.DataAccess;
 namespace Mytra.DataAccess.Migrations
 {
     [DbContext(typeof(MytraContext))]
-    [Migration("20250902055054_dytyryt")]
-    partial class dytyryt
+    [Migration("20250902124745_Initlal")]
+    partial class Initlal
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -41,10 +41,6 @@ namespace Mytra.DataAccess.Migrations
                         .HasColumnType("BIT")
                         .HasColumnOrder(6);
 
-                    b.Property<string>("Name")
-                        .HasColumnType("NVARCHAR(100)")
-                        .HasColumnOrder(3);
-
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("VARCHAR(100)")
@@ -70,23 +66,33 @@ namespace Mytra.DataAccess.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnOrder(0);
 
+                    b.Property<Guid>("CandidateId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("BIT")
-                        .HasColumnOrder(4);
+                        .HasColumnOrder(5);
 
-                    b.Property<string>("Name")
-                        .HasColumnType("NVARCHAR(100)")
+                    b.Property<string>("RefreshToken")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(200)")
                         .HasColumnOrder(1);
 
-                    b.Property<DateTime>("RegisterDate")
+                    b.Property<DateTime>("RefreshTokenExpireTime")
                         .HasColumnType("DATETIME")
                         .HasColumnOrder(2);
 
-                    b.Property<DateTime>("UpdateDate")
+                    b.Property<DateTime>("RegisterDate")
                         .HasColumnType("DATETIME")
                         .HasColumnOrder(3);
 
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("DATETIME")
+                        .HasColumnOrder(4);
+
                     b.HasKey("Id");
+
+                    b.HasIndex("CandidateId");
 
                     b.ToTable("CandidateAuthentication", (string)null);
                 });
@@ -817,6 +823,17 @@ namespace Mytra.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("UserSettings", (string)null);
+                });
+
+            modelBuilder.Entity("Mytra.Core.CandidateAuthentication", b =>
+                {
+                    b.HasOne("Mytra.Core.Candidate", "Candidate")
+                        .WithMany()
+                        .HasForeignKey("CandidateId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Candidate");
                 });
 #pragma warning restore 612, 618
         }
