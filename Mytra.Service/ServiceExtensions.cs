@@ -72,7 +72,7 @@
             Service.AddSingleton<IValidator<UserSettings>, UserSettingsValidator>();
             Service.AddSingleton<IValidator<User>, UserValidator>();
 
-            //Service.AddScoped<ICandidateLoginService, CandidateLoginService>();
+            Service.AddScoped<ICandidateLoginService, CandidateLoginService>();
             Service.AddScoped<ICandidateAuthenticationService, CandidateAuthenticationService>();
             Service.AddScoped<ICandidateCertificateService, CandidateCertificateService>();
             Service.AddScoped<ICandidateContactService, CandidateContactService>();
@@ -97,7 +97,7 @@
             Service.AddScoped<IManagerService, ManagerService>();
             Service.AddScoped<IManagerSettingsService, ManagerSettingsService>();
             Service.AddScoped<ISkillsService, SkillsService>();
-            //Service.AddScoped<IUserLoginService, UserLoginService>();
+            Service.AddScoped<IUserLoginService, UserLoginService>();
             Service.AddScoped<IUserAuthenticationService, UserAuthenticationService>();
             Service.AddScoped<IUserDetailService, UserDetailService>();
             Service.AddScoped<IUserService, UserService>();
