@@ -56,21 +56,21 @@
 		[HttpGet]
 		[Authorize]
 		[Route("api/managersettings")]
-		[Produces(typeof(ServiceResponse<ManagerSettings>))]
-		public async Task<ServiceResponse<ManagerSettings>> Get([FromQuery] ManagerSettingsSelect Model)
+		[Produces(typeof(ServiceResponse<ManagerSettingsResponse>))]
+		public async Task<ServiceResponse<ManagerSettingsResponse>> Get([FromQuery] ManagerSettingsSelect Model)
 		{
 			DataService<ManagerSettings> Response = await Service.SelectAsync(Model);
-			return ServiceResponse<ManagerSettings>.SuccessResponse(Response.DataList, "");
+			return ServiceResponse<ManagerSettingsResponse>.SuccessResponse(Mapper.Map<List<ManagerSettingsResponse>>(Response.DataList), "");
 		}
 
 		[HttpGet]
 		[Authorize]
 		[Route("api/managersettingssingle")]
-		[Produces(typeof(ServiceResponse<ManagerSettings>))]
-		public async Task<ServiceResponse<ManagerSettings>> GetSingle([FromQuery] ManagerSettingsSelectSingle Model)
+		[Produces(typeof(ServiceResponse<ManagerSettingsResponse>))]
+		public async Task<ServiceResponse<ManagerSettingsResponse>> GetSingle([FromQuery] ManagerSettingsSelectSingle Model)
 		{
 			DataService<ManagerSettings> Response = await Service.SelectSingleAsync(Model);
-			return ServiceResponse<ManagerSettings>.SuccessResponse(Response.Data, "");
+			return ServiceResponse<ManagerSettingsResponse>.SuccessResponse(Mapper.Map<List<ManagerSettingsResponse>>(Response.Data), "");
 		}
 	}
 }

@@ -50,6 +50,29 @@
 			return ServiceResponse<CandidateAuthentication>.SuccessResponse(Response.Data, "");
 		}
 
+
+
+
+
+
+		[HttpGet]
+		[Route("api/candidate")]
+		[Produces(typeof(ServiceResponse<CandidateResponse>))]
+		public async Task<ServiceResponse<CandidateResponse>> Get([FromQuery] CandidateSelect Model)
+		{
+			DataService<Candidate> Response = await Service.SelectAsync(Model);
+			return ServiceResponse<CandidateResponse>.SuccessResponse(Mapper.Map<List<CandidateResponse>>(Response.DataList), "");
+		}
+
+		[HttpGet]
+		[Route("api/candidatesingle")]
+		[Produces(typeof(ServiceResponse<CandidateResponse>))]
+		public async Task<ServiceResponse<CandidateResponse>> GetSingle([FromQuery] CandidateSelectSingle Model)
+		{
+			DataService<Candidate> Response = await Service.SelectSingleAsync(Model);
+			return ServiceResponse<CandidateResponse>.SuccessResponse(Mapper.Map<List<CandidateResponse>>(Response.Data), "");
+		}
+
 		[HttpGet]
 		[Route("api/candidateauthentication")]
 		[Produces(typeof(ServiceResponse<CandidateAuthentication>))]

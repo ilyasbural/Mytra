@@ -52,20 +52,20 @@
 
 		[HttpGet]
 		[Route("api/userauthentication")]
-		[Produces(typeof(ServiceResponse<UserAuthentication>))]
-		public async Task<ServiceResponse<UserAuthentication>> Get([FromQuery] UserAuthenticationSelect Model)
+		[Produces(typeof(ServiceResponse<UserAuthenticationResponse>))]
+		public async Task<ServiceResponse<UserAuthenticationResponse>> Get([FromQuery] UserAuthenticationSelect Model)
 		{
 			DataService<UserAuthentication> Response = await Service.SelectAsync(Model);
-			return ServiceResponse<UserAuthentication>.SuccessResponse(Response.DataList, "");
+			return ServiceResponse<UserAuthenticationResponse>.SuccessResponse(Mapper.Map<List<UserAuthenticationResponse>>(Response.DataList), "");
 		}
 
 		[HttpGet]
 		[Route("api/userauthenticationsingle")]
-		[Produces(typeof(ServiceResponse<UserAuthentication>))]
-		public async Task<ServiceResponse<UserAuthentication>> GetSingle([FromQuery] UserAuthenticationSelectSingle Model)
+		[Produces(typeof(ServiceResponse<UserAuthenticationResponse>))]
+		public async Task<ServiceResponse<UserAuthenticationResponse>> GetSingle([FromQuery] UserAuthenticationSelectSingle Model)
 		{
 			DataService<UserAuthentication> Response = await Service.SelectSingleAsync(Model);
-			return ServiceResponse<UserAuthentication>.SuccessResponse(Response.Data, "");
+			return ServiceResponse<UserAuthenticationResponse>.SuccessResponse(Mapper.Map<List<UserAuthenticationResponse>>(Response.Data), "");
 		}
 	}
 }

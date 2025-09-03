@@ -56,21 +56,21 @@
 		[HttpGet]
 		[Authorize]
 		[Route("api/userdetail")]
-		[Produces(typeof(ServiceResponse<UserDetail>))]
-		public async Task<ServiceResponse<UserDetail>> Get([FromQuery] UserDetailSelect Model)
+		[Produces(typeof(ServiceResponse<UserDetailResponse>))]
+		public async Task<ServiceResponse<UserDetailResponse>> Get([FromQuery] UserDetailSelect Model)
 		{
 			DataService<UserDetail> Response = await Service.SelectAsync(Model);
-			return ServiceResponse<UserDetail>.SuccessResponse(Response.DataList, "");
+			return ServiceResponse<UserDetailResponse>.SuccessResponse(Mapper.Map<List<UserDetailResponse>>(Response.DataList), "");
 		}
 
 		[HttpGet]
 		[Authorize]
 		[Route("api/userdetailsingle")]
-		[Produces(typeof(ServiceResponse<UserDetail>))]
-		public async Task<ServiceResponse<UserDetail>> GetSingle([FromQuery] UserDetailSelectSingle Model)
+		[Produces(typeof(ServiceResponse<UserDetailResponse>))]
+		public async Task<ServiceResponse<UserDetailResponse>> GetSingle([FromQuery] UserDetailSelectSingle Model)
 		{
 			DataService<UserDetail> Response = await Service.SelectSingleAsync(Model);
-			return ServiceResponse<UserDetail>.SuccessResponse(Response.Data, "");
+			return ServiceResponse<UserDetailResponse>.SuccessResponse(Mapper.Map<List<UserDetailResponse>>(Response.Data), "");
 		}
 	}
 }

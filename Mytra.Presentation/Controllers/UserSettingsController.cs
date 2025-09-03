@@ -30,8 +30,8 @@
 		}
 
 		[HttpPut]
-		[Route("api/usersettings")]
 		[Authorize]
+		[Route("api/usersettings")]
 		[Produces(typeof(ServiceResponse<UserSettings>))]
 		public async Task<ServiceResponse<UserSettings>> Update([FromBody] UserSettingsUpdate Model)
 		{
@@ -42,8 +42,8 @@
 		}
 
 		[HttpDelete]
-		[Route("api/usersettings")]
 		[Authorize]
+		[Route("api/usersettings")]
 		[Produces(typeof(ServiceResponse<UserSettings>))]
 		public async Task<ServiceResponse<UserSettings>> Delete([FromBody] UserSettingsDelete Model)
 		{
@@ -54,23 +54,23 @@
 		}
 
 		[HttpGet]
-		[Route("api/usersettings")]
 		[Authorize]
-		[Produces(typeof(ServiceResponse<UserSettings>))]
-		public async Task<ServiceResponse<UserSettings>> Get([FromQuery] UserSettingsSelect Model)
+		[Route("api/usersettings")]
+		[Produces(typeof(ServiceResponse<UserSettingsResponse>))]
+		public async Task<ServiceResponse<UserSettingsResponse>> Get([FromQuery] UserSettingsSelect Model)
 		{
 			DataService<UserSettings> Response = await Service.SelectAsync(Model);
-			return ServiceResponse<UserSettings>.SuccessResponse(Response.DataList, "");
+			return ServiceResponse<UserSettingsResponse>.SuccessResponse(Mapper.Map<List<UserSettingsResponse>>(Response.DataList), "");
 		}
 
 		[HttpGet]
 		[Authorize]
 		[Route("api/usersettingssingle")]
-		[Produces(typeof(ServiceResponse<UserSettings>))]
-		public async Task<ServiceResponse<UserSettings>> GetSingle([FromQuery] UserSettingsSelectSingle Model)
+		[Produces(typeof(ServiceResponse<UserSettingsResponse>))]
+		public async Task<ServiceResponse<UserSettingsResponse>> GetSingle([FromQuery] UserSettingsSelectSingle Model)
 		{
 			DataService<UserSettings> Response = await Service.SelectSingleAsync(Model);
-			return ServiceResponse<UserSettings>.SuccessResponse(Response.Data, "");
+			return ServiceResponse<UserSettingsResponse>.SuccessResponse(Mapper.Map<List<UserSettingsResponse>>(Response.Data), "");
 		}
 	}
 }

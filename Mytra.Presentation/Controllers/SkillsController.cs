@@ -56,21 +56,21 @@
 		[HttpGet]
 		[Authorize]
 		[Route("api/skills")]
-		[Produces(typeof(ServiceResponse<Skills>))]
-		public async Task<ServiceResponse<Skills>> Get([FromQuery] SkillsSelect Model)
+		[Produces(typeof(ServiceResponse<SkillsResponse>))]
+		public async Task<ServiceResponse<SkillsResponse>> Get([FromQuery] SkillsSelect Model)
 		{
 			DataService<Skills> Response = await Service.SelectAsync(Model);
-			return ServiceResponse<Skills>.SuccessResponse(Response.DataList, "");
+			return ServiceResponse<SkillsResponse>.SuccessResponse(Mapper.Map<List<SkillsResponse>>(Response.DataList), "");
 		}
 
 		[HttpGet]
 		[Authorize]
 		[Route("api/skillssingle")]
-		[Produces(typeof(ServiceResponse<Skills>))]
-		public async Task<ServiceResponse<Skills>> GetSingle([FromQuery] SkillsSelectSingle Model)
+		[Produces(typeof(ServiceResponse<SkillsResponse>))]
+		public async Task<ServiceResponse<SkillsResponse>> GetSingle([FromQuery] SkillsSelectSingle Model)
 		{
 			DataService<Skills> Response = await Service.SelectSingleAsync(Model);
-			return ServiceResponse<Skills>.SuccessResponse(Response.Data, "");
+			return ServiceResponse<SkillsResponse>.SuccessResponse(Mapper.Map<List<SkillsResponse>>(Response.Data), "");
 		}
 	}
 }
