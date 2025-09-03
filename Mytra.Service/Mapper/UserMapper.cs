@@ -9,6 +9,7 @@
 			CreateMap<Common.UserDelete, Core.User>().ReverseMap();
 			CreateMap<Common.UserSelect, Core.User>().ReverseMap();
 			CreateMap<Common.UserSelectSingle, Core.User>().ReverseMap();
+			CreateMap<Common.UserResponse, Core.User>().ReverseMap();
 		}
 	}
 }

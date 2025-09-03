@@ -9,6 +9,7 @@
 			CreateMap<Common.CandidateLanguageDelete, Core.CandidateLanguage>().ReverseMap();
 			CreateMap<Common.CandidateLanguageSelect, Core.CandidateLanguage>().ReverseMap();
 			CreateMap<Common.CandidateLanguageSelectSingle, Core.CandidateLanguage>().ReverseMap();
+			CreateMap<Common.CandidateLanguageResponse, Core.CandidateLanguage>().ReverseMap();
 		}
 	}
 }

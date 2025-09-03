@@ -9,6 +9,7 @@
 			CreateMap<Common.CandidateCertificateDelete, Core.CandidateCertificate>().ReverseMap();
 			CreateMap<Common.CandidateCertificateSelect, Core.CandidateCertificate>().ReverseMap();
 			CreateMap<Common.CandidateCertificateSelectSingle, Core.CandidateCertificate>().ReverseMap();
+			CreateMap<Common.CandidateCertificateResponse, Core.CandidateCertificate>().ReverseMap();
 		}
 	}
 }
