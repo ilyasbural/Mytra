@@ -20,3 +20,5 @@
 /Mytra.WebApi/obj
 /Mytra.WebApi/Mytra.WebApi.csproj.user
 /Mytra.slnLaunch.user
+/Mytra.UI/bin/Debug/net9.0
+/Mytra.UI/obj
