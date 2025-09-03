@@ -2,14 +2,21 @@
 {
 	using Core;
 	using Common;
+	using AutoMapper;
 	using Microsoft.AspNetCore.Mvc;
 	using Microsoft.AspNetCore.Authorization;
 
 	[ApiController]
     public class CandidateController : ControllerBase
     {
+		readonly IMapper Mapper;
 		readonly ICandidateService Service;
-		public CandidateController(ICandidateService service) { Service = service; }
+
+		public CandidateController(IMapper mapper, ICandidateService service)
+		{
+			Mapper = mapper;
+			Service = service;
+		}
 
 		[HttpPost]
 		[Route("api/candidate")]
@@ -46,20 +53,20 @@
 
 		[HttpGet]
 		[Route("api/candidate")]
-		[Produces(typeof(ServiceResponse<Candidate>))]
-		public async Task<ServiceResponse<Candidate>> Get([FromQuery] CandidateSelect Model)
+		[Produces(typeof(ServiceResponse<CandidateResponse>))]
+		public async Task<ServiceResponse<CandidateResponse>> Get([FromQuery] CandidateSelect Model)
 		{
 			DataService<Candidate> Response = await Service.SelectAsync(Model);
-			return ServiceResponse<Candidate>.SuccessResponse(Response.DataList, "");
+			return ServiceResponse<CandidateResponse>.SuccessResponse(Mapper.Map<List<CandidateResponse>>(Response.DataList), "");
 		}
 
 		[HttpGet]
 		[Route("api/candidatesingle")]
-		[Produces(typeof(ServiceResponse<Candidate>))]
-		public async Task<ServiceResponse<Candidate>> GetSingle([FromQuery] CandidateSelectSingle Model)
+		[Produces(typeof(ServiceResponse<CandidateResponse>))]
+		public async Task<ServiceResponse<CandidateResponse>> GetSingle([FromQuery] CandidateSelectSingle Model)
 		{
 			DataService<Candidate> Response = await Service.SelectSingleAsync(Model);
-			return ServiceResponse<Candidate>.SuccessResponse(Response.Data, "");
+			return ServiceResponse<CandidateResponse>.SuccessResponse(Mapper.Map<List<CandidateResponse>>(Response.Data), "");
 		}
 	}
 }

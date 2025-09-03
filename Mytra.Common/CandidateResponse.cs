@@ -1,6 +1,6 @@
 ﻿namespace Mytra.Common
 {
-	public class CandidateSelect
+	public class CandidateResponse
 	{
 		public Guid Id { get; set; }
 	}

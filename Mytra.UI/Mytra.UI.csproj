@@ -15,4 +15,8 @@
     <PackageReference Include="RestSharp.Serializers.Xml" Version="112.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Mytra.Common\Mytra.Common.csproj" />
+  </ItemGroup>
+
 </Project>
