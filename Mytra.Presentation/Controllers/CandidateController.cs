@@ -4,7 +4,6 @@
 	using Common;
 	using AutoMapper;
 	using Microsoft.AspNetCore.Mvc;
-	using Microsoft.AspNetCore.Authorization;
 
 	[ApiController]
     public class CandidateController : ControllerBase
@@ -19,13 +18,13 @@
 
 		[HttpPost]
 		[Route("api/candidate")]
-		[Produces(typeof(ServiceResponse<Candidate>))]
-		public async Task<ServiceResponse<Candidate>> Create([FromBody] CandidateInsert Model)
+		[Produces(typeof(ServiceResponse<CandidateResponse>))]
+		public async Task<ServiceResponse<CandidateResponse>> Create([FromBody] CandidateInsert Model)
 		{
 			DataService<Candidate> Response = await Service.InsertAsync(Model);		
-			if (Response.Errors.Count > 0) return ServiceResponse<Candidate>.FailureResponse(Response.Errors, "");
-			if (!Response.Success) return ServiceResponse<Candidate>.FailureResponse("");
-			return ServiceResponse<Candidate>.SuccessResponse(Response.Data, "");
+			if (Response.Errors.Count > 0) return ServiceResponse<CandidateResponse>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<CandidateResponse>.FailureResponse("");
+			return ServiceResponse<CandidateResponse>.SuccessResponse(Mapper.Map<List<CandidateResponse>>(Response.Data), "");
 		}
 
 		[HttpPut]

@@ -18,13 +18,13 @@
 
 		[HttpPost]
 		[Route("api/user")]
-		[Produces(typeof(ServiceResponse<User>))]
-		public async Task<ServiceResponse<User>> Create([FromBody] UserInsert Model)
+		[Produces(typeof(ServiceResponse<UserResponse>))]
+		public async Task<ServiceResponse<UserResponse>> Create([FromBody] UserInsert Model)
 		{
 			DataService<User> Response = await Service.InsertAsync(Model);
-			if (Response.Errors.Count > 0) return ServiceResponse<User>.FailureResponse(Response.Errors, "");
-			if (!Response.Success) return ServiceResponse<User>.FailureResponse("");
-			return ServiceResponse<User>.SuccessResponse(Response.Data, "");
+			if (Response.Errors.Count > 0) return ServiceResponse<UserResponse>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<UserResponse>.FailureResponse("");
+			return ServiceResponse<UserResponse>.SuccessResponse(Mapper.Map<List<UserResponse>>(Response.Data), "");
 		}
 
 		[HttpPut]

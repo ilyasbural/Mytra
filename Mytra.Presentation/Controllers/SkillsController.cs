@@ -20,13 +20,13 @@
 		[HttpPost]
 		[Authorize]
 		[Route("api/skills")]
-		[Produces(typeof(ServiceResponse<Skills>))]
-		public async Task<ServiceResponse<Skills>> Create([FromBody] SkillsInsert Model)
+		[Produces(typeof(ServiceResponse<SkillsResponse>))]
+		public async Task<ServiceResponse<SkillsResponse>> Create([FromBody] SkillsInsert Model)
 		{
 			DataService<Skills> Response = await Service.InsertAsync(Model);
-			if (Response.Errors.Count > 0) return ServiceResponse<Skills>.FailureResponse(Response.Errors, "");
-			if (!Response.Success) return ServiceResponse<Skills>.FailureResponse("");
-			return ServiceResponse<Skills>.SuccessResponse(Response.Data, "");
+			if (Response.Errors.Count > 0) return ServiceResponse<SkillsResponse>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<SkillsResponse>.FailureResponse("");
+			return ServiceResponse<SkillsResponse>.SuccessResponse(Mapper.Map<List<SkillsResponse>>(Response.Data), "");
 		}
 
 		[HttpPut]

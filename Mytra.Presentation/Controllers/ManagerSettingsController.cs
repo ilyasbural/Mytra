@@ -20,13 +20,13 @@
 		[HttpPost]
 		[Authorize]
 		[Route("api/managersettings")]
-		[Produces(typeof(ServiceResponse<ManagerSettings>))]
-		public async Task<ServiceResponse<ManagerSettings>> Create([FromBody] ManagerSettingsInsert Model)
+		[Produces(typeof(ServiceResponse<ManagerSettingsResponse>))]
+		public async Task<ServiceResponse<ManagerSettingsResponse>> Create([FromBody] ManagerSettingsInsert Model)
 		{
 			DataService<ManagerSettings> Response = await Service.InsertAsync(Model);
-			if (Response.Errors.Count > 0) return ServiceResponse<ManagerSettings>.FailureResponse(Response.Errors, "");
-			if (!Response.Success) return ServiceResponse<ManagerSettings>.FailureResponse("");
-			return ServiceResponse<ManagerSettings>.SuccessResponse(Response.Data, "");
+			if (Response.Errors.Count > 0) return ServiceResponse<ManagerSettingsResponse>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<ManagerSettingsResponse>.FailureResponse("");
+			return ServiceResponse<ManagerSettingsResponse>.SuccessResponse(Mapper.Map<List<ManagerSettingsResponse>>(Response.Data), "");
 		}
 
 		[HttpPut]

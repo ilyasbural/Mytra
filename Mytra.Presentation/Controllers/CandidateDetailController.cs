@@ -20,13 +20,13 @@
 		[HttpPost]
 		[Authorize]
 		[Route("api/candidatedetail")]
-		[Produces(typeof(ServiceResponse<CandidateDetail>))]
-		public async Task<ServiceResponse<CandidateDetail>> Create([FromBody] CandidateDetailInsert Model)
+		[Produces(typeof(ServiceResponse<CandidateDetailResponse>))]
+		public async Task<ServiceResponse<CandidateDetailResponse>> Create([FromBody] CandidateDetailInsert Model)
 		{
 			DataService<CandidateDetail> Response = await Service.InsertAsync(Model);
-			if (Response.Errors.Count > 0) return ServiceResponse<CandidateDetail>.FailureResponse(Response.Errors, "");
-			if (!Response.Success) return ServiceResponse<CandidateDetail>.FailureResponse("");
-			return ServiceResponse<CandidateDetail>.SuccessResponse(Response.Data, "");
+			if (Response.Errors.Count > 0) return ServiceResponse<CandidateDetailResponse>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<CandidateDetailResponse>.FailureResponse("");
+			return ServiceResponse<CandidateDetailResponse>.SuccessResponse(Mapper.Map<List<CandidateDetailResponse>>(Response.Data), "");
 		}
 
 		[HttpPut]

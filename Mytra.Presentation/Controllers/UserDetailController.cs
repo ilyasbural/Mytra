@@ -4,7 +4,6 @@
 	using Common;
 	using AutoMapper;
 	using Microsoft.AspNetCore.Mvc;
-	using Microsoft.AspNetCore.Authorization;
 
 	[ApiController]
 	public class UserDetailController : ControllerBase
@@ -18,19 +17,17 @@
 		}
 
 		[HttpPost]
-		[Authorize]
 		[Route("api/userdetail")]
-		[Produces(typeof(ServiceResponse<UserDetail>))]
-		public async Task<ServiceResponse<UserDetail>> Create([FromBody] UserDetailInsert Model)
+		[Produces(typeof(ServiceResponse<UserDetailResponse>))]
+		public async Task<ServiceResponse<UserDetailResponse>> Create([FromBody] UserDetailInsert Model)
 		{
 			DataService<UserDetail> Response = await Service.InsertAsync(Model);
-			if (Response.Errors.Count > 0) return ServiceResponse<UserDetail>.FailureResponse(Response.Errors, "");
-			if (!Response.Success) return ServiceResponse<UserDetail>.FailureResponse("");
-			return ServiceResponse<UserDetail>.SuccessResponse(Response.Data, "");
+			if (Response.Errors.Count > 0) return ServiceResponse<UserDetailResponse>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<UserDetailResponse>.FailureResponse("");
+			return ServiceResponse<UserDetailResponse>.SuccessResponse(Mapper.Map<List<UserDetailResponse>>(Response.Data), "");
 		}
 
 		[HttpPut]
-		[Authorize]
 		[Route("api/userdetail")]
 		[Produces(typeof(ServiceResponse<UserDetail>))]
 		public async Task<ServiceResponse<UserDetail>> Update([FromBody] UserDetailUpdate Model)
@@ -42,7 +39,6 @@
 		}
 
 		[HttpDelete]
-		[Authorize]
 		[Route("api/userdetail")]
 		[Produces(typeof(ServiceResponse<UserDetail>))]
 		public async Task<ServiceResponse<UserDetail>> Delete([FromBody] UserDetailDelete Model)
@@ -54,7 +50,6 @@
 		}
 
 		[HttpGet]
-		[Authorize]
 		[Route("api/userdetail")]
 		[Produces(typeof(ServiceResponse<UserDetailResponse>))]
 		public async Task<ServiceResponse<UserDetailResponse>> Get([FromQuery] UserDetailSelect Model)
@@ -64,7 +59,6 @@
 		}
 
 		[HttpGet]
-		[Authorize]
 		[Route("api/userdetailsingle")]
 		[Produces(typeof(ServiceResponse<UserDetailResponse>))]
 		public async Task<ServiceResponse<UserDetailResponse>> GetSingle([FromQuery] UserDetailSelectSingle Model)
