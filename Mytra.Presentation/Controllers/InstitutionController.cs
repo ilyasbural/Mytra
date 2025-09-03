@@ -2,14 +2,20 @@
 {
 	using Core;
 	using Common;
+	using AutoMapper;
 	using Microsoft.AspNetCore.Mvc;
 	using Microsoft.AspNetCore.Authorization;
 
-    [ApiController]
+	[ApiController]
     public class InstitutionController : ControllerBase
     {
+		readonly IMapper Mapper;
 		readonly IInstitutionService Service;
-		public InstitutionController(IInstitutionService service) { Service = service; }
+		public InstitutionController(IMapper mapper, IInstitutionService service)
+		{
+			Mapper = mapper;
+			Service = service;
+		}
 
 		[HttpPost]
 		[Authorize]

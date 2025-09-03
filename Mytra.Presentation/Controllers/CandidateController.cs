@@ -11,7 +11,6 @@
     {
 		readonly IMapper Mapper;
 		readonly ICandidateService Service;
-
 		public CandidateController(IMapper mapper, ICandidateService service)
 		{
 			Mapper = mapper;

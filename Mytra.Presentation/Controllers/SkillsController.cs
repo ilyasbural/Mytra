@@ -2,14 +2,20 @@
 {
 	using Core;
 	using Common;
+	using AutoMapper;
 	using Microsoft.AspNetCore.Mvc;
 	using Microsoft.AspNetCore.Authorization;
 
 	[ApiController]
 	public class SkillsController : ControllerBase
 	{
+		readonly IMapper Mapper;
 		readonly ISkillsService Service;
-		public SkillsController(ISkillsService service) { Service = service; }
+		public SkillsController(IMapper mapper, ISkillsService service)
+		{
+			Mapper = mapper;
+			Service = service;
+		}
 
 		[HttpPost]
 		[Authorize]

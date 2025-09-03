@@ -1,17 +1,19 @@
 ﻿namespace Mytra.Presentation.Controllers
 {
-	using Core;
+	using AutoMapper;
 	using Common;
+	using Core;
 	using Microsoft.AspNetCore.Mvc;
 	using Microsoft.Extensions.Configuration;
 	using Microsoft.IdentityModel.Tokens;
-	using System.Text;
-	using System.Security.Claims;
 	using System.IdentityModel.Tokens.Jwt;
+	using System.Security.Claims;
+	using System.Text;
 
 	[ApiController]
 	public class CandidateLoginController : ControllerBase
 	{
+		readonly IMapper Mapper;
 		readonly IConfiguration Configuration;
 		readonly ICandidateLoginService LoginService;
 		readonly ICandidateAuthenticationService AuthenticationService;

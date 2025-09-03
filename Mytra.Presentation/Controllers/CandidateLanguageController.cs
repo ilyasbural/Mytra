@@ -2,14 +2,20 @@
 {
 	using Core;
 	using Common;
+	using AutoMapper;
 	using Microsoft.AspNetCore.Mvc;
 	using Microsoft.AspNetCore.Authorization;
 
-    [ApiController]
+	[ApiController]
     public class CandidateLanguageController : ControllerBase
     {
+		readonly IMapper Mapper;
 		readonly ICandidateLanguageService Service;
-		public CandidateLanguageController(ICandidateLanguageService service) { Service = service; }
+		public CandidateLanguageController(IMapper mapper, ICandidateLanguageService service)
+		{
+			Mapper = mapper;
+			Service = service;
+		}
 
 		[HttpPost]
 		[Authorize]

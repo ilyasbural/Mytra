@@ -2,14 +2,20 @@
 {
 	using Core;
 	using Common;
+	using AutoMapper;
 	using Microsoft.AspNetCore.Mvc;
 	using Microsoft.AspNetCore.Authorization;
 
 	[ApiController]
 	public class ManagerDetailController : ControllerBase
 	{
+		readonly IMapper Mapper;
 		readonly IManagerDetailService Service;
-		public ManagerDetailController(IManagerDetailService service) { Service = service; }
+		public ManagerDetailController(IMapper mapper, IManagerDetailService service)
+		{
+			Mapper = mapper;
+			Service = service;
+		}
 
 		[HttpPost]
 		[Authorize]

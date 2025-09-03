@@ -2,14 +2,20 @@
 {
 	using Core;
 	using Common;
+	using AutoMapper;
 	using Microsoft.AspNetCore.Mvc;
 	using Microsoft.AspNetCore.Authorization;
 
 	[ApiController]
 	public class ManagerSettingsController : ControllerBase
 	{
+		readonly IMapper Mapper;
 		readonly IManagerSettingsService Service;
-		public ManagerSettingsController(IManagerSettingsService service) { Service = service; }
+		public ManagerSettingsController(IMapper mapper, IManagerSettingsService service)
+		{
+			Mapper = mapper;
+			Service = service;
+		}
 
 		[HttpPost]
 		[Authorize]

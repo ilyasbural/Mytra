@@ -2,14 +2,20 @@
 {
 	using Core;
 	using Common;
+	using AutoMapper;
 	using Microsoft.AspNetCore.Mvc;
 	using Microsoft.AspNetCore.Authorization;
 
 	[ApiController]
     public class CandidateDetailController : ControllerBase
     {
-		private readonly ICandidateDetailService Service;
-		public CandidateDetailController(ICandidateDetailService service) { Service = service; }
+		readonly IMapper Mapper;
+		readonly ICandidateDetailService Service;
+		public CandidateDetailController(IMapper mapper, ICandidateDetailService service)
+		{
+			Mapper = mapper;
+			Service = service;
+		}
 
 		[HttpPost]
 		[Authorize]

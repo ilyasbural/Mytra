@@ -2,13 +2,20 @@
 {
 	using Core;
 	using Common;
+	using AutoMapper;
 	using Microsoft.AspNetCore.Mvc;
+	using Microsoft.AspNetCore.Authorization;
 
 	[ApiController]
     public class CandidateAuthenticationController : ControllerBase
     {
+		readonly IMapper Mapper;
 		readonly ICandidateAuthenticationService Service;
-		public CandidateAuthenticationController(ICandidateAuthenticationService service) { Service = service; }
+		public CandidateAuthenticationController(IMapper mapper, ICandidateAuthenticationService service)
+		{
+			Mapper = mapper;
+			Service = service;
+		}
 
 		[HttpPost]
 		[Route("api/candidateauthentication")]

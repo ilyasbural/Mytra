@@ -2,14 +2,20 @@
 {
 	using Core;
 	using Common;
+	using AutoMapper;
 	using Microsoft.AspNetCore.Mvc;
 	using Microsoft.AspNetCore.Authorization;
 
-    [ApiController]
+	[ApiController]
     public class JobPostingDetailController : ControllerBase
     {
+		readonly IMapper Mapper;
 		readonly IJobPostingDetailService Service;
-		public JobPostingDetailController(IJobPostingDetailService service) { Service = service; }
+		public JobPostingDetailController(IMapper mapper, IJobPostingDetailService service)
+		{
+			Mapper = mapper;
+			Service = service;
+		}
 
 		[HttpPost]
 		[Authorize]

@@ -2,14 +2,20 @@
 {
 	using Core;
 	using Common;
+	using AutoMapper;
 	using Microsoft.AspNetCore.Mvc;
 	using Microsoft.AspNetCore.Authorization;
 
 	[ApiController]
 	public class UserDetailController : ControllerBase
 	{
+		readonly IMapper Mapper;
 		readonly IUserDetailService Service;
-		public UserDetailController(IUserDetailService service) { Service = service; }
+		public UserDetailController(IMapper mapper, IUserDetailService service)
+		{
+			Mapper = mapper;
+			Service = service;
+		}
 
 		[HttpPost]
 		[Authorize]
