@@ -53,51 +53,24 @@
 			return ServiceResponse<College>.SuccessResponse(Response.Data, "");
 		}
 
-
-
-
-
-
-
-
-
-
-		[HttpGet]
-		[Route("api/candidate")]
-		[Produces(typeof(ServiceResponse<CandidateResponse>))]
-		public async Task<ServiceResponse<CandidateResponse>> Get([FromQuery] CandidateSelect Model)
-		{
-			DataService<Candidate> Response = await Service.SelectAsync(Model);
-			return ServiceResponse<CandidateResponse>.SuccessResponse(Mapper.Map<List<CandidateResponse>>(Response.DataList), "");
-		}
-
-		[HttpGet]
-		[Route("api/candidatesingle")]
-		[Produces(typeof(ServiceResponse<CandidateResponse>))]
-		public async Task<ServiceResponse<CandidateResponse>> GetSingle([FromQuery] CandidateSelectSingle Model)
-		{
-			DataService<Candidate> Response = await Service.SelectSingleAsync(Model);
-			return ServiceResponse<CandidateResponse>.SuccessResponse(Mapper.Map<List<CandidateResponse>>(Response.Data), "");
-		}
-
 		[HttpGet]
 		[Authorize]
 		[Route("api/college")]
-		[Produces(typeof(ServiceResponse<College>))]
-		public async Task<ServiceResponse<College>> Get([FromQuery] CollegeSelect Model)
+		[Produces(typeof(ServiceResponse<CollegeResponse>))]
+		public async Task<ServiceResponse<CollegeResponse>> Get([FromQuery] CollegeSelect Model)
 		{
 			DataService<College> Response = await Service.SelectAsync(Model);
-			return ServiceResponse<College>.SuccessResponse(Response.DataList, "");
+			return ServiceResponse<CollegeResponse>.SuccessResponse(Mapper.Map<List<CollegeResponse>>(Response.DataList), "");
 		}
 
 		[HttpGet]
 		[Authorize]
 		[Route("api/collegesingle")]
-		[Produces(typeof(ServiceResponse<College>))]
-		public async Task<ServiceResponse<College>> GetSingle([FromQuery] CollegeSelectSingle Model)
+		[Produces(typeof(ServiceResponse<CollegeResponse>))]
+		public async Task<ServiceResponse<CollegeResponse>> GetSingle([FromQuery] CollegeSelectSingle Model)
 		{
 			DataService<College> Response = await Service.SelectSingleAsync(Model);
-			return ServiceResponse<College>.SuccessResponse(Response.Data, "");
+			return ServiceResponse<CollegeResponse>.SuccessResponse(Mapper.Map<List<CollegeResponse>>(Response.Data), "");
 		}
 	}
 }

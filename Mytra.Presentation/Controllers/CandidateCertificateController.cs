@@ -53,48 +53,24 @@
 			return ServiceResponse<CandidateCertificate>.SuccessResponse(Response.Data, "");
 		}
 
-
-
-
-
-
-
-		[HttpGet]
-		[Route("api/candidate")]
-		[Produces(typeof(ServiceResponse<CandidateResponse>))]
-		public async Task<ServiceResponse<CandidateResponse>> Get([FromQuery] CandidateSelect Model)
-		{
-			DataService<Candidate> Response = await Service.SelectAsync(Model);
-			return ServiceResponse<CandidateResponse>.SuccessResponse(Mapper.Map<List<CandidateResponse>>(Response.DataList), "");
-		}
-
-		[HttpGet]
-		[Route("api/candidatesingle")]
-		[Produces(typeof(ServiceResponse<CandidateResponse>))]
-		public async Task<ServiceResponse<CandidateResponse>> GetSingle([FromQuery] CandidateSelectSingle Model)
-		{
-			DataService<Candidate> Response = await Service.SelectSingleAsync(Model);
-			return ServiceResponse<CandidateResponse>.SuccessResponse(Mapper.Map<List<CandidateResponse>>(Response.Data), "");
-		}
-
 		[HttpGet]
 		[Authorize]
 		[Route("api/candidatecertificate")]
-		[Produces(typeof(ServiceResponse<CandidateCertificate>))]
-		public async Task<ServiceResponse<CandidateCertificate>> Get([FromQuery] CandidateCertificateSelect Model)
+		[Produces(typeof(ServiceResponse<CandidateCertificateResponse>))]
+		public async Task<ServiceResponse<CandidateCertificateResponse>> Get([FromQuery] CandidateCertificateSelect Model)
 		{
 			DataService<CandidateCertificate> Response = await Service.SelectAsync(Model);
-			return ServiceResponse<CandidateCertificate>.SuccessResponse(Response.DataList, "candidatecertificates list added");
+			return ServiceResponse<CandidateCertificateResponse>.SuccessResponse(Mapper.Map<List<CandidateCertificateResponse>>(Response.DataList), "");
 		}
 
 		[HttpGet]
 		[Authorize]
 		[Route("api/candidatecertificatesingle")]
-		[Produces(typeof(ServiceResponse<CandidateCertificate>))]
-		public async Task<ServiceResponse<CandidateCertificate>> GetSingle([FromQuery] CandidateCertificateSelectSingle Model)
+		[Produces(typeof(ServiceResponse<CandidateCertificateResponse>))]
+		public async Task<ServiceResponse<CandidateCertificateResponse>> GetSingle([FromQuery] CandidateCertificateSelectSingle Model)
 		{
 			DataService<CandidateCertificate> Response = await Service.SelectSingleAsync(Model);
-			return ServiceResponse<CandidateCertificate>.SuccessResponse(Response.Data, "");
+			return ServiceResponse<CandidateCertificateResponse>.SuccessResponse(Mapper.Map<List<CandidateCertificateResponse>>(Response.Data), "");
 		}
 	}
 }

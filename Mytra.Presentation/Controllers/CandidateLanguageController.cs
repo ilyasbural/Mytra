@@ -53,48 +53,24 @@
 			return ServiceResponse<CandidateLanguage>.SuccessResponse(Response.Data, "");
 		}
 
-
-
-
-
-
-
-		[HttpGet]
-		[Route("api/candidate")]
-		[Produces(typeof(ServiceResponse<CandidateResponse>))]
-		public async Task<ServiceResponse<CandidateResponse>> Get([FromQuery] CandidateSelect Model)
-		{
-			DataService<Candidate> Response = await Service.SelectAsync(Model);
-			return ServiceResponse<CandidateResponse>.SuccessResponse(Mapper.Map<List<CandidateResponse>>(Response.DataList), "");
-		}
-
-		[HttpGet]
-		[Route("api/candidatesingle")]
-		[Produces(typeof(ServiceResponse<CandidateResponse>))]
-		public async Task<ServiceResponse<CandidateResponse>> GetSingle([FromQuery] CandidateSelectSingle Model)
-		{
-			DataService<Candidate> Response = await Service.SelectSingleAsync(Model);
-			return ServiceResponse<CandidateResponse>.SuccessResponse(Mapper.Map<List<CandidateResponse>>(Response.Data), "");
-		}
-
 		[HttpGet]
 		[Authorize]
 		[Route("api/candidatelanguage")]
-		[Produces(typeof(ServiceResponse<CandidateLanguage>))]
-		public async Task<ServiceResponse<CandidateLanguage>> Get([FromQuery] CandidateLanguageSelect Model)
+		[Produces(typeof(ServiceResponse<CandidateLanguageResponse>))]
+		public async Task<ServiceResponse<CandidateLanguageResponse>> Get([FromQuery] CandidateLanguageSelect Model)
 		{
 			DataService<CandidateLanguage> Response = await Service.SelectAsync(Model);
-			return ServiceResponse<CandidateLanguage>.SuccessResponse(Response.DataList, "");
+			return ServiceResponse<CandidateLanguageResponse>.SuccessResponse(Mapper.Map<List<CandidateLanguageResponse>>(Response.DataList), "");
 		}
 
 		[HttpGet]
 		[Authorize]
 		[Route("api/candidatelanguagesingle")]
-		[Produces(typeof(ServiceResponse<CandidateLanguage>))]
-		public async Task<ServiceResponse<CandidateLanguage>> GetSingle([FromQuery] CandidateLanguageSelectSingle Model)
+		[Produces(typeof(ServiceResponse<CandidateLanguageResponse>))]
+		public async Task<ServiceResponse<CandidateLanguageResponse>> GetSingle([FromQuery] CandidateLanguageSelectSingle Model)
 		{
 			DataService<CandidateLanguage> Response = await Service.SelectSingleAsync(Model);
-			return ServiceResponse<CandidateLanguage>.SuccessResponse(Response.Data, "");
+			return ServiceResponse<CandidateLanguageResponse>.SuccessResponse(Mapper.Map<List<CandidateLanguageResponse>>(Response.Data), "");
 		}
 	}
 }

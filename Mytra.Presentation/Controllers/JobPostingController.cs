@@ -53,48 +53,24 @@
 			return ServiceResponse<JobPosting>.SuccessResponse(Response.Data, "");
 		}
 
-
-
-
-
-
-
-		[HttpGet]
-		[Route("api/candidate")]
-		[Produces(typeof(ServiceResponse<CandidateResponse>))]
-		public async Task<ServiceResponse<CandidateResponse>> Get([FromQuery] CandidateSelect Model)
-		{
-			DataService<Candidate> Response = await Service.SelectAsync(Model);
-			return ServiceResponse<CandidateResponse>.SuccessResponse(Mapper.Map<List<CandidateResponse>>(Response.DataList), "");
-		}
-
-		[HttpGet]
-		[Route("api/candidatesingle")]
-		[Produces(typeof(ServiceResponse<CandidateResponse>))]
-		public async Task<ServiceResponse<CandidateResponse>> GetSingle([FromQuery] CandidateSelectSingle Model)
-		{
-			DataService<Candidate> Response = await Service.SelectSingleAsync(Model);
-			return ServiceResponse<CandidateResponse>.SuccessResponse(Mapper.Map<List<CandidateResponse>>(Response.Data), "");
-		}
-
 		[HttpGet]
 		[Authorize]
 		[Route("api/jobposting")]
-		[Produces(typeof(ServiceResponse<JobPosting>))]
-		public async Task<ServiceResponse<JobPosting>> Get([FromQuery] JobPostingSelect Model)
+		[Produces(typeof(ServiceResponse<JobPostingResponse>))]
+		public async Task<ServiceResponse<JobPostingResponse>> Get([FromQuery] JobPostingSelect Model)
 		{
 			DataService<JobPosting> Response = await Service.SelectAsync(Model);
-			return ServiceResponse<JobPosting>.SuccessResponse(Response.DataList, "");
+			return ServiceResponse<JobPostingResponse>.SuccessResponse(Mapper.Map<List<JobPostingResponse>>(Response.DataList), "");
 		}
 
 		[HttpGet]
 		[Authorize]
 		[Route("api/jobpostingsingle")]
-		[Produces(typeof(ServiceResponse<JobPosting>))]
-		public async Task<ServiceResponse<JobPosting>> GetSingle([FromQuery] JobPostingSelectSingle Model)
+		[Produces(typeof(ServiceResponse<JobPostingResponse>))]
+		public async Task<ServiceResponse<JobPostingResponse>> GetSingle([FromQuery] JobPostingSelectSingle Model)
 		{
 			DataService<JobPosting> Response = await Service.SelectSingleAsync(Model);
-			return ServiceResponse<JobPosting>.SuccessResponse(Response.Data, "");
+			return ServiceResponse<JobPostingResponse>.SuccessResponse(Mapper.Map<List<JobPostingResponse>>(Response.Data), "");
 		}
 	}
 }

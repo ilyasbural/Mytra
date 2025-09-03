@@ -53,47 +53,24 @@
 			return ServiceResponse<CandidateSkills>.SuccessResponse(Response.Data, "");
 		}
 
-
-
-
-
-
-		[HttpGet]
-		[Route("api/candidate")]
-		[Produces(typeof(ServiceResponse<CandidateResponse>))]
-		public async Task<ServiceResponse<CandidateResponse>> Get([FromQuery] CandidateSelect Model)
-		{
-			DataService<Candidate> Response = await Service.SelectAsync(Model);
-			return ServiceResponse<CandidateResponse>.SuccessResponse(Mapper.Map<List<CandidateResponse>>(Response.DataList), "");
-		}
-
-		[HttpGet]
-		[Route("api/candidatesingle")]
-		[Produces(typeof(ServiceResponse<CandidateResponse>))]
-		public async Task<ServiceResponse<CandidateResponse>> GetSingle([FromQuery] CandidateSelectSingle Model)
-		{
-			DataService<Candidate> Response = await Service.SelectSingleAsync(Model);
-			return ServiceResponse<CandidateResponse>.SuccessResponse(Mapper.Map<List<CandidateResponse>>(Response.Data), "");
-		}
-
 		[HttpGet]
 		[Authorize]
 		[Route("api/candidateskills")]
-		[Produces(typeof(ServiceResponse<CandidateSkills>))]
-		public async Task<ServiceResponse<CandidateSkills>> Get([FromQuery] CandidateSkillsSelect Model)
+		[Produces(typeof(ServiceResponse<CandidateSkillsResponse>))]
+		public async Task<ServiceResponse<CandidateSkillsResponse>> Get([FromQuery] CandidateSkillsSelect Model)
 		{
 			DataService<CandidateSkills> Response = await Service.SelectAsync(Model);
-			return ServiceResponse<CandidateSkills>.SuccessResponse(Response.DataList, "");
+			return ServiceResponse<CandidateSkillsResponse>.SuccessResponse(Mapper.Map<List<CandidateSkillsResponse>>(Response.DataList), "");
 		}
 
 		[HttpGet]
 		[Authorize]
 		[Route("api/candidateskillssingle")]
-		[Produces(typeof(ServiceResponse<CandidateSkills>))]
-		public async Task<ServiceResponse<CandidateSkills>> GetSingle([FromQuery] CandidateSkillsSelectSingle Model)
+		[Produces(typeof(ServiceResponse<CandidateSkillsResponse>))]
+		public async Task<ServiceResponse<CandidateSkillsResponse>> GetSingle([FromQuery] CandidateSkillsSelectSingle Model)
 		{
 			DataService<CandidateSkills> Response = await Service.SelectSingleAsync(Model);
-			return ServiceResponse<CandidateSkills>.SuccessResponse(Response.Data, "");
+			return ServiceResponse<CandidateSkillsResponse>.SuccessResponse(Mapper.Map<List<CandidateSkillsResponse>>(Response.Data), "");
 		}
 	}
 }

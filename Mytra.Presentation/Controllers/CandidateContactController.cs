@@ -53,48 +53,24 @@
 			return ServiceResponse<CandidateContact>.SuccessResponse(Response.Data, "");
 		}
 
-
-
-
-
-
-
-		[HttpGet]
-		[Route("api/candidate")]
-		[Produces(typeof(ServiceResponse<CandidateResponse>))]
-		public async Task<ServiceResponse<CandidateResponse>> Get([FromQuery] CandidateSelect Model)
-		{
-			DataService<Candidate> Response = await Service.SelectAsync(Model);
-			return ServiceResponse<CandidateResponse>.SuccessResponse(Mapper.Map<List<CandidateResponse>>(Response.DataList), "");
-		}
-
-		[HttpGet]
-		[Route("api/candidatesingle")]
-		[Produces(typeof(ServiceResponse<CandidateResponse>))]
-		public async Task<ServiceResponse<CandidateResponse>> GetSingle([FromQuery] CandidateSelectSingle Model)
-		{
-			DataService<Candidate> Response = await Service.SelectSingleAsync(Model);
-			return ServiceResponse<CandidateResponse>.SuccessResponse(Mapper.Map<List<CandidateResponse>>(Response.Data), "");
-		}
-
 		[HttpGet]
 		[Authorize]
 		[Route("api/candidatecontact")]
-		[Produces(typeof(ServiceResponse<CandidateContact>))]
-		public async Task<ServiceResponse<CandidateContact>> Get([FromQuery] CandidateContactSelect Model)
+		[Produces(typeof(ServiceResponse<CandidateContactResponse>))]
+		public async Task<ServiceResponse<CandidateContactResponse>> Get([FromQuery] CandidateContactSelect Model)
 		{
 			DataService<CandidateContact> Response = await Service.SelectAsync(Model);
-			return ServiceResponse<CandidateContact>.SuccessResponse(Response.DataList, "");
+			return ServiceResponse<CandidateContactResponse>.SuccessResponse(Mapper.Map<List<CandidateContactResponse>>(Response.DataList), "");
 		}
 
 		[HttpGet]
 		[Authorize]
 		[Route("api/candidatecontactsingle")]
-		[Produces(typeof(ServiceResponse<CandidateContact>))]
-		public async Task<ServiceResponse<CandidateContact>> GetSingle([FromQuery] CandidateContactSelectSingle Model)
+		[Produces(typeof(ServiceResponse<CandidateContactResponse>))]
+		public async Task<ServiceResponse<CandidateContactResponse>> GetSingle([FromQuery] CandidateContactSelectSingle Model)
 		{
 			DataService<CandidateContact> Response = await Service.SelectSingleAsync(Model);
-			return ServiceResponse<CandidateContact>.SuccessResponse(Response.Data, "");
+			return ServiceResponse<CandidateContactResponse>.SuccessResponse(Mapper.Map<List<CandidateContactResponse>>(Response.Data), "");
 		}
 	}
 }

@@ -53,47 +53,24 @@
 			return ServiceResponse<JobPostingDetail>.SuccessResponse(Response.Data, "");
 		}
 
-
-
-
-
-
-		[HttpGet]
-		[Route("api/candidate")]
-		[Produces(typeof(ServiceResponse<CandidateResponse>))]
-		public async Task<ServiceResponse<CandidateResponse>> Get([FromQuery] CandidateSelect Model)
-		{
-			DataService<Candidate> Response = await Service.SelectAsync(Model);
-			return ServiceResponse<CandidateResponse>.SuccessResponse(Mapper.Map<List<CandidateResponse>>(Response.DataList), "");
-		}
-
-		[HttpGet]
-		[Route("api/candidatesingle")]
-		[Produces(typeof(ServiceResponse<CandidateResponse>))]
-		public async Task<ServiceResponse<CandidateResponse>> GetSingle([FromQuery] CandidateSelectSingle Model)
-		{
-			DataService<Candidate> Response = await Service.SelectSingleAsync(Model);
-			return ServiceResponse<CandidateResponse>.SuccessResponse(Mapper.Map<List<CandidateResponse>>(Response.Data), "");
-		}
-
 		[HttpGet]
 		[Authorize]
 		[Route("api/jobpostingdetail")]
-		[Produces(typeof(ServiceResponse<JobPostingDetail>))]
-		public async Task<ServiceResponse<JobPostingDetail>> Get([FromQuery] JobPostingDetailSelect Model)
+		[Produces(typeof(ServiceResponse<JobPostingDetailResponse>))]
+		public async Task<ServiceResponse<JobPostingDetailResponse>> Get([FromQuery] JobPostingDetailSelect Model)
 		{
 			DataService<JobPostingDetail> Response = await Service.SelectAsync(Model);
-			return ServiceResponse<JobPostingDetail>.SuccessResponse(Response.DataList, "");
+			return ServiceResponse<JobPostingDetailResponse>.SuccessResponse(Mapper.Map<List<JobPostingDetailResponse>>(Response.DataList), "");
 		}
 
 		[HttpGet]
 		[Authorize]
 		[Route("api/jobpostingdetailsingle")]
-		[Produces(typeof(ServiceResponse<JobPostingDetail>))]
-		public async Task<ServiceResponse<JobPostingDetail>> GetSingle([FromQuery] JobPostingDetailSelectSingle Model)
+		[Produces(typeof(ServiceResponse<JobPostingDetailResponse>))]
+		public async Task<ServiceResponse<JobPostingDetailResponse>> GetSingle([FromQuery] JobPostingDetailSelectSingle Model)
 		{
 			DataService<JobPostingDetail> Response = await Service.SelectSingleAsync(Model);
-			return ServiceResponse<JobPostingDetail>.SuccessResponse(Response.Data, "");
+			return ServiceResponse<JobPostingDetailResponse>.SuccessResponse(Mapper.Map<List<JobPostingDetailResponse>>(Response.Data), "");
 		}
 	}
 }

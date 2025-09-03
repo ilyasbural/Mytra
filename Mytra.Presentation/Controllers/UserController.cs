@@ -4,7 +4,6 @@
 	using Common;
 	using AutoMapper;
 	using Microsoft.AspNetCore.Mvc;
-	using Microsoft.AspNetCore.Authorization;
 
 	[ApiController]
 	public class UserController : ControllerBase

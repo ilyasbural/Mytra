@@ -53,48 +53,24 @@
 			return ServiceResponse<ManagerDetail>.SuccessResponse(Response.Data, "");
 		}
 
-
-
-
-
-
-
-		[HttpGet]
-		[Route("api/candidate")]
-		[Produces(typeof(ServiceResponse<CandidateResponse>))]
-		public async Task<ServiceResponse<CandidateResponse>> Get([FromQuery] CandidateSelect Model)
-		{
-			DataService<Candidate> Response = await Service.SelectAsync(Model);
-			return ServiceResponse<CandidateResponse>.SuccessResponse(Mapper.Map<List<CandidateResponse>>(Response.DataList), "");
-		}
-
-		[HttpGet]
-		[Route("api/candidatesingle")]
-		[Produces(typeof(ServiceResponse<CandidateResponse>))]
-		public async Task<ServiceResponse<CandidateResponse>> GetSingle([FromQuery] CandidateSelectSingle Model)
-		{
-			DataService<Candidate> Response = await Service.SelectSingleAsync(Model);
-			return ServiceResponse<CandidateResponse>.SuccessResponse(Mapper.Map<List<CandidateResponse>>(Response.Data), "");
-		}
-
 		[HttpGet]
 		[Authorize]
 		[Route("api/managerdetail")]
-		[Produces(typeof(ServiceResponse<ManagerDetail>))]
-		public async Task<ServiceResponse<ManagerDetail>> Get([FromQuery] ManagerDetailSelect Model)
+		[Produces(typeof(ServiceResponse<ManagerDetailResponse>))]
+		public async Task<ServiceResponse<ManagerDetailResponse>> Get([FromQuery] ManagerDetailSelect Model)
 		{
 			DataService<ManagerDetail> Response = await Service.SelectAsync(Model);
-			return ServiceResponse<ManagerDetail>.SuccessResponse(Response.DataList, "");
+			return ServiceResponse<ManagerDetailResponse>.SuccessResponse(Mapper.Map<List<ManagerDetailResponse>>(Response.DataList), "");
 		}
 
 		[HttpGet]
 		[Authorize]
 		[Route("api/managerdetailsingle")]
-		[Produces(typeof(ServiceResponse<ManagerDetail>))]
-		public async Task<ServiceResponse<ManagerDetail>> GetSingle([FromQuery] ManagerDetailSelectSingle Model)
+		[Produces(typeof(ServiceResponse<ManagerDetailResponse>))]
+		public async Task<ServiceResponse<ManagerDetailResponse>> GetSingle([FromQuery] ManagerDetailSelectSingle Model)
 		{
 			DataService<ManagerDetail> Response = await Service.SelectSingleAsync(Model);
-			return ServiceResponse<ManagerDetail>.SuccessResponse(Response.Data, "");
+			return ServiceResponse<ManagerDetailResponse>.SuccessResponse(Mapper.Map<List<ManagerDetailResponse>>(Response.Data), "");
 		}
 	}
 }

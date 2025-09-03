@@ -53,47 +53,24 @@
 			return ServiceResponse<Institution>.SuccessResponse(Response.Data, "");
 		}
 
-
-
-
-
-
-		[HttpGet]
-		[Route("api/candidate")]
-		[Produces(typeof(ServiceResponse<CandidateResponse>))]
-		public async Task<ServiceResponse<CandidateResponse>> Get([FromQuery] CandidateSelect Model)
-		{
-			DataService<Candidate> Response = await Service.SelectAsync(Model);
-			return ServiceResponse<CandidateResponse>.SuccessResponse(Mapper.Map<List<CandidateResponse>>(Response.DataList), "");
-		}
-
-		[HttpGet]
-		[Route("api/candidatesingle")]
-		[Produces(typeof(ServiceResponse<CandidateResponse>))]
-		public async Task<ServiceResponse<CandidateResponse>> GetSingle([FromQuery] CandidateSelectSingle Model)
-		{
-			DataService<Candidate> Response = await Service.SelectSingleAsync(Model);
-			return ServiceResponse<CandidateResponse>.SuccessResponse(Mapper.Map<List<CandidateResponse>>(Response.Data), "");
-		}
-
 		[HttpGet]
 		[Authorize]
 		[Route("api/institution")]
-		[Produces(typeof(ServiceResponse<Institution>))]
-		public async Task<ServiceResponse<Institution>> Get([FromQuery] InstitutionSelect Model)
+		[Produces(typeof(ServiceResponse<InstitutionResponse>))]
+		public async Task<ServiceResponse<InstitutionResponse>> Get([FromQuery] InstitutionSelect Model)
 		{
 			DataService<Institution> Response = await Service.SelectAsync(Model);
-			return ServiceResponse<Institution>.SuccessResponse(Response.DataList, "");
+			return ServiceResponse<InstitutionResponse>.SuccessResponse(Mapper.Map<List<InstitutionResponse>>(Response.DataList), "");
 		}
 
 		[HttpGet]
 		[Authorize]
 		[Route("api/institutionsingle")]
-		[Produces(typeof(ServiceResponse<Institution>))]
-		public async Task<ServiceResponse<Institution>> GetSingle([FromQuery] InstitutionSelectSingle Model)
+		[Produces(typeof(ServiceResponse<InstitutionResponse>))]
+		public async Task<ServiceResponse<InstitutionResponse>> GetSingle([FromQuery] InstitutionSelectSingle Model)
 		{
 			DataService<Institution> Response = await Service.SelectSingleAsync(Model);
-			return ServiceResponse<Institution>.SuccessResponse(Response.Data, "");
+			return ServiceResponse<InstitutionResponse>.SuccessResponse(Mapper.Map<List<InstitutionResponse>>(Response.Data), "");
 		}
 	}
 }

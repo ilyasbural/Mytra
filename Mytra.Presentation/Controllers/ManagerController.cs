@@ -53,46 +53,24 @@
 			return ServiceResponse<Manager>.SuccessResponse(Response.Data, "");
 		}
 
-
-
-
-
-		[HttpGet]
-		[Route("api/candidate")]
-		[Produces(typeof(ServiceResponse<CandidateResponse>))]
-		public async Task<ServiceResponse<CandidateResponse>> Get([FromQuery] CandidateSelect Model)
-		{
-			DataService<Candidate> Response = await Service.SelectAsync(Model);
-			return ServiceResponse<CandidateResponse>.SuccessResponse(Mapper.Map<List<CandidateResponse>>(Response.DataList), "");
-		}
-
-		[HttpGet]
-		[Route("api/candidatesingle")]
-		[Produces(typeof(ServiceResponse<CandidateResponse>))]
-		public async Task<ServiceResponse<CandidateResponse>> GetSingle([FromQuery] CandidateSelectSingle Model)
-		{
-			DataService<Candidate> Response = await Service.SelectSingleAsync(Model);
-			return ServiceResponse<CandidateResponse>.SuccessResponse(Mapper.Map<List<CandidateResponse>>(Response.Data), "");
-		}
-
 		[HttpGet]
 		[Authorize]
 		[Route("api/manager")]
-		[Produces(typeof(ServiceResponse<Manager>))]
-		public async Task<ServiceResponse<Manager>> Get([FromQuery] ManagerSelect Model)
+		[Produces(typeof(ServiceResponse<ManagerResponse>))]
+		public async Task<ServiceResponse<ManagerResponse>> Get([FromQuery] ManagerSelect Model)
 		{
 			DataService<Manager> Response = await Service.SelectAsync(Model);
-			return ServiceResponse<Manager>.SuccessResponse(Response.DataList, "");
+			return ServiceResponse<ManagerResponse>.SuccessResponse(Mapper.Map<List<ManagerResponse>>(Response.DataList), "");
 		}
 
 		[HttpGet]
 		[Authorize]
 		[Route("api/managersingle")]
-		[Produces(typeof(ServiceResponse<Manager>))]
-		public async Task<ServiceResponse<Manager>> GetSingle([FromQuery] ManagerSelectSingle Model)
+		[Produces(typeof(ServiceResponse<ManagerResponse>))]
+		public async Task<ServiceResponse<ManagerResponse>> GetSingle([FromQuery] ManagerSelectSingle Model)
 		{
 			DataService<Manager> Response = await Service.SelectSingleAsync(Model);
-			return ServiceResponse<Manager>.SuccessResponse(Response.Data, "");
+			return ServiceResponse<ManagerResponse>.SuccessResponse(Mapper.Map<List<ManagerResponse>>(Response.Data), "");
 		}
 	}
 }

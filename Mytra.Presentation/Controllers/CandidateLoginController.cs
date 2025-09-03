@@ -18,8 +18,9 @@
 		readonly ICandidateLoginService LoginService;
 		readonly ICandidateAuthenticationService AuthenticationService;
 
-		public CandidateLoginController(IConfiguration configuration, ICandidateLoginService loginService, ICandidateAuthenticationService authenticationService)
+		public CandidateLoginController(IMapper mapper, IConfiguration configuration, ICandidateLoginService loginService, ICandidateAuthenticationService authenticationService)
 		{
+			Mapper = mapper;
 			Configuration = configuration;  
 			LoginService = loginService;
 			AuthenticationService = authenticationService;
