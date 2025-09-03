@@ -12,6 +12,7 @@
 		public CandidateCertificateController(ICandidateCertificateService service) { Service = service; }
 
 		[HttpPost]
+		[Authorize]
 		[Route("api/candidatecertificate")]
 		[Produces(typeof(ServiceResponse<CandidateCertificate>))]
 		public async Task<ServiceResponse<CandidateCertificate>> Create([FromBody] CandidateCertificateInsert Model)
@@ -23,6 +24,7 @@
 		}
 
 		[HttpPut]
+		[Authorize]
 		[Route("api/candidatecertificate")]
 		[Produces(typeof(ServiceResponse<CandidateCertificate>))]
 		public async Task<ServiceResponse<CandidateCertificate>> Update([FromBody] CandidateCertificateUpdate Model)
@@ -34,6 +36,7 @@
 		}
 
 		[HttpDelete]
+		[Authorize]
 		[Route("api/candidatecertificate")]
 		[Produces(typeof(ServiceResponse<CandidateCertificate>))]
 		public async Task<ServiceResponse<CandidateCertificate>> Delete([FromBody] CandidateCertificateDelete Model)
@@ -45,6 +48,7 @@
 		}
 
 		[HttpGet]
+		[Authorize]
 		[Route("api/candidatecertificate")]
 		[Produces(typeof(ServiceResponse<CandidateCertificate>))]
 		public async Task<ServiceResponse<CandidateCertificate>> Get([FromQuery] CandidateCertificateSelect Model)
@@ -54,6 +58,7 @@
 		}
 
 		[HttpGet]
+		[Authorize]
 		[Route("api/candidatecertificatesingle")]
 		[Produces(typeof(ServiceResponse<CandidateCertificate>))]
 		public async Task<ServiceResponse<CandidateCertificate>> GetSingle([FromQuery] CandidateCertificateSelectSingle Model)

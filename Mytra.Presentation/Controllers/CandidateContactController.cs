@@ -12,6 +12,7 @@
 		public CandidateContactController(ICandidateContactService service) { Service = service; }
 
 		[HttpPost]
+		[Authorize]
 		[Route("api/candidatecontact")]
 		[Produces(typeof(ServiceResponse<CandidateContact>))]
 		public async Task<ServiceResponse<CandidateContact>> Create([FromBody] CandidateContactInsert Model)
@@ -23,6 +24,7 @@
 		}
 
 		[HttpPut]
+		[Authorize]
 		[Route("api/candidatecontact")]
 		[Produces(typeof(ServiceResponse<CandidateContact>))]
 		public async Task<ServiceResponse<CandidateContact>> Update([FromBody] CandidateContactUpdate Model)
@@ -34,6 +36,7 @@
 		}
 
 		[HttpDelete]
+		[Authorize]
 		[Route("api/candidatecontact")]
 		[Produces(typeof(ServiceResponse<CandidateContact>))]
 		public async Task<ServiceResponse<CandidateContact>> Delete([FromBody] CandidateContactDelete Model)
@@ -45,6 +48,7 @@
 		}
 
 		[HttpGet]
+		[Authorize]
 		[Route("api/candidatecontact")]
 		[Produces(typeof(ServiceResponse<CandidateContact>))]
 		public async Task<ServiceResponse<CandidateContact>> Get([FromQuery] CandidateContactSelect Model)
@@ -54,6 +58,7 @@
 		}
 
 		[HttpGet]
+		[Authorize]
 		[Route("api/candidatecontactsingle")]
 		[Produces(typeof(ServiceResponse<CandidateContact>))]
 		public async Task<ServiceResponse<CandidateContact>> GetSingle([FromQuery] CandidateContactSelectSingle Model)

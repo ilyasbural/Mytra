@@ -12,6 +12,7 @@
 		public CandidatePhotoController(ICandidatePhotoService service) { Service = service; }
 
 		[HttpPost]
+		[Authorize]
 		[Route("api/candidatephoto")]
 		[Produces(typeof(ServiceResponse<CandidatePhoto>))]
 		public async Task<ServiceResponse<CandidatePhoto>> Create([FromBody] CandidatePhotoInsert Model)
@@ -23,6 +24,7 @@
 		}
 
 		[HttpPut]
+		[Authorize]
 		[Route("api/candidatephoto")]
 		[Produces(typeof(ServiceResponse<CandidatePhoto>))]
 		public async Task<ServiceResponse<CandidatePhoto>> Update([FromBody] CandidatePhotoUpdate Model)
@@ -34,6 +36,7 @@
 		}
 
 		[HttpDelete]
+		[Authorize]
 		[Route("api/candidatephoto")]
 		[Produces(typeof(ServiceResponse<CandidatePhoto>))]
 		public async Task<ServiceResponse<CandidatePhoto>> Delete([FromBody] CandidatePhotoDelete Model)
@@ -45,6 +48,7 @@
 		}
 
 		[HttpGet]
+		[Authorize]
 		[Route("api/candidatephoto")]
 		[Produces(typeof(ServiceResponse<CandidatePhoto>))]
 		public async Task<ServiceResponse<CandidatePhoto>> Get([FromQuery] CandidatePhotoSelect Model)
@@ -54,6 +58,7 @@
 		}
 
 		[HttpGet]
+		[Authorize]
 		[Route("api/candidatephotosingle")]
 		[Produces(typeof(ServiceResponse<CandidatePhoto>))]
 		public async Task<ServiceResponse<CandidatePhoto>> GetSingle([FromQuery] CandidatePhotoSelectSingle Model)

@@ -12,6 +12,7 @@
 		public CandidateLanguageController(ICandidateLanguageService service) { Service = service; }
 
 		[HttpPost]
+		[Authorize]
 		[Route("api/candidatelanguage")]
 		[Produces(typeof(ServiceResponse<CandidateLanguage>))]
 		public async Task<ServiceResponse<CandidateLanguage>> Create([FromBody] CandidateLanguageInsert Model)
@@ -23,6 +24,7 @@
 		}
 
 		[HttpPut]
+		[Authorize]
 		[Route("api/candidatelanguage")]
 		[Produces(typeof(ServiceResponse<CandidateLanguage>))]
 		public async Task<ServiceResponse<CandidateLanguage>> Update([FromBody] CandidateLanguageUpdate Model)
@@ -34,6 +36,7 @@
 		}
 
 		[HttpDelete]
+		[Authorize]
 		[Route("api/candidatelanguage")]
 		[Produces(typeof(ServiceResponse<CandidateLanguage>))]
 		public async Task<ServiceResponse<CandidateLanguage>> Delete([FromBody] CandidateLanguageDelete Model)
@@ -45,6 +48,7 @@
 		}
 
 		[HttpGet]
+		[Authorize]
 		[Route("api/candidatelanguage")]
 		[Produces(typeof(ServiceResponse<CandidateLanguage>))]
 		public async Task<ServiceResponse<CandidateLanguage>> Get([FromQuery] CandidateLanguageSelect Model)
@@ -54,6 +58,7 @@
 		}
 
 		[HttpGet]
+		[Authorize]
 		[Route("api/candidatelanguagesingle")]
 		[Produces(typeof(ServiceResponse<CandidateLanguage>))]
 		public async Task<ServiceResponse<CandidateLanguage>> GetSingle([FromQuery] CandidateLanguageSelectSingle Model)

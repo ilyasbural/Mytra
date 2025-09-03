@@ -12,6 +12,7 @@
 		public JobPostingDetailController(IJobPostingDetailService service) { Service = service; }
 
 		[HttpPost]
+		[Authorize]
 		[Route("api/jobpostingdetail")]
 		[Produces(typeof(ServiceResponse<JobPostingDetail>))]
 		public async Task<ServiceResponse<JobPostingDetail>> Create([FromBody] JobPostingDetailInsert Model)
@@ -23,6 +24,7 @@
 		}
 
 		[HttpPut]
+		[Authorize]
 		[Route("api/jobpostingdetail")]
 		[Produces(typeof(ServiceResponse<JobPostingDetail>))]
 		public async Task<ServiceResponse<JobPostingDetail>> Update([FromBody] JobPostingDetailUpdate Model)
@@ -34,6 +36,7 @@
 		}
 
 		[HttpDelete]
+		[Authorize]
 		[Route("api/jobpostingdetail")]
 		[Produces(typeof(ServiceResponse<JobPostingDetail>))]
 		public async Task<ServiceResponse<JobPostingDetail>> Delete([FromBody] JobPostingDetailDelete Model)
@@ -45,6 +48,7 @@
 		}
 
 		[HttpGet]
+		[Authorize]
 		[Route("api/jobpostingdetail")]
 		[Produces(typeof(ServiceResponse<JobPostingDetail>))]
 		public async Task<ServiceResponse<JobPostingDetail>> Get([FromQuery] JobPostingDetailSelect Model)
@@ -54,6 +58,7 @@
 		}
 
 		[HttpGet]
+		[Authorize]
 		[Route("api/jobpostingdetailsingle")]
 		[Produces(typeof(ServiceResponse<JobPostingDetail>))]
 		public async Task<ServiceResponse<JobPostingDetail>> GetSingle([FromQuery] JobPostingDetailSelectSingle Model)

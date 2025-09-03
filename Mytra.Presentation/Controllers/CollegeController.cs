@@ -12,6 +12,7 @@
 		public CollegeController(ICollegeService service) { Service = service; }
 
 		[HttpPost]
+		[Authorize]
 		[Route("api/college")]
 		[Produces(typeof(ServiceResponse<College>))]
 		public async Task<ServiceResponse<College>> Create([FromBody] CollegeInsert Model)
@@ -23,6 +24,7 @@
 		}
 
 		[HttpPut]
+		[Authorize]
 		[Route("api/college")]
 		[Produces(typeof(ServiceResponse<College>))]
 		public async Task<ServiceResponse<College>> Update([FromBody] CollegeUpdate Model)
@@ -34,6 +36,7 @@
 		}
 
 		[HttpDelete]
+		[Authorize]
 		[Route("api/college")]
 		[Produces(typeof(ServiceResponse<College>))]
 		public async Task<ServiceResponse<College>> Delete([FromBody] CollegeDelete Model)
@@ -45,6 +48,7 @@
 		}
 
 		[HttpGet]
+		[Authorize]
 		[Route("api/college")]
 		[Produces(typeof(ServiceResponse<College>))]
 		public async Task<ServiceResponse<College>> Get([FromQuery] CollegeSelect Model)
@@ -54,6 +58,7 @@
 		}
 
 		[HttpGet]
+		[Authorize]
 		[Route("api/collegesingle")]
 		[Produces(typeof(ServiceResponse<College>))]
 		public async Task<ServiceResponse<College>> GetSingle([FromQuery] CollegeSelectSingle Model)

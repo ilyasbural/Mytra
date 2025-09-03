@@ -12,6 +12,7 @@
 		public CandidateExperienceController(ICandidateExperienceService service) { Service = service; }
 
 		[HttpPost]
+		[Authorize]
 		[Route("api/candidateexperience")]
 		[Produces(typeof(ServiceResponse<CandidateExperience>))]
 		public async Task<ServiceResponse<CandidateExperience>> Create([FromBody] CandidateExperienceInsert Model)
@@ -23,6 +24,7 @@
 		}
 
 		[HttpPut]
+		[Authorize]
 		[Route("api/candidateexperience")]
 		[Produces(typeof(ServiceResponse<CandidateExperience>))]
 		public async Task<ServiceResponse<CandidateExperience>> Update([FromBody] CandidateExperienceUpdate Model)
@@ -34,6 +36,7 @@
 		}
 
 		[HttpDelete]
+		[Authorize]
 		[Route("api/candidateexperience")]
 		[Produces(typeof(ServiceResponse<CandidateExperience>))]
 		public async Task<ServiceResponse<CandidateExperience>> Delete([FromBody] CandidateExperienceDelete Model)
@@ -45,6 +48,7 @@
 		}
 
 		[HttpGet]
+		[Authorize]
 		[Route("api/candidateexperience")]
 		[Produces(typeof(ServiceResponse<CandidateExperience>))]
 		public async Task<ServiceResponse<CandidateExperience>> Get([FromQuery] CandidateExperienceSelect Model)
@@ -54,6 +58,7 @@
 		}
 
 		[HttpGet]
+		[Authorize]
 		[Route("api/candidateexperiencesingle")]
 		[Produces(typeof(ServiceResponse<CandidateExperience>))]
 		public async Task<ServiceResponse<CandidateExperience>> GetSingle([FromQuery] CandidateExperienceSelectSingle Model)

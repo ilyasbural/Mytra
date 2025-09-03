@@ -12,6 +12,7 @@
 		public CandidateSettingsController(ICandidateSettingsService service) { Service = service; }
 
 		[HttpPost]
+		[Authorize]
 		[Route("api/candidatesettings")]
 		[Produces(typeof(ServiceResponse<CandidateSettings>))]
 		public async Task<ServiceResponse<CandidateSettings>> Create([FromBody] CandidateSettingsInsert Model)
@@ -23,6 +24,7 @@
 		}
 
 		[HttpPut]
+		[Authorize]
 		[Route("api/candidatesettings")]
 		[Produces(typeof(ServiceResponse<CandidateSettings>))]
 		public async Task<ServiceResponse<CandidateSettings>> Update([FromBody] CandidateSettingsUpdate Model)
@@ -34,6 +36,7 @@
 		}
 
 		[HttpDelete]
+		[Authorize]
 		[Route("api/candidatesettings")]
 		[Produces(typeof(ServiceResponse<CandidateSettings>))]
 		public async Task<ServiceResponse<CandidateSettings>> Delete([FromBody] CandidateSettingsDelete Model)
@@ -45,6 +48,7 @@
 		}
 
 		[HttpGet]
+		[Authorize]
 		[Route("api/candidatesettings")]
 		[Produces(typeof(ServiceResponse<CandidateSettings>))]
 		public async Task<ServiceResponse<CandidateSettings>> Get([FromQuery] CandidateSettingsSelect Model)
@@ -54,6 +58,7 @@
 		}
 
 		[HttpGet]
+		[Authorize]
 		[Route("api/candidatesettingssingle")]
 		[Produces(typeof(ServiceResponse<CandidateSettings>))]
 		public async Task<ServiceResponse<CandidateSettings>> GetSingle([FromQuery] CandidateSettingsSelectSingle Model)

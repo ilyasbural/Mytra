@@ -12,6 +12,7 @@
 		public ManagerDetailController(IManagerDetailService service) { Service = service; }
 
 		[HttpPost]
+		[Authorize]
 		[Route("api/managerdetail")]
 		[Produces(typeof(ServiceResponse<ManagerDetail>))]
 		public async Task<ServiceResponse<ManagerDetail>> Create([FromBody] ManagerDetailInsert Model)
@@ -23,6 +24,7 @@
 		}
 
 		[HttpPut]
+		[Authorize]
 		[Route("api/managerdetail")]
 		[Produces(typeof(ServiceResponse<ManagerDetail>))]
 		public async Task<ServiceResponse<ManagerDetail>> Update([FromBody] ManagerDetailUpdate Model)
@@ -34,6 +36,7 @@
 		}
 
 		[HttpDelete]
+		[Authorize]
 		[Route("api/managerdetail")]
 		[Produces(typeof(ServiceResponse<ManagerDetail>))]
 		public async Task<ServiceResponse<ManagerDetail>> Delete([FromBody] ManagerDetailDelete Model)
@@ -45,6 +48,7 @@
 		}
 
 		[HttpGet]
+		[Authorize]
 		[Route("api/managerdetail")]
 		[Produces(typeof(ServiceResponse<ManagerDetail>))]
 		public async Task<ServiceResponse<ManagerDetail>> Get([FromQuery] ManagerDetailSelect Model)
@@ -54,6 +58,7 @@
 		}
 
 		[HttpGet]
+		[Authorize]
 		[Route("api/managerdetailsingle")]
 		[Produces(typeof(ServiceResponse<ManagerDetail>))]
 		public async Task<ServiceResponse<ManagerDetail>> GetSingle([FromQuery] ManagerDetailSelectSingle Model)

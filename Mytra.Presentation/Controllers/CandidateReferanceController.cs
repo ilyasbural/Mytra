@@ -12,6 +12,7 @@
 		public CandidateReferanceController(ICandidateReferanceService service) { Service = service; }
 
 		[HttpPost]
+		[Authorize]
 		[Route("api/candidatereferance")]
 		[Produces(typeof(ServiceResponse<CandidateReferance>))]
 		public async Task<ServiceResponse<CandidateReferance>> Create([FromBody] CandidateReferanceInsert Model)
@@ -23,6 +24,7 @@
 		}
 
 		[HttpPut]
+		[Authorize]
 		[Route("api/candidatereferance")]
 		[Produces(typeof(ServiceResponse<CandidateReferance>))]
 		public async Task<ServiceResponse<CandidateReferance>> Update([FromBody] CandidateReferanceUpdate Model)
@@ -34,6 +36,7 @@
 		}
 
 		[HttpDelete]
+		[Authorize]
 		[Route("api/candidatereferance")]
 		[Produces(typeof(ServiceResponse<CandidateReferance>))]
 		public async Task<ServiceResponse<CandidateReferance>> Delete([FromBody] CandidateReferanceDelete Model)
@@ -45,6 +48,7 @@
 		}
 
 		[HttpGet]
+		[Authorize]
 		[Route("api/candidatereferance")]
 		[Produces(typeof(ServiceResponse<CandidateReferance>))]
 		public async Task<ServiceResponse<CandidateReferance>> Get([FromQuery] CandidateReferanceSelect Model)
@@ -54,6 +58,7 @@
 		}
 
 		[HttpGet]
+		[Authorize]
 		[Route("api/candidatereferancesingle")]
 		[Produces(typeof(ServiceResponse<CandidateReferance>))]
 		public async Task<ServiceResponse<CandidateReferance>> GetSingle([FromQuery] CandidateReferanceSelectSingle Model)

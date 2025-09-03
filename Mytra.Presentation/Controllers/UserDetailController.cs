@@ -12,6 +12,7 @@
 		public UserDetailController(IUserDetailService service) { Service = service; }
 
 		[HttpPost]
+		[Authorize]
 		[Route("api/userdetail")]
 		[Produces(typeof(ServiceResponse<UserDetail>))]
 		public async Task<ServiceResponse<UserDetail>> Create([FromBody] UserDetailInsert Model)
@@ -23,6 +24,7 @@
 		}
 
 		[HttpPut]
+		[Authorize]
 		[Route("api/userdetail")]
 		[Produces(typeof(ServiceResponse<UserDetail>))]
 		public async Task<ServiceResponse<UserDetail>> Update([FromBody] UserDetailUpdate Model)
@@ -34,6 +36,7 @@
 		}
 
 		[HttpDelete]
+		[Authorize]
 		[Route("api/userdetail")]
 		[Produces(typeof(ServiceResponse<UserDetail>))]
 		public async Task<ServiceResponse<UserDetail>> Delete([FromBody] UserDetailDelete Model)
@@ -45,6 +48,7 @@
 		}
 
 		[HttpGet]
+		[Authorize]
 		[Route("api/userdetail")]
 		[Produces(typeof(ServiceResponse<UserDetail>))]
 		public async Task<ServiceResponse<UserDetail>> Get([FromQuery] UserDetailSelect Model)
@@ -54,6 +58,7 @@
 		}
 
 		[HttpGet]
+		[Authorize]
 		[Route("api/userdetailsingle")]
 		[Produces(typeof(ServiceResponse<UserDetail>))]
 		public async Task<ServiceResponse<UserDetail>> GetSingle([FromQuery] UserDetailSelectSingle Model)

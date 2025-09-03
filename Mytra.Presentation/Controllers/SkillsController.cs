@@ -12,6 +12,7 @@
 		public SkillsController(ISkillsService service) { Service = service; }
 
 		[HttpPost]
+		[Authorize]
 		[Route("api/skills")]
 		[Produces(typeof(ServiceResponse<Skills>))]
 		public async Task<ServiceResponse<Skills>> Create([FromBody] SkillsInsert Model)
@@ -23,6 +24,7 @@
 		}
 
 		[HttpPut]
+		[Authorize]
 		[Route("api/skills")]
 		[Produces(typeof(ServiceResponse<Skills>))]
 		public async Task<ServiceResponse<Skills>> Update([FromBody] SkillsUpdate Model)
@@ -34,6 +36,7 @@
 		}
 
 		[HttpDelete]
+		[Authorize]
 		[Route("api/skills")]
 		[Produces(typeof(ServiceResponse<Skills>))]
 		public async Task<ServiceResponse<Skills>> Delete([FromBody] SkillsDelete Model)
@@ -45,6 +48,7 @@
 		}
 
 		[HttpGet]
+		[Authorize]
 		[Route("api/skills")]
 		[Produces(typeof(ServiceResponse<Skills>))]
 		public async Task<ServiceResponse<Skills>> Get([FromQuery] SkillsSelect Model)
@@ -54,6 +58,7 @@
 		}
 
 		[HttpGet]
+		[Authorize]
 		[Route("api/skillssingle")]
 		[Produces(typeof(ServiceResponse<Skills>))]
 		public async Task<ServiceResponse<Skills>> GetSingle([FromQuery] SkillsSelectSingle Model)

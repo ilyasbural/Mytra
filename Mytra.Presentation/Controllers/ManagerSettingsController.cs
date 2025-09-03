@@ -12,6 +12,7 @@
 		public ManagerSettingsController(IManagerSettingsService service) { Service = service; }
 
 		[HttpPost]
+		[Authorize]
 		[Route("api/managersettings")]
 		[Produces(typeof(ServiceResponse<ManagerSettings>))]
 		public async Task<ServiceResponse<ManagerSettings>> Create([FromBody] ManagerSettingsInsert Model)
@@ -23,6 +24,7 @@
 		}
 
 		[HttpPut]
+		[Authorize]
 		[Route("api/managersettings")]
 		[Produces(typeof(ServiceResponse<ManagerSettings>))]
 		public async Task<ServiceResponse<ManagerSettings>> Update([FromBody] ManagerSettingsUpdate Model)
@@ -34,6 +36,7 @@
 		}
 
 		[HttpDelete]
+		[Authorize]
 		[Route("api/managersettings")]
 		[Produces(typeof(ServiceResponse<ManagerSettings>))]
 		public async Task<ServiceResponse<ManagerSettings>> Delete([FromBody] ManagerSettingsDelete Model)
@@ -45,6 +48,7 @@
 		}
 
 		[HttpGet]
+		[Authorize]
 		[Route("api/managersettings")]
 		[Produces(typeof(ServiceResponse<ManagerSettings>))]
 		public async Task<ServiceResponse<ManagerSettings>> Get([FromQuery] ManagerSettingsSelect Model)
@@ -54,6 +58,7 @@
 		}
 
 		[HttpGet]
+		[Authorize]
 		[Route("api/managersettingssingle")]
 		[Produces(typeof(ServiceResponse<ManagerSettings>))]
 		public async Task<ServiceResponse<ManagerSettings>> GetSingle([FromQuery] ManagerSettingsSelectSingle Model)

@@ -12,6 +12,7 @@
 		public InstitutionController(IInstitutionService service) { Service = service; }
 
 		[HttpPost]
+		[Authorize]
 		[Route("api/institution")]
 		[Produces(typeof(ServiceResponse<Institution>))]
 		public async Task<ServiceResponse<Institution>> Create([FromBody] InstitutionInsert Model)
@@ -23,6 +24,7 @@
 		}
 
 		[HttpPut]
+		[Authorize]
 		[Route("api/institution")]
 		[Produces(typeof(ServiceResponse<Institution>))]
 		public async Task<ServiceResponse<Institution>> Update([FromBody] InstitutionUpdate Model)
@@ -34,6 +36,7 @@
 		}
 
 		[HttpDelete]
+		[Authorize]
 		[Route("api/institution")]
 		[Produces(typeof(ServiceResponse<Institution>))]
 		public async Task<ServiceResponse<Institution>> Delete([FromBody] InstitutionDelete Model)
@@ -45,6 +48,7 @@
 		}
 
 		[HttpGet]
+		[Authorize]
 		[Route("api/institution")]
 		[Produces(typeof(ServiceResponse<Institution>))]
 		public async Task<ServiceResponse<Institution>> Get([FromQuery] InstitutionSelect Model)
@@ -54,6 +58,7 @@
 		}
 
 		[HttpGet]
+		[Authorize]
 		[Route("api/institutionsingle")]
 		[Produces(typeof(ServiceResponse<Institution>))]
 		public async Task<ServiceResponse<Institution>> GetSingle([FromQuery] InstitutionSelectSingle Model)

@@ -12,6 +12,7 @@
 		public LanguageController(ILanguageService service) { Service = service; }
 
 		[HttpPost]
+		[Authorize]
 		[Route("api/language")]
 		[Produces(typeof(ServiceResponse<Language>))]
 		public async Task<ServiceResponse<Language>> Create([FromBody] LanguageInsert Model)
@@ -23,6 +24,7 @@
 		}
 
 		[HttpPut]
+		[Authorize]
 		[Route("api/language")]
 		[Produces(typeof(ServiceResponse<Language>))]
 		public async Task<ServiceResponse<Language>> Update([FromBody] LanguageUpdate Model)
@@ -34,6 +36,7 @@
 		}
 
 		[HttpDelete]
+		[Authorize]
 		[Route("api/language")]
 		[Produces(typeof(ServiceResponse<Language>))]
 		public async Task<ServiceResponse<Language>> Delete([FromBody] LanguageDelete Model)
@@ -45,6 +48,7 @@
 		}
 
 		[HttpGet]
+		[Authorize]
 		[Route("api/language")]
 		[Produces(typeof(ServiceResponse<Language>))]
 		public async Task<ServiceResponse<Language>> Get([FromQuery] LanguageSelect Model)
@@ -54,6 +58,7 @@
 		}
 
 		[HttpGet]
+		[Authorize]
 		[Route("api/languagesingle")]
 		[Produces(typeof(ServiceResponse<Language>))]
 		public async Task<ServiceResponse<Language>> GetSingle([FromQuery] LanguageSelectSingle Model)

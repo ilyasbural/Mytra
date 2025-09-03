@@ -12,6 +12,7 @@
 		public CandidateEducationController(ICandidateEducationService service) { Service = service; }
 
 		[HttpPost]
+		[Authorize]
 		[Route("api/candidateeducation")]
 		[Produces(typeof(ServiceResponse<CandidateEducation>))]
 		public async Task<ServiceResponse<CandidateEducation>> Create([FromBody] CandidateEducationInsert Model)
@@ -23,6 +24,7 @@
 		}
 
 		[HttpPut]
+		[Authorize]
 		[Route("api/candidateeducation")]
 		[Produces(typeof(ServiceResponse<CandidateEducation>))]
 		public async Task<ServiceResponse<CandidateEducation>> Update([FromBody] CandidateEducationUpdate Model)
@@ -34,6 +36,7 @@
 		}
 
 		[HttpDelete]
+		[Authorize]
 		[Route("api/candidateeducation")]
 		[Produces(typeof(ServiceResponse<CandidateEducation>))]
 		public async Task<ServiceResponse<CandidateEducation>> Delete([FromBody] CandidateEducationDelete Model)
@@ -45,6 +48,7 @@
 		}
 
 		[HttpGet]
+		[Authorize]
 		[Route("api/candidateeducation")]
 		[Produces(typeof(ServiceResponse<CandidateEducation>))]
 		public async Task<ServiceResponse<CandidateEducation>> Get([FromQuery] CandidateEducationSelect Model)
@@ -54,6 +58,7 @@
 		}
 
 		[HttpGet]
+		[Authorize]
 		[Route("api/candidateeducationsingle")]
 		[Produces(typeof(ServiceResponse<CandidateEducation>))]
 		public async Task<ServiceResponse<CandidateEducation>> GetSingle([FromQuery] CandidateEducationSelectSingle Model)
