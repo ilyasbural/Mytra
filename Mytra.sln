@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mytra.Presentation", "Mytra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mytra.WebApi", "Mytra.WebApi\Mytra.WebApi.csproj", "{18BB30CE-8674-4DCE-9979-7AABBD29B26C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mytra.UI", "Mytra.UI\Mytra.UI.csproj", "{1D4BF983-6509-4EB0-B555-D17C880F99A6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{18BB30CE-8674-4DCE-9979-7AABBD29B26C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18BB30CE-8674-4DCE-9979-7AABBD29B26C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{18BB30CE-8674-4DCE-9979-7AABBD29B26C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D4BF983-6509-4EB0-B555-D17C880F99A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D4BF983-6509-4EB0-B555-D17C880F99A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D4BF983-6509-4EB0-B555-D17C880F99A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D4BF983-6509-4EB0-B555-D17C880F99A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
