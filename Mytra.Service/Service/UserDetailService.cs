@@ -24,6 +24,7 @@
 			{
 				Data = Mapper.Map<UserDetail>(Model);
 				Data.Id = Guid.NewGuid();
+				Data.Name = "dsfsd";
 				Data.RegisterDate = DateTime.Now;
 				Data.UpdateDate = DateTime.Now;
 				Data.IsActive = true;
@@ -58,7 +59,6 @@
 				if (Collection == null) return DataService<UserDetail>.FailureResult("Kayıt bulunamadı");
 
 				Data = Collection.SingleOrDefault()!;
-				//Data = Mapper.Map(model, Data);
 				Data.Name = Model.Name;
 				Data.UpdateDate = DateTime.Now;
 

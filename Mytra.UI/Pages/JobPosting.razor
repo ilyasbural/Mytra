@@ -1,6 +1,19 @@
-﻿@page "/jobposting"
+﻿@using Common
+
+@page "/jobposting"
+@inject HttpClient Http
+
+<PageTitle>JobPosting</PageTitle>
 <h3>JobPosting</h3>
 
-@code {
+@code
+{
+    protected override async Task OnInitializedAsync()
+    {
+        ServiceResponse<JobPostingResponse>? response =
+     await Http.GetFromJsonAsync<ServiceResponse<JobPostingResponse>>("https://localhost:7046/api/jobposting");
 
+
+
+    }
 }

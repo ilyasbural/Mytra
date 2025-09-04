@@ -1,6 +1,19 @@
-﻿@page "/managerauthentication"
+﻿@using Common
+
+@page "/managerauthentication"
+@inject HttpClient Http
+
+<PageTitle>ManagerAuthentication</PageTitle>
 <h3>ManagerAuthentication</h3>
 
-@code {
+@code
+{
+    protected override async Task OnInitializedAsync()
+    {
+        ServiceResponse<ManagerAuthenticationResponse>? response =
+     await Http.GetFromJsonAsync<ServiceResponse<ManagerAuthenticationResponse>>("https://localhost:7046/api/managerauthentication");
 
+
+
+    }
 }

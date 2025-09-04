@@ -1,6 +1,19 @@
-﻿@page "/usersettings"
+﻿@using Common
+
+@page "/usersettings"
+@inject HttpClient Http
+
+<PageTitle>UserSettings</PageTitle>
 <h3>UserSettings</h3>
 
-@code {
+@code
+{
+    protected override async Task OnInitializedAsync()
+    {
+        ServiceResponse<UserSettingsResponse>? response =
+     await Http.GetFromJsonAsync<ServiceResponse<UserSettingsResponse>>("https://localhost:7046/api/usersettings");
 
+
+
+    }
 }

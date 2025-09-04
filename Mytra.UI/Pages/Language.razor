@@ -1,6 +1,19 @@
-﻿@page "/language"
+﻿@using Common
+
+@page "/language"
+@inject HttpClient Http
+
+<PageTitle>Language</PageTitle>
 <h3>Language</h3>
 
-@code {
+@code
+{
+    protected override async Task OnInitializedAsync()
+    {
+        ServiceResponse<LanguageResponse>? response =
+     await Http.GetFromJsonAsync<ServiceResponse<LanguageResponse>>("https://localhost:7046/api/language");
 
+
+
+    }
 }

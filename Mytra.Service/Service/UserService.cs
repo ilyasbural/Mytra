@@ -58,7 +58,6 @@
 				if (Collection == null) return DataService<User>.FailureResult("Kayıt bulunamadı");
 
 				Data = Collection.SingleOrDefault()!;
-				//Data = Mapper.Map(model, Data);
 				Data.UpdateDate = DateTime.Now;
 
 				await UnitOfWork.User.InsertAsync(Data);

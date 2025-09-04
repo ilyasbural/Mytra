@@ -1,6 +1,19 @@
-﻿@page "/manager"
+﻿@using Common
+
+@page "/manager"
+@inject HttpClient Http
+
+<PageTitle>Manager</PageTitle>
 <h3>Manager</h3>
 
-@code {
+@code
+{
+    protected override async Task OnInitializedAsync()
+    {
+        ServiceResponse<ManagerResponse>? response =
+     await Http.GetFromJsonAsync<ServiceResponse<ManagerResponse>>("https://localhost:7046/api/manager");
 
+
+
+    }
 }

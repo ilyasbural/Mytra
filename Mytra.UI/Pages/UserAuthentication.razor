@@ -1,6 +1,19 @@
-﻿@page "/userauthentication"
+﻿@using Common
+
+@page "/userauthentication"
+@inject HttpClient Http
+
+<PageTitle>UserAuthentication</PageTitle>
 <h3>UserAuthentication</h3>
 
-@code {
+@code
+{
+    protected override async Task OnInitializedAsync()
+    {
+        ServiceResponse<UserAuthenticationResponse>? response =
+     await Http.GetFromJsonAsync<ServiceResponse<UserAuthenticationResponse>>("https://localhost:7046/api/userauthentication");
 
+
+
+    }
 }

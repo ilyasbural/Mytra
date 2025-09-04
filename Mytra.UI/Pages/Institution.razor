@@ -1,6 +1,19 @@
-﻿@page "/institution"
+﻿@using Common
+
+@page "/institution"
+@inject HttpClient Http
+
+<PageTitle>Institution</PageTitle>
 <h3>Institution</h3>
 
-@code {
+@code
+{
+    protected override async Task OnInitializedAsync()
+    {
+        ServiceResponse<InstitutionResponse>? response =
+     await Http.GetFromJsonAsync<ServiceResponse<InstitutionResponse>>("https://localhost:7046/api/institution");
 
+
+
+    }
 }
