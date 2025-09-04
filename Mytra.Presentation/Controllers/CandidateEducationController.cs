@@ -18,26 +18,15 @@
 		}
 
 		[HttpPost]
-		[Route("api/candidate")]
-		[Produces(typeof(ServiceResponse<CandidateResponse>))]
-		public async Task<ServiceResponse<CandidateResponse>> Create([FromBody] CandidateInsert Model)
-		{
-			DataService<Candidate> Response = await Service.InsertAsync(Model);
-			if (Response.Errors.Count > 0) return ServiceResponse<CandidateResponse>.FailureResponse(Response.Errors, "");
-			if (!Response.Success) return ServiceResponse<CandidateResponse>.FailureResponse("");
-			return ServiceResponse<CandidateResponse>.SuccessResponse(Mapper.Map<List<CandidateResponse>>(Response.Data), "");
-		}
-
-		[HttpPost]
 		[Authorize]
 		[Route("api/candidateeducation")]
-		[Produces(typeof(ServiceResponse<CandidateEducation>))]
-		public async Task<ServiceResponse<CandidateEducation>> Create([FromBody] CandidateEducationInsert Model)
+		[Produces(typeof(ServiceResponse<CandidateEducationResponse>))]
+		public async Task<ServiceResponse<CandidateEducationResponse>> Create([FromBody] CandidateEducationInsert Model)
 		{
 			DataService<CandidateEducation> Response = await Service.InsertAsync(Model);
-			if (Response.Errors.Count > 0) return ServiceResponse<CandidateEducation>.FailureResponse(Response.Errors, "");
-			if (!Response.Success) return ServiceResponse<CandidateEducation>.FailureResponse("");
-			return ServiceResponse<CandidateEducation>.SuccessResponse(Response.Data, "");
+			if (Response.Errors.Count > 0) return ServiceResponse<CandidateEducationResponse>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<CandidateEducationResponse>.FailureResponse("");
+			return ServiceResponse<CandidateEducationResponse>.SuccessResponse(Mapper.Map<List<CandidateEducationResponse>>(Response.Data), "");
 		}
 
 		[HttpPut]

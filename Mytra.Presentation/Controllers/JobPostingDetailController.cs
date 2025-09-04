@@ -18,26 +18,15 @@
 		}
 
 		[HttpPost]
-		[Route("api/candidate")]
-		[Produces(typeof(ServiceResponse<CandidateResponse>))]
-		public async Task<ServiceResponse<CandidateResponse>> Create([FromBody] CandidateInsert Model)
-		{
-			DataService<Candidate> Response = await Service.InsertAsync(Model);
-			if (Response.Errors.Count > 0) return ServiceResponse<CandidateResponse>.FailureResponse(Response.Errors, "");
-			if (!Response.Success) return ServiceResponse<CandidateResponse>.FailureResponse("");
-			return ServiceResponse<CandidateResponse>.SuccessResponse(Mapper.Map<List<CandidateResponse>>(Response.Data), "");
-		}
-
-		[HttpPost]
 		[Authorize]
 		[Route("api/jobpostingdetail")]
-		[Produces(typeof(ServiceResponse<JobPostingDetail>))]
-		public async Task<ServiceResponse<JobPostingDetail>> Create([FromBody] JobPostingDetailInsert Model)
+		[Produces(typeof(ServiceResponse<JobPostingDetailResponse>))]
+		public async Task<ServiceResponse<JobPostingDetailResponse>> Create([FromBody] JobPostingDetailInsert Model)
 		{
 			DataService<JobPostingDetail> Response = await Service.InsertAsync(Model);
-			if (Response.Errors.Count > 0) return ServiceResponse<JobPostingDetail>.FailureResponse(Response.Errors, "");
-			if (!Response.Success) return ServiceResponse<JobPostingDetail>.FailureResponse("");
-			return ServiceResponse<JobPostingDetail>.SuccessResponse(Response.Data, "");
+			if (Response.Errors.Count > 0) return ServiceResponse<JobPostingDetailResponse>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<JobPostingDetailResponse>.FailureResponse("");
+			return ServiceResponse<JobPostingDetailResponse>.SuccessResponse(Mapper.Map<List<JobPostingDetailResponse>>(Response.Data), "");
 		}
 
 		[HttpPut]

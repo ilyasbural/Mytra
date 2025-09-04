@@ -18,26 +18,15 @@
 		}
 
 		[HttpPost]
-		[Route("api/candidate")]
-		[Produces(typeof(ServiceResponse<CandidateResponse>))]
-		public async Task<ServiceResponse<CandidateResponse>> Create([FromBody] CandidateInsert Model)
-		{
-			DataService<Candidate> Response = await Service.InsertAsync(Model);
-			if (Response.Errors.Count > 0) return ServiceResponse<CandidateResponse>.FailureResponse(Response.Errors, "");
-			if (!Response.Success) return ServiceResponse<CandidateResponse>.FailureResponse("");
-			return ServiceResponse<CandidateResponse>.SuccessResponse(Mapper.Map<List<CandidateResponse>>(Response.Data), "");
-		}
-
-		[HttpPost]
 		[Authorize]
 		[Route("api/language")]
-		[Produces(typeof(ServiceResponse<Language>))]
-		public async Task<ServiceResponse<Language>> Create([FromBody] LanguageInsert Model)
+		[Produces(typeof(ServiceResponse<LanguageResponse>))]
+		public async Task<ServiceResponse<LanguageResponse>> Create([FromBody] LanguageInsert Model)
 		{
 			DataService<Language> Response = await Service.InsertAsync(Model);
-			if (Response.Errors.Count > 0) return ServiceResponse<Language>.FailureResponse(Response.Errors, "");
-			if (!Response.Success) return ServiceResponse<Language>.FailureResponse("");
-			return ServiceResponse<Language>.SuccessResponse(Response.Data, "");
+			if (Response.Errors.Count > 0) return ServiceResponse<LanguageResponse>.FailureResponse(Response.Errors, "");
+			if (!Response.Success) return ServiceResponse<LanguageResponse>.FailureResponse("");
+			return ServiceResponse<LanguageResponse>.SuccessResponse(Mapper.Map<List<LanguageResponse>>(Response.Data), "");
 		}
 
 		[HttpPut]
