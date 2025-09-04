@@ -4,7 +4,6 @@
 	using Common;
 	using AutoMapper;
 	using Microsoft.AspNetCore.Mvc;
-	using Microsoft.AspNetCore.Authorization;
 
 	[ApiController]
     public class CandidateLanguageController : ControllerBase
@@ -18,7 +17,6 @@
 		}
 
 		[HttpPost]
-		[Authorize]
 		[Route("api/candidatelanguage")]
 		[Produces(typeof(ServiceResponse<CandidateLanguageResponse>))]
 		public async Task<ServiceResponse<CandidateLanguageResponse>> Create([FromBody] CandidateLanguageInsert Model)
@@ -30,7 +28,6 @@
 		}
 
 		[HttpPut]
-		[Authorize]
 		[Route("api/candidatelanguage")]
 		[Produces(typeof(ServiceResponse<CandidateLanguage>))]
 		public async Task<ServiceResponse<CandidateLanguage>> Update([FromBody] CandidateLanguageUpdate Model)
@@ -42,7 +39,6 @@
 		}
 
 		[HttpDelete]
-		[Authorize]
 		[Route("api/candidatelanguage")]
 		[Produces(typeof(ServiceResponse<CandidateLanguage>))]
 		public async Task<ServiceResponse<CandidateLanguage>> Delete([FromBody] CandidateLanguageDelete Model)
@@ -54,7 +50,6 @@
 		}
 
 		[HttpGet]
-		[Authorize]
 		[Route("api/candidatelanguage")]
 		[Produces(typeof(ServiceResponse<CandidateLanguageResponse>))]
 		public async Task<ServiceResponse<CandidateLanguageResponse>> Get([FromQuery] CandidateLanguageSelect Model)
@@ -64,7 +59,6 @@
 		}
 
 		[HttpGet]
-		[Authorize]
 		[Route("api/candidatelanguagesingle")]
 		[Produces(typeof(ServiceResponse<CandidateLanguageResponse>))]
 		public async Task<ServiceResponse<CandidateLanguageResponse>> GetSingle([FromQuery] CandidateLanguageSelectSingle Model)

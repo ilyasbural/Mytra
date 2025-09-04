@@ -4,7 +4,6 @@
 	using Common;
 	using AutoMapper;
 	using Microsoft.AspNetCore.Mvc;
-	using Microsoft.AspNetCore.Authorization;
 
 	[ApiController]
     public class CandidateContactController : ControllerBase
@@ -18,7 +17,6 @@
 		}
 
 		[HttpPost]
-		[Authorize]
 		[Route("api/candidatecontact")]
 		[Produces(typeof(ServiceResponse<CandidateContactResponse>))]
 		public async Task<ServiceResponse<CandidateContactResponse>> Create([FromBody] CandidateContactInsert Model)
@@ -30,7 +28,6 @@
 		}
 
 		[HttpPut]
-		[Authorize]
 		[Route("api/candidatecontact")]
 		[Produces(typeof(ServiceResponse<CandidateContact>))]
 		public async Task<ServiceResponse<CandidateContact>> Update([FromBody] CandidateContactUpdate Model)
@@ -42,7 +39,6 @@
 		}
 
 		[HttpDelete]
-		[Authorize]
 		[Route("api/candidatecontact")]
 		[Produces(typeof(ServiceResponse<CandidateContact>))]
 		public async Task<ServiceResponse<CandidateContact>> Delete([FromBody] CandidateContactDelete Model)
@@ -54,7 +50,6 @@
 		}
 
 		[HttpGet]
-		[Authorize]
 		[Route("api/candidatecontact")]
 		[Produces(typeof(ServiceResponse<CandidateContactResponse>))]
 		public async Task<ServiceResponse<CandidateContactResponse>> Get([FromQuery] CandidateContactSelect Model)
@@ -64,7 +59,6 @@
 		}
 
 		[HttpGet]
-		[Authorize]
 		[Route("api/candidatecontactsingle")]
 		[Produces(typeof(ServiceResponse<CandidateContactResponse>))]
 		public async Task<ServiceResponse<CandidateContactResponse>> GetSingle([FromQuery] CandidateContactSelectSingle Model)

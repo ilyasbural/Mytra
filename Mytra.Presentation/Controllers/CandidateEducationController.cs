@@ -4,7 +4,6 @@
 	using Common;
 	using AutoMapper;
 	using Microsoft.AspNetCore.Mvc;
-	using Microsoft.AspNetCore.Authorization;
 
 	[ApiController]
     public class CandidateEducationController : ControllerBase
@@ -18,7 +17,6 @@
 		}
 
 		[HttpPost]
-		[Authorize]
 		[Route("api/candidateeducation")]
 		[Produces(typeof(ServiceResponse<CandidateEducationResponse>))]
 		public async Task<ServiceResponse<CandidateEducationResponse>> Create([FromBody] CandidateEducationInsert Model)
@@ -30,7 +28,6 @@
 		}
 
 		[HttpPut]
-		[Authorize]
 		[Route("api/candidateeducation")]
 		[Produces(typeof(ServiceResponse<CandidateEducation>))]
 		public async Task<ServiceResponse<CandidateEducation>> Update([FromBody] CandidateEducationUpdate Model)
@@ -42,7 +39,6 @@
 		}
 
 		[HttpDelete]
-		[Authorize]
 		[Route("api/candidateeducation")]
 		[Produces(typeof(ServiceResponse<CandidateEducation>))]
 		public async Task<ServiceResponse<CandidateEducation>> Delete([FromBody] CandidateEducationDelete Model)
@@ -54,7 +50,6 @@
 		}
 
 		[HttpGet]
-		[Authorize]
 		[Route("api/candidateeducation")]
 		[Produces(typeof(ServiceResponse<CandidateEducationResponse>))]
 		public async Task<ServiceResponse<CandidateEducationResponse>> Get([FromQuery] CandidateEducationSelect Model)
@@ -64,7 +59,6 @@
 		}
 
 		[HttpGet]
-		[Authorize]
 		[Route("api/candidateeducationsingle")]
 		[Produces(typeof(ServiceResponse<CandidateEducationResponse>))]
 		public async Task<ServiceResponse<CandidateEducationResponse>> GetSingle([FromQuery] CandidateEducationSelectSingle Model)

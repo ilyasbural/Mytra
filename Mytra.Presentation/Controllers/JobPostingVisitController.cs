@@ -4,7 +4,6 @@
 	using Common;
 	using AutoMapper;
 	using Microsoft.AspNetCore.Mvc;
-	using Microsoft.AspNetCore.Authorization;
 
 	[ApiController]
     public class JobPostingVisitController : ControllerBase
@@ -18,7 +17,6 @@
 		}
 
 		[HttpPost]
-		[Authorize]
 		[Route("api/jobpostingvisit")]
 		[Produces(typeof(ServiceResponse<JobPostingVisitResponse>))]
 		public async Task<ServiceResponse<JobPostingVisitResponse>> Create([FromBody] JobPostingVisitInsert Model)
@@ -30,7 +28,6 @@
 		}
 
 		[HttpPut]
-		[Authorize]
 		[Route("api/jobpostingvisit")]
 		[Produces(typeof(ServiceResponse<JobPostingVisit>))]
 		public async Task<ServiceResponse<JobPostingVisit>> Update([FromBody] JobPostingVisitUpdate Model)
@@ -42,7 +39,6 @@
 		}
 
 		[HttpDelete]
-		[Authorize]
 		[Route("api/jobpostingvisit")]
 		[Produces(typeof(ServiceResponse<JobPostingVisit>))]
 		public async Task<ServiceResponse<JobPostingVisit>> Delete([FromBody] JobPostingVisitDelete Model)
@@ -54,7 +50,6 @@
 		}
 
 		[HttpGet]
-		[Authorize]
 		[Route("api/jobpostingvisit")]
 		[Produces(typeof(ServiceResponse<JobPostingVisitResponse>))]
 		public async Task<ServiceResponse<JobPostingVisitResponse>> Get([FromQuery] JobPostingVisitSelect Model)
@@ -64,7 +59,6 @@
 		}
 
 		[HttpGet]
-		[Authorize]
 		[Route("api/jobpostingvisitsingle")]
 		[Produces(typeof(ServiceResponse<JobPostingVisitResponse>))]
 		public async Task<ServiceResponse<JobPostingVisitResponse>> GetSingle([FromQuery] JobPostingVisitSelectSingle Model)

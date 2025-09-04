@@ -4,7 +4,6 @@
 	using Common;
 	using AutoMapper;
 	using Microsoft.AspNetCore.Mvc;
-	using Microsoft.AspNetCore.Authorization;
 
 	[ApiController]
 	public class SkillsController : ControllerBase
@@ -18,7 +17,6 @@
 		}
 
 		[HttpPost]
-		[Authorize]
 		[Route("api/skills")]
 		[Produces(typeof(ServiceResponse<SkillsResponse>))]
 		public async Task<ServiceResponse<SkillsResponse>> Create([FromBody] SkillsInsert Model)
@@ -30,7 +28,6 @@
 		}
 
 		[HttpPut]
-		[Authorize]
 		[Route("api/skills")]
 		[Produces(typeof(ServiceResponse<Skills>))]
 		public async Task<ServiceResponse<Skills>> Update([FromBody] SkillsUpdate Model)
@@ -42,7 +39,6 @@
 		}
 
 		[HttpDelete]
-		[Authorize]
 		[Route("api/skills")]
 		[Produces(typeof(ServiceResponse<Skills>))]
 		public async Task<ServiceResponse<Skills>> Delete([FromBody] SkillsDelete Model)
@@ -54,7 +50,6 @@
 		}
 
 		[HttpGet]
-		[Authorize]
 		[Route("api/skills")]
 		[Produces(typeof(ServiceResponse<SkillsResponse>))]
 		public async Task<ServiceResponse<SkillsResponse>> Get([FromQuery] SkillsSelect Model)
@@ -64,7 +59,6 @@
 		}
 
 		[HttpGet]
-		[Authorize]
 		[Route("api/skillssingle")]
 		[Produces(typeof(ServiceResponse<SkillsResponse>))]
 		public async Task<ServiceResponse<SkillsResponse>> GetSingle([FromQuery] SkillsSelectSingle Model)

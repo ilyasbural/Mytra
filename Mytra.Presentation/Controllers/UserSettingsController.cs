@@ -18,7 +18,6 @@
 		}
 
 		[HttpPost]
-		[Authorize]
 		[Route("api/usersettings")]
 		[Produces(typeof(ServiceResponse<UserSettingsResponse>))]
 		public async Task<ServiceResponse<UserSettingsResponse>> Create([FromBody] UserSettingsInsert Model)
@@ -30,7 +29,6 @@
 		}
 
 		[HttpPut]
-		[Authorize]
 		[Route("api/usersettings")]
 		[Produces(typeof(ServiceResponse<UserSettings>))]
 		public async Task<ServiceResponse<UserSettings>> Update([FromBody] UserSettingsUpdate Model)
@@ -42,7 +40,6 @@
 		}
 
 		[HttpDelete]
-		[Authorize]
 		[Route("api/usersettings")]
 		[Produces(typeof(ServiceResponse<UserSettings>))]
 		public async Task<ServiceResponse<UserSettings>> Delete([FromBody] UserSettingsDelete Model)
@@ -54,7 +51,6 @@
 		}
 
 		[HttpGet]
-		[Authorize]
 		[Route("api/usersettings")]
 		[Produces(typeof(ServiceResponse<UserSettingsResponse>))]
 		public async Task<ServiceResponse<UserSettingsResponse>> Get([FromQuery] UserSettingsSelect Model)
@@ -64,7 +60,6 @@
 		}
 
 		[HttpGet]
-		[Authorize]
 		[Route("api/usersettingssingle")]
 		[Produces(typeof(ServiceResponse<UserSettingsResponse>))]
 		public async Task<ServiceResponse<UserSettingsResponse>> GetSingle([FromQuery] UserSettingsSelectSingle Model)

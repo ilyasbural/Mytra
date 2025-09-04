@@ -23,12 +23,12 @@
 			try
 			{
 				Collection = await UnitOfWork.Candidate.SelectAsync(x => x.Email == Model.Email && x.Password == Model.Password && x.IsActive);
-				if (Collection == null) return DataService<Candidate>.FailureResult("Kayıt bulunamadı");
-				return DataService<Candidate>.SuccessResult(Collection.SingleOrDefault()!, "Kayıt bulundu");
+				if (Collection == null) return DataService<Candidate>.FailureResult("");
+				return DataService<Candidate>.SuccessResult(Collection.OrderByDescending(x => x.Id).FirstOrDefault()!, "");
 			}
 			catch (Exception ex)
 			{
-				return DataService<Candidate>.FailureResult(ex.Message, "Sorgu hatası");
+				return DataService<Candidate>.FailureResult(ex.Message, "");
 			}
 		}
 	}

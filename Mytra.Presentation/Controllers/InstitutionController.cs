@@ -4,7 +4,6 @@
 	using Common;
 	using AutoMapper;
 	using Microsoft.AspNetCore.Mvc;
-	using Microsoft.AspNetCore.Authorization;
 
 	[ApiController]
     public class InstitutionController : ControllerBase
@@ -18,7 +17,6 @@
 		}
 
 		[HttpPost]
-		[Authorize]
 		[Route("api/institution")]
 		[Produces(typeof(ServiceResponse<InstitutionResponse>))]
 		public async Task<ServiceResponse<InstitutionResponse>> Create([FromBody] InstitutionInsert Model)
@@ -30,7 +28,6 @@
 		}
 
 		[HttpPut]
-		[Authorize]
 		[Route("api/institution")]
 		[Produces(typeof(ServiceResponse<Institution>))]
 		public async Task<ServiceResponse<Institution>> Update([FromBody] InstitutionUpdate Model)
@@ -42,7 +39,6 @@
 		}
 
 		[HttpDelete]
-		[Authorize]
 		[Route("api/institution")]
 		[Produces(typeof(ServiceResponse<Institution>))]
 		public async Task<ServiceResponse<Institution>> Delete([FromBody] InstitutionDelete Model)
@@ -54,7 +50,6 @@
 		}
 
 		[HttpGet]
-		[Authorize]
 		[Route("api/institution")]
 		[Produces(typeof(ServiceResponse<InstitutionResponse>))]
 		public async Task<ServiceResponse<InstitutionResponse>> Get([FromQuery] InstitutionSelect Model)
@@ -64,7 +59,6 @@
 		}
 
 		[HttpGet]
-		[Authorize]
 		[Route("api/institutionsingle")]
 		[Produces(typeof(ServiceResponse<InstitutionResponse>))]
 		public async Task<ServiceResponse<InstitutionResponse>> GetSingle([FromQuery] InstitutionSelectSingle Model)

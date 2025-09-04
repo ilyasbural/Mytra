@@ -4,7 +4,6 @@
 	using Common;
 	using AutoMapper;
 	using Microsoft.AspNetCore.Mvc;
-	using Microsoft.AspNetCore.Authorization;
 
 	[ApiController]
     public class LanguageController : ControllerBase
@@ -18,7 +17,6 @@
 		}
 
 		[HttpPost]
-		[Authorize]
 		[Route("api/language")]
 		[Produces(typeof(ServiceResponse<LanguageResponse>))]
 		public async Task<ServiceResponse<LanguageResponse>> Create([FromBody] LanguageInsert Model)
@@ -30,7 +28,6 @@
 		}
 
 		[HttpPut]
-		[Authorize]
 		[Route("api/language")]
 		[Produces(typeof(ServiceResponse<Language>))]
 		public async Task<ServiceResponse<Language>> Update([FromBody] LanguageUpdate Model)
@@ -42,7 +39,6 @@
 		}
 
 		[HttpDelete]
-		[Authorize]
 		[Route("api/language")]
 		[Produces(typeof(ServiceResponse<Language>))]
 		public async Task<ServiceResponse<Language>> Delete([FromBody] LanguageDelete Model)
@@ -54,7 +50,6 @@
 		}
 
 		[HttpGet]
-		[Authorize]
 		[Route("api/language")]
 		[Produces(typeof(ServiceResponse<LanguageResponse>))]
 		public async Task<ServiceResponse<LanguageResponse>> Get([FromQuery] LanguageSelect Model)
@@ -64,7 +59,6 @@
 		}
 
 		[HttpGet]
-		[Authorize]
 		[Route("api/languagesingle")]
 		[Produces(typeof(ServiceResponse<LanguageResponse>))]
 		public async Task<ServiceResponse<LanguageResponse>> GetSingle([FromQuery] LanguageSelectSingle Model)

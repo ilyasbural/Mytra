@@ -1,15 +1,15 @@
 ﻿namespace Mytra.Presentation.Controllers
 {
-	using AutoMapper;
-	using Common;
 	using Core;
+	using Common;
+	using AutoMapper;
+	using System.Text;
+	using System.Security.Claims;
+	using System.IdentityModel.Tokens.Jwt;
 	using Microsoft.AspNetCore.Mvc;
 	using Microsoft.Extensions.Configuration;
 	using Microsoft.IdentityModel.Tokens;
-	using System.IdentityModel.Tokens.Jwt;
-	using System.Security.Claims;
-	using System.Text;
-
+	
 	[ApiController]
 	public class CandidateLoginController : ControllerBase
 	{
@@ -37,8 +37,8 @@
 			{
 				new Claim("Id", Response.Data.Id.ToString()),
 				new Claim("Email", Response.Data.Email.ToString()),
-				new Claim("Password", Response.Data.Password.ToString()),
-				new Claim("Role", "Candidate")
+				new Claim("Password", Response.Data.Password.ToString())
+				//new Claim("Role", "Candidate")
 			};
 
 			JwtSecurityToken JsonSecurityToken = new JwtSecurityToken(
@@ -52,15 +52,6 @@
 			Response.Data.Password = String.Empty;
 			String JsonToken = new JwtSecurityTokenHandler().WriteToken(JsonSecurityToken);
 			String RefreshToken = new RefreshTokenGenerator().GenerateRefreshToken();
-
-			//DataService<CandidateAuthentication> Auth = await AuthenticationService.InsertAsync(new CandidateAuthenticationInsert
-			//{
-			//	CandidateId = Response.Data.Id,
-				
-			//	//RefreshToken = RefreshToken,
-			//	//RefreshTokenExpireTime = DateTime.Now.AddDays(1)
-			//});
-
 			return ServiceResponse<Candidate>.TokenResponse(Response.Data, JsonToken, RefreshToken);
 		}
 	}

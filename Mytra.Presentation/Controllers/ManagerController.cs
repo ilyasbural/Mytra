@@ -4,7 +4,6 @@
 	using Common;
 	using AutoMapper;
 	using Microsoft.AspNetCore.Mvc;
-	using Microsoft.AspNetCore.Authorization;
 
 	[ApiController]
 	public class ManagerController : ControllerBase
@@ -18,7 +17,6 @@
 		}
 
 		[HttpPost]
-		[Authorize]
 		[Route("api/manager")]
 		[Produces(typeof(ServiceResponse<ManagerResponse>))]
 		public async Task<ServiceResponse<ManagerResponse>> Create([FromBody] ManagerInsert Model)
@@ -30,7 +28,6 @@
 		}
 
 		[HttpPut]
-		[Authorize]
 		[Route("api/manager")]
 		[Produces(typeof(ServiceResponse<Manager>))]
 		public async Task<ServiceResponse<Manager>> Update([FromBody] ManagerUpdate Model)
@@ -42,7 +39,6 @@
 		}
 
 		[HttpDelete]
-		[Authorize]
 		[Route("api/manager")]
 		[Produces(typeof(ServiceResponse<Manager>))]
 		public async Task<ServiceResponse<Manager>> Delete([FromBody] ManagerDelete Model)
@@ -54,7 +50,6 @@
 		}
 
 		[HttpGet]
-		[Authorize]
 		[Route("api/manager")]
 		[Produces(typeof(ServiceResponse<ManagerResponse>))]
 		public async Task<ServiceResponse<ManagerResponse>> Get([FromQuery] ManagerSelect Model)
@@ -64,7 +59,6 @@
 		}
 
 		[HttpGet]
-		[Authorize]
 		[Route("api/managersingle")]
 		[Produces(typeof(ServiceResponse<ManagerResponse>))]
 		public async Task<ServiceResponse<ManagerResponse>> GetSingle([FromQuery] ManagerSelectSingle Model)
