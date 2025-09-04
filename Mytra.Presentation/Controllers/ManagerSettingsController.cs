@@ -26,7 +26,7 @@
 			DataService<ManagerSettings> Response = await Service.InsertAsync(Model);
 			if (Response.Errors.Count > 0) return ServiceResponse<ManagerSettingsResponse>.FailureResponse(Response.Errors, "");
 			if (!Response.Success) return ServiceResponse<ManagerSettingsResponse>.FailureResponse("");
-			return ServiceResponse<ManagerSettingsResponse>.SuccessResponse(Mapper.Map<List<ManagerSettingsResponse>>(Response.Data), "");
+			return ServiceResponse<ManagerSettingsResponse>.SuccessResponse(Mapper.Map<ManagerSettingsResponse>(Response.Data), "");
 		}
 
 		[HttpPut]

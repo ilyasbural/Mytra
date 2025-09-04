@@ -26,7 +26,7 @@
 			DataService<CandidateCertificate> Response = await Service.InsertAsync(Model);
 			if (Response.Errors.Count > 0) return ServiceResponse<CandidateCertificateResponse>.FailureResponse(Response.Errors, "");
 			if (!Response.Success) return ServiceResponse<CandidateCertificateResponse>.FailureResponse("");
-			return ServiceResponse<CandidateCertificateResponse>.SuccessResponse(Mapper.Map<List<CandidateCertificateResponse>>(Response.Data), "");
+			return ServiceResponse<CandidateCertificateResponse>.SuccessResponse(Mapper.Map<CandidateCertificateResponse>(Response.Data), "");
 		}
 
 		[HttpPut]

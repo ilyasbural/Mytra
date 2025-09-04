@@ -26,7 +26,7 @@
 			DataService<Language> Response = await Service.InsertAsync(Model);
 			if (Response.Errors.Count > 0) return ServiceResponse<LanguageResponse>.FailureResponse(Response.Errors, "");
 			if (!Response.Success) return ServiceResponse<LanguageResponse>.FailureResponse("");
-			return ServiceResponse<LanguageResponse>.SuccessResponse(Mapper.Map<List<LanguageResponse>>(Response.Data), "");
+			return ServiceResponse<LanguageResponse>.SuccessResponse(Mapper.Map<LanguageResponse>(Response.Data), "");
 		}
 
 		[HttpPut]

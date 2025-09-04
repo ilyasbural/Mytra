@@ -26,7 +26,7 @@
 			DataService<CandidateExperience> Response = await Service.InsertAsync(Model);
 			if (Response.Errors.Count > 0) return ServiceResponse<CandidateExperienceResponse>.FailureResponse(Response.Errors, "");
 			if (!Response.Success) return ServiceResponse<CandidateExperienceResponse>.FailureResponse("");
-			return ServiceResponse<CandidateExperienceResponse>.SuccessResponse(Mapper.Map<List<CandidateExperienceResponse>>(Response.Data), "");
+			return ServiceResponse<CandidateExperienceResponse>.SuccessResponse(Mapper.Map<CandidateExperienceResponse>(Response.Data), "");
 		}
 
 		[HttpPut]

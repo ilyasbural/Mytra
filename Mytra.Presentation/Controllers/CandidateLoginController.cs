@@ -53,12 +53,13 @@
 			String JsonToken = new JwtSecurityTokenHandler().WriteToken(JsonSecurityToken);
 			String RefreshToken = new RefreshTokenGenerator().GenerateRefreshToken();
 
-			DataService<CandidateAuthentication> Auth = await AuthenticationService.InsertAsync(new CandidateAuthenticationInsert
-			{
-				CandidateId = Response.Data.Id,
-				RefreshToken = RefreshToken,
-				RefreshTokenExpireTime = DateTime.Now.AddDays(1)
-			});
+			//DataService<CandidateAuthentication> Auth = await AuthenticationService.InsertAsync(new CandidateAuthenticationInsert
+			//{
+			//	CandidateId = Response.Data.Id,
+				
+			//	//RefreshToken = RefreshToken,
+			//	//RefreshTokenExpireTime = DateTime.Now.AddDays(1)
+			//});
 
 			return ServiceResponse<Candidate>.TokenResponse(Response.Data, JsonToken, RefreshToken);
 		}

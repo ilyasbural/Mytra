@@ -23,9 +23,11 @@
 			try
 			{
 				List<Candidate> CandidateSingle = await UnitOfWork.Candidate.SelectAsync(x => x.Id == Model.CandidateId);
-				Data = Mapper.Map<CandidateAuthentication>(Model);
+				Data = new CandidateAuthentication();
 				Data.Id = Guid.NewGuid();
 				Data.Candidate = CandidateSingle.SingleOrDefault()!;
+				Data.RefreshToken = new RefreshTokenGenerator().GenerateRefreshToken();
+				Data.RefreshTokenExpireTime = DateTime.UtcNow.AddMonths(1);
 				Data.RegisterDate = DateTime.Now;
 				Data.UpdateDate = DateTime.Now;
 				Data.IsActive = true;

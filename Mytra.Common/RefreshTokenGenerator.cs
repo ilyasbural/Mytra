@@ -1,4 +1,4 @@
-﻿namespace Mytra.Presentation
+﻿namespace Mytra.Common
 {
 	public class RefreshTokenGenerator
 	{

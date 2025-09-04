@@ -2,5 +2,6 @@
 {
 	public class CandidateAuthenticationResponse : Response<CandidateAuthenticationResponse>
 	{
+		public String RefreshToken { get; set; } = String.Empty;
 	}
 }
