@@ -6,14 +6,48 @@
 <PageTitle>CandidateSkills</PageTitle>
 <h3>CandidateSkills</h3>
 
+<NavLink href="announce/create">Ekle</NavLink>
+
+@if (Response == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>REGISTER DATE</th>
+                <th>UPDATE DATE</th>
+                <th>IS ACTIVE</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var Candidate in Response.DataList)
+            {
+                <tr>
+                    <td>@Candidate.Id</td>
+                    <td>@* @Announce.Name *@</td>
+                    <td>@* @Announce.RegisterDate *@</td>
+                    <td>@* @Announce.UpdateDate *@</td>
+                    <td>@* @Announce.IsActive *@</td>
+                    <td><NavLink href="announce/update">Düzenle</NavLink></td>
+                    <td><NavLink href="announce/delete">Sil</NavLink></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
 @code
 {
+    private ServiceResponse<CandidateSkillsResponse>? Response;
     protected override async Task OnInitializedAsync()
     {
-        ServiceResponse<CandidateSkillsResponse>? response =
-     await Http.GetFromJsonAsync<ServiceResponse<CandidateSkillsResponse>>("https://localhost:7046/api/candidateskills");
-
-
-
+        Response = await Http.GetFromJsonAsync<ServiceResponse<CandidateSkillsResponse>>("https://localhost:7046/api/candidateskills");
     }
 }
