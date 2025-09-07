@@ -1,10 +1,8 @@
-﻿@page "/jobpostingaapply"
+﻿@page "/jobpostingapply"
 @inject HttpClient Http
 
 <PageTitle>JobPostingApply</PageTitle>
 <h3>JobPostingApply</h3>
-
-<NavLink href="announce/create">Ekle</NavLink>
 
 @if (Response == null)
 {
@@ -25,16 +23,16 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var Candidate in Response.DataList)
+            @foreach (var JobPostingApply in Response.DataList)
             {
                 <tr>
-                    <td>@Candidate.Id</td>
-                    <td>@* @Announce.Name *@</td>
-                    <td>@* @Announce.RegisterDate *@</td>
-                    <td>@* @Announce.UpdateDate *@</td>
-                    <td>@* @Announce.IsActive *@</td>
-                    <td><NavLink href="announce/update">Düzenle</NavLink></td>
-                    <td><NavLink href="announce/delete">Sil</NavLink></td>
+                    <td>@JobPostingApply.Id</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
             }
         </tbody>

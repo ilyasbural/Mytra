@@ -4,8 +4,6 @@
 <PageTitle>CandidateSettings</PageTitle>
 <h3>CandidateSettings</h3>
 
-<NavLink href="announce/create">Ekle</NavLink>
-
 @if (Response == null)
 {
     <p><em>Loading...</em></p>
@@ -25,16 +23,16 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var Candidate in Response.DataList)
+            @foreach (var CandidateSettings in Response.DataList)
             {
                 <tr>
-                    <td>@Candidate.Id</td>
-                    <td>@* @Announce.Name *@</td>
-                    <td>@* @Announce.RegisterDate *@</td>
-                    <td>@* @Announce.UpdateDate *@</td>
-                    <td>@* @Announce.IsActive *@</td>
-                    <td><NavLink href="announce/update">Düzenle</NavLink></td>
-                    <td><NavLink href="announce/delete">Sil</NavLink></td>
+                    <td>@CandidateSettings.Id</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
             }
         </tbody>

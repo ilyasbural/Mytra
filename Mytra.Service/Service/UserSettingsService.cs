@@ -33,7 +33,7 @@
 				{
 					return DataService<UserSettings>.FailureResult(
 						validationResult.Errors.Select(e => e.ErrorMessage).ToList(),
-						"Validasyon hatası");
+						"");
 				}
 
 				await UnitOfWork.UserSettings.InsertAsync(Data);
@@ -41,12 +41,12 @@
 				var success = affectedRows > 0;
 
 				return success
-					? DataService<UserSettings>.SuccessResult(Data, "Record has been success")
-					: DataService<UserSettings>.FailureResult("fail");
+					? DataService<UserSettings>.SuccessResult(Data, "")
+					: DataService<UserSettings>.FailureResult("");
 			}
 			catch (Exception ex)
 			{
-				return DataService<UserSettings>.FailureResult(ex.Message, "some error");
+				return DataService<UserSettings>.FailureResult(ex.Message, "");
 			}
 		}
 
@@ -55,10 +55,9 @@
 			try
 			{
 				Collection = await UnitOfWork.UserSettings.SelectAsync(x => x.Id == Model.Id);
-				if (Collection == null) return DataService<UserSettings>.FailureResult("Kayıt bulunamadı");
+				if (Collection == null) return DataService<UserSettings>.FailureResult("");
 
 				Data = Collection.SingleOrDefault()!;
-				//Data = Mapper.Map(model, Data);
 				Data.Name = Model.Name;
 				Data.UpdateDate = DateTime.Now;
 
@@ -67,12 +66,12 @@
 				var success = affectedRows > 0;
 
 				return Success
-					? DataService<UserSettings>.SuccessResult(Data, "Kayıt güncellendi")
-					: DataService<UserSettings>.FailureResult("Kayıt güncellenemedi");
+					? DataService<UserSettings>.SuccessResult(Data, "")
+					: DataService<UserSettings>.FailureResult("");
 			}
 			catch (Exception ex)
 			{
-				return DataService<UserSettings>.FailureResult(ex.Message, "Beklenmeyen hata oluştu");
+				return DataService<UserSettings>.FailureResult(ex.Message, "");
 			}
 		}
 

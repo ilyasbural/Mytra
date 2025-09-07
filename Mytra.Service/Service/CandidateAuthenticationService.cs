@@ -37,7 +37,7 @@
 				{
 					return DataService<CandidateAuthentication>.FailureResult(
 						validationResult.Errors.Select(e => e.ErrorMessage).ToList(),
-						"Validasyon hatası");
+						"");
 				}
 
 				await UnitOfWork.CandidateAuthentication.InsertAsync(Data);
@@ -62,7 +62,6 @@
 				if (Collection == null) return DataService<CandidateAuthentication>.FailureResult("");
 
 				Data = Collection.SingleOrDefault()!;
-				//Data = Mapper.Map(model, Data);
 				Data.UpdateDate = DateTime.Now;
 
 				await UnitOfWork.CandidateAuthentication.InsertAsync(Data);
