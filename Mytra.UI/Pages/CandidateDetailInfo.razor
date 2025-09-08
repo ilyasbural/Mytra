@@ -1,0 +1,10 @@
+﻿<h3>CandidateDetailInfo</h3>
+
+@code
+{
+    private ServiceResponse<JobPostingResponse>? Response;
+    protected override async Task OnInitializedAsync()
+    {
+        Response = await Http.GetFromJsonAsync<ServiceResponse<JobPostingResponse>>("https://localhost:7046/api/candidate");
+    }
+}

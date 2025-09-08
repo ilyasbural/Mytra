@@ -1,0 +1,14 @@
+﻿@page "/managerdetailinfo"
+@inject HttpClient Http
+
+<PageTitle>ManagerDetail</PageTitle>
+<h3>ManagerDetail</h3>
+
+@code
+{
+    private ServiceResponse<ManagerDetailResponse>? Response;
+    protected override async Task OnInitializedAsync()
+    {
+        Response = await Http.GetFromJsonAsync<ServiceResponse<ManagerDetailResponse>>("https://localhost:7046/api/candidate");
+    }
+}
