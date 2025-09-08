@@ -1,17 +1,14 @@
-﻿@page "/candidate"
+﻿@page "/candidatedetailinfo"
 @inject HttpClient Http
 
-<PageTitle>Candidate</PageTitle>
-<h3>Candidate</h3>
-
-
-<h3>CandidateDetailInfo</h3>
+<PageTitle>CandidateDetail</PageTitle>
+<h3>CandidateDetail</h3>
 
 @code
 {
-    private ServiceResponse<JobPostingResponse>? Response;
+    private ServiceResponse<CandidateDetailResponse>? Response;
     protected override async Task OnInitializedAsync()
     {
-        Response = await Http.GetFromJsonAsync<ServiceResponse<JobPostingResponse>>("https://localhost:7046/api/candidate");
+        Response = await Http.GetFromJsonAsync<ServiceResponse<CandidateDetailResponse>>("https://localhost:7046/api/candidate");
     }
 }
