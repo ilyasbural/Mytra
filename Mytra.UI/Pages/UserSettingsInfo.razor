@@ -1,10 +1,14 @@
-﻿<h3>UserSettingsInfo</h3>
+﻿@page "/usersettingsinfo"
+@inject HttpClient Http
+
+<PageTitle>UserSettings</PageTitle>
+<h3>UserSettings</h3>
 
 @code
 {
-    private ServiceResponse<JobPostingResponse>? Response;
+    private ServiceResponse<UserSettingsResponse>? Response;
     protected override async Task OnInitializedAsync()
     {
-        Response = await Http.GetFromJsonAsync<ServiceResponse<JobPostingResponse>>("https://localhost:7046/api/candidate");
+        Response = await Http.GetFromJsonAsync<ServiceResponse<UserSettingsResponse>>("https://localhost:7046/api/candidate");
     }
 }
