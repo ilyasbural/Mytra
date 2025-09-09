@@ -33,7 +33,11 @@ else
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td></td>
+                    <td>
+                        <button class="btn btn-info btn-sm" @onclick="() => NavigateToDetail(Skills.Id)">Detay</button>
+                        <button class="btn btn-warning btn-sm" @onclick="() => NavigateToEdit(Skills.Id)">Düzenle</button>
+                        <button class="btn btn-danger btn-sm" @onclick="() => NavigateToDelete(Skills.Id)">Sil</button>
+                    </td>
                 </tr>
             }
         </tbody>
@@ -43,8 +47,24 @@ else
 @code
 {
     private ServiceResponse<SkillsResponse>? Response;
+    
     protected override async Task OnInitializedAsync()
     {
         Response  = await Http.GetFromJsonAsync<ServiceResponse<SkillsResponse>>("https://localhost:7046/api/skills");
+    }
+
+    private void NavigateToDetail(Guid id)
+    {
+        Navigation.NavigateTo($"/skillsinfo/{id}");
+    }
+
+    private void NavigateToEdit(Guid id)
+    {
+        Navigation.NavigateTo($"/skillsupdate/{id}");
+    }
+
+    private void NavigateToDelete(Guid id)
+    {
+        Navigation.NavigateTo($"/skillsdelete/{id}");
     }
 }

@@ -33,7 +33,11 @@ else
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td></td>
+                    <td>
+                        <button class="btn btn-info btn-sm" @onclick="() => NavigateToDetail(Language.Id)">Detay</button>
+                        <button class="btn btn-warning btn-sm" @onclick="() => NavigateToEdit(Language.Id)">Düzenle</button>
+                        <button class="btn btn-danger btn-sm" @onclick="() => NavigateToDelete(Language.Id)">Sil</button>
+                    </td>
                 </tr>
             }
         </tbody>
@@ -43,8 +47,24 @@ else
 @code
 {
     private ServiceResponse<LanguageResponse>? Response;
+    
     protected override async Task OnInitializedAsync()
     {
         Response  = await Http.GetFromJsonAsync<ServiceResponse<LanguageResponse>>("https://localhost:7046/api/language");
+    }
+
+    private void NavigateToDetail(Guid id)
+    {
+        Navigation.NavigateTo($"/languageinfo/{id}");
+    }
+
+    private void NavigateToEdit(Guid id)
+    {
+        Navigation.NavigateTo($"/languageupdate/{id}");
+    }
+
+    private void NavigateToDelete(Guid id)
+    {
+        Navigation.NavigateTo($"/languagedelete/{id}");
     }
 }
