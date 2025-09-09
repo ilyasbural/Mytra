@@ -1,5 +1,96 @@
 ﻿@page "/candidate"
 @inject HttpClient Http
+@inject NavigationManager Navigation
+
+<PageTitle>Candidate</PageTitle>
+<h3>Candidate</h3>
+
+@if (Response == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>REGISTER DATE</th>
+                <th>UPDATE DATE</th>
+                <th>IS ACTIVE</th>
+                <th>İşlemler</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var candidate in Response.DataList)
+            {
+                <tr>
+                    <td>@candidate.Id</td>
+                    <td>@* @candidate.Name *@</td>
+                    <td>@* @candidate.RegisterDate *@</td>
+                    <td>@* @candidate.UpdateDate *@</td>
+                    <td>@* @candidate.IsActive *@</td>
+                    <td>
+
+                        <button class="btn btn-info btn-sm"
+                                @onclick="() => NavigateToDetail(candidate.Id)">
+                            Detay
+                        </button>
+
+                        <button class="btn btn-warning btn-sm"
+                                @onclick="() => NavigateToEdit(candidate.Id)">
+                            Düzenle
+                        </button>
+
+                        <button class="btn btn-danger btn-sm"
+                                @onclick="() => NavigateToDelete(candidate.Id)">
+                            Sil
+                        </button>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code
+{
+    private ServiceResponse<CandidateResponse>? Response;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Response = await Http.GetFromJsonAsync<ServiceResponse<CandidateResponse>>("https://localhost:7046/api/candidate");
+    }
+
+    private void NavigateToDetail(Guid id)
+    {
+        Navigation.NavigateTo($"/candidateinfo/{id}");
+    }
+
+    private void NavigateToEdit(Guid id)
+    {
+        Navigation.NavigateTo($"/candidateinfo/{id}");
+    }
+
+    private void NavigateToDelete(Guid id)
+    {
+        Navigation.NavigateTo($"/candidateinfo/{id}");
+    }
+}
+
+
+
+
+
+
+
+
+
+
+@* @page "/candidate"
+@inject HttpClient Http
 
 <PageTitle>Candidate</PageTitle>
 <h3>Candidate</h3>
@@ -46,4 +137,4 @@ else
     {       
         Response = await Http.GetFromJsonAsync<ServiceResponse<CandidateResponse>>("https://localhost:7046/api/candidate");
     }
-}
+} *@

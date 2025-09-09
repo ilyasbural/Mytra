@@ -1,4 +1,27 @@
-﻿@page "/candidateinfo"
+﻿@page "/candidateinfo/{id:guid}"
+@inject HttpClient Http
+
+<PageTitle>Candidate Detail - @Id</PageTitle>
+<h3>Candidate Detail - @Id</h3>
+
+@code
+{
+    [Parameter]
+    public Guid Id { get; set; }
+    private ServiceResponse<JobPostingResponse>? Response { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Response = await Http.GetFromJsonAsync<ServiceResponse<JobPostingResponse>>("https://localhost:7046/api/candidate");
+    }
+}
+
+
+
+
+
+
+@* @page "/candidateinfo"
 @inject HttpClient Http
 
 <PageTitle>Candidate</PageTitle>
@@ -14,4 +37,4 @@
     {
         Response = await Http.GetFromJsonAsync<ServiceResponse<JobPostingResponse>>("https://localhost:7046/api/candidate");
     }
-}
+} *@
