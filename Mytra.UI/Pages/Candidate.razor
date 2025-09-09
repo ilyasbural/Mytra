@@ -23,31 +23,18 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var candidate in Response.DataList)
+            @foreach (var Candidate in Response.DataList)
             {
                 <tr>
-                    <td>@candidate.Id</td>
+                    <td>@Candidate.Id</td>
                     <td>@* @candidate.Name *@</td>
                     <td>@* @candidate.RegisterDate *@</td>
                     <td>@* @candidate.UpdateDate *@</td>
                     <td>@* @candidate.IsActive *@</td>
                     <td>
-
-                        <button class="btn btn-info btn-sm"
-                                @onclick="() => NavigateToDetail(candidate.Id)">
-                            Detay
-                        </button>
-
-                        <button class="btn btn-warning btn-sm"
-                                @onclick="() => NavigateToEdit(candidate.Id)">
-                            Düzenle
-                        </button>
-
-                        <button class="btn btn-danger btn-sm"
-                                @onclick="() => NavigateToDelete(candidate.Id)">
-                            Sil
-                        </button>
-
+                        <button class="btn btn-info btn-sm" @onclick="() => NavigateToDetail(Candidate.Id)">Detay</button>
+                        <button class="btn btn-warning btn-sm" @onclick="() => NavigateToEdit(Candidate.Id)">Düzenle</button>
+                        <button class="btn btn-danger btn-sm" @onclick="() => NavigateToDelete(Candidate.Id)">Sil</button>
                     </td>
                 </tr>
             }
@@ -79,62 +66,3 @@ else
         Navigation.NavigateTo($"/candidateinfo/{id}");
     }
 }
-
-
-
-
-
-
-
-
-
-
-@* @page "/candidate"
-@inject HttpClient Http
-
-<PageTitle>Candidate</PageTitle>
-<h3>Candidate</h3>
-
-@if (Response == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>NAME</th>
-                <th>REGISTER DATE</th>
-                <th>UPDATE DATE</th>
-                <th>IS ACTIVE</th>
-                <th></th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var Candidate in Response.DataList)
-            {
-                <tr>
-                    <td>@Candidate.Id</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
-
-@code
-{
-    private ServiceResponse<CandidateResponse>? Response;
-    protected override async Task OnInitializedAsync()
-    {       
-        Response = await Http.GetFromJsonAsync<ServiceResponse<CandidateResponse>>("https://localhost:7046/api/candidate");
-    }
-} *@

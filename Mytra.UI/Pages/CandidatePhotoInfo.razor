@@ -1,12 +1,15 @@
-﻿@page "/candidatephotoinfo"
+﻿@page "/candidatephotoinfo/{id:guid}"
 @inject HttpClient Http
 
-<PageTitle>CandidatePhoto</PageTitle>
-<h3>CandidatePhoto</h3>
+<PageTitle>CandidatePhoto - @Id</PageTitle>
+<h3>CandidatePhoto - @Id</h3>
 
 @code
 {
+    [Parameter]
+    public Guid Id { get; set; }
     private ServiceResponse<CandidatePhotoResponse>? Response;
+
     protected override async Task OnInitializedAsync()
     {
         Response = await Http.GetFromJsonAsync<ServiceResponse<CandidatePhotoResponse>>("https://localhost:7046/api/candidate");

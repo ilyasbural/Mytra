@@ -1,11 +1,13 @@
-﻿@page "/usersettingsinfo"
+﻿@page "/usersettingsinfo/{id:guid}"
 @inject HttpClient Http
 
-<PageTitle>UserSettings</PageTitle>
-<h3>UserSettings</h3>
+<PageTitle>UserSettings - @Id</PageTitle>
+<h3>UserSettings - @Id</h3>
 
 @code
 {
+    [Parameter]
+    public Guid Id { get; set; }
     private ServiceResponse<UserSettingsResponse>? Response;
     protected override async Task OnInitializedAsync()
     {

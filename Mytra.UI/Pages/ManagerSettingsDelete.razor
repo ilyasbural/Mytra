@@ -1,8 +1,17 @@
-﻿@page "/managersettingsdelete"
+﻿@page "/managersettingsdelete/{id:guid}"
+@inject HttpClient Http
 
-<h3>ManagerSettingsDelete</h3>
+<PageTitle>ManagerSettings - @Id</PageTitle>
+<h3>ManagerSettings - @Id</h3>
 
 @code
 {
+    [Parameter]
+    public Guid Id { get; set; }
+    private ServiceResponse<ManagerSettingsResponse>? Response { get; set; }
 
+    protected override async Task OnInitializedAsync()
+    {
+        Response = await Http.GetFromJsonAsync<ServiceResponse<ManagerSettingsResponse>>("https://localhost:7046/api/candidate");
+    }
 }

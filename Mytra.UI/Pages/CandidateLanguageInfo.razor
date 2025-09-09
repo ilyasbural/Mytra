@@ -1,12 +1,15 @@
-﻿@page "/candidatelanguageinfo"
+﻿@page "/candidatelanguageinfo/{id:guid}"
 @inject HttpClient Http
 
-<PageTitle>CandidateLanguage</PageTitle>
-<h3>CandidateLanguage</h3>
+<PageTitle>CandidateLanguage - @Id</PageTitle>
+<h3>CandidateLanguage - @Id</h3>
 
 @code
 {
+    [Parameter]
+    public Guid Id { get; set; }
     private ServiceResponse<CandidateLanguageResponse>? Response;
+
     protected override async Task OnInitializedAsync()
     {
         Response = await Http.GetFromJsonAsync<ServiceResponse<CandidateLanguageResponse>>("https://localhost:7046/api/candidate");

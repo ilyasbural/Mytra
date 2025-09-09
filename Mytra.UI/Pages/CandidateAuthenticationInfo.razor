@@ -1,11 +1,13 @@
-﻿@page "/candidateauthenticationinfo"
+﻿@page "/candidateauthenticationinfo/{id:guid}"
 @inject HttpClient Http
 
-<PageTitle>CandidateAuthentication</PageTitle>
-<h3>CandidateAuthentication</h3>
+<PageTitle>CandidateAuthentication - @Id</PageTitle>
+<h3>CandidateAuthentication - @Id</h3>
 
 @code
 {
+    [Parameter]
+    public Guid Id { get; set; }
     private ServiceResponse<CandidateAuthenticationResponse>? Response;
     protected override async Task OnInitializedAsync()
     {

@@ -1,8 +1,17 @@
-﻿@page "/collegedelete"
+﻿@page "/collegedelete/{id:guid}"
+@inject HttpClient Http
 
-<h3>CollegeDelete</h3>
+<PageTitle>College - @Id</PageTitle>
+<h3>College - @Id</h3>
 
 @code
 {
+    [Parameter]
+    public Guid Id { get; set; }
+    private ServiceResponse<CollegeResponse>? Response;
 
+    protected override async Task OnInitializedAsync()
+    {
+        Response = await Http.GetFromJsonAsync<ServiceResponse<CollegeResponse>>("https://localhost:7046/api/candidate");
+    }
 }
