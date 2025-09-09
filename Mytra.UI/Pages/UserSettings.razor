@@ -1,5 +1,6 @@
 ﻿@page "/usersettings"
 @inject HttpClient Http
+@inject NavigationManager Navigation
 
 <PageTitle>UserSettings</PageTitle>
 <h3>UserSettings</h3>
@@ -32,7 +33,11 @@ else
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td></td>
+                    <td>
+                        <button class="btn btn-info btn-sm" @onclick="() => NavigateToDetail(UserSettings.Id)">Detay</button>
+                        <button class="btn btn-warning btn-sm" @onclick="() => NavigateToEdit(UserSettings.Id)">Düzenle</button>
+                        <button class="btn btn-danger btn-sm" @onclick="() => NavigateToDelete(UserSettings.Id)">Sil</button>
+                    </td>
                 </tr>
             }
         </tbody>
@@ -42,8 +47,24 @@ else
 @code
 {
     private ServiceResponse<UserSettingsResponse>? Response;
+
     protected override async Task OnInitializedAsync()
     {
         Response = await Http.GetFromJsonAsync<ServiceResponse<UserSettingsResponse>>("https://localhost:7046/api/usersettings");
+    }
+
+    private void NavigateToDetail(Guid id)
+    {
+        Navigation.NavigateTo($"/usersettingsinfo/{id}");
+    }
+
+    private void NavigateToEdit(Guid id)
+    {
+        Navigation.NavigateTo($"/usersettingsupdate/{id}");
+    }
+
+    private void NavigateToDelete(Guid id)
+    {
+        Navigation.NavigateTo($"/usersettingsdelete/{id}");
     }
 }

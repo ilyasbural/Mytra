@@ -1,5 +1,6 @@
 ﻿@page "/userdetail"
 @inject HttpClient Http
+@inject NavigationManager Navigation
 
 <PageTitle>UserDetail</PageTitle>
 <h3>UserDetail</h3>
@@ -32,7 +33,11 @@ else
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td></td>
+                    <td>
+                        <button class="btn btn-info btn-sm" @onclick="() => NavigateToDetail(UserDetail.Id)">Detay</button>
+                        <button class="btn btn-warning btn-sm" @onclick="() => NavigateToEdit(UserDetail.Id)">Düzenle</button>
+                        <button class="btn btn-danger btn-sm" @onclick="() => NavigateToDelete(UserDetail.Id)">Sil</button>
+                    </td>
                 </tr>
             }
         </tbody>
@@ -42,8 +47,24 @@ else
 @code
 {
     private ServiceResponse<UserDetailResponse>? Response;
+
     protected override async Task OnInitializedAsync()
     {
         Response = await Http.GetFromJsonAsync<ServiceResponse<UserDetailResponse>>("https://localhost:7046/api/userdetail");
+    }
+
+    private void NavigateToDetail(Guid id)
+    {
+        Navigation.NavigateTo($"/userdetailinfo/{id}");
+    }
+
+    private void NavigateToEdit(Guid id)
+    {
+        Navigation.NavigateTo($"/userdetailupdate/{id}");
+    }
+
+    private void NavigateToDelete(Guid id)
+    {
+        Navigation.NavigateTo($"/userdetaildelete/{id}");
     }
 }
