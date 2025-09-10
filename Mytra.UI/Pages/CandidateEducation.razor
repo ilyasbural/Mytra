@@ -50,7 +50,7 @@ else
 
     protected async override Task OnInitializedAsync()
     {
-        Response = await Http.GetFromJsonAsync<ServiceResponse<CandidateEducationResponse>>("https://localhost:7046/api/candidatedetail");
+        Response = await Http.GetFromJsonAsync<ServiceResponse<CandidateEducationResponse>>("https://localhost:7046/api/candidateeducation");
     }
 
     private void NavigateToDetail(Guid id)
