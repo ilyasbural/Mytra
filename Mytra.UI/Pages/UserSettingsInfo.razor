@@ -8,7 +8,8 @@
 {
     [Parameter]
     public Guid Id { get; set; }
-    private ServiceResponse<UserSettingsResponse>? Response;
+    private ServiceResponse<UserSettingsResponse>? Response { get; set; }
+
     protected override async Task OnInitializedAsync()
     {
         Response = await Http.GetFromJsonAsync<ServiceResponse<UserSettingsResponse>>("https://localhost:7046/api/candidate");

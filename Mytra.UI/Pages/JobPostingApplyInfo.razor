@@ -8,7 +8,7 @@
 {
     [Parameter]
     public Guid Id { get; set; }
-    private ServiceResponse<JobPostingApplyResponse>? Response;
+    private ServiceResponse<JobPostingApplyResponse>? Response { get; set; }
 
     protected override async Task OnInitializedAsync()
     {

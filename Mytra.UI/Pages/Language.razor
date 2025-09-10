@@ -46,7 +46,7 @@ else
 
 @code
 {
-    private ServiceResponse<LanguageResponse>? Response;
+    private ServiceResponse<LanguageResponse>? Response { get; set; }
     
     protected override async Task OnInitializedAsync()
     {

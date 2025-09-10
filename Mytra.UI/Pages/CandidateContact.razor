@@ -46,7 +46,7 @@ else
 
 @code
 {
-    private ServiceResponse<CandidateContactResponse>? Response;
+    private ServiceResponse<CandidateContactResponse>? Response { get; set; }
 
     protected override async Task OnInitializedAsync()
     {

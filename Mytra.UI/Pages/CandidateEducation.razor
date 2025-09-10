@@ -46,7 +46,7 @@ else
 
 @code
 {
-    private ServiceResponse<CandidateEducationResponse>? Response;
+    private ServiceResponse<CandidateEducationResponse>? Response { get; set; }
 
     protected async override Task OnInitializedAsync()
     {
@@ -55,16 +55,16 @@ else
 
     private void NavigateToDetail(Guid id)
     {
-        Navigation.NavigateTo($"/candidatedetailinfo/{id}");
+        Navigation.NavigateTo($"/candidateeducationinfo/{id}");
     }
 
     private void NavigateToEdit(Guid id)
     {
-        Navigation.NavigateTo($"/candidatedetailupdate/{id}");
+        Navigation.NavigateTo($"/candidateeducationupdate/{id}");
     }
 
     private void NavigateToDelete(Guid id)
     {
-        Navigation.NavigateTo($"/candidatedetaildelete/{id}");
+        Navigation.NavigateTo($"/candidateeducationdelete/{id}");
     }
 }

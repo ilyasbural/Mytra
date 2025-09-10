@@ -8,7 +8,7 @@
 {
     [Parameter]
     public Guid Id { get; set; }
-    private ServiceResponse<ManagerSettingsResponse>? Response;
+    private ServiceResponse<ManagerSettingsResponse>? Response { get; set; }
 
     protected override async Task OnInitializedAsync()
     {

@@ -8,7 +8,7 @@
 {
     [Parameter]
     public Guid Id { get; set; }
-    private ServiceResponse<CandidateLanguageResponse>? Response;
+    private ServiceResponse<CandidateLanguageResponse>? Response { get; set; }
 
     protected override async Task OnInitializedAsync()
     {

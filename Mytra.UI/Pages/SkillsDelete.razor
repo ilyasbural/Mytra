@@ -8,7 +8,7 @@
 {
     [Parameter]
     public Guid Id { get; set; }
-    private ServiceResponse<SkillsResponse>? Response;
+    private ServiceResponse<SkillsResponse>? Response { get; set; }
 
     protected override async Task OnInitializedAsync()
     {

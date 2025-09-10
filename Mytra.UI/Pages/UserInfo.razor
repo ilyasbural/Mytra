@@ -1,4 +1,4 @@
-﻿@page "/userinfo"
+﻿@page "/userinfo/{id:guid}"
 @inject HttpClient Http
 
 <PageTitle>User</PageTitle>
@@ -6,7 +6,10 @@
 
 @code
 {
-    private ServiceResponse<UserResponse>? Response;
+    [Parameter]
+    public Guid Id { get; set; }
+    private ServiceResponse<UserResponse>? Response { get; set; }
+
     protected override async Task OnInitializedAsync()
     {
         Response = await Http.GetFromJsonAsync<ServiceResponse<UserResponse>>("https://localhost:7046/api/candidate");
