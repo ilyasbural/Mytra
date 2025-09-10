@@ -2,8 +2,28 @@
 @inject HttpClient Http
 
 <h3>ManagerCreate</h3>
+@* <input placeholder="İsim" @bind="newPerson.Name" />
+<input placeholder="Yaş" type="number" @bind="newPerson.Age" /> *@
+<button @onclick="Save">Kaydet</button>
+<p>@Message</p>
 
 @code
 {
+    String Message = String.Empty;
+    ServiceResponse<ManagerResponse>? Response { get; set; }
+    ManagerInsert Manager = new ManagerInsert();
 
+    private async Task Save()
+    {
+        HttpResponseMessage httpResponse = await Http.PostAsJsonAsync("https://localhost:7046/api/manager", Manager);
+
+        if (httpResponse.IsSuccessStatusCode)
+        {
+            Response = await httpResponse.Content.ReadFromJsonAsync<ServiceResponse<ManagerResponse>>();
+
+            if (Response != null && Response.Success) Message = "Kayıt başarıyla eklendi!";
+            else Message = "Kayıt başarısız oldu!";
+        }
+        else Message = $"API hata döndü: {httpResponse.StatusCode}";
+    }
 }

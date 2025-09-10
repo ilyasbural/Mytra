@@ -2,8 +2,28 @@
 @inject HttpClient Http
 
 <h3>CandidateReferanceCreate</h3>
+@* <input placeholder="İsim" @bind="newPerson.Name" />
+<input placeholder="Yaş" type="number" @bind="newPerson.Age" /> *@
+<button @onclick="Save">Kaydet</button>
+<p>@Message</p>
 
 @code
 {
+    String Message = String.Empty;
+    ServiceResponse<CandidateReferanceResponse>? Response { get; set; }
+    CandidateReferanceInsert CandidateReferance = new CandidateReferanceInsert();
 
+    private async Task Save()
+    {
+        HttpResponseMessage httpResponse = await Http.PostAsJsonAsync("https://localhost:7046/api/candidatereferance", CandidateReferance);
+
+        if (httpResponse.IsSuccessStatusCode)
+        {
+            Response = await httpResponse.Content.ReadFromJsonAsync<ServiceResponse<CandidateReferanceResponse>>();
+
+            if (Response != null && Response.Success) Message = "Kayıt başarıyla eklendi!";
+            else Message = "Kayıt başarısız oldu!";
+        }
+        else Message = $"API hata döndü: {httpResponse.StatusCode}";
+    }
 }
