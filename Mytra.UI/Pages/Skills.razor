@@ -12,6 +12,13 @@
 else
 {
     <table class="table">
+        <tbody>
+            <tr>
+                <td><button class="btn btn-info btn-sm" @onclick="() => NavigateToNew()">Ekle</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table">
         <thead>
             <tr>
                 <th>ID</th>
@@ -51,6 +58,11 @@ else
     protected override async Task OnInitializedAsync()
     {
         Response  = await Http.GetFromJsonAsync<ServiceResponse<SkillsResponse>>("https://localhost:7046/api/skills");
+    }
+
+    private void NavigateToNew()
+    {
+        Navigation.NavigateTo($"/skillscreate");
     }
 
     private void NavigateToDetail(Guid id)

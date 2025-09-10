@@ -2,8 +2,70 @@
 @inject HttpClient Http
 
 <h3>CandidateAuthenticationCreate</h3>
+<h3>Kişi Ekle</h3>
+
+@* <input placeholder="İsim" @bind="newPerson.Name" />
+<input placeholder="Yaş" type="number" @bind="newPerson.Age" /> *@
+<button @onclick="SavePerson">Kaydet</button>
+<p>@Message</p>
 
 @code
 {
+    private String Message = String.Empty;
+    private ServiceResponse<CandidateAuthenticationResponse>? Response { get; set; }
+    private CandidateAuthenticationInsert CandidateAuthentication = new CandidateAuthenticationInsert();
 
+    private async Task SavePerson()
+    {
+        CandidateAuthentication.CandidateId = new Guid("76058814-F907-4432-89B7-552D68E3B97E");
+        HttpResponseMessage httpResponse = await Http.PostAsJsonAsync("https://localhost:7046/api/candidateauthentication", CandidateAuthentication);
+
+        if (httpResponse.IsSuccessStatusCode)
+        {
+            Response = await httpResponse.Content.ReadFromJsonAsync<ServiceResponse<CandidateAuthenticationResponse>>();
+
+            if (Response != null && Response.Success) // ServiceResponse.Success gibi bir alan varsa
+            {
+                Message = "Kayıt başarıyla eklendi!";
+            }
+            else
+            {
+                Message = "Kayıt başarısız oldu!";
+            }
+        }
+        else
+        {
+            Message = $"API hata döndü: {httpResponse.StatusCode}";
+        }
+    }
+
+    // private CandidateAuthenticationInsert CandidateAuthentication = new CandidateAuthenticationInsert();
+    // private ServiceResponse<CandidateAuthenticationResponse>? Response { get; set; }
+    
+    // // private Person newPerson = new Person();
+    // private string message = "";
+
+    // private async Task SavePerson()
+    // {
+    //     //Response = await Http.PostAsJsonAsync<ServiceResponse<CandidateAuthenticationResponse>>("https://localhost:7046/api/candidateauthentication", CandidateAuthentication);
+    //     //await Http.PostAsJsonAsync<CandidateAuthenticationResponse>
+    //     //Response = await Http.PostAsJsonAsync("https://localhost:7046/api/candidateauthentication", CandidateAuthentication);
+
+    //     // if (response.IsSuccessStatusCode)
+    //     // {
+    //     //     message = "Kayıt başarıyla eklendi!";
+    //     //     newPerson = new Person(); // Formu sıfırla
+    //     // }
+    //     // else
+    //     // {
+    //     //     message = "Kayıt eklenirken hata oluştu!";
+    //     // }
+    // }
+
+    // public class Person
+    // {
+    //     public int Id { get; set; }
+    //     public string Name { get; set; }
+    //     public int Age { get; set; }
+    // }
 }
