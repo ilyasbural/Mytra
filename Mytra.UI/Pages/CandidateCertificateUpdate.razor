@@ -12,6 +12,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        Response = await Http.GetFromJsonAsync<ServiceResponse<CandidateCertificateResponse>>("https://localhost:7046/api/candidatecertificate");
+        Response = await Http.GetFromJsonAsync<ServiceResponse<CandidateCertificateResponse>>
+        ($"https://localhost:7046/api/candidatecertificatesingle?id={Id}");
     }
 }

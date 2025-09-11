@@ -64,7 +64,7 @@
 		public async Task<ServiceResponse<ManagerDetailResponse>> GetSingle([FromQuery] ManagerDetailSelectSingle Model)
 		{
 			DataService<ManagerDetail> Response = await Service.SelectSingleAsync(Model);
-			return ServiceResponse<ManagerDetailResponse>.SuccessResponse(Mapper.Map<List<ManagerDetailResponse>>(Response.Data), "");
+			return ServiceResponse<ManagerDetailResponse>.SuccessResponse(Mapper.Map<ManagerDetailResponse>(Response.Data), "");
 		}
 	}
 }

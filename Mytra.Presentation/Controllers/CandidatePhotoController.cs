@@ -64,7 +64,7 @@
 		public async Task<ServiceResponse<CandidatePhotoResponse>> GetSingle([FromQuery] CandidatePhotoSelectSingle Model)
 		{
 			DataService<CandidatePhoto> Response = await Service.SelectSingleAsync(Model);
-			return ServiceResponse<CandidatePhotoResponse>.SuccessResponse(Mapper.Map<List<CandidatePhotoResponse>>(Response.Data), "");
+			return ServiceResponse<CandidatePhotoResponse>.SuccessResponse(Mapper.Map<CandidatePhotoResponse>(Response.Data), "");
 		}
 	}
 }

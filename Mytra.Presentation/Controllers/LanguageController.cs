@@ -64,7 +64,7 @@
 		public async Task<ServiceResponse<LanguageResponse>> GetSingle([FromQuery] LanguageSelectSingle Model)
 		{
 			DataService<Language> Response = await Service.SelectSingleAsync(Model);
-			return ServiceResponse<LanguageResponse>.SuccessResponse(Mapper.Map<List<LanguageResponse>>(Response.Data), "");
+			return ServiceResponse<LanguageResponse>.SuccessResponse(Mapper.Map<LanguageResponse>(Response.Data), "");
 		}
 	}
 }
