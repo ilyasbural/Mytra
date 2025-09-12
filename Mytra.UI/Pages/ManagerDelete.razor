@@ -12,7 +12,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        Response = await Http.GetFromJsonAsync<ServiceResponse<ManagerResponse>>
-        ($"https://localhost:7046/api/managersingle?id={Id}");
+        Response = await Http.DeleteFromJsonAsync<ServiceResponse<ManagerResponse>>
+        ($"https://localhost:7046/api/manager/{Id}");
     }
 }
