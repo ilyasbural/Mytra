@@ -75,13 +75,15 @@
 			}
 		}
 
-		public async Task<DataService<UserSettings>> DeleteAsync(UserSettingsDelete Model)
+		public async Task<DataService<UserSettings>> DeleteAsync(Guid Id)
 		{
 			try
 			{
-				Collection = await UnitOfWork.UserSettings.SelectAsync(x => x.Id == Model.Id);
+				Collection = await UnitOfWork.UserSettings.SelectAsync(x => x.Id == Id);
 				if (Collection.SingleOrDefault() == null) return DataService<UserSettings>.FailureResult("Kayıt bulunamadı");
 
+				Data = Collection.SingleOrDefault()!;
+				await UnitOfWork.UserSettings.DeleteAsync(Data);
 				var affectedRows = await UnitOfWork.SaveChangesAsync();
 				var success = affectedRows > 0;
 

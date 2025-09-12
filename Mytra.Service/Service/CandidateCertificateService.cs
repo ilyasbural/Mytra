@@ -75,13 +75,15 @@
 			}
 		}
 
-		public async Task<DataService<CandidateCertificate>> DeleteAsync(CandidateCertificateDelete Model)
+		public async Task<DataService<CandidateCertificate>> DeleteAsync(Guid Id)
 		{
 			try
 			{
-				Collection = await UnitOfWork.CandidateCertificate.SelectAsync(x => x.Id == Model.Id);
+				Collection = await UnitOfWork.CandidateCertificate.SelectAsync(x => x.Id == Id);
 				if (Collection.SingleOrDefault() == null) return DataService<CandidateCertificate>.FailureResult("Kayıt bulunamadı");
 
+				Data = Collection.SingleOrDefault()!;
+				await UnitOfWork.CandidateCertificate.DeleteAsync(Data);
 				var affectedRows = await UnitOfWork.SaveChangesAsync();
 				var success = affectedRows > 0;
 

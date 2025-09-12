@@ -76,13 +76,15 @@
 			}
 		}
 
-		public async Task<DataService<JobPosting>> DeleteAsync(JobPostingDelete Model)
+		public async Task<DataService<JobPosting>> DeleteAsync(Guid Id)
 		{
 			try
 			{
-				Collection = await UnitOfWork.JobPosting.SelectAsync(x => x.Id == Model.Id);
+				Collection = await UnitOfWork.JobPosting.SelectAsync(x => x.Id == Id);
 				if (Collection.SingleOrDefault() == null) return DataService<JobPosting>.FailureResult("Kayıt bulunamadı");
 
+				Data = Collection.SingleOrDefault()!;
+				await UnitOfWork.JobPosting.DeleteAsync(Data);
 				var affectedRows = await UnitOfWork.SaveChangesAsync();
 				var success = affectedRows > 0;
 

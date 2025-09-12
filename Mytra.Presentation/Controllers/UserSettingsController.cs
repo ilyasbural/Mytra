@@ -40,11 +40,11 @@
 		}
 
 		[HttpDelete]
-		[Route("api/usersettings")]
+		[Route("api/usersettings/{Id}")]
 		[Produces(typeof(ServiceResponse<UserSettings>))]
-		public async Task<ServiceResponse<UserSettings>> Delete([FromBody] UserSettingsDelete Model)
+		public async Task<ServiceResponse<UserSettings>> Delete(Guid Id)
 		{
-			DataService<UserSettings> Response = await Service.DeleteAsync(Model);
+			DataService<UserSettings> Response = await Service.DeleteAsync(Id);
 			if (Response.Errors.Count > 0) return ServiceResponse<UserSettings>.FailureResponse(Response.Errors, "");
 			if (!Response.Success) return ServiceResponse<UserSettings>.FailureResponse("");
 			return ServiceResponse<UserSettings>.SuccessResponse(Response.Data, "");

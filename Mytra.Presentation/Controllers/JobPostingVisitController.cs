@@ -39,7 +39,7 @@
 		}
 
 		[HttpDelete]
-		[Route("api/jobpostingvisit")]
+		[Route("api/jobpostingvisit/{id}")]
 		[Produces(typeof(ServiceResponse<JobPostingVisit>))]
 		public async Task<ServiceResponse<JobPostingVisit>> Delete([FromBody] JobPostingVisitDelete Model)
 		{

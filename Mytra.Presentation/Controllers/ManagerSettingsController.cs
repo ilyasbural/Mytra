@@ -39,11 +39,11 @@
 		}
 
 		[HttpDelete]
-		[Route("api/managersettings")]
+		[Route("api/managersettings/{id}")]
 		[Produces(typeof(ServiceResponse<ManagerSettings>))]
-		public async Task<ServiceResponse<ManagerSettings>> Delete([FromBody] ManagerSettingsDelete Model)
+		public async Task<ServiceResponse<ManagerSettings>> Delete(Guid Id)
 		{
-			DataService<ManagerSettings> Response = await Service.DeleteAsync(Model);
+			DataService<ManagerSettings> Response = await Service.DeleteAsync(Id);
 			if (Response.Errors.Count > 0) return ServiceResponse<ManagerSettings>.FailureResponse(Response.Errors, "");
 			if (!Response.Success) return ServiceResponse<ManagerSettings>.FailureResponse("");
 			return ServiceResponse<ManagerSettings>.SuccessResponse(Response.Data, "");

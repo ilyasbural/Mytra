@@ -39,7 +39,7 @@
 		}
 
 		[HttpDelete]
-		[Route("api/college")]
+		[Route("api/college/{id}")]
 		[Produces(typeof(ServiceResponse<College>))]
 		public async Task<ServiceResponse<College>> Delete([FromBody] CollegeDelete Model)
 		{

@@ -39,7 +39,7 @@
 		}
 
 		[HttpDelete]
-		[Route("api/manager")]
+		[Route("api/manager/{id}")]
 		[Produces(typeof(ServiceResponse<Manager>))]
 		public async Task<ServiceResponse<Manager>> Delete([FromBody] ManagerDelete Model)
 		{

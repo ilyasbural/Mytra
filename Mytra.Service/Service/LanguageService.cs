@@ -76,13 +76,14 @@
 			}
 		}
 
-		public async Task<DataService<Language>> DeleteAsync(LanguageDelete Model)
+		public async Task<DataService<Language>> DeleteAsync(Guid Id)
 		{
 			try
 			{
-				Collection = await UnitOfWork.Language.SelectAsync(x => x.Id == Model.Id);
+				Collection = await UnitOfWork.Language.SelectAsync(x => x.Id == Id);
 				if (Collection.SingleOrDefault() == null) return DataService<Language>.FailureResult("Kayıt bulunamadı");
 
+				await UnitOfWork.Language.DeleteAsync(Collection.SingleOrDefault()!);
 				var affectedRows = await UnitOfWork.SaveChangesAsync();
 				var success = affectedRows > 0;
 

@@ -39,11 +39,11 @@
 		}
 
 		[HttpDelete]
-		[Route("api/candidatephoto")]
+		[Route("api/candidatephoto/{id}")]
 		[Produces(typeof(ServiceResponse<CandidatePhoto>))]
-		public async Task<ServiceResponse<CandidatePhoto>> Delete([FromBody] CandidatePhotoDelete Model)
+		public async Task<ServiceResponse<CandidatePhoto>> Delete(Guid Id)
 		{
-			DataService<CandidatePhoto> Response = await Service.DeleteAsync(Model);
+			DataService<CandidatePhoto> Response = await Service.DeleteAsync(Id);
 			if (Response.Errors.Count > 0) return ServiceResponse<CandidatePhoto>.FailureResponse(Response.Errors, "");
 			if (!Response.Success) return ServiceResponse<CandidatePhoto>.FailureResponse("");
 			return ServiceResponse<CandidatePhoto>.SuccessResponse(Response.Data, "");

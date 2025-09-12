@@ -78,13 +78,15 @@
 			}
 		}
 
-		public async Task<DataService<CandidateAuthentication>> DeleteAsync(CandidateAuthenticationDelete Model)
+		public async Task<DataService<CandidateAuthentication>> DeleteAsync(Guid Id)
 		{
 			try
 			{
-				Collection = await UnitOfWork.CandidateAuthentication.SelectAsync(x => x.Id == Model.Id);
+				Collection = await UnitOfWork.CandidateAuthentication.SelectAsync(x => x.Id == Id);
 				if (Collection.SingleOrDefault() == null) return DataService<CandidateAuthentication>.FailureResult("");
 
+				Data = Collection.SingleOrDefault()!;
+				await UnitOfWork.CandidateAuthentication.DeleteAsync(Data);
 				var affectedRows = await UnitOfWork.SaveChangesAsync();
 				var success = affectedRows > 0;
 
