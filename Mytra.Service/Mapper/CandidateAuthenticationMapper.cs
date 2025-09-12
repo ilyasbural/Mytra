@@ -6,7 +6,6 @@
 		{
 			CreateMap<Common.CandidateAuthenticationInsert, Core.CandidateAuthentication>().ReverseMap();
 			CreateMap<Common.CandidateAuthenticationUpdate, Core.CandidateAuthentication>().ReverseMap();
-			CreateMap<Common.CandidateAuthenticationDelete, Core.CandidateAuthentication>().ReverseMap();
 			CreateMap<Common.CandidateAuthenticationSelect, Core.CandidateAuthentication>().ReverseMap();
 			CreateMap<Common.CandidateAuthenticationSelectSingle, Core.CandidateAuthentication>().ReverseMap();
 			CreateMap<Common.CandidateAuthenticationResponse, Core.CandidateAuthentication>().ReverseMap();

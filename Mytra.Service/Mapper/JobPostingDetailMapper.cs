@@ -6,7 +6,6 @@
 		{
 			CreateMap<Common.JobPostingDetailInsert, Core.JobPostingDetail>().ReverseMap();
 			CreateMap<Common.JobPostingDetailUpdate, Core.JobPostingDetail>().ReverseMap();
-			CreateMap<Common.JobPostingDetailDelete, Core.JobPostingDetail>().ReverseMap();
 			CreateMap<Common.JobPostingDetailSelect, Core.JobPostingDetail>().ReverseMap();
 			CreateMap<Common.JobPostingDetailSelectSingle, Core.JobPostingDetail>().ReverseMap();
 			CreateMap<Common.JobPostingDetailResponse, Core.JobPostingDetail>().ReverseMap();
