@@ -62,6 +62,8 @@
 				if (Collection == null) return DataService<CandidateAuthentication>.FailureResult("");
 
 				Data = Collection.SingleOrDefault()!;
+				Data.RefreshToken = Model.RefreshToken;
+				Data.RefreshTokenExpireTime = Model.RefreshTokenExpireTime;
 				Data.UpdateDate = DateTime.Now;
 
 				await UnitOfWork.CandidateAuthentication.UpdateAsync(Data);

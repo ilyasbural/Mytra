@@ -22,28 +22,28 @@ else
         <thead>
             <tr>
                 <th>ID</th>
-                <th>NAME</th>
+                <th>REFRESH TOKEN</th>
+                <th>EXPIRE DATE</th>
                 <th>REGISTER DATE</th>
                 <th>UPDATE DATE</th>
                 <th>IS ACTIVE</th>
                 <th></th>
-                <th></th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var CandidateAuthentication in Response.DataList)
+            @foreach (var Authentication in Response.DataList)
             {
                 <tr>
-                    <td>@CandidateAuthentication.Id</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>@Authentication.Id</td>
+                    <td>@Authentication.RefreshToken</td>
+                    <td>@Authentication.RefreshTokenExpireTime</td>
+                    <td>@Authentication.RegisterDate</td>
+                    <td>@Authentication.UpdateDate</td>
+                    <td>@Authentication.IsActive</td>
                     <td>
-                        <button class="btn btn-info btn-sm" @onclick="() => NavigateToDetail(CandidateAuthentication.Id)">Detay</button>
-                        <button class="btn btn-warning btn-sm" @onclick="() => NavigateToEdit(CandidateAuthentication.Id)">Düzenle</button>
-                        <button class="btn btn-danger btn-sm" @onclick="() => NavigateToDelete(CandidateAuthentication.Id)">Sil</button>
+                        <button class="btn btn-info btn-sm" @onclick="() => NavigateToDetail(Authentication.Id)">Detay</button>
+                        <button class="btn btn-warning btn-sm" @onclick="() => NavigateToEdit(Authentication.Id)">Düzenle</button>
+                        <button class="btn btn-danger btn-sm" @onclick="() => NavigateToDelete(Authentication.Id)">Sil</button>
                     </td>
                 </tr>
             }

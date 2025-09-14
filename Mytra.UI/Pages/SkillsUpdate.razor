@@ -7,19 +7,19 @@
 
 <h3>Kişi Güncelle</h3>
 
-@if (Skills == null)
+@if (Model == null)
 {
     <p>Yükleniyor...</p>
 }
 else
 {
-    <EditForm Model="Skills" OnValidSubmit="HandleValidSubmit">
+    <EditForm Model="Model" OnValidSubmit="HandleValidSubmit">
         <DataAnnotationsValidator />
         <ValidationSummary />
 
         <div class="mb-3">
             <label for="name">İsim:</label>
-            <InputText id="name" @bind-Value="Skills.Name" class="form-control" />
+            <InputText id="name" @bind-Value="Model.Name" class="form-control" />
         </div>
 
         <button type="submit" class="btn btn-primary">Kaydet</button>
@@ -31,7 +31,7 @@ else
     [Parameter] 
     public Guid Id { get; set; }
     ServiceResponse<SkillsResponse>? Response { get; set; }
-    Common.SkillsUpdate Skills { get; set; } = new Common.SkillsUpdate();
+    Common.SkillsUpdate Model { get; set; } = new Common.SkillsUpdate();
 
     protected override async Task OnInitializedAsync()
     {
@@ -40,7 +40,7 @@ else
 
         if (Response != null && Response.Data != null)
         {
-            Skills = new Common.SkillsUpdate
+            Model = new Common.SkillsUpdate
             {
                 Id = Response.Data.Id,
                 Name = Response.Data.Name
@@ -50,7 +50,7 @@ else
 
     private async Task HandleValidSubmit()
     {
-        await Http.PutAsJsonAsync("https://localhost:7046/api/skills", Skills);
+        await Http.PutAsJsonAsync("https://localhost:7046/api/skills", Model);
         NavManager.NavigateTo("/skills");
     }
 }
