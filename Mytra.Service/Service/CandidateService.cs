@@ -58,6 +58,8 @@
 				if (Collection == null) return DataService<Candidate>.FailureResult("Kayıt bulunamadı");
 
 				Data = Collection.SingleOrDefault()!;
+				Data.Email = Model.Email;
+				Data.Password = Model.Password;
 				Data.UpdateDate = DateTime.Now;
 
 				await UnitOfWork.Candidate.UpdateAsync(Data);
