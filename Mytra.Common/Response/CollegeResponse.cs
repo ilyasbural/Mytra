@@ -2,5 +2,6 @@
 {
 	public class CollegeResponse : Response<CollegeResponse>
 	{
+		public CollegeResponse() { }
 	}
 }

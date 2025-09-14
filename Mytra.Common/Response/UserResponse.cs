@@ -2,5 +2,6 @@
 {
 	public class UserResponse : Response<UserResponse>
 	{
+		public UserResponse() { }
 	}
 }

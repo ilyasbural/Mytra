@@ -2,5 +2,6 @@
 {
 	public class CandidateSettingsResponse : Response<CandidateSettingsResponse>
 	{
+		public CandidateSettingsResponse() { }
 	}
 }

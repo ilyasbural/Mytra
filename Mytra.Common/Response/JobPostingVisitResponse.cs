@@ -2,5 +2,6 @@
 {
 	public class JobPostingVisitResponse : Response<JobPostingVisitResponse>
 	{
+		public JobPostingVisitResponse() { }
 	}
 }

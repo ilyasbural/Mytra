@@ -2,5 +2,6 @@
 {
 	public class LanguageResponse : Response<LanguageResponse>
 	{
+		public LanguageResponse() { }
 	}
 }

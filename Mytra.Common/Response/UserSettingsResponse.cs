@@ -2,5 +2,6 @@
 {
 	public class UserSettingsResponse : Response<UserSettingsResponse>
 	{
+		public UserSettingsResponse() { }
 	}
 }

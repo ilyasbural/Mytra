@@ -2,5 +2,6 @@
 {
 	public class CandidateCertificateResponse : Response<CandidateCertificateResponse>
 	{
+		public CandidateCertificateResponse() { }
 	}
 }

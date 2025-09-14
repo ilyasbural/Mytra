@@ -2,5 +2,6 @@
 {
 	public class ManagerDetailResponse : Response<ManagerDetailResponse>
 	{
+		public ManagerDetailResponse() { }
 	}
 }

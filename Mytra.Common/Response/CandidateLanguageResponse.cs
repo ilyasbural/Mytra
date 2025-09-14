@@ -2,5 +2,6 @@
 {
 	public class CandidateLanguageResponse : Response<CandidateLanguageResponse>
 	{
+		public CandidateLanguageResponse() { }
 	}
 }

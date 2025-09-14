@@ -2,5 +2,6 @@
 {
 	public class CandidateSkillsResponse : Response<CandidateSkillsResponse>
 	{
+		public CandidateSkillsResponse() { }
 	}
 }
