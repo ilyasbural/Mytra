@@ -54,7 +54,7 @@ else
 
     private async Task HandleValidSubmit()
     {
-        await Http.PutAsJsonAsync("https://localhost:7046/api/candidateauthentication", Model);
+        HttpResponseMessage Result = await Http.PutAsJsonAsync("https://localhost:7046/api/candidateauthentication", Model);
         NavManager.NavigateTo("/candidateauthentication");
     }
 }
