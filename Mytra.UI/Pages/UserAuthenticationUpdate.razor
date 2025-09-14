@@ -1,5 +1,6 @@
 ﻿@page "/userauthenticationupdate/{id:guid}"
 @inject HttpClient Http
+@inject NavigationManager NavManager
 
 <PageTitle>UserAuthentication - @Id</PageTitle>
 <h3>UserAuthentication - @Id</h3>
@@ -9,10 +10,26 @@
     [Parameter]
     public Guid Id { get; set; }
     private ServiceResponse<UserAuthenticationResponse>? Response { get; set; }
+    private Common.UserAuthenticationUpdate Model { get; set; } = new Common.UserAuthenticationUpdate();
 
     protected override async Task OnInitializedAsync()
     {
         Response = await Http.GetFromJsonAsync<ServiceResponse<UserAuthenticationResponse>>
         ($"https://localhost:7046/api/userauthenticationsingle?id={Id}");
+
+        if (Response != null && Response.Data != null)
+        {
+            Model = new Common.UserAuthenticationUpdate
+            {
+                Id = Response.Data.Id,
+                Name = Response.Data.Name
+            };
+        }
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        HttpResponseMessage Result = await Http.PutAsJsonAsync("https://localhost:7046/api/userauthentication", Model);
+        NavManager.NavigateTo("/userauthentication");
     }
 }

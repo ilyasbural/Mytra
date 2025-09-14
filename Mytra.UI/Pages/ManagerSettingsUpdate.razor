@@ -1,5 +1,6 @@
 ﻿@page "/managersettingsupdate/{id:guid}"
 @inject HttpClient Http
+@inject NavigationManager NavManager
 
 <PageTitle>ManagerSettings - @Id</PageTitle>
 <h3>ManagerSettings - @Id</h3>
@@ -9,10 +10,26 @@
     [Parameter]
     public Guid Id { get; set; }
     private ServiceResponse<ManagerSettingsResponse>? Response { get; set; }
+    private Common.ManagerSettingsUpdate Model { get; set; } = new Common.ManagerSettingsUpdate();
 
     protected override async Task OnInitializedAsync()
     {
         Response = await Http.GetFromJsonAsync<ServiceResponse<ManagerSettingsResponse>>
         ($"https://localhost:7046/api/managersettingssingle?id={Id}");
+
+        if (Response != null && Response.Data != null)
+        {
+            Model = new Common.ManagerSettingsUpdate
+            {
+                Id = Response.Data.Id,
+                Name = Response.Data.Name
+            };
+        }
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        HttpResponseMessage Result = await Http.PutAsJsonAsync("https://localhost:7046/api/managersettings", Model);
+        NavManager.NavigateTo("/managersettings");
     }
 }

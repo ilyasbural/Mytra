@@ -1,5 +1,6 @@
 ﻿@page "/jobpostingdetailupdate/{id:guid}"
 @inject HttpClient Http
+@inject NavigationManager NavManager
 
 <PageTitle>JobPostingDetail - @Id</PageTitle>
 <h3>JobPostingDetail - @Id</h3>
@@ -9,10 +10,26 @@
     [Parameter]
     public Guid Id { get; set; }
     private ServiceResponse<JobPostingDetailResponse>? Response { get; set; }
+    private Common.JobPostingDetailUpdate Model { get; set; } = new Common.JobPostingDetailUpdate();
 
     protected override async Task OnInitializedAsync()
     {
         Response = await Http.GetFromJsonAsync<ServiceResponse<JobPostingDetailResponse>>
         ($"https://localhost:7046/api/jobpostingdetailsingle?id={Id}");
+
+        if (Response != null && Response.Data != null)
+        {
+            Model = new Common.JobPostingDetailUpdate
+            {
+                Id = Response.Data.Id,
+                Name = Response.Data.Name
+            };
+        }
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        HttpResponseMessage Result = await Http.PutAsJsonAsync("https://localhost:7046/api/jobpostingdetail", Model);
+        NavManager.NavigateTo("/jobpostingdetail");
     }
 }

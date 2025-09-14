@@ -1,5 +1,6 @@
 ﻿@page "/candidatesettingsupdate/{id:guid}"
 @inject HttpClient Http
+@inject NavigationManager NavManager
 
 <PageTitle>CandidateSettings - @Id</PageTitle>
 <h3>CandidateSettings - @Id</h3>
@@ -9,10 +10,26 @@
     [Parameter]
     public Guid Id { get; set; }
     private ServiceResponse<CandidateSettingsResponse>? Response { get; set; }
+    private Common.CandidateSettingsUpdate Model { get; set; } = new Common.CandidateSettingsUpdate();
 
     protected override async Task OnInitializedAsync()
     {
         Response = await Http.GetFromJsonAsync<ServiceResponse<CandidateSettingsResponse>>
         ($"https://localhost:7046/api/candidatesettingssingle?id={Id}");
+
+        if (Response != null && Response.Data != null)
+        {
+            Model = new Common.CandidateSettingsUpdate
+            {
+                Id = Response.Data.Id,
+                Name = Response.Data.Name
+            };
+        }
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        HttpResponseMessage Result = await Http.PutAsJsonAsync("https://localhost:7046/api/candidatesettings", Model);
+        NavManager.NavigateTo("/candidatesettings");
     }
 }

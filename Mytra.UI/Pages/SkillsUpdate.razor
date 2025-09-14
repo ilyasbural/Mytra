@@ -30,8 +30,8 @@ else
 {
     [Parameter] 
     public Guid Id { get; set; }
-    ServiceResponse<SkillsResponse>? Response { get; set; }
-    Common.SkillsUpdate Model { get; set; } = new Common.SkillsUpdate();
+    private ServiceResponse<SkillsResponse>? Response { get; set; }
+    private Common.SkillsUpdate Model { get; set; } = new Common.SkillsUpdate();
 
     protected override async Task OnInitializedAsync()
     {
@@ -50,7 +50,7 @@ else
 
     private async Task HandleValidSubmit()
     {
-        await Http.PutAsJsonAsync("https://localhost:7046/api/skills", Model);
+        HttpResponseMessage Result = await Http.PutAsJsonAsync("https://localhost:7046/api/skills", Model);
         NavManager.NavigateTo("/skills");
     }
 }

@@ -1,5 +1,6 @@
 ﻿@page "/collegeupdate/{id:guid}"
 @inject HttpClient Http
+@inject NavigationManager NavManager
 
 <PageTitle>College - @Id</PageTitle>
 <h3>College - @Id</h3>
@@ -9,10 +10,26 @@
     [Parameter]
     public Guid Id { get; set; }
     private ServiceResponse<CollegeResponse>? Response { get; set; }
+    private Common.CollegeUpdate Model { get; set; } = new Common.CollegeUpdate();
 
     protected override async Task OnInitializedAsync()
     {
         Response = await Http.GetFromJsonAsync<ServiceResponse<CollegeResponse>>
         ($"https://localhost:7046/api/collegesingle?id={Id}");
+
+        if (Response != null && Response.Data != null)
+        {
+            Model = new Common.CollegeUpdate
+            {
+                Id = Response.Data.Id,
+                Name = Response.Data.Name
+            };
+        }
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        HttpResponseMessage Result = await Http.PutAsJsonAsync("https://localhost:7046/api/college", Model);
+        NavManager.NavigateTo("/college");
     }
 }

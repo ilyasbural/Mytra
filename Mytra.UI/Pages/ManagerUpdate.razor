@@ -1,5 +1,6 @@
 ﻿@page "/managerupdate/{id:guid}"
 @inject HttpClient Http
+@inject NavigationManager NavManager
 
 <PageTitle>Manager - @Id</PageTitle>
 <h3>Manager - @Id</h3>
@@ -9,10 +10,26 @@
     [Parameter]
     public Guid Id { get; set; }
     private ServiceResponse<ManagerResponse>? Response { get; set; }
+    private Common.ManagerUpdate Model { get; set; } = new Common.ManagerUpdate();
 
     protected override async Task OnInitializedAsync()
     {
         Response = await Http.GetFromJsonAsync<ServiceResponse<ManagerResponse>>
         ($"https://localhost:7046/api/managersingle?id={Id}");
+
+        if (Response != null && Response.Data != null)
+        {
+            Model = new Common.ManagerUpdate
+            {
+                Id = Response.Data.Id,
+                Name = Response.Data.Name
+            };
+        }
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        HttpResponseMessage Result = await Http.PutAsJsonAsync("https://localhost:7046/api/manager", Model);
+        NavManager.NavigateTo("/manager");
     }
 }
