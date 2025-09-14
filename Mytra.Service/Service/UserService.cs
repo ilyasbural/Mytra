@@ -60,7 +60,7 @@
 				Data = Collection.SingleOrDefault()!;
 				Data.UpdateDate = DateTime.Now;
 
-				await UnitOfWork.User.InsertAsync(Data);
+				await UnitOfWork.User.UpdateAsync(Data);
 				var affectedRows = await UnitOfWork.SaveChangesAsync();
 				var success = affectedRows > 0;
 

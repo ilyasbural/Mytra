@@ -58,10 +58,9 @@
 				if (Collection == null) return DataService<UserAuthentication>.FailureResult("Kayıt bulunamadı");
 
 				Data = Collection.SingleOrDefault()!;
-				//Data = Mapper.Map(model, Data);
 				Data.UpdateDate = DateTime.Now;
 
-				await UnitOfWork.UserAuthentication.InsertAsync(Data);
+				await UnitOfWork.UserAuthentication.UpdateAsync(Data);
 				var affectedRows = await UnitOfWork.SaveChangesAsync();
 				var success = affectedRows > 0;
 

@@ -61,7 +61,7 @@
 				Data.Name = Model.Name;
 				Data.UpdateDate = DateTime.Now;
 
-				await UnitOfWork.JobPostingApply.InsertAsync(Data);
+				await UnitOfWork.JobPostingApply.UpdateAsync(Data);
 				var affectedRows = await UnitOfWork.SaveChangesAsync();
 				var success = affectedRows > 0;
 

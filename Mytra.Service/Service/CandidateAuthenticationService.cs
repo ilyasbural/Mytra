@@ -64,7 +64,7 @@
 				Data = Collection.SingleOrDefault()!;
 				Data.UpdateDate = DateTime.Now;
 
-				await UnitOfWork.CandidateAuthentication.InsertAsync(Data);
+				await UnitOfWork.CandidateAuthentication.UpdateAsync(Data);
 				var affectedRows = await UnitOfWork.SaveChangesAsync();
 				var success = affectedRows > 0;
 

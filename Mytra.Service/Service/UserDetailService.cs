@@ -62,7 +62,7 @@
 				Data.Name = Model.Name;
 				Data.UpdateDate = DateTime.Now;
 
-				await UnitOfWork.UserDetail.InsertAsync(Data);
+				await UnitOfWork.UserDetail.UpdateAsync(Data);
 				var affectedRows = await UnitOfWork.SaveChangesAsync();
 				var success = affectedRows > 0;
 

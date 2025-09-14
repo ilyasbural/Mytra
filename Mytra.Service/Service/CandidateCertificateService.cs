@@ -61,7 +61,7 @@
 				Data.Name = Model.Name;
 				Data.UpdateDate = DateTime.Now;
 
-				await UnitOfWork.CandidateCertificate.InsertAsync(Data);
+				await UnitOfWork.CandidateCertificate.UpdateAsync(Data);
 				var affectedRows = await UnitOfWork.SaveChangesAsync();
 				var success = affectedRows > 0;
 

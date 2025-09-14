@@ -58,11 +58,10 @@
 				if (Collection == null) return DataService<CandidateSettings>.FailureResult("Kayıt bulunamadı");
 
 				Data = Collection.SingleOrDefault()!;
-				//Data = Mapper.Map(model, Data);
 				Data.Name = Model.Name;
 				Data.UpdateDate = DateTime.Now;
 
-				await UnitOfWork.CandidateSettings.InsertAsync(Data);
+				await UnitOfWork.CandidateSettings.UpdateAsync(Data);
 				var affectedRows = await UnitOfWork.SaveChangesAsync();
 				var success = affectedRows > 0;
 

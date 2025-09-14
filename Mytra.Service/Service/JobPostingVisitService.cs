@@ -36,7 +36,7 @@
 						"Validasyon hatası");
 				}
 
-				await UnitOfWork.JobPostingVisit.InsertAsync(Data);
+				await UnitOfWork.JobPostingVisit.UpdateAsync(Data);
 				var affectedRows = await UnitOfWork.SaveChangesAsync();
 				var success = affectedRows > 0;
 
