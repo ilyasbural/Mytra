@@ -35,10 +35,10 @@ else
             {
                 <tr>
                     <td>@ManagerDetail.Id</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>@ManagerDetail.Name</td>
+                    <td>@ManagerDetail.RegisterDate</td>
+                    <td>@ManagerDetail.UpdateDate</td>
+                    <td>@ManagerDetail.IsActive</td>
                     <td></td>
                     <td>
                         <button class="btn btn-info btn-sm" @onclick="() => NavigateToDetail(ManagerDetail.Id)">Detay</button>

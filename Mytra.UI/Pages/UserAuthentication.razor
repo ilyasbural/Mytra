@@ -35,10 +35,10 @@ else
             {
                 <tr>
                     <td>@UserAuthentication.Id</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>@UserAuthentication.Name</td>
+                    <td>@UserAuthentication.RegisterDate</td>
+                    <td>@UserAuthentication.UpdateDate</td>
+                    <td>@UserAuthentication.IsActive</td>
                     <td></td>
                     <td>
                         <button class="btn btn-info btn-sm" @onclick="() => NavigateToDetail(UserAuthentication.Id)">Detay</button>
