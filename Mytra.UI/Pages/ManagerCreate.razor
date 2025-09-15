@@ -1,29 +1,60 @@
 ﻿@page "/managercreate"
 @inject HttpClient Http
+@inject NavigationManager NavManager
 
 <h3>ManagerCreate</h3>
+
+@if (Model == null)
+{
+    <p>Yükleniyor...</p>
+}
+else
+{
+    <EditForm Model="Model" OnValidSubmit="HandleValidSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        @*  <div class="mb-3">
+            <label for="refreshtoken">RefreshToken:</label>
+            <InputText id="refreshtoken" @bind-Value="Model.RefreshToken" class="form-control" />
+        </div> *@
+
+        @*  <div class="mb-3">
+            <label for="expiredate">ExpireDate:</label>
+            <InputDate id="expiredate" @bind-Value="Model.RefreshTokenExpireTime" class="form-control" />
+        </div> *@
+
+        <button type="submit" class="btn btn-primary">Kaydet</button>
+    </EditForm>
+}
+
 @* <input placeholder="İsim" @bind="newPerson.Name" />
 <input placeholder="Yaş" type="number" @bind="newPerson.Age" /> *@
-<button @onclick="Save">Kaydet</button>
-<p>@Message</p>
+@* <button @onclick="Save">Kaydet</button>
+<p>@Message</p> *@
 
 @code
 {
-    String Message = String.Empty;
-    ServiceResponse<ManagerResponse>? Response { get; set; }
-    ManagerInsert Manager = new ManagerInsert();
+    private ServiceResponse<ManagerResponse>? Response { get; set; }
+    private Common.ManagerInsert Model { get; set; } = new Common.ManagerInsert();
 
-    private async Task Save()
+    // private async Task Save()
+    // {
+    //     HttpResponseMessage httpResponse = await Http.PostAsJsonAsync("https://localhost:7046/api/manager", Manager);
+
+    //     if (httpResponse.IsSuccessStatusCode)
+    //     {
+    //         Response = await httpResponse.Content.ReadFromJsonAsync<ServiceResponse<ManagerResponse>>();
+
+    //         if (Response != null && Response.Success) Message = "Kayıt başarıyla eklendi!";
+    //         else Message = "Kayıt başarısız oldu!";
+    //     }
+    //     else Message = $"API hata döndü: {httpResponse.StatusCode}";
+    // }
+
+    private async Task HandleValidSubmit()
     {
-        HttpResponseMessage httpResponse = await Http.PostAsJsonAsync("https://localhost:7046/api/manager", Manager);
-
-        if (httpResponse.IsSuccessStatusCode)
-        {
-            Response = await httpResponse.Content.ReadFromJsonAsync<ServiceResponse<ManagerResponse>>();
-
-            if (Response != null && Response.Success) Message = "Kayıt başarıyla eklendi!";
-            else Message = "Kayıt başarısız oldu!";
-        }
-        else Message = $"API hata döndü: {httpResponse.StatusCode}";
+        HttpResponseMessage Result = await Http.PostAsJsonAsync("https://localhost:7046/api/manager", Model);
+        NavManager.NavigateTo("/manager");
     }
 }

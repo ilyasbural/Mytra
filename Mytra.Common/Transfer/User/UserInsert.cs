@@ -2,5 +2,6 @@
 {
 	public class UserInsert
 	{
+		public String Email { get; set; } = String.Empty;
 	}
 }
