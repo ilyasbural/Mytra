@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Mytra.DataAccess;
 using Mytra.Service;
+using System;
 using System.Text;
 
 WebApplicationBuilder Builder = WebApplication.CreateBuilder(args);
@@ -68,8 +70,13 @@ Builder.Services.AddCors(Options =>
 		Builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
 	}));
 
-Builder.Services.AddDbContext<MytraContext>(Options =>
-	Options.UseSqlServer(Configuration.GetConnectionString("ConnectionStrings")));
+//Builder.Services.AddDbContext<MytraContext>(Options =>
+//	Options.UseSqlServer(Configuration.GetConnectionString("ConnectionStrings")));
+
+Builder.Services.AddDbContext<MytraContext>(options =>
+	options.UseSqlServer(
+		Configuration.GetConnectionString("ConnectionStrings"),
+		b => b.MigrationsAssembly("Mytra")));
 
 var App = Builder.Build();
 

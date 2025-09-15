@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Mytra.DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class Initlal : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -362,7 +362,7 @@ namespace Mytra.DataAccess.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "NVARCHAR(100)", nullable: true),
+                    Email = table.Column<string>(type: "VARCHAR(100)", nullable: false),
                     RegisterDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     IsActive = table.Column<bool>(type: "BIT", nullable: false)
@@ -377,7 +377,6 @@ namespace Mytra.DataAccess.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "NVARCHAR(100)", nullable: true),
                     RegisterDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     IsActive = table.Column<bool>(type: "BIT", nullable: false)

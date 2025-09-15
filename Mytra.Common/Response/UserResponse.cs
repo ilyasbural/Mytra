@@ -2,7 +2,7 @@
 {
 	public class UserResponse : Response<UserResponse>
 	{
-		public String Name { get; set; } = String.Empty;
+		public String Email { get; set; } = String.Empty;
 		public UserResponse() { }
 	}
 }

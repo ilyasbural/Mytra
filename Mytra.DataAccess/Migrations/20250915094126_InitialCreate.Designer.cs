@@ -12,15 +12,15 @@ using Mytra.DataAccess;
 namespace Mytra.DataAccess.Migrations
 {
     [DbContext(typeof(MytraContext))]
-    [Migration("20250902124745_Initlal")]
-    partial class Initlal
+    [Migration("20250915094126_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.8")
+                .HasAnnotation("ProductVersion", "9.0.9")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -39,7 +39,7 @@ namespace Mytra.DataAccess.Migrations
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("BIT")
-                        .HasColumnOrder(6);
+                        .HasColumnOrder(5);
 
                     b.Property<string>("Password")
                         .IsRequired()
@@ -48,11 +48,11 @@ namespace Mytra.DataAccess.Migrations
 
                     b.Property<DateTime>("RegisterDate")
                         .HasColumnType("DATETIME")
-                        .HasColumnOrder(4);
+                        .HasColumnOrder(3);
 
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("DATETIME")
-                        .HasColumnOrder(5);
+                        .HasColumnOrder(4);
 
                     b.HasKey("Id");
 
@@ -720,13 +720,14 @@ namespace Mytra.DataAccess.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnOrder(0);
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(100)")
+                        .HasColumnOrder(1);
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("BIT")
                         .HasColumnOrder(4);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("NVARCHAR(100)")
-                        .HasColumnOrder(1);
 
                     b.Property<DateTime>("RegisterDate")
                         .HasColumnType("DATETIME")
@@ -751,10 +752,6 @@ namespace Mytra.DataAccess.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("BIT")
                         .HasColumnOrder(4);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("NVARCHAR(100)")
-                        .HasColumnOrder(1);
 
                     b.Property<DateTime>("RegisterDate")
                         .HasColumnType("DATETIME")

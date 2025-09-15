@@ -16,8 +16,8 @@ else
         <ValidationSummary />
 
         <div class="mb-3">
-            <label for="name">İsim:</label>
-            <InputText id="name" @bind-Value="Model.Name" class="form-control" />
+            <label for="refreshtoken">İsim:</label>
+            <InputText id="refreshtoken" @bind-Value="Model.RefreshToken" class="form-control" />
         </div>
 
         <button type="submit" class="btn btn-primary">Kaydet</button>
@@ -42,7 +42,8 @@ else
             Model = new Common.UserAuthenticationUpdate
             {
                 Id = Response.Data.Id,
-                Name = Response.Data.Name
+                RefreshToken = Response.Data.RefreshToken,
+                RefreshTokenExpireTime = Response.Data.RefreshTokenExpireTime
             };
         }
     }

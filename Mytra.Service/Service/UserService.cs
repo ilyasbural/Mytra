@@ -58,6 +58,7 @@
 				if (Collection == null) return DataService<User>.FailureResult("Kayıt bulunamadı");
 
 				Data = Collection.SingleOrDefault()!;
+				Data.Email = Model.Email;
 				Data.UpdateDate = DateTime.Now;
 
 				await UnitOfWork.User.UpdateAsync(Data);

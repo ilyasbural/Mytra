@@ -58,6 +58,8 @@
 				if (Collection == null) return DataService<UserAuthentication>.FailureResult("Kayıt bulunamadı");
 
 				Data = Collection.SingleOrDefault()!;
+				Data.RefreshToken = Model.RefreshToken;
+				Data.RefreshTokenExpireTime = DateTime.Now;
 				Data.UpdateDate = DateTime.Now;
 
 				await UnitOfWork.UserAuthentication.UpdateAsync(Data);

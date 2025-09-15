@@ -2,7 +2,8 @@
 {
 	public class UserAuthenticationResponse : Response<UserAuthenticationResponse>
 	{
-		public String Name { get; set; } = String.Empty;
+		public String RefreshToken { get; set; } = String.Empty;
+		public DateTime RefreshTokenExpireTime { get; set; }
 		public UserAuthenticationResponse() { }
 	}
 }

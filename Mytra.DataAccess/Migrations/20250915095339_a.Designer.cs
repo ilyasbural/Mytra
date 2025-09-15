@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Mytra.DataAccess;
 
@@ -11,9 +12,11 @@ using Mytra.DataAccess;
 namespace Mytra.DataAccess.Migrations
 {
     [DbContext(typeof(MytraContext))]
-    partial class MytraContextModelSnapshot : ModelSnapshot
+    [Migration("20250915095339_a")]
+    partial class a
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
