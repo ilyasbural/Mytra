@@ -24,7 +24,6 @@
 			{
 				Data = Mapper.Map<UserDetail>(Model);
 				Data.Id = Guid.NewGuid();
-				Data.Name = "dsfsd";
 				Data.RegisterDate = DateTime.Now;
 				Data.UpdateDate = DateTime.Now;
 				Data.IsActive = true;

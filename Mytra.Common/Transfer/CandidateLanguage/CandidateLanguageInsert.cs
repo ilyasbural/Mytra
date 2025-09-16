@@ -2,5 +2,6 @@
 {
 	public class CandidateLanguageInsert
 	{
+		public String Name { get; set; } = String.Empty;
 	}
 }

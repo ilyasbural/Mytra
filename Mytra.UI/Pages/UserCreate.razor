@@ -4,24 +4,17 @@
 
 <h3>UserCreate</h3>
 
-@if (Model == null)
-{
-    <p>Yükleniyor...</p>
-}
-else
-{
-    <EditForm Model="Model" OnValidSubmit="HandleValidSubmit">
-        <DataAnnotationsValidator />
-        <ValidationSummary />
+<EditForm Model="Model" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
 
-        <div class="mb-3">
-            <label for="email">Email:</label>
-            <InputText id="email" @bind-Value="Model.Email" class="form-control" />
-        </div>
+    <div class="mb-3">
+        <label for="email">Email:</label>
+        <InputText id="email" @bind-Value="Model.Email" class="form-control" />
+    </div>
 
-        <button type="submit" class="btn btn-primary">Kaydet</button>
-    </EditForm>
-}
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+</EditForm>
 
 @code
 {

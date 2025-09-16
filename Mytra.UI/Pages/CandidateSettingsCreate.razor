@@ -55,6 +55,10 @@ else
     private async Task HandleValidSubmit()
     {
         HttpResponseMessage Result = await Http.PostAsJsonAsync("https://localhost:7046/api/candidatesettings", Model);
-        NavManager.NavigateTo("/candidatesettings");
+        if (Result.IsSuccessStatusCode)
+        {
+            Response = await Result.Content.ReadFromJsonAsync<ServiceResponse<CandidateSettingsResponse>>();
+            if (Response != null && Response.Success) NavManager.NavigateTo("/candidatesettings");
+        }
     }
 }
