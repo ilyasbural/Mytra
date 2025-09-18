@@ -19,7 +19,10 @@
 @code
 {
     private ServiceResponse<CandidateAuthenticationResponse>? Response { get; set; }
-    private Common.CandidateAuthenticationInsert Model { get; set; } = new Common.CandidateAuthenticationInsert();
+    private Common.CandidateAuthenticationInsert Model { get; set; } = new Common.CandidateAuthenticationInsert()
+    {
+        CandidateId = new Guid("75DC3842-4D52-4685-B163-D6A90E12635F")
+    };
 
     private async Task HandleValidSubmit()
     {

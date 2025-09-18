@@ -4,40 +4,17 @@
 
 <h3>CandidateLanguageCreate</h3>
 
-@if (Model == null)
-{
-    <p>Yükleniyor...</p>
-}
-else
-{
-    <EditForm Model="Model" OnValidSubmit="HandleValidSubmit">
-        <DataAnnotationsValidator />
-        <ValidationSummary />
+<EditForm Model="Model" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
 
-        <div class="mb-3">
-            <label for="name">Adı:</label>
-            <InputText id="name" @bind-Value="Model.Name" class="form-control" />
-        </div>
+    <div class="mb-3">
+        <label for="name">Adı:</label>
+        <InputText id="name" @bind-Value="Model.Name" class="form-control" />
+    </div>
 
-        @*  <div class="mb-3">
-            <label for="refreshtoken">RefreshToken:</label>
-            <InputText id="refreshtoken" @bind-Value="Model.RefreshToken" class="form-control" />
-        </div> *@
-
-        @*  <div class="mb-3">
-            <label for="expiredate">ExpireDate:</label>
-            <InputDate id="expiredate" @bind-Value="Model.RefreshTokenExpireTime" class="form-control" />
-        </div> *@
-
-        <button type="submit" class="btn btn-primary">Kaydet</button>
-    </EditForm>
-}
-
-
-@* <input placeholder="İsim" @bind="newPerson.Name" />
-<input placeholder="Yaş" type="number" @bind="newPerson.Age" /> *@
-@* <button @onclick="Save">Kaydet</button>
-<p>@Message</p> *@
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+</EditForm>
 
 @code
 {

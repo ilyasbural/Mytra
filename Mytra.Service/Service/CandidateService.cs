@@ -32,8 +32,7 @@
 				if (!validationResult.IsValid)
 				{
 					return DataService<Candidate>.FailureResult(
-						validationResult.Errors.Select(e => e.ErrorMessage).ToList(),
-						"Validasyon hatası");
+						validationResult.Errors.Select(e => e.ErrorMessage).ToList(), "");
 				}
 
 				await UnitOfWork.Candidate.InsertAsync(Data);
@@ -41,12 +40,12 @@
 				var success = affectedRows > 0;
 
 				return success
-					? DataService<Candidate>.SuccessResult(Data, "Record has been success")
-					: DataService<Candidate>.FailureResult("fail");
+					? DataService<Candidate>.SuccessResult(Data, "")
+					: DataService<Candidate>.FailureResult("");
 			}
 			catch (Exception ex)
 			{
-				return DataService<Candidate>.FailureResult(ex.Message, "some error");
+				return DataService<Candidate>.FailureResult(ex.Message, "");
 			}
 		}
 
