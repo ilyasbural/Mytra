@@ -14,6 +14,11 @@ else
         <DataAnnotationsValidator />
         <ValidationSummary />
 
+        <div class="mb-3">
+            <label for="name">Adı:</label>
+            <InputText id="name" @bind-Value="Model.Name" class="form-control" />
+        </div>
+
         @*  <div class="mb-3">
             <label for="refreshtoken">RefreshToken:</label>
             <InputText id="refreshtoken" @bind-Value="Model.RefreshToken" class="form-control" />
@@ -38,20 +43,6 @@ else
 {
     private ServiceResponse<CollegeResponse>? Response { get; set; }
     private Common.CollegeInsert Model { get; set; } = new Common.CollegeInsert();
-
-    // private async Task Save()
-    // {
-    //     HttpResponseMessage httpResponse = await Http.PostAsJsonAsync("https://localhost:7046/api/college", College);
-
-    //     if (httpResponse.IsSuccessStatusCode)
-    //     {
-    //         Response = await httpResponse.Content.ReadFromJsonAsync<ServiceResponse<CollegeResponse>>();
-
-    //         if (Response != null && Response.Success) Message = "Kayıt başarıyla eklendi!";
-    //         else Message = "Kayıt başarısız oldu!";
-    //     }
-    //     else Message = $"API hata döndü: {httpResponse.StatusCode}";
-    // }
 
     private async Task HandleValidSubmit()
     {
