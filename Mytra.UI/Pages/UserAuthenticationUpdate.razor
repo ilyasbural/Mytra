@@ -5,25 +5,18 @@
 <PageTitle>UserAuthentication - @Id</PageTitle>
 <h3>UserAuthentication - @Id</h3>
 
-@if (Model == null)
-{
-    <p>Yükleniyor...</p>
-}
-else
-{
-    <EditForm Model="Model" OnValidSubmit="HandleValidSubmit">
-        <DataAnnotationsValidator />
-        <ValidationSummary />
+<EditForm Model="Model" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
 
-        <div class="mb-3">
-            <label for="refreshtoken">İsim:</label>
-            <InputText id="refreshtoken" @bind-Value="Model.RefreshToken" class="form-control" />
-        </div>
+    <div class="mb-3">
+        <label for="refreshtoken">İsim:</label>
+        <InputText id="refreshtoken" @bind-Value="Model.RefreshToken" class="form-control" />
+    </div>
 
-        <button type="submit" class="btn btn-primary">Kaydet</button>
+    <button type="submit" class="btn btn-primary">Kaydet</button>
 
-    </EditForm>
-}
+</EditForm>
 
 @code
 {
