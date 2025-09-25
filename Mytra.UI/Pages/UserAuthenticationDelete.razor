@@ -1,0 +1,18 @@
+﻿@page "/userauthenticationdelete/{id:guid}"
+@inject HttpClient Http
+
+<PageTitle>UserAuthentication - @Id</PageTitle>
+<h3>UserAuthentication - @Id</h3>
+
+@code
+{
+    [Parameter]
+    public Guid Id { get; set; }
+    private ServiceResponse<UserAuthenticationResponse>? Response { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Response = await Http.DeleteFromJsonAsync<ServiceResponse<UserAuthenticationResponse>>
+        ($"https://localhost:7046/api/userauthentication/{Id}");
+    }
+}

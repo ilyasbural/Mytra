@@ -1,0 +1,33 @@
+﻿@page "/usersettingscreate"
+@inject HttpClient Http
+@inject NavigationManager NavManager
+
+<h3>UserSettingsCreate</h3>
+
+<EditForm Model="Model" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="mb-3">
+        <label for="name">Adı</label>
+        <InputText id="name" @bind-Value="Model.Name" class="form-control"></InputText>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+</EditForm>
+
+@code
+{
+    private ServiceResponse<UserSettingsResponse>? Response { get; set; }
+    private Utilize.UserSettingsInsert Model { get; set; } = new Utilize.UserSettingsInsert();
+
+    private async Task HandleValidSubmit()
+    {
+        HttpResponseMessage Result = await Http.PostAsJsonAsync("https://localhost:7046/api/usersettings", Model);
+        if (Result.IsSuccessStatusCode)
+        {
+            Response = await Result.Content.ReadFromJsonAsync<ServiceResponse<UserSettingsResponse>>();
+            if (Response != null && Response.Success) NavManager.NavigateTo("/usersettings");
+        }
+    }
+}

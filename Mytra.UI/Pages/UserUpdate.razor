@@ -1,0 +1,48 @@
+﻿@page "/userupdate/{id:guid}"
+@inject HttpClient Http
+@inject NavigationManager NavManager
+
+<PageTitle>UserUpdate - @Id</PageTitle>
+<h3>UserUpdate - @Id</h3>
+
+<EditForm Model="Model" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="mb-3">
+        <label for="email">Email:</label>
+        <InputText id="email" @bind-Value="Model.Email" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+
+</EditForm>
+
+@code
+{
+    [Parameter]
+    public Guid Id { get; set; }
+    private ServiceResponse<UserResponse>? Response { get; set; }
+    private Utilize.UserUpdate Model { get; set; } = new Utilize.UserUpdate();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Response = await Http.GetFromJsonAsync<ServiceResponse<UserResponse>>
+        ($"https://localhost:7046/api/usersingle?id={Id}");
+
+        if (Response != null && Response.Data != null)
+        {
+            Model = new Utilize.UserUpdate
+            {
+                Id = Response.Data.Id,
+                Email = Response.Data.Email
+            };
+        }
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        HttpResponseMessage Result = await Http.PutAsJsonAsync("https://localhost:7046/api/user", Model);
+        NavManager.NavigateTo("/user");
+    }
+}

@@ -1,0 +1,27 @@
+﻿@page "/userdetailinfo/{id:guid}"
+@inject HttpClient Http
+
+<PageTitle>UserDetail - @Id</PageTitle>
+<h3>UserDetail - @Id</h3>
+
+@code
+{
+    [Parameter]
+    public Guid Id { get; set; }
+    private ServiceResponse<UserDetailResponse>? Response { get; set; }
+    private Utilize.UserDetailSelectSingle Model { get; set; } = new Utilize.UserDetailSelectSingle();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Response = await Http.GetFromJsonAsync<ServiceResponse<UserDetailResponse>>
+        ($"https://localhost:7046/api/userdetailsingle?id={Id}");
+
+        if (Response != null && Response.Data != null)
+        {
+            Model = new Utilize.UserDetailSelectSingle
+            {
+                Id = Response.Data.Id
+            };
+        }
+    }
+}

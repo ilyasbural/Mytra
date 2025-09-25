@@ -1,0 +1,82 @@
+﻿@page "/userdetail"
+@inject HttpClient Http
+@inject NavigationManager Navigation
+
+<PageTitle>UserDetail</PageTitle>
+<h3>UserDetail</h3>
+
+@if (Response == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <tbody>
+            <tr>
+                <td><button class="btn btn-info btn-sm" @onclick="() => NavigateToNew()">Ekle</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>REGISTER DATE</th>
+                <th>UPDATE DATE</th>
+                <th>IS ACTIVE</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var UserDetail in Response.DataList)
+            {
+                <tr>
+                    <td>@UserDetail.Id</td>
+                    <td>@UserDetail.Name</td>
+                    <td>@UserDetail.RegisterDate</td>
+                    <td>@UserDetail.UpdateDate</td>
+                    <td>@UserDetail.IsActive</td>
+                    <td></td>
+                    <td>
+                        <button class="btn btn-info btn-sm" @onclick="() => NavigateToDetail(UserDetail.Id)">Detay</button>
+                        <button class="btn btn-warning btn-sm" @onclick="() => NavigateToEdit(UserDetail.Id)">Düzenle</button>
+                        <button class="btn btn-danger btn-sm" @onclick="() => NavigateToDelete(UserDetail.Id)">Sil</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code
+{
+    private ServiceResponse<UserDetailResponse>? Response { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Response = await Http.GetFromJsonAsync<ServiceResponse<UserDetailResponse>>("https://localhost:7046/api/userdetail");
+    }
+
+    private void NavigateToNew()
+    {
+        Navigation.NavigateTo($"/userdetailcreate");
+    }
+
+    private void NavigateToDetail(Guid id)
+    {
+        Navigation.NavigateTo($"/userdetailinfo/{id}");
+    }
+
+    private void NavigateToEdit(Guid id)
+    {
+        Navigation.NavigateTo($"/userdetailupdate/{id}");
+    }
+
+    private void NavigateToDelete(Guid id)
+    {
+        Navigation.NavigateTo($"/userdetaildelete/{id}");
+    }
+}

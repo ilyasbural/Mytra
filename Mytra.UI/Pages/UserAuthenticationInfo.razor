@@ -1,0 +1,27 @@
+﻿@page "/userauthenticationinfo/{id:guid}"
+@inject HttpClient Http
+
+<PageTitle>UserAuthentication - @Id</PageTitle>
+<h3>UserAuthentication - @Id</h3>
+
+@code
+{
+    [Parameter]
+    public Guid Id { get; set; }
+    private ServiceResponse<UserAuthenticationResponse>? Response { get; set; }
+    private UserAuthenticationSelectSingle Model { get; set; } = new UserAuthenticationSelectSingle();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Response = await Http.GetFromJsonAsync<ServiceResponse<UserAuthenticationResponse>>
+        ($"https://localhost:7046/api/userauthenticationsingle?id={Id}");
+
+        if (Response != null && Response.Data != null)
+        {
+            Model = new UserAuthenticationSelectSingle
+            {
+                Id = Response.Data.Id
+            };
+        }
+    }
+}

@@ -1,0 +1,45 @@
+﻿@page "/usercreate"
+@inject HttpClient Http
+@inject NavigationManager NavManager
+
+<h3>UserCreate</h3>
+
+<EditForm Model="Model" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="mb-3">
+        <label for="email">Email:</label>
+        <InputText id="email" @bind-Value="Model.Email" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+</EditForm>
+
+@code
+{
+    private ServiceResponse<UserResponse>? Response { get; set; }
+    private Utilize.UserInsert Model { get; set; } = new Utilize.UserInsert();
+
+    private async Task HandleValidSubmit()
+    {
+        HttpResponseMessage Result = await Http.PostAsJsonAsync("https://localhost:7046/api/user", Model);
+        if (Result.IsSuccessStatusCode)
+        {
+            Response = await Result.Content.ReadFromJsonAsync<ServiceResponse<UserResponse>>();
+            if (Response != null && Response.Success) NavManager.NavigateTo("/user");
+        }
+    }
+
+    // private async Task Save()
+    // {
+    //     HttpResponseMessage httpResponse = await Http.PostAsJsonAsync("https://localhost:7046/api/user", User);
+    //     if (httpResponse.IsSuccessStatusCode)
+    //     {
+    //         Response = await httpResponse.Content.ReadFromJsonAsync<ServiceResponse<UserResponse>>();
+    //         if (Response != null && Response.Success) Message = "Kayıt başarıyla eklendi!";
+    //         else Message = "Kayıt başarısız oldu!";
+    //     }
+    //     else Message = $"API hata döndü: {httpResponse.StatusCode}";
+    // }
+}
