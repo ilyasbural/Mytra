@@ -1,0 +1,24 @@
+Bu kısımda UseSqlServer kısmında kendi veritabanı bağlantı dizesini (connection string) kullanman gerekir.
+
+Migrations (Göç) Oluşturma: Şimdi, veritabanını oluşturmak için bir migration (göç) oluşturman gerekiyor. Migration, modelindeki değişiklikleri veritabanına yansıtır.
+
+Package Manager Console üzerinden şu komutu çalıştırarak migration oluşturabilirsin:
+
+bash
+Copy
+Add-Migration InitialCreate
+Bu komut, Migrations klasörüne bir sınıf dosyası oluşturacak. Bu sınıf, veritabanındaki tabloları oluşturmak için gereken SQL kodlarını içerecek.
+
+Veritabanını Güncelleme: Migration’ı uygulayarak veritabanını oluşturmak için şu komutu kullanabilirsin:
+
+bash
+Copy
+Update-Database
+Bu komut, veritabanındaki tabloları modeline göre oluşturacak.
+
+
+# Migration ekleme
+Add-Migration InitialCreate -Project Mytra.DataAccess -StartupProject Mytra.WebApi
+
+# Veritabanı güncelleme
+Update-Database -Project Mytra.DataAccess -StartupProject Mytra.WebApi
