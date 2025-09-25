@@ -5,3 +5,5 @@
 /.vs
 /Mytra.Core/bin/Debug/net9.0
 /Mytra.Core/obj
+/Mytra.DataAccess/bin/Debug/net9.0
+/Mytra.DataAccess/obj
