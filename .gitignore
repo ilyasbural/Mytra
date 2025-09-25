@@ -13,3 +13,6 @@
 /Mytra.Presentation/obj
 /Mytra.Utilize/bin/Debug/net9.0
 /Mytra.Utilize/obj
+/Mytra.WebApi/bin/Debug/net9.0
+/Mytra.WebApi/obj
+/Mytra.slnLaunch.user
