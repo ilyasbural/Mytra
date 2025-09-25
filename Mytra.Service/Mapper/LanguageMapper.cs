@@ -4,11 +4,11 @@
 	{
 		public LanguageMapper()
 		{
-			CreateMap<Common.LanguageInsert, Core.Language>().ReverseMap();
-			CreateMap<Common.LanguageUpdate, Core.Language>().ReverseMap();
-			CreateMap<Common.LanguageSelect, Core.Language>().ReverseMap();
-			CreateMap<Common.LanguageSelectSingle, Core.Language>().ReverseMap();
-			CreateMap<Common.LanguageResponse, Core.Language>().ReverseMap();
+			CreateMap<Utilize.LanguageInsert, Core.Language>().ReverseMap();
+			CreateMap<Utilize.LanguageUpdate, Core.Language>().ReverseMap();
+			CreateMap<Utilize.LanguageSelect, Core.Language>().ReverseMap();
+			CreateMap<Utilize.LanguageSelectSingle, Core.Language>().ReverseMap();
+			CreateMap<Utilize.LanguageResponse, Core.Language>().ReverseMap();
 		}
 	}
 }

@@ -4,11 +4,11 @@
 	{
 		public CandidateReferanceMapper()
 		{
-			CreateMap<Common.CandidateReferanceInsert, Core.CandidateReferance>().ReverseMap();
-			CreateMap<Common.CandidateReferanceUpdate, Core.CandidateReferance>().ReverseMap();
-			CreateMap<Common.CandidateReferanceSelect, Core.CandidateReferance>().ReverseMap();
-			CreateMap<Common.CandidateReferanceSelectSingle, Core.CandidateReferance>().ReverseMap();
-			CreateMap<Common.CandidateReferanceResponse, Core.CandidateReferance>().ReverseMap();
+			CreateMap<Utilize.CandidateReferanceInsert, Core.CandidateReferance>().ReverseMap();
+			CreateMap<Utilize.CandidateReferanceUpdate, Core.CandidateReferance>().ReverseMap();
+			CreateMap<Utilize.CandidateReferanceSelect, Core.CandidateReferance>().ReverseMap();
+			CreateMap<Utilize.CandidateReferanceSelectSingle, Core.CandidateReferance>().ReverseMap();
+			CreateMap<Utilize.CandidateReferanceResponse, Core.CandidateReferance>().ReverseMap();
 		}
 	}
 }

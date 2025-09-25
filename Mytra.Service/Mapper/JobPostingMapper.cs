@@ -4,11 +4,11 @@
 	{
 		public JobPostingMapper()
 		{
-			CreateMap<Common.JobPostingInsert, Core.JobPosting>().ReverseMap();
-			CreateMap<Common.JobPostingUpdate, Core.JobPosting>().ReverseMap();
-			CreateMap<Common.JobPostingSelect, Core.JobPosting>().ReverseMap();
-			CreateMap<Common.JobPostingSelectSingle, Core.JobPosting>().ReverseMap();
-			CreateMap<Common.JobPostingResponse, Core.JobPosting>().ReverseMap();
+			CreateMap<Utilize.JobPostingInsert, Core.JobPosting>().ReverseMap();
+			CreateMap<Utilize.JobPostingUpdate, Core.JobPosting>().ReverseMap();
+			CreateMap<Utilize.JobPostingSelect, Core.JobPosting>().ReverseMap();
+			CreateMap<Utilize.JobPostingSelectSingle, Core.JobPosting>().ReverseMap();
+			CreateMap<Utilize.JobPostingResponse, Core.JobPosting>().ReverseMap();
 		}
 	}
 }

@@ -4,11 +4,11 @@
 	{
 		public CollegeMapper()
 		{
-			CreateMap<Common.CollegeInsert, Core.College>().ReverseMap();
-			CreateMap<Common.CollegeUpdate, Core.College>().ReverseMap();
-			CreateMap<Common.CollegeSelect, Core.College>().ReverseMap();
-			CreateMap<Common.CollegeSelectSingle, Core.College>().ReverseMap();
-			CreateMap<Common.CollegeResponse, Core.College>().ReverseMap();
+			CreateMap<Utilize.CollegeInsert, Core.College>().ReverseMap();
+			CreateMap<Utilize.CollegeUpdate, Core.College>().ReverseMap();
+			CreateMap<Utilize.CollegeSelect, Core.College>().ReverseMap();
+			CreateMap<Utilize.CollegeSelectSingle, Core.College>().ReverseMap();
+			CreateMap<Utilize.CollegeResponse, Core.College>().ReverseMap();
 		}
 	}
 }

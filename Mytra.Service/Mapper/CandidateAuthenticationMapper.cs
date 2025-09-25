@@ -4,11 +4,11 @@
 	{
 		public CandidateAuthenticationMapper()
 		{
-			CreateMap<Common.CandidateAuthenticationInsert, Core.CandidateAuthentication>().ReverseMap();
-			CreateMap<Common.CandidateAuthenticationUpdate, Core.CandidateAuthentication>().ReverseMap();
-			CreateMap<Common.CandidateAuthenticationSelect, Core.CandidateAuthentication>().ReverseMap();
-			CreateMap<Common.CandidateAuthenticationSelectSingle, Core.CandidateAuthentication>().ReverseMap();
-			CreateMap<Common.CandidateAuthenticationResponse, Core.CandidateAuthentication>().ReverseMap();
+			CreateMap<Utilize.CandidateAuthenticationInsert, Core.CandidateAuthentication>().ReverseMap();
+			CreateMap<Utilize.CandidateAuthenticationUpdate, Core.CandidateAuthentication>().ReverseMap();
+			CreateMap<Utilize.CandidateAuthenticationSelect, Core.CandidateAuthentication>().ReverseMap();
+			CreateMap<Utilize.CandidateAuthenticationSelectSingle, Core.CandidateAuthentication>().ReverseMap();
+			CreateMap<Utilize.CandidateAuthenticationResponse, Core.CandidateAuthentication>().ReverseMap();
 		}
 	}
 }

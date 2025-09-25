@@ -4,11 +4,11 @@
 	{
 		public CandidateMapper()
 		{
-			CreateMap<Common.CandidateInsert, Core.Candidate>().ReverseMap();
-			CreateMap<Common.CandidateUpdate, Core.Candidate>().ReverseMap();
-			CreateMap<Common.CandidateSelect, Core.Candidate>().ReverseMap();
-			CreateMap<Common.CandidateSelectSingle, Core.Candidate>().ReverseMap();
-			CreateMap<Common.CandidateResponse, Core.Candidate>().ReverseMap();
+			CreateMap<Utilize.CandidateInsert, Core.Candidate>().ReverseMap();
+			CreateMap<Utilize.CandidateUpdate, Core.Candidate>().ReverseMap();
+			CreateMap<Utilize.CandidateSelect, Core.Candidate>().ReverseMap();
+			CreateMap<Utilize.CandidateSelectSingle, Core.Candidate>().ReverseMap();
+			CreateMap<Utilize.CandidateResponse, Core.Candidate>().ReverseMap();
 		}
 	}
 }
