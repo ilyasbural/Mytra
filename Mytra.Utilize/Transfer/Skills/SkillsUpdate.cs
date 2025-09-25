@@ -1,4 +1,4 @@
-﻿namespace Mytra.Common
+﻿namespace Mytra.Utilize
 {
 	public class SkillsUpdate
 	{
