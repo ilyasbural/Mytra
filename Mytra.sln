@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mytra.Presentation", "Mytra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mytra.Utilize", "Mytra.Utilize\Mytra.Utilize.csproj", "{DD8105E0-A572-40E1-85AA-1C9B63F6F3D7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mytra.WebApi", "Mytra.WebApi\Mytra.WebApi.csproj", "{033C4FE5-9278-4536-987D-9EA93D08AD13}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{DD8105E0-A572-40E1-85AA-1C9B63F6F3D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD8105E0-A572-40E1-85AA-1C9B63F6F3D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD8105E0-A572-40E1-85AA-1C9B63F6F3D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{033C4FE5-9278-4536-987D-9EA93D08AD13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{033C4FE5-9278-4536-987D-9EA93D08AD13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{033C4FE5-9278-4536-987D-9EA93D08AD13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{033C4FE5-9278-4536-987D-9EA93D08AD13}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
