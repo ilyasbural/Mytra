@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mytra.Core", "Mytra.Core\My
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mytra.DataAccess", "Mytra.DataAccess\Mytra.DataAccess.csproj", "{106EBE02-8EBE-4147-96E9-88D76C83B439}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mytra.Service", "Mytra.Service\Mytra.Service.csproj", "{4A36D0BA-F57B-453F-9714-7809BE188BA8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{106EBE02-8EBE-4147-96E9-88D76C83B439}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{106EBE02-8EBE-4147-96E9-88D76C83B439}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{106EBE02-8EBE-4147-96E9-88D76C83B439}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A36D0BA-F57B-453F-9714-7809BE188BA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A36D0BA-F57B-453F-9714-7809BE188BA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A36D0BA-F57B-453F-9714-7809BE188BA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A36D0BA-F57B-453F-9714-7809BE188BA8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
