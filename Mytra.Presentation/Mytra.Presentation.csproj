@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Mytra.Service\Mytra.Service.csproj" />
+    <ProjectReference Include="..\Mytra.Utilize\Mytra.Utilize.csproj" />
   </ItemGroup>
 
 </Project>
