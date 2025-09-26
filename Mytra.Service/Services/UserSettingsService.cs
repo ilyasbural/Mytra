@@ -80,7 +80,7 @@
 			try
 			{
 				Collection = await UnitOfWork.UserSettings.SelectAsync(x => x.Id == Id);
-				if (Collection.SingleOrDefault() == null) return DataService<UserSettings>.FailureResult("Kayıt bulunamadı");
+				if (Collection.SingleOrDefault() == null) return DataService<UserSettings>.FailureResult("");
 
 				Data = Collection.SingleOrDefault()!;
 				await UnitOfWork.UserSettings.DeleteAsync(Data);
@@ -88,12 +88,12 @@
 				var success = affectedRows > 0;
 
 				return Success
-					? DataService<UserSettings>.SuccessResult(Collection.SingleOrDefault()!, "Kayıt silindi")
-					: DataService<UserSettings>.FailureResult("Kayıt silinemedi");
+					? DataService<UserSettings>.SuccessResult(Collection.SingleOrDefault()!, "")
+					: DataService<UserSettings>.FailureResult("");
 			}
 			catch (Exception ex)
 			{
-				return DataService<UserSettings>.FailureResult(ex.Message, "Beklenmeyen hata oluştu");
+				return DataService<UserSettings>.FailureResult(ex.Message, "");
 			}
 		}
 
@@ -102,11 +102,11 @@
 			try
 			{
 				Collection = await UnitOfWork.UserSettings.SelectAsync(x => x.IsActive);
-				return DataService<UserSettings>.SuccessResult(Collection, "Kayıtlar listelendi");
+				return DataService<UserSettings>.SuccessResult(Collection, "");
 			}
 			catch (Exception ex)
 			{
-				return DataService<UserSettings>.FailureResult(ex.Message, "Listeleme hatası");
+				return DataService<UserSettings>.FailureResult(ex.Message, "");
 			}
 		}
 
@@ -115,12 +115,12 @@
 			try
 			{
 				Collection = await UnitOfWork.UserSettings.SelectAsync(x => x.Id == Model.Id && x.IsActive);
-				if (Collection == null) return DataService<UserSettings>.FailureResult("Kayıt bulunamadı");
-				return DataService<UserSettings>.SuccessResult(Collection.SingleOrDefault()!, "Kayıt bulundu");
+				if (Collection == null) return DataService<UserSettings>.FailureResult("");
+				return DataService<UserSettings>.SuccessResult(Collection.SingleOrDefault()!, "");
 			}
 			catch (Exception ex)
 			{
-				return DataService<UserSettings>.FailureResult(ex.Message, "Sorgu hatası");
+				return DataService<UserSettings>.FailureResult(ex.Message, "");
 			}
 		}
 	}

@@ -32,8 +32,7 @@
 				if (!validationResult.IsValid)
 				{
 					return DataService<Manager>.FailureResult(
-						validationResult.Errors.Select(e => e.ErrorMessage).ToList(),
-						"Validasyon hatası");
+						validationResult.Errors.Select(e => e.ErrorMessage).ToList(), "");
 				}
 
 				await UnitOfWork.Manager.InsertAsync(Data);
@@ -41,12 +40,12 @@
 				var success = affectedRows > 0;
 
 				return success
-					? DataService<Manager>.SuccessResult(Data, "Record has been success")
-					: DataService<Manager>.FailureResult("fail");
+					? DataService<Manager>.SuccessResult(Data, "")
+					: DataService<Manager>.FailureResult("");
 			}
 			catch (Exception ex)
 			{
-				return DataService<Manager>.FailureResult(ex.Message, "some error");
+				return DataService<Manager>.FailureResult(ex.Message, "");
 			}
 		}
 
@@ -55,7 +54,7 @@
 			try
 			{
 				Collection = await UnitOfWork.Manager.SelectAsync(x => x.Id == Model.Id);
-				if (Collection == null) return DataService<Manager>.FailureResult("Kayıt bulunamadı");
+				if (Collection == null) return DataService<Manager>.FailureResult("");
 
 				Data = Collection.SingleOrDefault()!;
 				Data.Name = Model.Name;
@@ -66,8 +65,8 @@
 				var success = affectedRows > 0;
 
 				return Success
-					? DataService<Manager>.SuccessResult(Data, "Kayıt güncellendi")
-					: DataService<Manager>.FailureResult("Kayıt güncellenemedi");
+					? DataService<Manager>.SuccessResult(Data, "")
+					: DataService<Manager>.FailureResult("");
 			}
 			catch (Exception ex)
 			{
