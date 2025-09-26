@@ -1,0 +1,33 @@
+﻿@page "/skillscreate"
+@inject HttpClient Http
+@inject NavigationManager NavManager
+
+<h3>SkillsCreate</h3>
+
+<EditForm Model="Model" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="mb-3">
+        <label for="name">Adı:</label>
+        <InputText id="name" @bind-Value="Model.Name" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+</EditForm>
+
+@code
+{
+    private ServiceResponse<SkillsResponse>? Response { get; set; }
+    private Utilize.SkillsInsert Model { get; set; } = new Utilize.SkillsInsert();
+
+    private async Task HandleValidSubmit()
+    {
+        HttpResponseMessage Result = await Http.PostAsJsonAsync("https://localhost:7046/api/skills", Model);
+        if (Result.IsSuccessStatusCode)
+        {
+            Response = await Result.Content.ReadFromJsonAsync<ServiceResponse<SkillsResponse>>();
+            if (Response != null && Response.Success) NavManager.NavigateTo("/skills");
+        }
+    }
+}

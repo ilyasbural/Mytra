@@ -1,0 +1,82 @@
+﻿@page "/managerauthentication"
+@inject HttpClient Http
+@inject NavigationManager Navigation
+
+<PageTitle>ManagerAuthentication</PageTitle>
+<h3>ManagerAuthentication</h3>
+
+@if (Response == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <tbody>
+            <tr>
+                <td><button class="btn btn-info btn-sm" @onclick="() => NavigateToNew()">Ekle</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>REGISTER DATE</th>
+                <th>UPDATE DATE</th>
+                <th>IS ACTIVE</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ManagerAuthentication in Response.DataList)
+            {
+                <tr>
+                    <td>@ManagerAuthentication.Id</td>
+                    <td>@ManagerAuthentication.Name</td>
+                    <td>@ManagerAuthentication.RegisterDate</td>
+                    <td>@ManagerAuthentication.UpdateDate</td>
+                    <td>@ManagerAuthentication.IsActive</td>
+                    <td></td>
+                    <td>
+                        <button class="btn btn-info btn-sm" @onclick="() => NavigateToDetail(ManagerAuthentication.Id)">Detay</button>
+                        <button class="btn btn-warning btn-sm" @onclick="() => NavigateToEdit(ManagerAuthentication.Id)">Düzenle</button>
+                        <button class="btn btn-danger btn-sm" @onclick="() => NavigateToDelete(ManagerAuthentication.Id)">Sil</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code
+{
+    private ServiceResponse<ManagerAuthenticationResponse>? Response { get; set; }
+    
+    protected override async Task OnInitializedAsync()
+    {
+        Response = await Http.GetFromJsonAsync<ServiceResponse<ManagerAuthenticationResponse>>("https://localhost:7046/api/managerauthentication");
+    }
+
+    private void NavigateToNew()
+    {
+        Navigation.NavigateTo($"/managerauthenticationcreate");
+    }
+
+    private void NavigateToDetail(Guid id)
+    {
+        Navigation.NavigateTo($"/managerauthenticationinfo/{id}");
+    }
+
+    private void NavigateToEdit(Guid id)
+    {
+        Navigation.NavigateTo($"/managerauthenticationupdate/{id}");
+    }
+
+    private void NavigateToDelete(Guid id)
+    {
+        Navigation.NavigateTo($"/managerauthenticationdelete/{id}");
+    }
+}

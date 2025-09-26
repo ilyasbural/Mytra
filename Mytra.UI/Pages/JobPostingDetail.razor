@@ -1,0 +1,82 @@
+﻿@page "/jobpostingdetail"
+@inject HttpClient Http
+@inject NavigationManager Navigation
+
+<PageTitle>JobPostingDetail</PageTitle>
+<h3>JobPostingDetail</h3>
+
+@if (Response == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <tbody>
+            <tr>
+                <td><button class="btn btn-info btn-sm" @onclick="() => NavigateToNew()">Ekle</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>REGISTER DATE</th>
+                <th>UPDATE DATE</th>
+                <th>IS ACTIVE</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var JobPostingDetail in Response.DataList)
+            {
+                <tr>
+                    <td>@JobPostingDetail.Id</td>
+                    <td>@JobPostingDetail.Name</td>
+                    <td>@JobPostingDetail.RegisterDate</td>
+                    <td>@JobPostingDetail.UpdateDate</td>
+                    <td>@JobPostingDetail.IsActive</td>
+                    <td></td>
+                    <td>
+                        <button class="btn btn-info btn-sm" @onclick="() => NavigateToDetail(JobPostingDetail.Id)">Detay</button>
+                        <button class="btn btn-warning btn-sm" @onclick="() => NavigateToEdit(JobPostingDetail.Id)">Düzenle</button>
+                        <button class="btn btn-danger btn-sm" @onclick="() => NavigateToDelete(JobPostingDetail.Id)">Sil</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code
+{
+    private ServiceResponse<JobPostingDetailResponse>? Response { get; set; }
+    
+    protected override async Task OnInitializedAsync()
+    {
+        Response = await Http.GetFromJsonAsync<ServiceResponse<JobPostingDetailResponse>>("https://localhost:7046/api/jobpostingdetail");
+    }
+
+    private void NavigateToNew()
+    {
+        Navigation.NavigateTo($"/jobpostingdetailcreate");
+    }
+
+    private void NavigateToDetail(Guid id)
+    {
+        Navigation.NavigateTo($"/jobpostingdetailinfo/{id}");
+    }
+
+    private void NavigateToEdit(Guid id)
+    {
+        Navigation.NavigateTo($"/jobpostingdetailupdate/{id}");
+    }
+
+    private void NavigateToDelete(Guid id)
+    {
+        Navigation.NavigateTo($"/jobpostingdetaildelete/{id}");
+    }
+}

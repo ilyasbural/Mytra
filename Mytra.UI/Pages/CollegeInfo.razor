@@ -1,0 +1,27 @@
+﻿@page "/collegeinfo/{id:guid}"
+@inject HttpClient Http
+
+<PageTitle>College - @Id</PageTitle>
+<h3>College - @Id</h3>
+
+@code
+{
+    [Parameter]
+    public Guid Id { get; set; }
+    private ServiceResponse<CollegeResponse>? Response { get; set; }
+    private Utilize.CollegeSelectSingle Model { get; set; } = new Utilize.CollegeSelectSingle();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Response = await Http.GetFromJsonAsync<ServiceResponse<CollegeResponse>>
+        ($"https://localhost:7046/api/collegesingle?id={Id}");
+
+        if (Response != null && Response.Data != null)
+        {
+            Model = new Utilize.CollegeSelectSingle
+            {
+                Id = Response.Data.Id
+            };
+        }
+    }
+}

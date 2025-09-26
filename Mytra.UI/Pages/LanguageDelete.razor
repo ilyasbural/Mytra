@@ -1,0 +1,18 @@
+﻿@page "/languagedelete/{id:guid}"
+@inject HttpClient Http
+
+<PageTitle>Language - @Id</PageTitle>
+<h3>Language - @Id</h3>
+
+@code
+{
+    [Parameter]
+    public Guid Id { get; set; }
+    private ServiceResponse<LanguageResponse>? Response { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Response = await Http.DeleteFromJsonAsync<ServiceResponse<LanguageResponse>>
+        ($"https://localhost:7046/api/language/{Id}");
+    }
+}

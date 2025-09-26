@@ -1,0 +1,82 @@
+﻿@page "/skills"
+@inject HttpClient Http
+@inject NavigationManager Navigation
+
+<PageTitle>Skills</PageTitle>
+<h3>Skills</h3>
+
+@if (Response == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <tbody>
+            <tr>
+                <td><button class="btn btn-info btn-sm" @onclick="() => NavigateToNew()">Ekle</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>REGISTER DATE</th>
+                <th>UPDATE DATE</th>
+                <th>IS ACTIVE</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var Skills in Response.DataList)
+            {
+                <tr>
+                    <td>@Skills.Id</td>
+                    <td>@Skills.Name</td>
+                    <td>@Skills.RegisterDate</td>
+                    <td>@Skills.UpdateDate</td>
+                    <td>@Skills.IsActive</td>
+                    <td></td>
+                    <td>
+                        <button class="btn btn-info btn-sm" @onclick="() => NavigateToDetail(Skills.Id)">Detay</button>
+                        <button class="btn btn-warning btn-sm" @onclick="() => NavigateToEdit(Skills.Id)">Düzenle</button>
+                        <button class="btn btn-danger btn-sm" @onclick="() => NavigateToDelete(Skills.Id)">Sil</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code
+{
+    private ServiceResponse<SkillsResponse>? Response { get; set; }
+    
+    protected override async Task OnInitializedAsync()
+    {
+        Response  = await Http.GetFromJsonAsync<ServiceResponse<SkillsResponse>>("https://localhost:7046/api/skills");
+    }
+
+    private void NavigateToNew()
+    {
+        Navigation.NavigateTo($"/skillscreate");
+    }
+
+    private void NavigateToDetail(Guid id)
+    {
+        Navigation.NavigateTo($"/skillsinfo/{id}");
+    }
+
+    private void NavigateToEdit(Guid id)
+    {
+        Navigation.NavigateTo($"/skillsupdate/{id}");
+    }
+
+    private void NavigateToDelete(Guid id)
+    {
+        Navigation.NavigateTo($"/skillsdelete/{id}");
+    }
+}

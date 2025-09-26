@@ -1,0 +1,33 @@
+﻿@page "/institutioncreate"
+@inject HttpClient Http
+@inject NavigationManager NavManager
+
+<h3>InstitutionCreate</h3>
+
+<EditForm Model="Model" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="mb-3">
+        <label for="name">Adı:</label>
+        <InputText id="name" @bind-Value="Model.Name" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+</EditForm>
+
+@code
+{
+    private ServiceResponse<InstitutionResponse>? Response { get; set; }
+    private Utilize.InstitutionInsert Model { get; set; } = new Utilize.InstitutionInsert();
+
+    private async Task HandleValidSubmit()
+    {
+        HttpResponseMessage Result = await Http.PostAsJsonAsync("https://localhost:7046/api/institution", Model);
+        if (Result.IsSuccessStatusCode)
+        {
+            Response = await Result.Content.ReadFromJsonAsync<ServiceResponse<InstitutionResponse>>();
+            if (Response != null && Response.Success) NavManager.NavigateTo("/institution");
+        }
+    }
+}

@@ -1,0 +1,82 @@
+﻿@page "/institution"
+@inject HttpClient Http
+@inject NavigationManager Navigation
+
+<PageTitle>Institution</PageTitle>
+<h3>Institution</h3>
+
+@if (Response == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <tbody>
+            <tr>
+                <td><button class="btn btn-info btn-sm" @onclick="() => NavigateToNew()">Ekle</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>REGISTER DATE</th>
+                <th>UPDATE DATE</th>
+                <th>IS ACTIVE</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var Institution in Response.DataList)
+            {
+                <tr>
+                    <td>@Institution.Id</td>
+                    <td>@Institution.Name</td>
+                    <td>@Institution.RegisterDate</td>
+                    <td>@Institution.UpdateDate</td>
+                    <td>@Institution.IsActive</td>
+                    <td></td>
+                    <td>
+                        <button class="btn btn-info btn-sm" @onclick="() => NavigateToDetail(Institution.Id)">Detay</button>
+                        <button class="btn btn-warning btn-sm" @onclick="() => NavigateToEdit(Institution.Id)">Düzenle</button>
+                        <button class="btn btn-danger btn-sm" @onclick="() => NavigateToDelete(Institution.Id)">Sil</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code
+{
+    private ServiceResponse<InstitutionResponse>? Response { get; set; }
+    
+    protected override async Task OnInitializedAsync()
+    {
+        Response = await Http.GetFromJsonAsync<ServiceResponse<InstitutionResponse>>("https://localhost:7046/api/institution");
+    }
+
+    private void NavigateToNew()
+    {
+        Navigation.NavigateTo($"/institutioncreate");
+    }
+
+    private void NavigateToDetail(Guid id)
+    {
+        Navigation.NavigateTo($"/institutioninfo/{id}");
+    }
+
+    private void NavigateToEdit(Guid id)
+    {
+        Navigation.NavigateTo($"/institutionupdate/{id}");
+    }
+
+    private void NavigateToDelete(Guid id)
+    {
+        Navigation.NavigateTo($"/institutiondelete/{id}");
+    }
+}

@@ -1,0 +1,27 @@
+﻿@page "/managerauthenticationinfo/{id:guid}"
+@inject HttpClient Http
+
+<PageTitle>ManagerAuthentication - @Id</PageTitle>
+<h3>ManagerAuthentication - @Id</h3>
+
+@code
+{
+    [Parameter]
+    public Guid Id { get; set; }
+    private ServiceResponse<ManagerAuthenticationResponse>? Response { get; set; }
+    private Utilize.ManagerAuthenticationSelectSingle Model { get; set; } = new Utilize.ManagerAuthenticationSelectSingle();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Response = await Http.GetFromJsonAsync<ServiceResponse<ManagerAuthenticationResponse>>
+        ($"https://localhost:7046/api/managerauthenticationsingle?id={Id}");
+
+        if (Response != null && Response.Data != null)
+        {
+            Model = new Utilize.ManagerAuthenticationSelectSingle
+            {
+                Id = Response.Data.Id
+            };
+        }
+    }
+}

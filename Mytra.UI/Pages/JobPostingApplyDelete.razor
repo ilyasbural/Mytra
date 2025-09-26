@@ -1,0 +1,18 @@
+﻿@page "/jobpostingapplydelete/{id:guid}"
+@inject HttpClient Http
+
+<PageTitle>JobPostingApply - @Id</PageTitle>
+<h3>JobPostingApply - @Id</h3>
+
+@code
+{
+    [Parameter]
+    public Guid Id { get; set; }
+    private ServiceResponse<JobPostingApplyResponse>? Response { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Response = await Http.DeleteFromJsonAsync<ServiceResponse<JobPostingApplyResponse>>
+        ($"https://localhost:7046/api/jobpostingapply/{Id}");
+    }
+}

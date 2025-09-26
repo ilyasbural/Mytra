@@ -1,0 +1,27 @@
+﻿@page "/managerdetailinfo/{id:guid}"
+@inject HttpClient Http
+
+<PageTitle>ManagerDetail - @Id</PageTitle>
+<h3>ManagerDetail - @Id</h3>
+
+@code
+{
+    [Parameter]
+    public Guid Id { get; set; }
+    private ServiceResponse<ManagerDetailResponse>? Response { get; set; }
+    private Utilize.ManagerDetailSelectSingle Model { get; set; } = new Utilize.ManagerDetailSelectSingle();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Response = await Http.GetFromJsonAsync<ServiceResponse<ManagerDetailResponse>>
+        ($"https://localhost:7046/api/managerdetailsingle?id={Id}");
+
+        if (Response != null && Response.Data != null)
+        {
+            Model = new Utilize.ManagerDetailSelectSingle
+            {
+                Id = Response.Data.Id
+            };
+        }
+    }
+}

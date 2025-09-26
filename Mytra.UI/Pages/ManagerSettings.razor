@@ -1,0 +1,82 @@
+﻿@page "/managersettings"
+@inject HttpClient Http
+@inject NavigationManager Navigation
+
+<PageTitle>ManagerSettings</PageTitle>
+<h3>ManagerSettings</h3>
+
+@if (Response == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <tbody>
+            <tr>
+                <td><button class="btn btn-info btn-sm" @onclick="() => NavigateToNew()">Ekle</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>REGISTER DATE</th>
+                <th>UPDATE DATE</th>
+                <th>IS ACTIVE</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ManagerSettings in Response.DataList)
+            {
+                <tr>
+                    <td>@ManagerSettings.Id</td>
+                    <td>@ManagerSettings.Name</td>
+                    <td>@ManagerSettings.RegisterDate</td>
+                    <td>@ManagerSettings.UpdateDate</td>
+                    <td>@ManagerSettings.IsActive</td>
+                    <td></td>
+                    <td>
+                        <button class="btn btn-info btn-sm" @onclick="() => NavigateToDetail(ManagerSettings.Id)">Detay</button>
+                        <button class="btn btn-warning btn-sm" @onclick="() => NavigateToEdit(ManagerSettings.Id)">Düzenle</button>
+                        <button class="btn btn-danger btn-sm" @onclick="() => NavigateToDelete(ManagerSettings.Id)">Sil</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code
+{
+    private ServiceResponse<ManagerSettingsResponse>? Response { get; set; }
+    
+    protected override async Task OnInitializedAsync()
+    {
+        Response = await Http.GetFromJsonAsync<ServiceResponse<ManagerSettingsResponse>>("https://localhost:7046/api/managersettings");
+    }
+
+    private void NavigateToNew()
+    {
+        Navigation.NavigateTo($"/managersettingscreate");
+    }
+
+    private void NavigateToDetail(Guid id)
+    {
+        Navigation.NavigateTo($"/managersettingsinfo/{id}");
+    }
+
+    private void NavigateToEdit(Guid id)
+    {
+        Navigation.NavigateTo($"/managersettingsupdate/{id}");
+    }
+
+    private void NavigateToDelete(Guid id)
+    {
+        Navigation.NavigateTo($"/managersettingsdelete/{id}");
+    }
+}

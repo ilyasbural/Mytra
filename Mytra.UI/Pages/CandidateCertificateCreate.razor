@@ -1,0 +1,33 @@
+﻿@page "/candidatecertificatecreate"
+@inject HttpClient Http
+@inject NavigationManager NavManager
+
+<h3>CandidateCertificateCreate</h3>
+
+<EditForm Model="Model" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="mb-3">
+        <label for="name">Adı:</label>
+        <InputText id="name" @bind-Value="Model.Name" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+</EditForm>
+
+@code
+{
+    private ServiceResponse<CandidateCertificateResponse>? Response { get; set; }
+    private Utilize.CandidateCertificateInsert Model { get; set; } = new Utilize.CandidateCertificateInsert();
+
+    private async Task HandleValidSubmit()
+    {
+        HttpResponseMessage Result = await Http.PostAsJsonAsync("https://localhost:7046/api/candidatecertificate", Model);
+        if (Result.IsSuccessStatusCode)
+        {
+            Response = await Result.Content.ReadFromJsonAsync<ServiceResponse<CandidateCertificateResponse>>();
+            if (Response != null && Response.Success) NavManager.NavigateTo("/candidatecertificate");
+        }
+    }
+}

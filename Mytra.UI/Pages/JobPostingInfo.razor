@@ -1,0 +1,27 @@
+﻿@page "/jobpostinginfo/{id:guid}"
+@inject HttpClient Http
+
+<PageTitle>JobPosting - @Id</PageTitle>
+<h3>JobPosting - @Id</h3>
+
+@code
+{
+    [Parameter]
+    public Guid Id { get; set; }
+    private ServiceResponse<JobPostingResponse>? Response { get; set; }
+    private Utilize.JobPostingSelectSingle Model { get; set; } = new Utilize.JobPostingSelectSingle();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Response = await Http.GetFromJsonAsync<ServiceResponse<JobPostingResponse>>
+        ($"https://localhost:7046/api/jobpostingsingle?id={Id}");
+
+        if (Response != null && Response.Data != null)
+        {
+            Model = new Utilize.JobPostingSelectSingle
+            {
+                Id = Response.Data.Id
+            };
+        }
+    }
+}

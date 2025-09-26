@@ -1,0 +1,82 @@
+﻿@page "/candidateauthentication"
+@inject HttpClient Http
+@inject NavigationManager Navigation
+
+<PageTitle>CandidateAuthentication</PageTitle>
+<h3>CandidateAuthentication</h3>
+
+@if (Response == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <tbody>
+            <tr>
+                <td><button class="btn btn-info btn-sm" @onclick="() => NavigateToNew()">Ekle</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>REFRESH TOKEN</th>
+                <th>EXPIRE DATE</th>
+                <th>REGISTER DATE</th>
+                <th>UPDATE DATE</th>
+                <th>IS ACTIVE</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var Authentication in Response.DataList)
+            {
+                <tr>
+                    <td>@Authentication.Id</td>
+                    <td>@Authentication.RefreshToken</td>
+                    <td>@Authentication.RefreshTokenExpireTime</td>
+                    <td>@Authentication.RegisterDate</td>
+                    <td>@Authentication.UpdateDate</td>
+                    <td>@Authentication.IsActive</td>
+                    <td>
+                        <button class="btn btn-info btn-sm" @onclick="() => NavigateToDetail(Authentication.Id)">Detay</button>
+                        <button class="btn btn-warning btn-sm" @onclick="() => NavigateToEdit(Authentication.Id)">Düzenle</button>
+                        <button class="btn btn-danger btn-sm" @onclick="() => NavigateToDelete(Authentication.Id)">Sil</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code
+{
+    private ServiceResponse<CandidateAuthenticationResponse>? Response { get; set; }
+    
+    protected override async Task OnInitializedAsync()
+    {
+        Response = await Http.GetFromJsonAsync<ServiceResponse<CandidateAuthenticationResponse>>("https://localhost:7046/api/candidateauthentication");
+    }
+
+    private void NavigateToNew()
+    {
+        Navigation.NavigateTo($"/candidateauthenticationcreate");
+    }
+
+    private void NavigateToDetail(Guid id)
+    {
+        Navigation.NavigateTo($"/candidateauthenticationinfo/{id}");
+    }
+
+    private void NavigateToEdit(Guid id)
+    {
+        Navigation.NavigateTo($"/candidateauthenticationupdate/{id}");
+    }
+
+    private void NavigateToDelete(Guid id)
+    {
+        Navigation.NavigateTo($"/candidateauthenticationdelete/{id}");
+    }
+}

@@ -1,0 +1,48 @@
+﻿@page "/collegeupdate/{id:guid}"
+@inject HttpClient Http
+@inject NavigationManager NavManager
+
+<PageTitle>College - @Id</PageTitle>
+<h3>College - @Id</h3>
+
+<EditForm Model="Model" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="mb-3">
+        <label for="name">İsim:</label>
+        <InputText id="name" @bind-Value="Model.Name" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+
+</EditForm>
+
+@code
+{
+    [Parameter]
+    public Guid Id { get; set; }
+    private ServiceResponse<CollegeResponse>? Response { get; set; }
+    private Utilize.CollegeUpdate Model { get; set; } = new Utilize.CollegeUpdate();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Response = await Http.GetFromJsonAsync<ServiceResponse<CollegeResponse>>
+        ($"https://localhost:7046/api/collegesingle?id={Id}");
+
+        if (Response != null && Response.Data != null)
+        {
+            Model = new Utilize.CollegeUpdate
+            {
+                Id = Response.Data.Id,
+                Name = Response.Data.Name
+            };
+        }
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        HttpResponseMessage Result = await Http.PutAsJsonAsync("https://localhost:7046/api/college", Model);
+        NavManager.NavigateTo("/college");
+    }
+}

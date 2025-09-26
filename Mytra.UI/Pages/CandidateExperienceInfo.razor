@@ -1,0 +1,27 @@
+﻿@page "/candidateexperienceinfo/{id:guid}"
+@inject HttpClient Http
+
+<PageTitle>CandidateExperience - @Id</PageTitle>
+<h3>CandidateExperience - @Id</h3>
+
+@code
+{
+    [Parameter]
+    public Guid Id { get; set; }
+    private ServiceResponse<CandidateExperienceResponse>? Response { get; set; }
+    private Utilize.CandidateExperienceSelectSingle Model { get; set; } = new Utilize.CandidateExperienceSelectSingle();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Response = await Http.GetFromJsonAsync<ServiceResponse<CandidateExperienceResponse>>
+        ($"https://localhost:7046/api/candidateexperiencesingle?id={Id}");
+
+        if (Response != null && Response.Data != null)
+        {
+            Model = new Utilize.CandidateExperienceSelectSingle
+            {
+                Id = Response.Data.Id
+            };
+        }
+    }
+}

@@ -1,0 +1,82 @@
+﻿@page "/candidateexperience"
+@inject HttpClient Http
+@inject NavigationManager Navigation
+
+<PageTitle>CandidateExperience</PageTitle>
+<h3>CandidateExperience</h3>
+
+@if (Response == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <tbody>
+            <tr>
+                <td><button class="btn btn-info btn-sm" @onclick="() => NavigateToNew()">Ekle</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>REGISTER DATE</th>
+                <th>UPDATE DATE</th>
+                <th>IS ACTIVE</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var CandidateExperience in Response.DataList)
+            {
+                <tr>
+                    <td>@CandidateExperience.Id</td>
+                    <td>@CandidateExperience.Name</td>
+                    <td>@CandidateExperience.RegisterDate</td>
+                    <td>@CandidateExperience.UpdateDate</td>
+                    <td>@CandidateExperience.IsActive</td>
+                    <td></td>
+                    <td>
+                        <button class="btn btn-info btn-sm" @onclick="() => NavigateToDetail(CandidateExperience.Id)">Detay</button>
+                        <button class="btn btn-warning btn-sm" @onclick="() => NavigateToEdit(CandidateExperience.Id)">Düzenle</button>
+                        <button class="btn btn-danger btn-sm" @onclick="() => NavigateToDelete(CandidateExperience.Id)">Sil</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code
+{
+    private ServiceResponse<CandidateExperienceResponse>? Response { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Response = await Http.GetFromJsonAsync<ServiceResponse<CandidateExperienceResponse>>("https://localhost:7046/api/candidateexperience");
+    }
+
+    private void NavigateToNew()
+    {
+        Navigation.NavigateTo($"/candidateexperiencecreate");
+    }
+
+    private void NavigateToDetail(Guid id)
+    {
+        Navigation.NavigateTo($"/candidateexperienceinfo/{id}");
+    }
+
+    private void NavigateToEdit(Guid id)
+    {
+        Navigation.NavigateTo($"/candidateexperienceupdate/{id}");
+    }
+
+    private void NavigateToDelete(Guid id)
+    {
+        Navigation.NavigateTo($"/candidateexperiencedelete/{id}");
+    }
+}

@@ -1,0 +1,82 @@
+﻿@page "/candidatelanguage"
+@inject HttpClient Http
+@inject NavigationManager Navigation
+
+<PageTitle>CandidateLanguage</PageTitle>
+<h3>CandidateLanguage</h3>
+
+@if (Response == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <tbody>
+            <tr>
+                <td><button class="btn btn-info btn-sm" @onclick="() => NavigateToNew()">Ekle</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>REGISTER DATE</th>
+                <th>UPDATE DATE</th>
+                <th>IS ACTIVE</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var CandidateLanguage in Response.DataList)
+            {
+                <tr>
+                    <td>@CandidateLanguage.Id</td>
+                    <td>@CandidateLanguage.Name</td>
+                    <td>@CandidateLanguage.RegisterDate</td>
+                    <td>@CandidateLanguage.UpdateDate</td>
+                    <td>@CandidateLanguage.IsActive</td>
+                    <td></td>
+                    <td>
+                        <button class="btn btn-info btn-sm" @onclick="() => NavigateToDetail(CandidateLanguage.Id)">Detay</button>
+                        <button class="btn btn-warning btn-sm" @onclick="() => NavigateToEdit(CandidateLanguage.Id)">Düzenle</button>
+                        <button class="btn btn-danger btn-sm" @onclick="() => NavigateToDelete(CandidateLanguage.Id)">Sil</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code
+{
+    private ServiceResponse<CandidateLanguageResponse>? Response { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Response = await Http.GetFromJsonAsync<ServiceResponse<CandidateLanguageResponse>>("https://localhost:7046/api/candidatelanguage");
+    }
+
+    private void NavigateToNew()
+    {
+        Navigation.NavigateTo($"/candidatelanguagecreate");
+    }
+
+    private void NavigateToDetail(Guid id)
+    {
+        Navigation.NavigateTo($"/candidatelanguageinfo/{id}");
+    }
+
+    private void NavigateToEdit(Guid id)
+    {
+        Navigation.NavigateTo($"/candidatelanguageupdate/{id}");
+    }
+
+    private void NavigateToDelete(Guid id)
+    {
+        Navigation.NavigateTo($"/candidatelanguagedelete/{id}");
+    }
+}

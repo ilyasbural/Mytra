@@ -1,0 +1,27 @@
+﻿@page "/candidatelanguageinfo/{id:guid}"
+@inject HttpClient Http
+
+<PageTitle>CandidateLanguage - @Id</PageTitle>
+<h3>CandidateLanguage - @Id</h3>
+
+@code
+{
+    [Parameter]
+    public Guid Id { get; set; }
+    private ServiceResponse<CandidateLanguageResponse>? Response { get; set; }
+    private Utilize.CandidateLanguageSelectSingle Model { get; set; } = new Utilize.CandidateLanguageSelectSingle();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Response = await Http.GetFromJsonAsync<ServiceResponse<CandidateLanguageResponse>>
+        ($"https://localhost:7046/api/candidatelanguagesingle?id={Id}");
+
+        if (Response != null && Response.Data != null)
+        {
+            Model = new Utilize.CandidateLanguageSelectSingle
+            {
+                Id = Response.Data.Id
+            };
+        }
+    }
+}

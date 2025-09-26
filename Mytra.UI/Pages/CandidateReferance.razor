@@ -1,0 +1,82 @@
+﻿@page "/candidatereferance"
+@inject HttpClient Http
+@inject NavigationManager Navigation
+
+<PageTitle>CandidateReferance</PageTitle>
+<h3>CandidateReferance</h3>
+
+@if (Response == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <tbody>
+            <tr>
+                <td><button class="btn btn-info btn-sm" @onclick="() => NavigateToNew()">Ekle</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>REGISTER DATE</th>
+                <th>UPDATE DATE</th>
+                <th>IS ACTIVE</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var CandidateReferance in Response.DataList)
+            {
+                <tr>
+                    <td>@CandidateReferance.Id</td>
+                    <td>@CandidateReferance.Name</td>
+                    <td>@CandidateReferance.RegisterDate</td>
+                    <td>@CandidateReferance.UpdateDate</td>
+                    <td>@CandidateReferance.IsActive</td>
+                    <td></td>
+                    <td>
+                        <button class="btn btn-info btn-sm" @onclick="() => NavigateToDetail(CandidateReferance.Id)">Detay</button>
+                        <button class="btn btn-warning btn-sm" @onclick="() => NavigateToEdit(CandidateReferance.Id)">Düzenle</button>
+                        <button class="btn btn-danger btn-sm" @onclick="() => NavigateToDelete(CandidateReferance.Id)">Sil</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code
+{
+    private ServiceResponse<CandidateReferanceResponse>? Response { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Response = await Http.GetFromJsonAsync<ServiceResponse<CandidateReferanceResponse>>("https://localhost:7046/api/candidatereferance");
+    }
+
+    private void NavigateToNew()
+    {
+        Navigation.NavigateTo($"/candidatereferancecreate");
+    }
+
+    private void NavigateToDetail(Guid id)
+    {
+        Navigation.NavigateTo($"/candidatereferanceinfo/{id}");
+    }
+
+    private void NavigateToEdit(Guid id)
+    {
+        Navigation.NavigateTo($"/candidatereferanceupdate/{id}");
+    }
+
+    private void NavigateToDelete(Guid id)
+    {
+        Navigation.NavigateTo($"/candidatereferancedelete/{id}");
+    }
+}

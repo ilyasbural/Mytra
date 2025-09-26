@@ -1,0 +1,48 @@
+﻿@page "/managerdetailupdate/{id:guid}"
+@inject HttpClient Http
+@inject NavigationManager NavManager
+
+<PageTitle>ManagerDetail - @Id</PageTitle>
+<h3>ManagerDetail - @Id</h3>
+
+<EditForm Model="Model" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="mb-3">
+        <label for="name">İsim:</label>
+        <InputText id="name" @bind-Value="Model.Name" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+
+</EditForm>
+
+@code
+{
+    [Parameter]
+    public Guid Id { get; set; }
+    private ServiceResponse<ManagerDetailResponse>? Response { get; set; }
+    private Utilize.ManagerDetailUpdate Model { get; set; } = new Utilize.ManagerDetailUpdate();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Response = await Http.GetFromJsonAsync<ServiceResponse<ManagerDetailResponse>>
+        ($"https://localhost:7046/api/managerdetailsingle?id={Id}");
+
+        if (Response != null && Response.Data != null)
+        {
+            Model = new Utilize.ManagerDetailUpdate
+            {
+                Id = Response.Data.Id,
+                Name = Response.Data.Name
+            };
+        }
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        HttpResponseMessage Result = await Http.PutAsJsonAsync("https://localhost:7046/api/managerdetail", Model);
+        NavManager.NavigateTo("/managerdetail");
+    }
+}

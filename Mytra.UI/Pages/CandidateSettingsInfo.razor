@@ -1,0 +1,27 @@
+﻿@page "/candidatesettingsinfo/{id:guid}"
+@inject HttpClient Http
+
+<PageTitle>CandidateSettings - @Id</PageTitle>
+<h3>CandidateSettings - @Id</h3>
+
+@code
+{
+    [Parameter]
+    public Guid Id { get; set; }
+    private ServiceResponse<CandidateSettingsResponse>? Response { get; set; }
+    private Utilize.CandidateSettingsSelectSingle Model { get; set; } = new Utilize.CandidateSettingsSelectSingle();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Response = await Http.GetFromJsonAsync<ServiceResponse<CandidateSettingsResponse>>
+        ($"https://localhost:7046/api/candidatesettingssingle?id={Id}");
+
+        if (Response != null && Response.Data != null)
+        {
+            Model = new Utilize.CandidateSettingsSelectSingle
+            {
+                Id = Response.Data.Id
+            };
+        }
+    }
+}

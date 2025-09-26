@@ -1,0 +1,36 @@
+﻿@page "/candidateauthenticationcreate"
+@inject HttpClient Http
+@inject NavigationManager NavManager
+
+<h3>CandidateAuthenticationCreate</h3>
+
+<EditForm Model="Model" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="mb-3">
+        <label for="refreshtoken">RefreshToken:</label>
+        <InputText id="refreshtoken" @bind-Value="Model.RefreshToken" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+</EditForm>
+
+@code
+{
+    private ServiceResponse<CandidateAuthenticationResponse>? Response { get; set; }
+    private Utilize.CandidateAuthenticationInsert Model { get; set; } = new Utilize.CandidateAuthenticationInsert()
+    {
+        CandidateId = new Guid("75DC3842-4D52-4685-B163-D6A90E12635F")
+    };
+
+    private async Task HandleValidSubmit()
+    {
+        HttpResponseMessage Result = await Http.PostAsJsonAsync("https://localhost:7046/api/candidateauthentication", Model);
+        if (Result.IsSuccessStatusCode)
+        {
+            Response = await Result.Content.ReadFromJsonAsync<ServiceResponse<CandidateAuthenticationResponse>>();
+            if (Response != null && Response.Success) NavManager.NavigateTo("/candidateauthentication");
+        }
+    }
+}

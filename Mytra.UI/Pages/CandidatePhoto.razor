@@ -1,0 +1,82 @@
+﻿@page "/candidatephoto"
+@inject HttpClient Http
+@inject NavigationManager Navigation
+
+<PageTitle>CandidatePhoto</PageTitle>
+<h3>CandidatePhoto</h3>
+
+@if (Response == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <tbody>
+            <tr>
+                <td><button class="btn btn-info btn-sm" @onclick="() => NavigateToNew()">Ekle</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>REGISTER DATE</th>
+                <th>UPDATE DATE</th>
+                <th>IS ACTIVE</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var CandidatePhoto in Response.DataList)
+            {
+                <tr>
+                    <td>@CandidatePhoto.Id</td>
+                    <td>@CandidatePhoto.Name</td>
+                    <td>@CandidatePhoto.RegisterDate</td>
+                    <td>@CandidatePhoto.UpdateDate</td>
+                    <td>@CandidatePhoto.IsActive</td>
+                    <td></td>
+                    <td>
+                        <button class="btn btn-info btn-sm" @onclick="() => NavigateToDetail(CandidatePhoto.Id)">Detay</button>
+                        <button class="btn btn-warning btn-sm" @onclick="() => NavigateToEdit(CandidatePhoto.Id)">Düzenle</button>
+                        <button class="btn btn-danger btn-sm" @onclick="() => NavigateToDelete(CandidatePhoto.Id)">Sil</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code
+{
+    private ServiceResponse<CandidatePhotoResponse>? Response { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Response = await Http.GetFromJsonAsync<ServiceResponse<CandidatePhotoResponse>>("https://localhost:7046/api/candidatephoto");
+    }
+
+    private void NavigateToNew()
+    {
+        Navigation.NavigateTo($"/candidatephotocreate");
+    }
+
+    private void NavigateToDetail(Guid id)
+    {
+        Navigation.NavigateTo($"/candidatephotoinfo/{id}");
+    }
+
+    private void NavigateToEdit(Guid id)
+    {
+        Navigation.NavigateTo($"/candidatephotoupdate/{id}");
+    }
+
+    private void NavigateToDelete(Guid id)
+    {
+        Navigation.NavigateTo($"/candidatephotodelete/{id}");
+    }
+}

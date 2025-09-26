@@ -1,0 +1,82 @@
+﻿@page "/candidateskills"
+@inject HttpClient Http
+@inject NavigationManager Navigation
+
+<PageTitle>CandidateSkills</PageTitle>
+<h3>CandidateSkills</h3>
+
+@if (Response == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <tbody>
+            <tr>
+                <td><button class="btn btn-info btn-sm" @onclick="() => NavigateToNew()">Ekle</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>REGISTER DATE</th>
+                <th>UPDATE DATE</th>
+                <th>IS ACTIVE</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var CandidateSkills in Response.DataList)
+            {
+                <tr>
+                    <td>@CandidateSkills.Id</td>
+                    <td>@CandidateSkills.Name</td>
+                    <td>@CandidateSkills.RegisterDate</td>
+                    <td>@CandidateSkills.UpdateDate</td>
+                    <td>@CandidateSkills.IsActive</td>
+                    <td></td>
+                    <td>
+                        <button class="btn btn-info btn-sm" @onclick="() => NavigateToDetail(CandidateSkills.Id)">Detay</button>
+                        <button class="btn btn-warning btn-sm" @onclick="() => NavigateToEdit(CandidateSkills.Id)">Düzenle</button>
+                        <button class="btn btn-danger btn-sm" @onclick="() => NavigateToDelete(CandidateSkills.Id)">Sil</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code
+{
+    private ServiceResponse<CandidateSkillsResponse>? Response { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Response = await Http.GetFromJsonAsync<ServiceResponse<CandidateSkillsResponse>>("https://localhost:7046/api/candidateskills");
+    }
+
+    private void NavigateToNew()
+    {
+        Navigation.NavigateTo($"/candidateskillscreate");
+    }
+
+    private void NavigateToDetail(Guid id)
+    {
+        Navigation.NavigateTo($"/candidateskillsinfo/{id}");
+    }
+
+    private void NavigateToEdit(Guid id)
+    {
+        Navigation.NavigateTo($"/candidateskillsupdate/{id}");
+    }
+
+    private void NavigateToDelete(Guid id)
+    {
+        Navigation.NavigateTo($"/candidateskillsdelete/{id}");
+    }
+}

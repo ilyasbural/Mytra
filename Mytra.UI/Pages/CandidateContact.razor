@@ -1,0 +1,82 @@
+﻿@page "/candidatecontact"
+@inject HttpClient Http
+@inject NavigationManager Navigation
+
+<PageTitle>CandidateContact</PageTitle>
+<h3>CandidateContact</h3>
+
+@if (Response == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <tbody>
+            <tr>
+                <td><button class="btn btn-info btn-sm" @onclick="() => NavigateToNew()">Ekle</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>REGISTER DATE</th>
+                <th>UPDATE DATE</th>
+                <th>IS ACTIVE</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var CandidateContact in Response.DataList)
+            {
+                <tr>
+                    <td>@CandidateContact.Id</td>
+                    <td>@CandidateContact.Name</td>
+                    <td>@CandidateContact.RegisterDate</td>
+                    <td>@CandidateContact.UpdateDate</td>
+                    <td>@CandidateContact.IsActive</td>
+                    <td></td>
+                    <td>
+                        <button class="btn btn-info btn-sm" @onclick="() => NavigateToDetail(CandidateContact.Id)">Detay</button>
+                        <button class="btn btn-warning btn-sm" @onclick="() => NavigateToEdit(CandidateContact.Id)">Düzenle</button>
+                        <button class="btn btn-danger btn-sm" @onclick="() => NavigateToDelete(CandidateContact.Id)">Sil</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code
+{
+    private ServiceResponse<CandidateContactResponse>? Response { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Response = await Http.GetFromJsonAsync<ServiceResponse<CandidateContactResponse>>("https://localhost:7046/api/candidatecontact");
+    }
+
+    private void NavigateToNew()
+    {
+        Navigation.NavigateTo($"/candidatecontactcreate");
+    }
+
+    private void NavigateToDetail(Guid id)
+    {
+        Navigation.NavigateTo($"/candidatecontactinfo/{id}");
+    }
+
+    private void NavigateToEdit(Guid id)
+    {
+        Navigation.NavigateTo($"/candidatecontactupdate/{id}");
+    }
+
+    private void NavigateToDelete(Guid id)
+    {
+        Navigation.NavigateTo($"/candidatecontactdelete/{id}");
+    }
+}

@@ -1,0 +1,27 @@
+﻿@page "/managersettingsinfo/{id:guid}"
+@inject HttpClient Http
+
+<PageTitle>ManagerSettings - @Id</PageTitle>
+<h3>ManagerSettings - @Id</h3>
+
+@code
+{
+    [Parameter]
+    public Guid Id { get; set; }
+    private ServiceResponse<ManagerSettingsResponse>? Response { get; set; }
+    private Utilize.ManagerSettingsSelectSingle Model { get; set; } = new Utilize.ManagerSettingsSelectSingle();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Response = await Http.GetFromJsonAsync<ServiceResponse<ManagerSettingsResponse>>
+        ($"https://localhost:7046/api/managersettingssingle?id={Id}");
+
+        if (Response != null && Response.Data != null)
+        {
+            Model = new Utilize.ManagerSettingsSelectSingle
+            {
+                Id = Response.Data.Id
+            };
+        }
+    }
+}

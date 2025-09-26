@@ -1,0 +1,27 @@
+﻿@page "/candidatecertificateinfo/{id:guid}"
+@inject HttpClient Http
+
+<PageTitle>CandidateCertificate - @Id</PageTitle>
+<h3>CandidateCertificate - @Id</h3>
+
+@code
+{
+    [Parameter]
+    public Guid Id { get; set; }
+    private ServiceResponse<CandidateCertificateResponse>? Response { get; set; }
+    private Utilize.CandidateCertificateSelectSingle Model { get; set; } = new Utilize.CandidateCertificateSelectSingle();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Response = await Http.GetFromJsonAsync<ServiceResponse<CandidateCertificateResponse>>
+        ($"https://localhost:7046/api/candidatecertificatesingle?id={Id}");
+
+        if (Response != null && Response.Data != null)
+        {
+            Model = new Utilize.CandidateCertificateSelectSingle
+            {
+                Id = Response.Data.Id
+            };
+        }
+    }
+}
