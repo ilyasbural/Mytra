@@ -32,8 +32,7 @@
 				if (!validationResult.IsValid)
 				{
 					return DataService<UserSettings>.FailureResult(
-						validationResult.Errors.Select(e => e.ErrorMessage).ToList(),
-						"");
+						validationResult.Errors.Select(e => e.ErrorMessage).ToList(), "");
 				}
 
 				await UnitOfWork.UserSettings.InsertAsync(Data);

@@ -32,8 +32,7 @@
 				if (!validationResult.IsValid)
 				{
 					return DataService<ManagerAuthentication>.FailureResult(
-						validationResult.Errors.Select(e => e.ErrorMessage).ToList(),
-						"Validasyon hatası");
+						validationResult.Errors.Select(e => e.ErrorMessage).ToList(), "");
 				}
 
 				await UnitOfWork.ManagerAuthentication.InsertAsync(Data);
@@ -41,12 +40,12 @@
 				var success = affectedRows > 0;
 
 				return success
-					? DataService<ManagerAuthentication>.SuccessResult(Data, "Record has been success")
-					: DataService<ManagerAuthentication>.FailureResult("fail");
+					? DataService<ManagerAuthentication>.SuccessResult(Data, "")
+					: DataService<ManagerAuthentication>.FailureResult("");
 			}
 			catch (Exception ex)
 			{
-				return DataService<ManagerAuthentication>.FailureResult(ex.Message, "some error");
+				return DataService<ManagerAuthentication>.FailureResult(ex.Message, "");
 			}
 		}
 
@@ -55,7 +54,7 @@
 			try
 			{
 				Collection = await UnitOfWork.ManagerAuthentication.SelectAsync(x => x.Id == Model.Id);
-				if (Collection == null) return DataService<ManagerAuthentication>.FailureResult("Kayıt bulunamadı");
+				if (Collection == null) return DataService<ManagerAuthentication>.FailureResult("");
 
 				Data = Collection.SingleOrDefault()!;
 				Data.Name = Model.Name;
@@ -66,12 +65,12 @@
 				var success = affectedRows > 0;
 
 				return Success
-					? DataService<ManagerAuthentication>.SuccessResult(Data, "Kayıt güncellendi")
-					: DataService<ManagerAuthentication>.FailureResult("Kayıt güncellenemedi");
+					? DataService<ManagerAuthentication>.SuccessResult(Data, "")
+					: DataService<ManagerAuthentication>.FailureResult("");
 			}
 			catch (Exception ex)
 			{
-				return DataService<ManagerAuthentication>.FailureResult(ex.Message, "Beklenmeyen hata oluştu");
+				return DataService<ManagerAuthentication>.FailureResult(ex.Message, "");
 			}
 		}
 
@@ -80,7 +79,7 @@
 			try
 			{
 				Collection = await UnitOfWork.ManagerAuthentication.SelectAsync(x => x.Id == Id);
-				if (Collection.SingleOrDefault() == null) return DataService<ManagerAuthentication>.FailureResult("Kayıt bulunamadı");
+				if (Collection.SingleOrDefault() == null) return DataService<ManagerAuthentication>.FailureResult("");
 
 				Data = Collection.SingleOrDefault()!;
 				await UnitOfWork.ManagerAuthentication.DeleteAsync(Data);
@@ -88,12 +87,12 @@
 				var success = affectedRows > 0;
 
 				return Success
-					? DataService<ManagerAuthentication>.SuccessResult(Collection.SingleOrDefault()!, "Kayıt silindi")
-					: DataService<ManagerAuthentication>.FailureResult("Kayıt silinemedi");
+					? DataService<ManagerAuthentication>.SuccessResult(Collection.SingleOrDefault()!, "")
+					: DataService<ManagerAuthentication>.FailureResult("");
 			}
 			catch (Exception ex)
 			{
-				return DataService<ManagerAuthentication>.FailureResult(ex.Message, "Beklenmeyen hata oluştu");
+				return DataService<ManagerAuthentication>.FailureResult(ex.Message, "");
 			}
 		}
 
@@ -102,11 +101,11 @@
 			try
 			{
 				Collection = await UnitOfWork.ManagerAuthentication.SelectAsync(x => x.IsActive);
-				return DataService<ManagerAuthentication>.SuccessResult(Collection, "Kayıtlar listelendi");
+				return DataService<ManagerAuthentication>.SuccessResult(Collection, "");
 			}
 			catch (Exception ex)
 			{
-				return DataService<ManagerAuthentication>.FailureResult(ex.Message, "Listeleme hatası");
+				return DataService<ManagerAuthentication>.FailureResult(ex.Message, "");
 			}
 		}
 
@@ -115,12 +114,12 @@
 			try
 			{
 				Collection = await UnitOfWork.ManagerAuthentication.SelectAsync(x => x.Id == Model.Id && x.IsActive);
-				if (Collection == null) return DataService<ManagerAuthentication>.FailureResult("Kayıt bulunamadı");
-				return DataService<ManagerAuthentication>.SuccessResult(Collection.SingleOrDefault()!, "Kayıt bulundu");
+				if (Collection == null) return DataService<ManagerAuthentication>.FailureResult("");
+				return DataService<ManagerAuthentication>.SuccessResult(Collection.SingleOrDefault()!, "");
 			}
 			catch (Exception ex)
 			{
-				return DataService<ManagerAuthentication>.FailureResult(ex.Message, "Sorgu hatası");
+				return DataService<ManagerAuthentication>.FailureResult(ex.Message, "");
 			}
 		}
 	}

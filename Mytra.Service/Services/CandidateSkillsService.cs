@@ -32,8 +32,7 @@
 				if (!validationResult.IsValid)
 				{
 					return DataService<CandidateSkills>.FailureResult(
-						validationResult.Errors.Select(e => e.ErrorMessage).ToList(),
-						"Validasyon hatası");
+						validationResult.Errors.Select(e => e.ErrorMessage).ToList(), "");
 				}
 
 				await UnitOfWork.CandidateSkills.InsertAsync(Data);
@@ -41,12 +40,12 @@
 				var success = affectedRows > 0;
 
 				return success
-					? DataService<CandidateSkills>.SuccessResult(Data, "Record has been success")
-					: DataService<CandidateSkills>.FailureResult("fail");
+					? DataService<CandidateSkills>.SuccessResult(Data, "")
+					: DataService<CandidateSkills>.FailureResult("");
 			}
 			catch (Exception ex)
 			{
-				return DataService<CandidateSkills>.FailureResult(ex.Message, "some error");
+				return DataService<CandidateSkills>.FailureResult(ex.Message, "");
 			}
 		}
 
@@ -55,7 +54,7 @@
 			try
 			{
 				Collection = await UnitOfWork.CandidateSkills.SelectAsync(x => x.Id == Model.Id);
-				if (Collection == null) return DataService<CandidateSkills>.FailureResult("Kayıt bulunamadı");
+				if (Collection == null) return DataService<CandidateSkills>.FailureResult("");
 
 				Data = Collection.SingleOrDefault()!;
 				Data.Name = Model.Name;
@@ -66,12 +65,12 @@
 				var success = affectedRows > 0;
 
 				return Success
-					? DataService<CandidateSkills>.SuccessResult(Data, "Kayıt güncellendi")
-					: DataService<CandidateSkills>.FailureResult("Kayıt güncellenemedi");
+					? DataService<CandidateSkills>.SuccessResult(Data, "")
+					: DataService<CandidateSkills>.FailureResult("");
 			}
 			catch (Exception ex)
 			{
-				return DataService<CandidateSkills>.FailureResult(ex.Message, "Beklenmeyen hata oluştu");
+				return DataService<CandidateSkills>.FailureResult(ex.Message, "");
 			}
 		}
 
@@ -80,7 +79,7 @@
 			try
 			{
 				Collection = await UnitOfWork.CandidateSkills.SelectAsync(x => x.Id == Id);
-				if (Collection.SingleOrDefault() == null) return DataService<CandidateSkills>.FailureResult("Kayıt bulunamadı");
+				if (Collection.SingleOrDefault() == null) return DataService<CandidateSkills>.FailureResult("");
 
 				Data = Collection.SingleOrDefault()!;
 				await UnitOfWork.CandidateSkills.DeleteAsync(Data);
@@ -88,12 +87,12 @@
 				var success = affectedRows > 0;
 
 				return Success
-					? DataService<CandidateSkills>.SuccessResult(Collection.SingleOrDefault()!, "Kayıt silindi")
-					: DataService<CandidateSkills>.FailureResult("Kayıt silinemedi");
+					? DataService<CandidateSkills>.SuccessResult(Collection.SingleOrDefault()!, "")
+					: DataService<CandidateSkills>.FailureResult("");
 			}
 			catch (Exception ex)
 			{
-				return DataService<CandidateSkills>.FailureResult(ex.Message, "Beklenmeyen hata oluştu");
+				return DataService<CandidateSkills>.FailureResult(ex.Message, "");
 			}
 		}
 
@@ -102,11 +101,11 @@
 			try
 			{
 				Collection = await UnitOfWork.CandidateSkills.SelectAsync(x => x.IsActive);
-				return DataService<CandidateSkills>.SuccessResult(Collection, "Kayıtlar listelendi");
+				return DataService<CandidateSkills>.SuccessResult(Collection, "");
 			}
 			catch (Exception ex)
 			{
-				return DataService<CandidateSkills>.FailureResult(ex.Message, "Listeleme hatası");
+				return DataService<CandidateSkills>.FailureResult(ex.Message, "");
 			}
 		}
 
@@ -115,12 +114,12 @@
 			try
 			{
 				Collection = await UnitOfWork.CandidateSkills.SelectAsync(x => x.Id == Model.Id && x.IsActive);
-				if (Collection == null) return DataService<CandidateSkills>.FailureResult("Kayıt bulunamadı");
-				return DataService<CandidateSkills>.SuccessResult(Collection.SingleOrDefault()!, "Kayıt bulundu");
+				if (Collection == null) return DataService<CandidateSkills>.FailureResult("");
+				return DataService<CandidateSkills>.SuccessResult(Collection.SingleOrDefault()!, "");
 			}
 			catch (Exception ex)
 			{
-				return DataService<CandidateSkills>.FailureResult(ex.Message, "Sorgu hatası");
+				return DataService<CandidateSkills>.FailureResult(ex.Message, "");
 			}
 		}
 	}

@@ -32,8 +32,7 @@
 				if (!validationResult.IsValid)
 				{
 					return DataService<ManagerSettings>.FailureResult(
-						validationResult.Errors.Select(e => e.ErrorMessage).ToList(),
-						"Validasyon hatası");
+						validationResult.Errors.Select(e => e.ErrorMessage).ToList(), "");
 				}
 
 				await UnitOfWork.ManagerSettings.InsertAsync(Data);

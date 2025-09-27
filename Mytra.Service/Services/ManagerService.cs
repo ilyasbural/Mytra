@@ -70,7 +70,7 @@
 			}
 			catch (Exception ex)
 			{
-				return DataService<Manager>.FailureResult(ex.Message, "Beklenmeyen hata oluştu");
+				return DataService<Manager>.FailureResult(ex.Message, "");
 			}
 		}
 
@@ -79,7 +79,7 @@
 			try
 			{
 				Collection = await UnitOfWork.Manager.SelectAsync(x => x.Id == Id);
-				if (Collection.SingleOrDefault() == null) return DataService<Manager>.FailureResult("Kayıt bulunamadı");
+				if (Collection.SingleOrDefault() == null) return DataService<Manager>.FailureResult("");
 
 				Data = Collection.SingleOrDefault()!;
 				await UnitOfWork.Manager.DeleteAsync(Data);
@@ -87,12 +87,12 @@
 				var success = affectedRows > 0;
 
 				return Success
-					? DataService<Manager>.SuccessResult(Collection.SingleOrDefault()!, "Kayıt silindi")
-					: DataService<Manager>.FailureResult("Kayıt silinemedi");
+					? DataService<Manager>.SuccessResult(Collection.SingleOrDefault()!, "")
+					: DataService<Manager>.FailureResult("");
 			}
 			catch (Exception ex)
 			{
-				return DataService<Manager>.FailureResult(ex.Message, "Beklenmeyen hata oluştu");
+				return DataService<Manager>.FailureResult(ex.Message, "");
 			}
 		}
 
@@ -101,11 +101,11 @@
 			try
 			{
 				Collection = await UnitOfWork.Manager.SelectAsync(x => x.IsActive);
-				return DataService<Manager>.SuccessResult(Collection, "Kayıtlar listelendi");
+				return DataService<Manager>.SuccessResult(Collection, "");
 			}
 			catch (Exception ex)
 			{
-				return DataService<Manager>.FailureResult(ex.Message, "Listeleme hatası");
+				return DataService<Manager>.FailureResult(ex.Message, "");
 			}
 		}
 
@@ -114,12 +114,12 @@
 			try
 			{
 				Collection = await UnitOfWork.Manager.SelectAsync(x => x.Id == Model.Id && x.IsActive);
-				if (Collection == null) return DataService<Manager>.FailureResult("Kayıt bulunamadı");
-				return DataService<Manager>.SuccessResult(Collection.SingleOrDefault()!, "Kayıt bulundu");
+				if (Collection == null) return DataService<Manager>.FailureResult("");
+				return DataService<Manager>.SuccessResult(Collection.SingleOrDefault()!, "");
 			}
 			catch (Exception ex)
 			{
-				return DataService<Manager>.FailureResult(ex.Message, "Sorgu hatası");
+				return DataService<Manager>.FailureResult(ex.Message, "");
 			}
 		}
 	}

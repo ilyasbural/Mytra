@@ -32,8 +32,7 @@
 				if (!validationResult.IsValid)
 				{
 					return DataService<CandidateCertificate>.FailureResult(
-						validationResult.Errors.Select(e => e.ErrorMessage).ToList(),
-						"Validasyon hatası");
+						validationResult.Errors.Select(e => e.ErrorMessage).ToList(), "");
 				}
 
 				await UnitOfWork.CandidateCertificate.InsertAsync(Data);

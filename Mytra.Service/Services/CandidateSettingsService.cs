@@ -32,8 +32,7 @@
 				if (!validationResult.IsValid)
 				{
 					return DataService<CandidateSettings>.FailureResult(
-						validationResult.Errors.Select(e => e.ErrorMessage).ToList(),
-						"Validasyon hatası");
+						validationResult.Errors.Select(e => e.ErrorMessage).ToList(), "");
 				}
 
 				await UnitOfWork.CandidateSettings.InsertAsync(Data);
@@ -41,12 +40,12 @@
 				var success = affectedRows > 0;
 
 				return success
-					? DataService<CandidateSettings>.SuccessResult(Data, "Record has been success")
-					: DataService<CandidateSettings>.FailureResult("fail");
+					? DataService<CandidateSettings>.SuccessResult(Data, "")
+					: DataService<CandidateSettings>.FailureResult("");
 			}
 			catch (Exception ex)
 			{
-				return DataService<CandidateSettings>.FailureResult(ex.Message, "some error");
+				return DataService<CandidateSettings>.FailureResult(ex.Message, "");
 			}
 		}
 
@@ -55,7 +54,7 @@
 			try
 			{
 				Collection = await UnitOfWork.CandidateSettings.SelectAsync(x => x.Id == Model.Id);
-				if (Collection == null) return DataService<CandidateSettings>.FailureResult("Kayıt bulunamadı");
+				if (Collection == null) return DataService<CandidateSettings>.FailureResult("");
 
 				Data = Collection.SingleOrDefault()!;
 				Data.Name = Model.Name;
@@ -66,12 +65,12 @@
 				var success = affectedRows > 0;
 
 				return Success
-					? DataService<CandidateSettings>.SuccessResult(Data, "Kayıt güncellendi")
-					: DataService<CandidateSettings>.FailureResult("Kayıt güncellenemedi");
+					? DataService<CandidateSettings>.SuccessResult(Data, "")
+					: DataService<CandidateSettings>.FailureResult("");
 			}
 			catch (Exception ex)
 			{
-				return DataService<CandidateSettings>.FailureResult(ex.Message, "Beklenmeyen hata oluştu");
+				return DataService<CandidateSettings>.FailureResult(ex.Message, "");
 			}
 		}
 
@@ -80,7 +79,7 @@
 			try
 			{
 				Collection = await UnitOfWork.CandidateSettings.SelectAsync(x => x.Id == Id);
-				if (Collection.SingleOrDefault() == null) return DataService<CandidateSettings>.FailureResult("Kayıt bulunamadı");
+				if (Collection.SingleOrDefault() == null) return DataService<CandidateSettings>.FailureResult("");
 
 				Data = Collection.SingleOrDefault()!;
 				await UnitOfWork.CandidateSettings.DeleteAsync(Data);
@@ -88,12 +87,12 @@
 				var success = affectedRows > 0;
 
 				return Success
-					? DataService<CandidateSettings>.SuccessResult(Collection.SingleOrDefault()!, "Kayıt silindi")
-					: DataService<CandidateSettings>.FailureResult("Kayıt silinemedi");
+					? DataService<CandidateSettings>.SuccessResult(Collection.SingleOrDefault()!, "")
+					: DataService<CandidateSettings>.FailureResult("");
 			}
 			catch (Exception ex)
 			{
-				return DataService<CandidateSettings>.FailureResult(ex.Message, "Beklenmeyen hata oluştu");
+				return DataService<CandidateSettings>.FailureResult(ex.Message, "");
 			}
 		}
 
@@ -102,11 +101,11 @@
 			try
 			{
 				Collection = await UnitOfWork.CandidateSettings.SelectAsync(x => x.IsActive);
-				return DataService<CandidateSettings>.SuccessResult(Collection, "Kayıtlar listelendi");
+				return DataService<CandidateSettings>.SuccessResult(Collection, "");
 			}
 			catch (Exception ex)
 			{
-				return DataService<CandidateSettings>.FailureResult(ex.Message, "Listeleme hatası");
+				return DataService<CandidateSettings>.FailureResult(ex.Message, "");
 			}
 		}
 
@@ -115,12 +114,12 @@
 			try
 			{
 				Collection = await UnitOfWork.CandidateSettings.SelectAsync(x => x.Id == Model.Id && x.IsActive);
-				if (Collection == null) return DataService<CandidateSettings>.FailureResult("Kayıt bulunamadı");
-				return DataService<CandidateSettings>.SuccessResult(Collection.SingleOrDefault()!, "Kayıt bulundu");
+				if (Collection == null) return DataService<CandidateSettings>.FailureResult("");
+				return DataService<CandidateSettings>.SuccessResult(Collection.SingleOrDefault()!, "");
 			}
 			catch (Exception ex)
 			{
-				return DataService<CandidateSettings>.FailureResult(ex.Message, "Sorgu hatası");
+				return DataService<CandidateSettings>.FailureResult(ex.Message, "");
 			}
 		}
 	}
