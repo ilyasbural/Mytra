@@ -18,3 +18,10 @@
 /Mytra.slnLaunch.user
 /Mytra.UI/bin/Debug/net9.0
 /Mytra.UI/obj
+/Mytra.Core/bin/Debug/net10.0
+/Mytra.DataAccess/bin/Debug/net10.0
+/Mytra.Presentation/bin/Debug/net10.0
+/Mytra.Service/bin/Debug/net10.0
+/Mytra.UI/bin/Debug/net10.0
+/Mytra.Utilize/bin/Debug/net10.0
+/Mytra.WebApi/bin/Debug/net10.0
